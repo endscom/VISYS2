@@ -11,5 +11,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 // LOGIN
 $route['login'] = 'login_controller/Acreditar';
-
+$route['salir'] = 'login_controller/Salir';
 // FIN LOGIN
+$route['Main'] = 'main_controller/main';
