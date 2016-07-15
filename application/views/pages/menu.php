@@ -19,8 +19,8 @@
             <a  class="mdl-navigation__link " href="Frp"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">payment</i>CANJE PUNTOS (FRP)</a>
             <a  class="mdl-navigation__link " href="FRE"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">payment</i>CANJE EFECTIVO (FRE)</a>
             <a  class="mdl-navigation__link " href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>CATÁLOGO</a>
-            <a  class="mdl-navigation__link " href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">account_box</i>USUARIO</a>
-            <a  class="mdl-navigation__link " href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">description</i>REPORTES</a>
+            <a  class="mdl-navigation__link " href="Usuarios"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">account_box</i>USUARIO</a>
+            <a  class="mdl-navigation__link " href="Reportes"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">description</i>REPORTES</a>
             <a  class="mdl-navigation__link " href="salir"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">exit_to_app</i><span class="visuallyhidden"></span>CERRAR SESION</a>
         </nav>
     </div>

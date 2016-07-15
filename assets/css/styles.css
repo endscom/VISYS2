@@ -276,7 +276,61 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 /**********************************************************
 ***********************************************************
-**********************************************************/
+*/
+#imgLogo{
+    width: 100%;
+    text-align: center;
+    margin-top: 45px;
+}
+#contenedorL
+{
+    background: url('/VISYS2/assets/img/fondo_login.jpg');
+}
+#nombre
+{
+    font-family: 'robotoblack';
+    color: #ffffff;
+    font-size: 14px;
+    border-bottom: 1px solid #ffffff;
+    box-shadow: 0 1px 0 0 #ffffff;
+    width: 100%;
+    text-align: center;
+}
+#pass
+{
+    font-family: 'robotoblack';
+    color: #ffffff;
+    font-size: 14px;
+    border-bottom: 1px solid #ffffff;
+    box-shadow: 0 1px 0 0 #ffffff;
+    width: 100%;
+    text-align: center;
+
+}
+#recordar
+{
+    font-family: 'robotoblack';
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+}
+#remember-me, [type="checkbox"]:checked + label:before
+{
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+
+}
+#NombreU{
+    width: 100%;
+    text-align: center;
+}
+#Acceder
+{
+    border: 1px solid #fff;
+    margin-top: 20px;
+    font-family: 'robotoblack';
+    font-size: 14px;
+}
 .Centrado
 {
     height: 56px;
@@ -623,4 +677,39 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 #titulM{
     font-size: 22px;
+}
+#obser{
+    font-size: 14px;
+}
+#acumulado{
+    font-size: 12px;
+}
+#AcuT
+{
+    font-family: 'robotoblack';
+    color: #866FD5;
+    font-size: 20px;
+}
+#contenedor{
+    margin-top: 15%;
+}
+#ModalFeet
+{
+    font-size: 12px;
+}
+.IconBlue
+{
+    color: #6a4ad5;
+}
+.TextIconos
+{
+    color: #6a4ad5;
+    font-family: 'robotoblack';
+    font-size: 12px;
+    text-align: center;
+}
+.iconoCenter
+{
+    width: 100%;
+    text-align: center;
 }

@@ -21,3 +21,7 @@ $route['PuntosClientes'] = 'main_controller/PuntosClientes';
 $route['DetalleFact'] = 'main_controller/DetalleFact';
 $route['Frp'] = 'main_controller/CanjeFrp';
 $route['FRE'] = 'main_controller/CanjeFre';
+
+
+$route['Usuarios'] = 'main_controller/Usuarios';
+$route['Reportes'] = 'main_controller/Reportes';

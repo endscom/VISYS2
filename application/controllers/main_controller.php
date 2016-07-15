@@ -73,4 +73,22 @@ class Main_controller extends CI_Controller
         $this->load->view('footer/footer');
     }
 
+
+
+    public function Usuarios()
+    {
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/Users');
+        $this->load->view('footer/footer');
+    }
+
+    public function Reportes()
+    {
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/Reportes');
+        $this->load->view('footer/footer');
+    }
+
 }
