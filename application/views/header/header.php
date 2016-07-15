@@ -30,10 +30,12 @@
     <link rel="canonical" href="http://www.example.com/">
     -->
 
-
-    <link rel="stylesheet" href="<?PHP echo base_url();?>assets/media/icon.css">
+    <link rel="stylesheet"href="<?PHP echo base_url();?>assets/css/materialize.css">
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/material.cyan-light_blue.min.css">
+    <link rel="stylesheet" href="<?PHP echo base_url();?>assets/media/icon.css">
+
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/styles.css">
+    <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/jquery.dataTables.css">
     <style>
         #view-source {
             position: fixed;

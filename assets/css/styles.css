@@ -14,9 +14,55 @@
  * limitations under the License.
  */
 
-html, body {
-  font-family: 'Roboto', 'Helvetica', sans-serif;
+@font-face {
+    font-family: 'robotoblack';
+    src: url('/VISYS2/assets/fonts/Robot/roboto-black-webfont.eot');
+    src: url('/VISYS2/assets/fonts/Robot/roboto-black-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/VISYS2/assets/fonts/Robot/roboto-black-webfont.woff2') format('woff2'),
+    url('/VISYS2/assets/fonts/Robot/roboto-black-webfont.woff') format('woff'),
+    url('/VISYS2/assets/fonts/Robot/roboto-black-webfont.ttf') format('truetype'),
+    url('/VISYS2/assets/fonts/Robot/roboto-black-webfont.svg#robotoblack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
+@font-face {
+    font-family: 'robotobold';
+    src: url('/VISYS2/assets/fonts/Robot/roboto-bold-webfont.eot');
+    src: url('/VISYS2/assets/fonts/Robot/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/VISYS2/assets/fonts/Robot/roboto-bold-webfont.woff2') format('woff2'),
+    url('/VISYS2/assets/fonts/Robot/roboto-bold-webfont.woff') format('woff'),
+    url('/VISYS2/assets/fonts/Robot/roboto-bold-webfont.ttf') format('truetype'),
+    url('/VISYS2/assets/fonts/Robot/roboto-bold-webfont.svg#robotobold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'robotomedium';
+    src: url('/VISYS2/assets/fonts/Robot/roboto-medium-webfont.eot');
+    src: url('/VISYS2/assets/fonts/Robot/roboto-medium-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/VISYS2/assets/fonts/Robot/roboto-medium-webfont.woff2') format('woff2'),
+    url('/VISYS2/assets/fonts/Robot/roboto-medium-webfont.woff') format('woff'),
+    url('/VISYS2/assets/fonts/Robot/roboto-medium-webfont.ttf') format('truetype'),
+    url('/VISYS2/assets/fonts/Robot/roboto-medium-webfont.svg#robotomedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'robotoregular';
+    src: url('/VISYS2/assets/fonts/Robot/roboto-regular-webfont.eot');
+    src: url('/VISYS2/assets/fonts/Robot/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/VISYS2/assets/fonts/Robot/roboto-regular-webfont.woff2') format('woff2'),
+    url('/VISYS2/assets/fonts/Robot/roboto-regular-webfont.woff') format('woff'),
+    url('/VISYS2/assets/fonts/Robot/roboto-regular-webfont.ttf') format('truetype'),
+    url('/VISYS2/assets/fonts/Robot/roboto-regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 .demo-avatar {
   width: 48px;
   height: 48px;
@@ -25,12 +71,15 @@ html, body {
 .demo-layout .demo-header .mdl-textfield {
   padding: 0px;
   margin-top: 41px;
+
 }
 .demo-layout .demo-header .mdl-textfield .mdl-textfield__expandable-holder {
   bottom: 19px;
+
 }
 .demo-layout .mdl-layout__header .mdl-layout__drawer-button {
-  color: rgba(0, 0, 0, 0.54);
+  color: #ffffff;
+    text-align: center;
 }
 .mdl-layout__drawer .avatar {
   margin-bottom: 16px;
@@ -67,7 +116,7 @@ html, body {
       -ms-flex-pack: end;
           justify-content: flex-end;
   padding: 16px;
-  height: 151px;
+  height: 230px;
 }
 .demo-avatar-dropdown {
   display: -webkit-flex;
@@ -98,21 +147,23 @@ html, body {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  color: rgba(255, 255, 255, 0.56);
+  color: #fff;
   font-weight: 500;
+
 }
 .demo-layout .demo-navigation .mdl-navigation__link:hover {
-  background-color: #00BCD4;
-  color: #37474F;
+
+    background: rgba(134, 111, 213, 0.5);
+  color: #fff;
 }
 .demo-navigation .mdl-navigation__link .material-icons {
   font-size: 24px;
   color: rgba(255, 255, 255, 0.56);
-  margin-right: 32px;
+  margin-right: 25px;
 }
 
 .demo-content {
-  max-width: 1080px;
+  /*max-width: 1080px;*/
 }
 
 .demo-charts {
@@ -222,4 +273,354 @@ _:-ms-input-placeholder, :root .demo-graph {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+}
+/**********************************************************
+***********************************************************
+**********************************************************/
+.Centrado
+{
+    height: 56px;
+    margin-top: 41px;
+    text-align: center;
+}
+.title span
+{
+  margin-top: 80px;
+
+}
+#menu{
+    background: #1F0A71;
+    font-family: 'robotoblack';
+    font-weight: 500;
+}
+.contenedor
+{
+    margin: auto;
+    width: 950px;
+}
+#MenuFondo{
+    background: url('/VISYS2/assets/img/fondo_user.jpg');
+}
+
+.ColorHeader
+{
+    background: #1F0A71;
+    color: #fff;
+    margin-top: 20px;
+    text-align: center;
+
+}
+
+.margen
+{
+    margin-top: 20px;
+}
+.title{
+    font-family: 'robotoblack';
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+
+}
+
+.TextColor
+  {
+      color: #1F0A71;
+      font-family: 'robotoblack';
+      font-size: 22px;
+      margin-top: 30px;
+     text-transform: uppercase;
+
+  }
+.TextColor p
+{
+    font-size: 22px;
+    margin-left: 10%;
+}
+.Loggen
+{
+    color: #fff;
+    margin-left: 20px;
+    font-family: 'robotoblack';
+    text-transform: uppercase;
+}
+.column
+{
+    margin-top: 30px;
+
+}
+#user
+{
+    margin-left: -10px;
+    margin-top: 15px;
+}
+.activo
+{
+    background:rgba(134,111,213,0.50);/* Módulo Activo!*/
+}
+#catalogo
+{
+    margin-top: 30px;
+}
+#tblModal1 thead
+ {
+     border: none;
+ }
+#tblModal2 thead
+{
+    border: none;
+}
+
+.Btndell{
+    margin-left: 90%;
+    border-radius: 40px;
+    background: #ff0000;
+    font-family: 'robotoregular';
+    font-weight: 500;
+    font-size: 13px;
+ }
+.Btndell:hover {
+    background: rgba(255, 0, 0, 0.6);
+    transition:  0.5s;
+}
+.Btnadd{
+    margin-left: 90%;
+    border-radius: 40px;
+    background: #1F0A71;
+    font-family: 'robotoregular';
+    font-weight: 500;
+    font-size: 13px;
+}
+.Btnadd:hover
+{
+    background:rgba(106, 74, 213, 0.5);
+    transition:  0.5s;
+}
+.datos{margin-top: 20px;}
+.ColorS
+{
+    color: #6a4ad5;
+}
+.Mcolor
+{
+    color: #6a4ad5;
+    font-size: 19px;
+    font-family: 'robotoblack';
+
+}
+.Mcolor1
+{
+    font-size: 14px;
+   text-align: center;
+    color: #6a4ad5;
+    font-family: 'robotoblack';
+
+}
+.BtnClose
+ {
+     color: #ff0000;
+ }
+.BtnClose:hover
+{
+    color: rgba(255, 0, 0, 0.6);
+}
+
+.TheadColor thead th
+{
+    color:#1F0A71;
+    font-family: 'robotoblack';
+    font-size: 12px;
+    text-align: center;
+}
+
+.TheadColor tbody td
+{
+    color:#1F0A71;
+    font-family: 'robotomedium';
+    font-size: 12px;
+    text-align: center;
+}
+
+.BtnEliminar
+{
+    border-radius: 40px;
+    background: #ff0000;
+    font-family: 'robotoregular';
+    font-weight: 500;
+    font-size: 13px;
+    margin-right: 25px;
+}
+
+.BtnEliminar:hover
+{
+   background:rgba(255, 0, 0, 0.6);
+    transition: 0.5s;
+}
+.BtnBlue
+{
+    border-radius: 40px;
+    background: #6a4ad5;
+    font-family: 'robotomedium';
+    font-weight: 500;
+    font-size: 12px;
+    margin-right: 25px;
+}
+.BtnBlue:hover
+{
+    background: #402C82;
+    transition: 0.5s;
+}
+.TextTotal{
+    margin-top: 20px;
+    color: #6a4ad5;
+    font-family: 'robotoblack';
+    font-size: 11px;
+}
+.TextTotal span{
+    color: #1F0A71;
+    font-family: 'robotoblack';
+    font-size: 13px;
+}
+
+.text
+{
+    font-family: 'robotoblack';
+    font-size: 17px;
+    color: #1F0A71;
+}
+
+.TblDatos
+{
+
+    text-align: center;
+    text-transform: capitalize;
+    border-collapse: separate;
+    border-spacing: 1px;
+
+}
+
+.TblDatos thead th
+{
+    background: #1F0A71;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'robotobold';
+
+}
+.Datos{
+    font-family: 'robotoblack';
+    color: #866FD5;
+    font-size: 17px;
+}
+.datos1
+{
+    font-family: 'robotoblack';
+    color: #402C82;
+    font-size: 17px;
+}
+.DatoFrp{
+    font-family: 'robotoblack';
+    color: #1F0A71;
+    font-size: 12px;
+}
+.TblDatos td
+{
+    font-family: 'robotoregular';
+    color: #1F0A71;
+    font-size: 12px;
+}
+/****** Tabla zebra ********/
+
+#tblEliminar tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+#tblEliminar tr:nth-child(odd) {
+    background-color: #e7e2f7;
+}
+
+
+#ClienteAdd tr:nth-child(odd)
+{
+    background-color: #e7e2f7;
+}
+#ClienteAdd tr:nth-child(even)
+{
+    background-color: #ffffff;
+}
+
+#PtosCliente tr:nth-child(odd)
+{
+    background-color: #e7e2f7;
+}
+#PtosCliente tr:nth-child(even)
+{
+    background-color: #ffffff;
+}
+
+
+#FRP tr:nth-child(odd)
+{
+    background-color: #e7e2f7;
+}
+#FRP tr:nth-child(even)
+{
+    background-color: #ffffff;
+}
+
+/****** Tabla zebra ********/
+#search{margin-top: -20px;}
+#TPts{margin-top: 40px;}
+.Icono{color: #ff0000;}
+
+.redT {
+    color: #ff0000;
+    font-family: 'robotoblack';
+    font-size: 17px;
+}
+#date1{
+    text-align: center;
+    font-family: 'robotoblack';
+    font-size: 12px;
+    color: #1F0A71;
+    font-weight: 500;
+}
+#frp
+{
+    border: 1px solid #6a4ad5;
+    box-shadow: none;
+    text-align: center;
+    font-family: 'robotoblack';
+    font-size: 12px;
+    color: #1F0A71;
+    font-weight: 500;
+}
+#ListCliente{
+    color:#1F0A71;
+    font-size: 14px;
+    font-family: 'robotoblack';
+    border:none;
+    text-align: center;
+}
+#ListCliente:focus {
+    outline: 1px solid #866FD5;
+}
+.Procesar{
+    font-size: 13px;
+    font-family: 'robotoregular';
+    background: green;
+    border-radius: 30px;
+}
+.Procesar:hover
+{
+    background: rgba(0, 128, 0, 0.6);
+    transition: 0.5s;
+}
+#Nfarmacia
+{
+    font-size: 22px;
+}
+#titulM{
+    font-size: 22px;
 }

@@ -18,4 +18,59 @@ class Main_controller extends CI_Controller
         $this->load->view('pages/main');
         $this->load->view('footer/footer');
     }
+
+    public function EliminarVineta()
+    {
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/EliminarVineta');
+        $this->load->view('footer/footer');
+    }
+    public function Clientes()
+    {
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/Clientes');
+        $this->load->view('footer/footer');
+    }
+
+    public  function BajaClientes()
+    {
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/BajaClientes');
+        $this->load->view('footer/footer');
+    }
+
+    public  function  PuntosClientes()
+    {
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/PuntosClientes');
+        $this->load->view('footer/footer');
+    }
+    public function DetalleFact()
+    {
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/DetalleFact');
+        $this->load->view('footer/footer');
+    }
+
+    public function CanjeFrp()
+    {
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/CanjeFRP');
+        $this->load->view('footer/footer');
+    }
+
+    public function CanjeFre()
+    {
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/CanjeEfec');
+        $this->load->view('footer/footer');
+    }
+
 }

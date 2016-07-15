@@ -3,7 +3,7 @@
     <div class="header">
         <div class="row">
             <div class="col s11">
-                <img src="<?PHP echo base_url();?>assets/img/logo-visys.png" width="20%" >
+                <img src="<?PHP echo base_url();?>assets/img/Logo-Visys-color.png" width="20%" >
             </div>
         </div>
     </div>
