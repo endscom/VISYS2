@@ -12,15 +12,17 @@
 <main class="mdl-layout__content mdl-color--grey-100">
     <div class="contenedor ">
 
-        <div class=" row column">
-            <div class="col s1 m1 l1">
-                <i class="material-icons ColorS">search</i>
-            </div>
-            <div class="input-field col s4 m4 l4">
-                <input  id="search" type="text" placeholder="Buscar" class="validate">
-                <label for="search"></label>
-            </div>
-        </div>
+       <div class="container">
+           <div id="buscar" class=" row column">
+               <div class="col s1 m1 l1 offset-s3  offset-l2">
+                   <i class="material-icons ColorS">search</i>
+               </div>
+               <div id="InputSearch" class="input-field col s6 m16 l5">
+                   <input  id="search" type="text" placeholder="Buscar Facturas o Viñetas" class="validate">
+                   <label for="search"></label>
+               </div>
+           </div>
+       </div>
 
 
         <div class="datos">
@@ -53,7 +55,7 @@
 <!--//////////////////////////////////////////////////////////////////////////////////
                                 TABLA
 ///////////////////////////////////////////////////////////////////////////////////-->
-                    <table id="tblEliminar" class="responsive-table TblDatos">
+                    <table id="tblEliminar" class="TblDatos">
                         <thead>
                         <tr>
                             <th>CANT.</th>
@@ -78,6 +80,24 @@
                             <td>100000 pts</td>
                         </tr>
 
+                        <tr>
+                            <td>xxxx</td>
+                            <td>xxx xxxx xxxx</td>
+                            <td>xxx</td>
+                            <td>100000 pts</td>
+                        </tr>
+                        <tr>
+                            <td>xxxx</td>
+                            <td>xxx xxxx xxxx</td>
+                            <td>xxx</td>
+                            <td>100000 pts</td>
+                        </tr>
+                        <tr>
+                            <td>xxxx</td>
+                            <td>xxx xxxx xxxx</td>
+                            <td>xxx</td>
+                            <td>100000 pts</td>
+                        </tr>
                         <tr>
                             <td>xxxx</td>
                             <td>xxx xxxx xxxx</td>
@@ -109,17 +129,14 @@
     <div class="modal-content">
 
         <div class=" row">
-
-            <div class="col s9 m9 l9">
-                <h5 class="Mcolor">DESEA ELIMINAR LAS VIÑETAS:</h5>
-            </div>
-
-            <div class="right col s3 m3 l3">
+            <div class="right col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
                     <i class="material-icons">highlight_off</i>
                 </a>
             </div>
         </div>
+
+        <h6  class="center Mcolor">DESEA ELIMINAR LAS VIÑETAS:</h6>
 
 <!--///////////////////////////////////////////////////////////
                         TABLA MODAL
@@ -175,22 +192,15 @@
 <div id="modal2" class="modal">
     <div class="modal-content">
 
-        <div class=" row">
-
-            <div class="col s8 m8 l10">
-                <h4 class="Mcolor1">LAS VIÑETAS FUERON ELIMINADAS</h4>
+            <div class="right row">
+                <div class="col s1 m1 l1">
+                    <a href="#!" class=" BtnClose modal-action modal-close ">
+                        <i class="material-icons">highlight_off</i>
+                    </a>
+                </div>
             </div>
 
-            <div class="col s2 m2 l2">
-                <a href="#modal2" class=" modal-action modal-close ">
-                    <i class="BtnClose material-icons">highlight_off</i>
-                </a>
-            </div>
+            <h6 class="center Mcolor1">LAS VIÑETAS FUERON ELIMINADAS</h6>
 
         </div>
-
-
-    </div>
-
-
 </div>

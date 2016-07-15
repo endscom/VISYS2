@@ -3,7 +3,7 @@
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
 
         <header id="MenuFondo" class="demo-drawer-header">
-            <img src="<?PHP echo base_url();?>assets/img/Logo-Visys-blanco.png" width="65%" >
+            <img id="imgUser" src="<?PHP echo base_url();?>assets/img/Logo-Visys-blanco.png" width="65%" >
             <a id="user" class="mdl-navigation__link ">
                 <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">face</i>
                     <span class="Loggen"><?php echo $this->session->userdata('UserN');?></span>

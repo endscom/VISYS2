@@ -2,8 +2,8 @@
 
         <div  class="header">
             <div id="imgLogo" class=" row">
-                <div  class="col s12 m12 l12">
-                    <img  src="<?PHP echo base_url();?>assets/img/Logo-Visys-blanco.png" width="20%" >
+                <div  class="col s6 m6 l12">
+                    <img  src="<?PHP echo base_url();?>assets/img/Logo-Visys-blanco.png" width="15%" >
                 </div>
             </div>
         </div>
@@ -15,20 +15,20 @@
                         <form class="form" method="post" action="<?php echo base_url('index.php/login')?>">
                             <div class="container">
                                 <div  class=" row">
-                                    <div class="input-field col s3 m3 l6 offset-l3">
+                                    <div class="input-field col s6 m6 l6 offset-l3">
                                         <input  placeholder="USUARIO" name="txtUsuario" id="nombre" type="text" class=" validate">
                                     </div>
 
                                 </div>
 
                                 <div class="row">
-                                    <div class="input-field col s3 m3 l6 offset-l3">
+                                    <div class="input-field col s6 m6 l6 offset-l3">
                                         <input placeholder="CONTRASEÑA" name="txtpassword" id="pass" type="password" class="validate">
 
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="input-field col s3 offset-s4  login-text">
+                                    <div class="input-field col s3 m3 l3 offset-l4  offset-m2 login-text">
                                         <input type="checkbox" id="remember-me" />
                                         <label id="recordar" for="remember-me">RECORDAR</label>
                                     </div>
@@ -36,7 +36,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col s6">
+                                <div class="col s3 m2 l6">
                                     <button id="Acceder" class="Btnadd modal-action modal-close btn" type="submit" name="action">ACCEDER</button>
                                 </div>
                             </div>

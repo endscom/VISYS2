@@ -330,6 +330,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     margin-top: 20px;
     font-family: 'robotoblack';
     font-size: 14px;
+    border-radius: 10px;
 }
 #logos
 {
@@ -366,8 +367,25 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 #MenuFondo{
     background: url('/VISYS2/assets/img/fondo_user.jpg');
-}
 
+}
+#imgUser
+{
+    margin-left: 20px;
+}
+#InputSearch
+{
+    font-family: 'robotoregular';
+    font-size: 14px;
+    color: #866FD5;
+
+}
+#buscar
+{
+    width: 100%;
+    text-align: center;
+
+}
 .ColorHeader
 {
     background: #1F0A71;

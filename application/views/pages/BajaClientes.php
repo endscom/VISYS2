@@ -14,18 +14,20 @@
                 DAR BAJA A LOS CLIENTES
             </div>
         </div>
-        <div class=" Buscar row column">
-            <div class="col s1 m1 l1">
-                <i class="material-icons ColorS">search</i>
-            </div>
-            <div class="input-field col s2 m4 l4">
-                <input  id="search" type="text" placeholder="Buscar" class="validate">
-                <label for="search"></label>
+        <div class="container">
+            <div class=" Buscar row column">
+                <div class="col s1 m1 l1 offset-l3 offset-s1">
+                    <i class="material-icons ColorS">search</i>
+                </div>
+                <div class="input-field col s2 m3 l4 ">
+                    <input  id="search" type="text" placeholder="Buscar" class="validate">
+                    <label for="search"></label>
+                </div>
             </div>
         </div>
 
         <div class="right row">
-            <div class="col s3">
+            <div class="col s12 m12 l3 ">
                 <a href="#modal1" class="BtnEliminar waves-effect  btn modal-trigger">ELIMINAR</a>
             </div>
         </div>
@@ -77,16 +79,13 @@
 
         <div class=" row">
 
-            <div class="col s9 m9 l9">
-                <h5 class="Mcolor">DESEADAR DE BAJA:</h5>
-            </div>
-
             <div class="right col s3 m3 l3">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
                     <i class="material-icons">highlight_off</i>
                 </a>
             </div>
         </div>
+        <h6  class="center Mcolor">DESEA DAR DE BAJA:</h6>
 
         <div class="row">
             <div class="col s12">
@@ -132,7 +131,7 @@
     </div>
 
     <div class="row">
-        <div class="col s6 m3 l6">
+        <div class="col s6 m6 l6">
             <a href="#modal2" class="Btnadd modal-action modal-close btn modal-trigger">DAR_BAJA</a>
         </div>
     </div>
@@ -147,16 +146,15 @@
     <div class="modal-content">
 
 
-        <div  class="row ">
-            <div class="col s6 m6 l11">
-                <h4 class="Mcolor">CLIENTES DE BAJA EN EL SISTEMA DE PUNTOS</h4>
-            </div>
-            <div class="col s6 m6 l1">
-                <a href="#" class=" modal-action modal-close ">
-                    <i class="BtnClose material-icons">highlight_off</i>
+        <div class=" row">
+
+            <div class="right col s3 m3 l3">
+                <a href="#!" class=" BtnClose modal-action modal-close ">
+                    <i class="material-icons">highlight_off</i>
                 </a>
             </div>
         </div>
+        <h6 class="center Mcolor">CLIENTES DE BAJA EN EL SISTEMA DE PUNTOS:</h6>
 
         <table id="tblModal2" class="TheadColor">
             <thead>

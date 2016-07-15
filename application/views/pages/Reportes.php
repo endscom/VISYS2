@@ -33,7 +33,7 @@
                         <p class="TextIconos">MASTER COMPRAS X PRODUCTOS</p>
                     </a>
                 </div>
-                <div class="col s3 m3 l2 ">
+                <div class="col s3 m3 l3">
                     <a href="#!" class=" IconBlue modal-action modal-close ">
                         <i class="medium material-icons iconoCenter">add_shopping_cart</i>
                         <p class="TextIconos">MOVIMIENTO PRODUCTOS</p>

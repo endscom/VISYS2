@@ -14,8 +14,8 @@
             <div class="col s1 m1 l1">
                 <i class="material-icons ColorS">search</i>
             </div>
-            <div class="col s3 m3 l3">
-                <input type="text" placeholder="Buscar" class="validate">
+            <div   class="col s3 m3 l3">
+                <input id="InputSearch" type="text" placeholder="Buscar" class="validate">
             </div>
 
         </div>

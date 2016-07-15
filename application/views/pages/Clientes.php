@@ -18,22 +18,24 @@
             </div>
         </div>
 
-        <div class=" Buscar row column">
+        <div class="container">
+            <div class=" Buscar row column">
 
-            <div class="col s1 m1 l1">
-                <i class="material-icons ColorS">search</i>
-            </div>
+                <div class="col s1 m1 l1 offset-l3">
+                    <i class="material-icons ColorS">search</i>
+                </div>
 
-            <div class="input-field col s6 m6 l4">
-                <input  id="search" type="text" placeholder="Buscar" class="validate">
-                <label for="search"></label>
-            </div>
+                <div class="input-field col s2 m4 l4">
+                    <input  id="search" type="text" placeholder="Buscar" class="validate">
+                    <label for="search"></label>
+                </div>
 
-            <div class="col s2 m2 l1">
-                <img src="<?PHP echo base_url();?>assets/img/icono_excel.png " width="30px">
-            </div>
-            <div class="col s2 m2 l1 ">
-                <img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="30px" >
+                <div class="col s1 m1 l1">
+                    <img src="<?PHP echo base_url();?>assets/img/icono_excel.png " width="30px">
+                </div>
+                <div class="col s1 m1 l1 ">
+                    <img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="30px" >
+                </div>
             </div>
         </div>
 
@@ -99,16 +101,13 @@
 
         <div class=" row">
 
-            <div class="col s9 m9 l9">
-                <h5 class="Mcolor">DESEA ELIMINAR LAS VIÑETAS:</h5>
-            </div>
-
             <div class="right col s3 m3 l3">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
                     <i class="material-icons">highlight_off</i>
                 </a>
             </div>
         </div>
+        <h6 class="center Mcolor">DESEA AGREGAR:</h6>
 
     <div class="row">
         <div class="col s12">
