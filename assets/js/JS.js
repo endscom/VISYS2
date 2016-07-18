@@ -91,6 +91,7 @@ $(document).ready(function() {
     $('#tblpRODUCTOS').DataTable(
         {
             "info":    false,
+            "searching": false,
             "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
             "language": {
                 "paginate": {

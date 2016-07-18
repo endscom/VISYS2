@@ -33,7 +33,7 @@
         </div>
 
 
-        <table id="ClienteAdd" class="responsive-table TblDatos">
+        <table id="ClienteAdd" class="TblDatos">
 
             <thead>
             <tr>
@@ -45,19 +45,19 @@
 
             <tbody>
             <tr>
-                <td>xxxxxxxx xxxxxx</td>
-                <td>xxxxxxxx xxxxxx</td>
-                <td>xxxxxxxx xxxxxx</td>
-            </tr>
-
-            <tr>
-                <td>xxxxxxxx xxxxxx</td>
+                <td id="NomCliente">xxxxxxxx xxxxxx</td>
                 <td>xxxxxxxx xxxxxx</td>
                 <td>xxxxxxxx xxxxxx</td>
             </tr>
 
             <tr>
+                <td id="NomCliente">xxxxxxxx xxxxxx</td>
                 <td>xxxxxxxx xxxxxx</td>
+                <td>xxxxxxxx xxxxxx</td>
+            </tr>
+
+            <tr>
+                <td id="NomCliente">xxxxxxxx xxxxxx</td>
                 <td>xxxxxxxx xxxxxx</td>
                 <td>xxxxxxxx xxxxxx</td>
             </tr>
@@ -106,9 +106,9 @@
 
                     <tr>
                         <td>xxxxxxxxxxxxxxxxxxxxxxx</td>
-                        <td>LUNAN</td>
-                        <td>784512</td>
-                        <td>UMK!0000</td>
+                        <td id="black">LUNAN</td>
+                        <td id="black">784512</td>
+                        <td id="black">UMK!0000</td>
                         <td>
                             <i class=" BtnClose material-icons">highlight_off</i>
                         </td>
@@ -116,9 +116,9 @@
 
                     <tr>
                         <td>xxxxxxxxxxxxxxxxxxxxxxx</td>
-                        <td>LUNAN</td>
-                        <td>784512</td>
-                        <td>UMK!0000</td>
+                        <td id="black">LUNAN</td>
+                        <td id="black">784512</td>
+                        <td id="black">UMK!0000</td>
                         <td>
                             <i class=" BtnClose material-icons">highlight_off</i>
                         </td>
@@ -131,8 +131,8 @@
     </div>
 
     <div class="row">
-        <div class="col s6 m6 l6">
-            <a href="#modal2" class="Btnadd modal-action modal-close btn modal-trigger">DAR_BAJA</a>
+        <div class="col s10 m10 l10">
+            <a href="#modal2" id="btn" class="Btnadd modal-action modal-close btn modal-trigger">DAR BAJA</a>
         </div>
     </div>
 
@@ -156,30 +156,30 @@
         </div>
         <h6 class="center Mcolor">CLIENTES DE BAJA EN EL SISTEMA DE PUNTOS:</h6>
 
-        <table id="tblModal2" class="TheadColor">
-            <thead>
-            <tr>
-                <th>COD. UNIMARK</th>
-                <th>CLIENTE</th>
+       <div class="container">
+           <table id="tblModal2" class="TheadColor">
+               <thead>
+               <tr>
+                   <th>COD. UNIMARK</th>
+                   <th>CLIENTE</th>
+               </tr>
+               </thead>
 
-            </tr>
-            </thead>
+               <tbody>
+               <tr>
+                   <td id="black">03258</td>
+                   <td>xxxxxx</td>
 
-            <tbody>
-            <tr>
-                <td>xxxxxxx</td>
-                <td>xxxxxx</td>
+               </tr>
 
-            </tr>
+               <tr>
+                   <td id="black">03258</td>
+                   <td>xxxxxx</td>
+               </tr>
 
-            <tr>
-                <td>xxxxxxx</td>
-                <td>xxxxxx</td>
-
-            </tr>
-
-            </tbody>
-        </table>
+               </tbody>
+           </table>
+       </div>
 
     </div>
 

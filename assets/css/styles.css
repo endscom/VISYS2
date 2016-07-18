@@ -314,7 +314,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     width: 100%;
     text-align: center;
 }
-#remember-me, [type="checkbox"]:checked + label:before
+#remember-me[type="checkbox"]:checked + label:before
 {
     border-right: 2px solid #fff;
     border-bottom: 2px solid #fff;
@@ -470,11 +470,15 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 .Btnadd{
     margin-left: 90%;
-    border-radius: 40px;
+    border-radius: 20px;
     background: #1F0A71;
     font-family: 'robotoregular';
     font-weight: 500;
     font-size: 13px;
+}
+#btn
+{
+    margin-left: 50%;
 }
 .Btnadd:hover
 {
@@ -482,6 +486,11 @@ _:-ms-input-placeholder, :root .demo-graph {
     transition:  0.5s;
 }
 .datos{margin-top: 20px;}
+.dato{
+    font-family: 'robotoblack';
+    color: #402C82;
+    font-size: 18px;
+}
 .ColorS
 {
     color: #6a4ad5;
@@ -592,6 +601,11 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-family: 'robotobold';
 
 }
+.Dato{
+    font-family: 'robotoblack';
+    color: #866FD5;
+    font-size: 18px;
+}
 .Datos{
     font-family: 'robotoblack';
     color: #866FD5;
@@ -663,6 +677,11 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-family: 'robotoblack';
     font-size: 17px;
 }
+.redT1 {
+    color: #ff0000;
+    font-family: 'robotoblack';
+    font-size: 14px;
+}
 #date1{
     text-align: center;
     font-family: 'robotoblack';
@@ -671,6 +690,28 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-weight: 500;
 }
 #frp
+ {
+     border: 1px solid #6a4ad5;
+     box-shadow: none;
+     text-align: center;
+     font-family: 'robotoblack';
+     font-size: 12px;
+     color: #1F0A71;
+     font-weight: 500;
+     height: 40px;
+     font-size: 12px;
+
+ }
+#obser{
+    border: 1px solid #6a4ad5;
+    box-shadow: none;
+    font-family: 'robotoregular';
+    font-size: 12px;
+    color: #1F0A71;
+    font-weight: 500;
+}
+
+#fre
 {
     border: 1px solid #6a4ad5;
     box-shadow: none;
@@ -679,6 +720,8 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-size: 12px;
     color: #1F0A71;
     font-weight: 500;
+    height: 20px;
+
 }
 #ListCliente{
     color:#1F0A71;
@@ -708,9 +751,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 #titulM{
     font-size: 22px;
 }
-#obser{
-    font-size: 14px;
-}
+
 #acumulado{
     font-size: 12px;
 }
@@ -742,4 +783,63 @@ _:-ms-input-placeholder, :root .demo-graph {
 {
     width: 100%;
     text-align: center;
+}
+.AdUser{font-size: 22px}
+#NomCliente{
+    font-family: 'robotobold';
+}
+#black{font-family: 'robotoblack';}
+#Codigo{font-family: 'robotobold';}
+
+.pts{
+    font-family: 'robotoblack';
+    font-size: 10px;
+    color: #1F0A71;}
+#aplicado
+{
+    color: #866FD5;
+}
+#dispo
+{
+    color: #6a4ad5;
+}
+#parcial
+{
+    color: #866FD5;
+}
+.texttotal
+{
+    font-family: 'robotoblack';
+    font-size: 18px;
+    color: #6a4ad5;
+}
+.frpT{font-size: 17px;}
+.ruc{font-size: 15px;}
+.lineas{
+    margin-top: -20px;
+    font-size: 15px;
+}
+.user{font-size: 16px;}
+.Cblack
+{
+    font-family: 'robotoblack';
+    color: #6a4ad5;
+}
+.linea{ margin-top: -20px;}
+.line{
+    display: inline-flex;
+}
+.dat{font-size: 18px;}
+#fecha
+{
+    line-height: 70px !important;
+}
+#Btnadd{
+    margin-top: 15px;
+}
+#Format{font-size: 22px;}
+#Total{margin-top: 25px;}
+#activo
+{
+    color: #6a4ad5;
 }

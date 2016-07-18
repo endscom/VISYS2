@@ -32,7 +32,7 @@
 
         <div class="right row">
             <div class="col s2">
-                <a href="#modal1" class="Btnadd waves-effect  btn modal-trigger">canje</a>
+                <a href="#MFrp" class="BtnBlue waves-effect  btn modal-trigger">canje</a>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
             <thead>
             <tr>
                 <th>FECHA</th>
-                <th># FRP</th>
+                <th>#FRP</th>
                 <th>COD. CLIENTE</th>
                 <th>NOMBRE</th>
                 <th>ELIMINAR</th>
@@ -54,9 +54,9 @@
                 <td> 14/07/2015</td>
                 <td>00351</td>
                 <td>01003</td>
-                <td>xxxxxx xxxxxxxx xxxxxx xxxxx x</td>
+                <td id="NomCliente">xxxxxx xxxxxxxx xxxxxx xxxxx x</td>
                 <td>
-                    <a href="#modal2" class="Icono modal-trigger">
+                    <a href="#Dell" class="Icono modal-trigger">
                         <i class="material-icons">highlight_off</i>
                     </a>
                 </td>
@@ -66,9 +66,9 @@
                 <td> 14/07/2015</td>
                 <td>00351</td>
                 <td>01003</td>
-                <td>xxxxxx xxxxxxxx xxxxxx xxxxx x</td>
+                <td id="NomCliente">xxxxxx xxxxxxxx xxxxxx xxxxx x</td>
                 <td>
-                    <a href="#modal2" class="Icono modal-trigger">
+                    <a href="#Dell" class="Icono modal-trigger">
                         <i class="material-icons">highlight_off</i>
                     </a>
                 </td>
@@ -85,7 +85,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////-->
 <!-- Modal #1
                 Modal Structure -->
-<div id="modal1" class="modal">
+<div id="MFrp" class="modal">
     <div class="modal-content">
 
         <div class="right row">
@@ -96,42 +96,37 @@
             </div>
         </div>
 
-        <h6 class="center Mcolor">FORMATO DE REMISIÓN DE PUNTOS</h6>
+        <h6 id="Format" class="center Mcolor">FORMATO DE REMISIÓN DE PUNTOS</h6>
 
-        <h6 class="center Mcolor">CLIENTE</h6>
+        <h6 id="Format" class="center Mcolor">CLIENTE</h6>
 
-        <div class="row">
-            <div class="col s2 m2 l2">
-                <p class="Datos">N° FRP: </p><input id="frp" type="text" class="validate">
-                <br>
+        <div class=" row">
+            <div class="Datos input-field line col s3 m3 l2">
+                 N° FRP:<input id="frp" type="text" class="validate">
             </div>
 
 
-            <div class="col s2 m2 l3 ">
-                <p class="Datos">FECHA: </p>
+            <div class="Datos line col s3 m3 l3 offset-l5 offset-s4 offset-m4">
+                <p id="fecha" class="Datos">FECHA: </p>  <input type="text" id="date1" class="datepicker1"><br>
             </div>
-            <div class="input-field col s2 m2 l2 ">
-                <input type="text" id="date1" class="datepicker1">
 
-            </div>
         </div>
 
         <div class="center row text">
-            <div class="col s8 m8 l5">
+            <div class="col s5 m5 l5">
                 <p class="Datos">PUNTOS CANJE: <span class="datos1">0 Pts.</span></p>
             </div>
-            <div class="col s4 m4 l7">
+            <div class="col s7 m7 l7">
                 <p class="Datos">PUNTOS APLICADOS: <span class="datos1">363,522 Pts.</span></p>
             </div>
         </div>
 
         <div class="row ">
-            <div class="input-field col s2 m2 l3">
-                <p class="DatoFrp">COD.CLIENTE:</p>
-                <input  id="frp" type="text" class="validate">
+            <div class=" DatoFrp line input-field col s3 m3 l3">
+               COD. CLIENTE:<input id="frp" type="text" class="validate">
             </div>
 
-            <div class="input-field col s2 m3 l6"  >
+            <div class="input-field col s4 m4 l4"  >
                 <select name="cliente" id="ListCliente">
                     <option value="" disabled selected>CLIENTE</option>
                     <option value="1">Option 1</option>
@@ -140,7 +135,7 @@
                 </select>
             </div>
 
-            <div class="input-field col s2 m2 l2">
+            <div class="input-field col s3 m3 l3">
                 <input  id="frp" type="text" class="validate">
             </div>
         </div>
@@ -167,8 +162,8 @@
                     <tbody>
                     <tr>
                         <td>24/01/2016</td>
-                        <td>067799</td>
-                        <td>30,000</td>
+                        <td id="black">067799</td>
+                        <td id="black">30,000 Pts.</td>
                         <td>30,000</td>
                         <td>0</td>
                         <td>
@@ -181,8 +176,8 @@
                     </tr>
                     <tr>
                         <td>24/01/2016</td>
-                        <td>067799</td>
-                        <td>30,000</td>
+                        <td id="black">067799</td>
+                        <td id="black">30,000 Pts.</td>
                         <td>30,000</td>
                         <td>0</td>
                         <td>
@@ -191,7 +186,7 @@
                                 <label for="test2"></label>
                             </p>
                         </td>
-                        <td>APLICADO</td>
+                        <td id="parcial">PARCIAL</td>
                     </tr>
 
                     </tbody>
@@ -201,10 +196,10 @@
 
         <!-- datos de los premios a canjear  -->
         <div class="row">
-                <div class="input-field col s2 m2 l2">
-                    CANTIDAD:<input id="frp"  type="text" class="validate">
-                </div>
-                    <div class="input-field col s2 m2 l2">
+            <div class=" DatoFrp line input-field col s2 m2 l2">
+                COD. CLIENTE:<input id="frp" type="text" class="validate">
+            </div>
+                    <div class="DatoFrp line input-field col s2 m2 l2">
                         COD. PREMIO:<input   id="frp" type="text" class="validate">
                     </div>
                             <div class="input-field col s2 m2 l4">
@@ -218,8 +213,8 @@
                                 <div class="input-field col s2 m2 l2">
                                     <input  id="frp"  type="text" class="validate">
                                 </div>
-                                    <div class="col s2 m2 l2">
-                                        <a href="#modal1" class="BtnBlue waves-effect  btn modal-trigger">agregar</a>
+                                    <div id="Btnadd"class="col s2 m2 l2">
+                                        <a href="#" class="BtnBlue waves-effect  btn ">agregar</a>
                                     </div>
             </div>
 
@@ -239,8 +234,8 @@
             <tbody>
             <tr>
                 <td>20</td>
-                <td>146790</td>
-                <td>CENTRO ENTRE FAMESA MUNICH</td>
+                <td id="black">146790</td>
+                <td id="black">CENTRO ENTRE FAMESA MUNICH</td>
                 <td>17,998</td>
                 <td>359,960</td>
                 <td>
@@ -252,8 +247,8 @@
             </tr>
             <tr>
                 <td>20</td>
-                <td>146790</td>
-                <td>CENTRO ENTRE FAMESA MUNICH</td>
+                <td id="black">146790</td>
+                <td id="black">CENTRO ENTRE FAMESA MUNICH</td>
                 <td>17,998</td>
                 <td>359,960</td>
                 <td>
@@ -267,9 +262,9 @@
             </tbody>
         </table>
 
-        <div class="right row text">
-            <div class="col s8 m8 l12">
-                <p class="Datos">TOTAL: <span class="datos1">363,522 Pts.</span></p>
+        <div id="Total" class="right row text">
+            <div class="col s12 m12 l12">
+                <p class="Dato">TOTAL: <span class="dato">363,522 Pts.</span></p>
             </div>
 
         </div>
@@ -287,9 +282,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////-->
 <!-- Modal #2 -->
 <!-- Modal Structure -->
-<div id="modal2" class="modal">
+<div id="Dell" class="modal">
     <div class="modal-content">
-
         <div class="right row">
             <div class="col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
@@ -297,24 +291,19 @@
                 </a>
             </div>
         </div>
-
-        <h6 class="center Mcolor">DESEA ELIMINAR EL FRP <span class="redT">#00351</span></h6>
-
+        <h6 class="center Mcolor1">DESEA ELIMINAR EL FRP <span class="redT1">#00351</span></h6>
         <div class="row">
-            <div class="col s2 m2 l2">
-                <a href="#modal3" class="Procesar waves-effect  modal-action modal-close btn modal-trigger">procesar</a>
+            <div class="col s2 m2 l2 offset-l4 offset-s3 offset-m4">
+                <a href="#DellRes" class="Procesar modal-action modal-close btn modal-trigger">Procesar</a>
             </div>
         </div>
-
     </div>
-
 </div>
 <!-- Modal #3 -->
 <!-- Modal Structure -->
 
-<div id="modal3" class="modal">
+<div id="DellRes" class="modal">
     <div class="modal-content">
-
         <div class="right row">
             <div class="col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
@@ -322,13 +311,8 @@
                 </a>
             </div>
         </div>
-
-        <h6 class="center Mcolor">ELIMINADO CORRECTAMENTE FRP <span class="redT">#00351</span></h6>
-
-
-
+        <h6 class="center Mcolor1">ELIMINADO CORRECTAMENTE FRP <span class="redT1">#00351</span></h6>
     </div>
-
 </div>
 
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -347,13 +331,14 @@
                 </a>
             </div>
         </div>
+        <h6 id="titulM" class="center Mcolor"> DETALLE FRP</h6>
 
-        <h6 id="titulM" class="center Mcolor">DETALLE FRP</h6>
-
-        <p class="center datos1"> N° FRP 38389</p>
-        <p class="center datos1"> 24/12/2016</p>
+       <div class="container">
+           <p class="center datos1 frpT"> N° FRP 38389</p>
+           <p class="center datos1 lineas"> 24/12/2016</p>
+       </div>
         <h6 id="Nfarmacia" class="center Mcolor">00449 FARMACIA CASTELLÓN</h6>
-        <p class="center Datos"> RUC 4412000183001H</p>
+        <p class="center Datos linea ruc"> RUC 4412000183001H</p>
 
 
 
@@ -373,24 +358,24 @@
                 <tbody>
                 <tr>
                     <td>24/01/2016</td>
-                    <td>067792</td>
-                    <td>300,000</td>
-                    <td>300,000</td>
-                    <td>0</td>
+                    <td id="black">067792</td>
+                    <td id="black">300,000 Pts.</td>
+                    <td>300,000 Pts.</td>
+                    <td>0 Pts.</td>
                     <td>APLICADO</td>
                 </tr>
                 <tr>
                     <td>24/01/2016</td>
-                    <td>067792</td>
-                    <td>300,000</td>
-                    <td>300,000</td>
-                    <td>0</td>
-                    <td>APLICADO</td>
+                    <td id="black">067792</td>
+                    <td id="black">300,000 Pts.</td>
+                    <td>300,000 Pts.</td>
+                    <td>0 Pts.</td>
+                    <td id="parcial">PARCIAL</td>
                 </tr>
 
                 </tbody>
             </table>
-        <h6 class="center Mcolor">PUNTOS APLICADOS: <span class="datos1">363,522 Pts.</span> </h6>
+        <h6 class="center Mcolor dat">PUNTOS APLICADOS: <span class="dato">363,522 Pts.</span> </h6>
         <h6 class="center Mcolor">PREMIO A CANJEAR</h6>
 
 
@@ -409,32 +394,32 @@
             <tbody>
             <tr>
                 <td>20</td>
-                <td>146790</td>
-                <td>CENTRO ENTRET FAMESA MUNICH</td>
-                <td>17,998</td>
-                <td>359,960</td>
+                <td id="black">146790</td>
+                <td id="black">CENTRO ENTRET FAMESA MUNICH</td>
+                <td>17,998 Pts.</td>
+                <td>359,960 Pts.</td>
             </tr>
             <tr>
                 <td>20</td>
-                <td>146790</td>
-                <td>CENTRO ENTRET FAMESA MUNICH</td>
-                <td>17,998</td>
-                <td>359,960</td>
+                <td id="black">146790</td>
+                <td id="black">CENTRO ENTRET FAMESA MUNICH</td>
+                <td>17,998 Pts.</td>
+                <td>359,960 Pts.</td>
             </tr>
 
             </tbody>
         </table>
 
-        <h6 class="center Mcolor">TOTAL <span class="datos1">363,522 Pts.</span> </h6>
+        <h6 class="center Mcolor dat">TOTAL <span class="dato">363,522 Pts.</span> </h6>
 
         <div class="row">
-            <div class="col s2 m2 l2 offset-l4">
-                <a href="#!" class=" BtnClose modal-action modal-close "w">
+            <div class="col s2 m2 l1 offset-l5 offset-s4 offset-m4">
+                <a href="#!" class=" BtnClose ">
                     <i class="medium material-icons">print</i>
                 </a>
             </div>
             <div class="col s2 m2 l1">
-                <img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="35px" >
+                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="35px" ></a>
             </div>
         </div>
     </div>

@@ -32,7 +32,7 @@
 
         <div class="right row">
             <div class="col s2">
-                <a href="#modal1" class="Btnadd waves-effect  btn modal-trigger">efectivo</a>
+                <a href="#Efec" class="BtnBlue waves-effect  btn modal-trigger">efectivo</a>
             </div>
         </div>
 
@@ -54,13 +54,13 @@
 
             <tr>
                 <td> 14/07/2015</td>
-                <td>fc002332</td>
+                <td id="black">fc002332</td>
                 <td>00022</td>
-                <td>xxxxxx xxxxxxxx xxxxxx xxxxx x</td>
-                <td>2,742 Pts.</td>
-                <td>C$ 1,371</td>
+                <td  id="Codigo">xxxxxx xxxxxxxx xxxxxx xxxxx x</td>
+                <td  id="Codigo">2,742 Pts.</td>
+                <td  id="Codigo">C$ 1,371</td>
                 <td>
-                    <a href="#modal2" class="Icono modal-trigger">
+                    <a href="#Dell" class="Icono modal-trigger">
                         <i class="material-icons">highlight_off</i>
                     </a>
                 </td>
@@ -68,13 +68,13 @@
 
             <tr>
                 <td> 14/07/2015</td>
-                <td>fc002332</td>
+                <td id="black">fc002332</td>
                 <td>00022</td>
-                <td>xxxxxx xxxxxxxx xxxxxx xxxxx x</td>
-                <td>2,742 Pts.</td>
-                <td>C$ 1,371</td>
+                <td  id="Codigo">xxxxxx xxxxxxxx xxxxxx xxxxx x</td>
+                <td  id="Codigo">2,742 Pts.</td>
+                <td  id="Codigo">C$ 1,371</td>
                 <td>
-                    <a href="#modal2" class="Icono modal-trigger">
+                    <a href="#Dell" class="Icono modal-trigger">
                         <i class="material-icons">highlight_off</i>
                     </a>
                 </td>
@@ -88,13 +88,12 @@
 </main>
 
 <!--///////////////////////////////////////////////////////////////////////////////////////////////
-                                     MODALES ELIMINACION DE FRP
+                                     MODALES ELIMINACION DE FRE
 ////////////////////////////////////////////////////////////////////////////////////////////////-->
 <!-- Modal #2 -->
 <!-- Modal Structure -->
-<div id="modal2" class="modal">
+<div id="Dell" class="modal">
     <div class="modal-content">
-
         <div class="right row">
             <div class="col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
@@ -102,24 +101,19 @@
                 </a>
             </div>
         </div>
-
-        <h6 class="center Mcolor">DESEA ELIMINAR EL FRP <span class="redT">#00351</span></h6>
-
+        <h6 class="center Mcolor1">DESEA ELIMINAR EL FRE <span class="redT1">#fc02258</span></h6>
         <div class="row">
-            <div class="col s2 m2 l2">
-                <a href="#modal3" class="Procesar waves-effect  modal-action modal-close btn modal-trigger">procesar</a>
+            <div class="col s2 m2 l2 offset-l4 offset-s3 offset-m4">
+                <a href="#DellRes" class="Procesar modal-action modal-close btn modal-trigger">Procesar</a>
             </div>
         </div>
-
     </div>
-
 </div>
 <!-- Modal #3 -->
 <!-- Modal Structure -->
 
-<div id="modal3" class="modal">
+<div id="DellRes" class="modal">
     <div class="modal-content">
-
         <div class="right row">
             <div class="col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
@@ -127,22 +121,17 @@
                 </a>
             </div>
         </div>
-
-        <h6 class="center Mcolor">ELIMINADO CORRECTAMENTE FRP <span class="redT">#00351</span></h6>
-
-
-
+        <h6 class="center Mcolor1">ELIMINADO CORRECTAMENTE FRE <span class="redT1">#fc02258</span></h6>
     </div>
-
+    </div>
 </div>
 <!--////////////////////////////////////////////////////////////////////////////////////////////////////////
                                     MODAL PRINCIPAL
 /////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 <!-- Modal #1
                 Modal Structure -->
-<div id="modal1" class="modal">
+<div id="Efec" class="modal">
     <div class="modal-content">
-
         <div class="right row">
             <div class="col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
@@ -153,29 +142,19 @@
 
         <h6 class="center Mcolor">FORMATO DE REMISIÓN DE EFECTIVO</h6>
 
-
-
         <div class="row">
-            <div class="col s2 m2 l2">
-                <p class="Datos">COD.FRE: </p><input id="frp" type="text" class="validate">
-                <br>
+            <div class="Datos input-field line col s3 m3 l3">
+               COD.FRE:<input id="fre" type="text" class="validate">
             </div>
-
-
-            <div class="col s2 m2 l3 ">
-                <p class="Datos">FECHA CAMBIO: </p>
-            </div>
-            <div class="input-field col s2 m2 l2 ">
-                <input type="text" id="date1" class="datepicker1">
-
+            <div class="Datos line col s3 m3 l3 offset-l5 offset-s4 offset-m4">
+                <p id="fecha" class="Datos">FECHA:</p>  <input type="text" id="date1" class="datepicker1">
             </div>
         </div>
 
 
         <div class="row ">
-            <div class="input-field col s2 m2 l3">
-                <p class="DatoFrp">COD.CLIENTE:</p>
-                <input  id="frp" type="text" class="validate">
+            <div class=" DatoFrp line input-field col s3 m3 l3">
+                COD. CLIENTE:<input id="frp" type="text" class="validate">
             </div>
 
             <div class="input-field col s2 m3 l6"  >
@@ -213,37 +192,37 @@
             <tbody>
             <tr>
                 <td>24/01/2016</td>
-                <td>067799</td>
-                <td>30,000</td>
-                <td>C$ 30,000</td>
+                <td id="black">067799</td>
+                <td id="black">30,000 Pts.</td>
+                <td id="black">C$ 30,000</td>
                 <td>
                     <p >
                         <input type="checkbox" id="test1" />
                         <label for="test1"></label>
                     </p>
                 </td>
-                <td>DISPONIBLE</td>
+                <td id="dispo">DISPONIBLE</td>
             </tr>
             <tr>
                 <td>24/01/2016</td>
-                <td>067799</td>
-                <td>30,000</td>
-                <td>C$ 30,000</td>
+                <td id="black">067799</td>
+                <td id="black">30,000 Pts.</td>
+                <td id="black">C$ 30,000</td>
                 <td>
                     <p >
-                        <input type="checkbox" id="test1" />
-                        <label for="test1"></label>
+                        <input type="checkbox" id="test2" />
+                        <label for="test2"></label>
                     </p>
                 </td>
-                <td>DISPONIBLE</td>
+                <td id="dispo">DISPONIBLE</td>
             </tr>
 
             </tbody>
         </table>
 
-        <div class="right row text">
+        <div id="Total" class="right row text">
             <div class="col s8 m8 l12">
-                <p class="Datos">TOTAL EFECTIVO: <span class="datos1">C$ 363,522 </span></p>
+                <p class="Dato">TOTAL EFECTIVO: <span class="dato">C$ 363,522 </span></p>
             </div>
 
         </div>
@@ -251,8 +230,8 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <p id="obser" class="Datos">OBSERVACIONES</p>
-                        <textarea id="frp" class="materialize-textarea"></textarea>
+                        <p class="Datos">OBSERVACIONES</p>
+                        <textarea id="obser" class="materialize-textarea"></textarea>
 
                     </div>
                 </div>
@@ -268,7 +247,7 @@
 </div>
 <!-- FIN MODAL -->
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        MODAL DETALLE FRP
+                                        MODAL DETALLE FRE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 <!-- Modal #4
@@ -286,17 +265,19 @@
 
         <h6 id="titulM" class="center Mcolor">DETALLE FRE</h6>
 
-        <p class="center datos1"> N° FRE 38389</p>
-        <p class="center datos1"> 24/12/2016</p>
+        <div class="container">
+            <p class="center datos1 frpT"> N°FRE FC02389</p>
+            <p class="center datos1 lineas"> 24/12/2016</p>
+        </div>
         <h6  class="center datos1">00449 FARMACIA CASTELLÓN</h6>
-        <p class="center Datos"> RUC 4412000183001H</p>
+        <p class="center Datos linea ruc"> RUC 4412000183001H</p>
 
         <div class="row text">
-            <div class="col s8 m8 l8">
-                <p class="Datos">CANJE: 100,000 Pts</p>
+            <div class="col s4 m6 l8">
+                <p class="Datos ruc Cblack">CANJE: 100,000 Pts</p>
             </div>
-            <div class="col s4 m4 l4">
-                <p class="Datos">EFECTIVO: C$ 50,000</p>
+            <div class="col s8 m6 l4">
+                <p class="Datos ruc Cblack">EFECTIVO: C$ 50,000</p>
             </div>
         </div>
 
@@ -315,16 +296,16 @@
             <tbody>
             <tr>
                 <td>24/01/2016</td>
-                <td>069424</td>
-                <td>25,000 Pts</td>
+                <td id="black">069424</td>
+                <td id="black">25,000 Pts</td>
                 <td>C$ 12,000</td>
                 <td>PAGADO</td>
 
             </tr>
             <tr>
                 <td>24/01/2016</td>
-                <td>069424</td>
-                <td>25,000 Pts</td>
+                <td id="black">069424</td>
+                <td id="black">25,000 Pts</td>
                 <td>C$ 12,000</td>
                 <td>PAGADO</td>
 
@@ -337,17 +318,25 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <p id="obser" class="Datos">OBSERVACIONES</p>
-                        <textarea id="frp" class="materialize-textarea">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi laudantium provident, debitis odio et, explicabo optio iure, odit, dicta quibusdam fugit soluta doloribus quo officiis quae ex veniam vero eum!
-                            Error doloremque nisi, deserunt, esse beatae, sunt ad minima optio quidem possimus iste laborum dolores tempora porro veritatis molestiae? Saepe reprehenderit delectus mollitia vel minus recusandae cumque molestias obcaecati temporibus.
-                            Corporis officiis quod est consequatur iusto labore dicta et sunt hic numquam aspernatur repudiandae quaerat cupiditate at, inventore reiciendis tenetur laboriosam alias dolor recusandae expedita? Autem fugit non consectetur quasi?
-
+                        <p class="Datos">OBSERVACIONES</p>
+                        <textarea id="obser" class="materialize-textarea">
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                         </textarea>
 
                     </div>
                 </div>
             </form>
+        </div>
+
+        <div class="row">
+            <div class="col s2 m2 l2 offset-l4 offset-s4 offset-m4">
+                <a href="#!" class=" BtnClose ">
+                    <i class="medium material-icons">print</i>
+                </a>
+            </div>
+            <div class="col s2 m2 l1">
+                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="35px" ></a>
+            </div>
         </div>
 
 

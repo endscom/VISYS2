@@ -14,21 +14,23 @@
 
         <div class=" row TextColor">
             <div class="col s5 m5 l12">
-               usuarios sietema de puntos
+               usuarios sistema de puntos
             </div>
         </div>
 
-        <div class=" Buscar row column">
+        <div class="container">
+            <div class=" Buscar row column">
 
-            <div class="col s1 m1 l1">
-                <i class="material-icons ColorS">search</i>
+                <div class="col s1 m1 l1 offset-l3">
+                    <i class="material-icons ColorS">search</i>
+                </div>
+
+                <div class="input-field col s6 m6 l4">
+                    <input  id="search" type="text" placeholder="Buscar" class="validate">
+                    <label for="search"></label>
+                </div>
+
             </div>
-
-            <div class="input-field col s6 m6 l4">
-                <input  id="search" type="text" placeholder="Buscar" class="validate">
-                <label for="search"></label>
-            </div>
-
         </div>
 
         <div class="right row">
@@ -54,38 +56,38 @@
 
             <tr>
                 <td>14/07/2015</td>
-                <td>00001</td>
+                <td id="NomCliente">00001</td>
                 <td>215457889621478</td>
                 <td> <a  href="#Duser" class="modal-trigger">farmacia david</td></a>
                 <td><i class=" BtnClose material-icons">highlight_off</i></td>
-                <td>ACTIVO</td>
+                <td id="activo">ACTIVO</td>
             </tr>
 
             <tr>
                 <td>14/07/2015</td>
-                <td>00001</td>
+                <td id="NomCliente">00001</td>
                 <td>215457889621478</td>
                 <td>farmacia david</td>
                 <td><i class=" BtnClose material-icons">highlight_off</i></td>
-                <td>ACTIVO</td>
+                <td id="activo">ACTIVO</td>
             </tr>
 
             <tr>
                 <td>14/07/2015</td>
-                <td>00001</td>
+                <td id="NomCliente">00001</td>
                 <td>215457889621478</td>
                 <td>farmacia david</td>
                 <td><i class=" BtnClose material-icons">highlight_off</i></td>
-                <td>ACTIVO</td>
+                <td id="activo">ACTIVO</td>
             </tr>
 
             <tr>
                 <td>14/07/2015</td>
-                <td>00001</td>
+                <td id="NomCliente">00001</td>
                 <td>215457889621478</td>
                 <td>farmacia david</td>
                 <td><i class=" BtnClose material-icons">highlight_off</i></td>
-                <td>ACTIVO</td>
+                <td id="activo">ACTIVO</td>
             </tr>
 
             </tbody>
@@ -112,18 +114,18 @@
             </div>
         </div>
 
-        <h6 class="center Mcolor">AGREGAR USUARIO VISYS </h6>
+        <h6 class="center Mcolor AdUser">AGREGAR USUARIO VISYS </h6>
 
         <div class="row">
             <form class="col s12" action=""method="post" name="formnuevo">
 
                 <div class="row">
                     <div class="input-field col s6">
-                        <input name="unoUser" placeholder="Usuario / Cod. Cliente" id="nombre" type="text" class="validate">
+                        <input name="unoUser" placeholder="Usuario / Cod. Cliente" id="NombreUser" type="text" class="validate">
                     </div>
 
                     <div class="input-field col s6">
-                        <input name="pass" placeholder="Contraseña" id="pass" type="password" class="validate">
+                        <input name="pass" placeholder="Contraseña" id="Contra" type="password" class="validate">
                     </div>
                 </div>
 
@@ -142,7 +144,7 @@
 
         <div class="row">
             <div class="col s6">
-                <a href="#modal2" class="Btnadd modal-action modal-close btn modal-trigger">GENERAR</a>
+                <a href="#UserYes" class="Btnadd modal-action modal-close btn modal-trigger">GENERAR</a>
             </div>
         </div>
 
@@ -153,9 +155,9 @@
 
 <!-- MODAL REPUESTA USUARIO -->
 <!-- Modal Structure -->
-<div id="modal2" class="modal">
+<div id="UserYes" class="modal">
     <div class="modal-content">
-        <h6 class="center Mcolor">EL USUARIO SE AGREGÓ CORRECTAMENTE </h6>
+        <h6 class="center Mcolor user">EL USUARIO SE AGREGÓ CORRECTAMENTE </h6>
     </div>
 
 </div>

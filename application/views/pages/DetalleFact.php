@@ -14,17 +14,17 @@
     <div class="contenedor">
 
         <div class=" row TextColor">
-            <div class="col s5 m5 l12">
+            <div class="col s5 m5 l12 offset-m3 offset-s2">
                 farmacia aracely
             </div>
         </div>
 
 
         <div class="row text">
-            <div class="col s8 m8 l4 offset-l3">
+            <div class="col s4 m4 l4 offset-l3 offset-m1">
                 <p>CÓDIGO: <span class="Datos">00179</span></p>
             </div>
-            <div class="col s4 m4 l4">
+            <div class="col s3 m4 l4 ">
                 <p>RUC: <span class="Datos">20131035001Y</span></p>
             </div>
         </div>
@@ -53,30 +53,30 @@
 
             <tr>
                 <td> xxxx</td>
-                <td> <a  href="#modal1" class="modal-trigger">xxxxx</td></a>
-                <td>454545 Pts</td>
+                <td id="Codigo"> <a  href="#modal1" class="modal-trigger">xxxxx</td></a>
+                <td id="black">454545 Pts</td>
                 <td>ACTIVO</td>
             </tr>
 
             <tr>
                 <td>xxxx</td>
-                <td>xxxxx</td>
-                <td>454545 Pts</td>
-                <td>APLICADO</td>
+                <td id="Codigo">xxxxx</td>
+                <td id="black">454545 Pts</td>
+                <td id="aplicado">APLICADO</td>
             </tr>
 
             <tr>
                 <td>xxxx</td>
-                <td>xxxxx</td>
-                <td>454545 Pts</td>
+                <td id="Codigo">xxxxx</td>
+                <td id="black">454545 Pts</td>
                 <td>ACTIVO</td>
             </tr>
 
             <tr>
                 <td>xxxx</td>
-                <td>xxxxx</td>
-                <td>454545 Pts</td>
-                <td>APLICADO</td>
+                <td id="Codigo">xxxxx</td>
+                <td id="black">454545 Pts</td>
+                <td id="aplicado">APLICADO</td>
             </tr>
 
             </tbody>
@@ -96,26 +96,21 @@
                 Modal Structure -->
 <div id="modal1" class="modal">
     <div class="modal-content">
-
-        <div class="center row">
-
-            <div class="col s9 m9 l9">
-                <h5 class="Mcolor">DETALLE FACTURA</h5>
-            </div>
-
-            <div class="col s3 m3 l2">
+        <div class=" row">
+            <div class="right col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
                     <i class="material-icons">highlight_off</i>
                 </a>
             </div>
         </div>
+        <h6 class="center Mcolor">DETALLE FACTURA</h6>
 
         <div class="row">
-            <div class="col s6 m3 l8">
+            <div class="col s6 m6 l8">
                 <span class="Datos">FARMACIA ARACELY</span>
             </div>
 
-            <div class="col s6 m3 l4">
+            <div class="col s6 m5 l4">
                 <p class="Datos">FACTURA: <span class="redT">62209</span></p>
             </div>
         </div>
@@ -141,23 +136,19 @@
                         <td>5</td>
                         <td>10301032</td>
                         <td>Acetominofen xxxxxxxxxx</td>
-                        <td>20 Pts.</td>
+                        <td id="black"> 20 Pts.</td>
                     </tr>
 
                     <tr>
                         <td>5</td>
                         <td>10301032</td>
                         <td>Acetominofen xxxxxxxxxx</td>
-                        <td>20 Pts.</td>
+                        <td  id="black">20 Pts.</td>
                     </tr>
                     </tbody>
 
                 </table>
-                <div id="TPts" class="center row">
-                    <div class="col col s9 m9 l9">
-                        <h5 class="Mcolor">TOTAL COMPRA 120 Pts. </h5>
-                    </div>
-                </div>
+                <h6 class="center texttotal">TOTAL COMPRA 120 Pts.</h6>
             </div>
         </div>
 

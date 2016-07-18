@@ -13,7 +13,7 @@
     <div class="contenedor">
 
         <div class=" row TextColor">
-            <div class="col s5 m5 l12">
+            <div class="col s12 m12 l12">
                CLIENTES PARA AGREGAR AL PROGRAMA DE PUNTOS
             </div>
         </div>
@@ -21,7 +21,7 @@
         <div class="container">
             <div class=" Buscar row column">
 
-                <div class="col s1 m1 l1 offset-l3">
+                <div class="col s1 m1 l1 offset-l3 offset-s1">
                     <i class="material-icons ColorS">search</i>
                 </div>
 
@@ -40,7 +40,7 @@
         </div>
 
         <div class="right row">
-            <div class="col s3">
+            <div class="col s8 m6 l5">
                 <a href="#modal1" class="BtnBlue waves-effect  btn modal-trigger ">AGREGAR</a>
             </div>
         </div>
@@ -59,25 +59,25 @@
             <tbody>
 
             <tr>
-                <td>xxxx</td>
+                <td id="NomCliente">xxxx</td>
                 <td>xxxxx</td>
                 <td>xxxx</td>
             </tr>
 
             <tr>
-                <td>xxxx</td>
+                <td id="NomCliente">xxxx</td>
                 <td>xxxxx</td>
                 <td>xxxx</td>
             </tr>
 
             <tr>
-                <td>xxxx</td>
+                <td id="NomCliente">xxxx</td>
                 <td>xxxxx</td>
                 <td>xxxx</td>
             </tr>
 
             <tr>
-                <td>xxxx</td>
+                <td id="NomCliente">xxxx</td>
                 <td>xxxxx</td>
                 <td>xxxx</td>
             </tr>
@@ -126,7 +126,7 @@
 
                 <tr>
                     <td>xxxxxxxxxxxxxxxxxxxxxxx</td>
-                    <td>LUNAN</td>
+                    <td id="black">03195</td>
                     <td>
                         <i class=" BtnClose material-icons">highlight_off</i>
                     </td>
@@ -134,7 +134,7 @@
 
                 <tr>
                     <td>xxxxxxxxxxxxxxxxxxxxxxx</td>
-                    <td>LUNAN</td>
+                    <td id="black">03195</td>
                     <td>
                         <i class=" BtnClose material-icons">highlight_off</i>
                     </td>
@@ -163,19 +163,14 @@
 <!-- Modal Structure -->
 <div id="modal2" class="modal">
     <div class="modal-content">
-
-
-
-        <div  class="row ">
-            <div class="col s6 m6 l8">
-                <h4 class="Mcolor">CLIENTES AGREGADOS</h4>
-            </div>
-            <div class="col s6 m6 l4">
-                <a href="#" class=" modal-action modal-close ">
-                    <i class="BtnClose material-icons">highlight_off</i>
+        <div class=" row">
+            <div class="right col s3 m3 l3">
+                <a href="#!" class=" BtnClose modal-action modal-close ">
+                    <i class="material-icons">highlight_off</i>
                 </a>
             </div>
         </div>
+        <h6 class="center Mcolor">CLIENTES AGREGADOS:</h6>
 
         <table id="tblModal2" class="TheadColor">
             <thead>
@@ -189,8 +184,8 @@
             <tbody>
             <tr>
                 <td>xxxxxxx</td>
-                <td>xxxxxx</td>
-                <td>xxxx</td>
+                <td id="black">xxxxxx</td>
+                <td id="black">xxxx</td>
             </tr>
             </tbody>
         </table>

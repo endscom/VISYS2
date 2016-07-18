@@ -5255,7 +5255,37 @@ a.waves-effect .waves-ripple {
   border-radius: 2px;
   will-change: top, opacity;
 }
+ #MFrp.modal
+{
+  width: 80% !important;
+   max-height: 90% !important;
+}
+ #Dfre{
+   width: 72% !important;
+   max-height:90% !important;
+ }
+#UserYes
+{
+  width: 20% !important;
 
+}
+#Efec{
+  width: 80% !important;
+  max-height: 90% !important;
+}
+@media only screen and (max-width: 992px){
+  #Dell.modal
+  {
+    width: 37%!important;
+  }
+}
+#DellRes{
+  width: 37%!important;
+}
+ #Dell
+ {
+   width: 37%!important;
+ }
 @media only screen and (max-width: 992px) {
   .modal {
     width: 80%;
@@ -5547,7 +5577,22 @@ input[type=datetime],
 input[type=datetime-local],
 input[type=tel],
 input[type=number],
-input[type=search],
+input[type=search] {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  height: 3rem;
+  width: 100%;
+  font-size: 1rem;
+  margin: 0 0 15px 0;
+  padding: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  transition: all 0.3s;
+  text-align: center;
+}
 textarea.materialize-textarea {
   background-color: transparent;
   border: none;
@@ -5562,7 +5607,9 @@ textarea.materialize-textarea {
   box-shadow: none;
   box-sizing: content-box;
   transition: all 0.3s;
+  text-align: justify;
 }
+
 
 input:not([type]):disabled, input:not([type])[readonly="readonly"],
 input[type=text]:disabled,
@@ -6088,7 +6135,7 @@ form p:last-child {
   padding-left: 35px;
   cursor: pointer;
   display: inline-block;
-  height: 25px;
+  height:10px;
   line-height: 25px;
   font-size: 1rem;
   -webkit-user-select: none;
