@@ -311,6 +311,7 @@ table.dataTable td {
   color: #1F0A71 !important;
   border: 1px solid transparent;
   border-radius: 2px;
+  font-family: 'robotoblack' ;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
   color: #1F0A71 !important;
@@ -400,6 +401,7 @@ table.dataTable td {
 .dataTables_wrapper .dataTables_processing,
 .dataTables_wrapper .dataTables_paginate {
   color: #1F0A71;
+  font-size: 10px;
 }
 .dataTables_wrapper .dataTables_scroll {
   clear: both;

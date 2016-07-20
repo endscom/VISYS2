@@ -5260,7 +5260,7 @@ a.waves-effect .waves-ripple {
   width: 80% !important;
    max-height: 90% !important;
 }
- #Dfre{
+ #Dfre, #SPdet, #cxpdet{
    width: 72% !important;
    max-height:90% !important;
  }
@@ -5269,6 +5269,8 @@ a.waves-effect .waves-ripple {
   width: 20% !important;
 
 }
+#Duser, #SP, #CompraxProduc
+{width: 40% !important;}
 #Efec{
   width: 80% !important;
   max-height: 90% !important;

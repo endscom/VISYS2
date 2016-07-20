@@ -176,11 +176,11 @@
             </div>
         </div>
 
-        <h6 class="center Mcolor">INFORMACIÓN DEL CLIENTE</h6>
+        <h6 class="center Mcolor AdUser">INFORMACIÓN DEL CLIENTE</h6>
 
-        <p class="center datos1"> COD. CLIENTE: 00449</p>
-        <h6  class="center datos1">00449 FARMACIA CASTELLÓN</h6>
-        <p class="center datos1"> RUC 4412000183001H</p>
+        <p class="center datos1 cod "> COD. CLIENTE: 00449</p>
+        <h6  class="center datos1 user linea">00449 FARMACIA CASTELLÓN</h6>
+        <p class="center datos1 ruc linea"> RUC 4412000183001H</p>
 
         <p id="acumulado" class="center Datos">ACUMULADO: <span id="AcuT">250,000</span>  Pts.</p>
 

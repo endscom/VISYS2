@@ -101,7 +101,7 @@
         <h6 id="Format" class="center Mcolor">CLIENTE</h6>
 
         <div class=" row">
-            <div class="Datos input-field line col s3 m3 l2">
+            <div class="DatoFrp input-field line col s3 m3 l2">
                  N° FRP:<input id="frp" type="text" class="validate">
             </div>
 

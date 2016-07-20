@@ -342,7 +342,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 #conTIcon
 {
-    margin-top: 40px;
+    margin-top:10%;
 }
 .Centrado
 {
@@ -628,7 +628,24 @@ _:-ms-input-placeholder, :root .demo-graph {
     color: #1F0A71;
     font-size: 12px;
 }
+.DatosModal th
+{
+    font-family: 'robotobold';
+    color: #fff;
+    font-size: 14px;
+    background: #1F0A71;
+}
+
 /****** Tabla zebra ********/
+
+
+#MCXP tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+#MCXP tr:nth-child(odd) {
+    background-color: #e7e2f7;
+}
 
 #tblEliminar tr:nth-child(even) {
     background-color: #ffffff;
@@ -744,6 +761,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     background: rgba(0, 128, 0, 0.6);
     transition: 0.5s;
 }
+
 #Nfarmacia
 {
     font-size: 22px;
@@ -837,9 +855,39 @@ _:-ms-input-placeholder, :root .demo-graph {
 #Btnadd{
     margin-top: 15px;
 }
+.cod{font-size: 14px;}
+.ruc{font-size: 12px;}
 #Format{font-size: 22px;}
 #Total{margin-top: 25px;}
 #activo
 {
     color: #6a4ad5;
+}
+
+#log{margin-top: -5px;}
+.detalles{
+    color: #6a4ad5;
+    font-family: 'robotoregular';
+    font-size: 14px;
+}
+.fecha
+{
+    font-family: 'robotoblack';
+    font-size: 14px;
+    color: #1F0A71;
+    border-bottom: 2px solid #1F0A71;
+    text-align: center;
+}
+.rango
+{
+    font-family: 'robotoregular';
+    font-size: 14px;
+    color: rgba(134, 111, 213, 0.5);
+    margin-top: -17px;
+    text-align: center;
+}
+
+#Iconos
+{
+    margin-top: 30px;
 }
