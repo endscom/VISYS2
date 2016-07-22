@@ -106,8 +106,8 @@
             </div>
 
 
-            <div class="Datos line col s3 m3 l3 offset-l5 offset-s4 offset-m4">
-                <p id="fecha" class="Datos">FECHA: </p>  <input type="text" id="date1" class="datepicker1"><br>
+            <div class=" line col s3 m3 l3 offset-l5 offset-s4 offset-m4">
+                <p id="fecha" class="DatoFrp">FECHA: </p>  <input type="text" id="date1" class="datepicker1"><br>
             </div>
 
         </div>
@@ -413,8 +413,8 @@
         <h6 class="center Mcolor dat">TOTAL <span class="dato">363,522 Pts.</span> </h6>
 
         <div class="row">
-            <div class="col s2 m2 l1 offset-l5 offset-s4 offset-m4">
-                <a href="#!" class=" BtnClose ">
+            <div class="col s2 m2 l2 offset-l5 offset-s4 offset-m4">
+                <a  target="_blank" href="DetalleFRP" class=" BtnClose ">
                     <i class="medium material-icons">print</i>
                 </a>
             </div>

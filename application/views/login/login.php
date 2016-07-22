@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s3 m3 l3 offset-l4  offset-m2 login-text">
-                                        <input type="checkbox" id="remember-me" />
+                                        <input type="checkbox" id="remember-me"  name="recordarme" value="1">
                                         <label id="recordar" for="remember-me">RECORDAR</label>
                                     </div>
                                 </div>
@@ -48,12 +48,13 @@
 
             </div>
         </div>
-    <div id="conTIcon" class="row">
-        <div id="logos" class="col s3 m3 l3">
-            <img  src="<?PHP echo base_url();?>assets/img/iconos_login.png"  >
+
+        <div id="conTIcon" class="row">
+            <div id="logos" class="col s3 m3 l3">
+                <img  src="<?PHP echo base_url();?>assets/img/iconos_login.png"  >
+            </div>
+            <div id="logos1" class="right col s3 m3 l3 ">
+                <img  src="<?PHP echo base_url();?>assets/img/log_unimark.png" >
+            </div>
         </div>
-        <div id="logos1" class="right col s3 m3 l3 ">
-            <img  src="<?PHP echo base_url();?>assets/img/log_unimark.png" >
-        </div>
-    </div>
     </div>

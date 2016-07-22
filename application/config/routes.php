@@ -13,6 +13,8 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'login_controller/Acreditar';
 $route['salir'] = 'login_controller/Salir';
 // FIN LOGIN
+
+// RUTAS MENU
 $route['Main'] = 'main_controller/main';
 $route['EliminarVineta'] = 'main_controller/EliminarVineta';
 $route['Clientes'] = 'main_controller/Clientes';
@@ -21,7 +23,13 @@ $route['PuntosClientes'] = 'main_controller/PuntosClientes';
 $route['DetalleFact'] = 'main_controller/DetalleFact';
 $route['Frp'] = 'main_controller/CanjeFrp';
 $route['FRE'] = 'main_controller/CanjeFre';
-
-
+$route['Catalogo'] = 'main_controller/Catalogo';
 $route['Usuarios'] = 'main_controller/Usuarios';
 $route['Reportes'] = 'main_controller/Reportes';
+// FIN RUTAS MENU
+
+
+// RUTA IMPRESION
+$route['DetalleFRP'] = 'impresion_controller/DetalleFRP';
+$route['DetalleFRE'] = 'impresion_controller/DetalleFRE';
+// FIN IMPRESION

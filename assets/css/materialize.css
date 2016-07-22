@@ -2701,7 +2701,8 @@ ul li {
 }
 
 .z-depth-1/*, nav*/, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+ /* box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);*/
+  border: 1px solid #1f0a71;
 }
 
 .z-depth-1-half, .btn:hover, .btn-large:hover, .btn-floating:hover {
@@ -4589,12 +4590,12 @@ small {
 }
 
 .card.small .card-image, .card.medium .card-image, .card.large .card-image {
-  max-height: 60%;
+  max-height: 50%;
   overflow: hidden;
 }
 
 .card.small .card-content, .card.medium .card-content, .card.large .card-content {
-  max-height: 40%;
+  max-height: 50%;
   overflow: hidden;
 }
 
@@ -4606,7 +4607,7 @@ small {
 }
 
 .card.small {
-  height: 300px;
+  height: 280px;
 }
 
 .card.medium {
@@ -4619,17 +4620,32 @@ small {
 
 .card .card-image {
   position: relative;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .card .card-image img {
-  display: block;
+ /* display: block;
   border-radius: 2px 2px 0 0;
   position: relative;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  width: 100%;
+
+  margin: 27px 0px 13px;*/
+
+
+  display: block;
+  /* border-radius: 30px; */
+  border-radius: 2px 2px 0 0;
+  margin: 10px 5px 0px 0px;
+  line-height: 15px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 60%;
 }
 
 .card .card-image .card-title {
@@ -4643,11 +4659,13 @@ small {
 .card .card-content {
   padding: 20px;
   border-radius: 0 0 2px 2px;
+  position: static;
 }
 
 .card .card-content p {
   margin: 0;
-  color: inherit;
+  /*color: inherit;*/
+
 }
 
 .card .card-content .card-title {
@@ -5260,7 +5278,7 @@ a.waves-effect .waves-ripple {
   width: 80% !important;
    max-height: 90% !important;
 }
- #Dfre, #SPdet, #cxpdet{
+ #Dfre, #SPdet, #cxpdet,#MxPdet, #CanjeSPDdet, #RepFechadet, #MaVinetadet{
    width: 72% !important;
    max-height:90% !important;
  }
@@ -5269,7 +5287,7 @@ a.waves-effect .waves-ripple {
   width: 20% !important;
 
 }
-#Duser, #SP, #CompraxProduc
+#Duser, #SP, #CompraxProduc, #MxP, #CanjeSP, #ReFecha, #MaVineta
 {width: 40% !important;}
 #Efec{
   width: 80% !important;
@@ -6534,8 +6552,8 @@ select:disabled {
 
 .file-field .btn, .file-field .btn-large {
   float: left;
-  height: 3rem;
-  line-height: 3rem;
+  height:36px;
+  /*line-height: 3rem;*/
 }
 
 .file-field span {

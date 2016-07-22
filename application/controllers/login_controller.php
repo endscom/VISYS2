@@ -37,6 +37,7 @@ class Login_controller extends CI_Controller
     	} else {
     		$name = $this->input->get_post('txtUsuario');
 			$pass = $this->input->get_post('txtpassword');
+
 			
 
             //echo md5($pass);

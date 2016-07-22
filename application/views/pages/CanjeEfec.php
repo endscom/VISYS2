@@ -273,10 +273,10 @@
         <p class="center Datos linea ruc"> RUC 4412000183001H</p>
 
         <div class="row text">
-            <div class="col s4 m6 l8">
+            <div class="col col s4 m4 l3">
                 <p class="Datos ruc Cblack">CANJE: 100,000 Pts</p>
             </div>
-            <div class="col s8 m6 l4">
+            <div class="col s4 m4 l3 offset-l6 offset-s4 offset-m4">
                 <p class="Datos ruc Cblack">EFECTIVO: C$ 50,000</p>
             </div>
         </div>
@@ -329,8 +329,8 @@
         </div>
 
         <div class="row">
-            <div class="col s2 m2 l2 offset-l4 offset-s4 offset-m4">
-                <a href="#!" class=" BtnClose ">
+            <div class="col s2 m2 l2 offset-l5 offset-s4 offset-m4">
+                <a  target="_blank" href="DetalleFRE" class=" BtnClose ">
                     <i class="medium material-icons">print</i>
                 </a>
             </div>

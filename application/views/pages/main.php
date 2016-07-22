@@ -22,7 +22,7 @@
         <div class="demo-separator mdl-cell--1-col"></div>
         <!-- Cátalogo-->
         <div id="catalogo" class="demo-charts mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-            <div  class="container">
+          <div  class="container">
                 <div class="row">
                     <div class="col s3">hello</div>
                     <div class="col s3">hello</div>
@@ -30,6 +30,7 @@
                     <div class="col s3">hello</div>
                 </div>
             </div>
+
         </div>
 
 

@@ -476,6 +476,14 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-weight: 500;
     font-size: 13px;
 }
+.BtnModif{
+
+    border-radius: 20px;
+    background: #1F0A71;
+    font-family: 'robotoregular';
+    font-weight: 500;
+    font-size: 13px;
+}
 #btn
 {
     margin-left: 50%;
@@ -587,13 +595,12 @@ _:-ms-input-placeholder, :root .demo-graph {
 {
 
     text-align: center;
-    text-transform: capitalize;
     border-collapse: separate;
     border-spacing: 1px;
 
 }
 
-.TblDatos thead th
+.TblDatos th
 {
     background: #1F0A71;
     color: #fff;
@@ -638,6 +645,13 @@ _:-ms-input-placeholder, :root .demo-graph {
 
 /****** Tabla zebra ********/
 
+#tblFREimpre tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+#tblFREimpre tr:nth-child(odd) {
+    background-color: #e7e2f7;
+}
 
 #MCXP tr:nth-child(even) {
     background-color: #ffffff;
@@ -651,16 +665,33 @@ _:-ms-input-placeholder, :root .demo-graph {
     background-color: #ffffff;
 }
 
-#tblEliminar tr:nth-child(odd) {
+#BajaCliente tr:nth-child(odd) {
     background-color: #e7e2f7;
 }
 
+#BajaCliente tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+#tblEliminar tr:nth-child(odd) {
+    background-color: #e7e2f7;
+}
 
 #ClienteAdd tr:nth-child(odd)
 {
     background-color: #e7e2f7;
 }
 #ClienteAdd tr:nth-child(even)
+{
+    background-color: #ffffff;
+}
+
+
+#TblMaVinetas tr:nth-child(odd)
+{
+    background-color: #e7e2f7;
+}
+#TblMaVinetas tr:nth-child(even)
 {
     background-color: #ffffff;
 }
@@ -719,6 +750,16 @@ _:-ms-input-placeholder, :root .demo-graph {
      font-size: 12px;
 
  }
+#ImgContenedor
+{
+    border: 1px solid #6a4ad5;
+    box-shadow: none;
+    text-align: center;
+    font-family: 'robotoregular';
+    font-size: 12px;
+    color: #1F0A71;
+    width: 84%;
+}
 #obser{
     border: 1px solid #6a4ad5;
     box-shadow: none;
@@ -726,6 +767,8 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-size: 12px;
     color: #1F0A71;
     font-weight: 500;
+    width: 98%;
+    padding: 10px;
 }
 
 #fre
@@ -886,8 +929,158 @@ _:-ms-input-placeholder, :root .demo-graph {
     margin-top: -17px;
     text-align: center;
 }
-
+#BtnAddArto
+{margin-top: 22px !important;}
+#BtnImgArto
+{margin-top: 8px !important;}
 #Iconos
 {
     margin-top: 30px;
+}
+
+.item
+{
+    text-transform: uppercase;
+    font-family: 'robotoblack';
+    font-size: 16px;
+    color: #1F0A71;
+}
+.items
+{
+    text-transform: uppercase;
+    font-family: 'robotobold';
+    font-size: 17px;
+    color: #1F0A71;
+}
+.descrip
+{
+    font-family: 'robotoregular';
+    font-size: 11px;
+    color: #1F0A71;
+    text-transform: uppercase;
+}
+.puntos
+{
+    font-family: 'robotoblack';
+    font-size: 14px;
+    color: #1F0A71;
+    text-transform: uppercase;
+}
+#cargarImg
+{
+   margin-left: 27px;
+}
+#buscarImg{
+    margin-top: -35px;
+}
+
+.images_line {
+    display: inline-block;
+    margin: 30px 15px 10px;
+}
+#dell
+{
+    margin-top: 10px;
+    position: absolute;
+    right: 0;
+    z-index: 999;
+}
+#textImg
+{
+    position: fixed;
+}
+
+#detalleFrp
+{
+    font-family: 'robotoblack';
+    color: rgba(106, 74, 213, 0.5);
+    font-size: 22px;
+    text-transform: uppercase;
+    opacity: 0.5;
+}
+/*impresion de frp*/
+.RobotoB
+{
+    font-family: 'robotoblack';
+}
+.Color{
+    color: #1F0A71;
+}
+#numFrp
+{
+    font-size: 17px;
+    text-align: center;
+}
+#fechafrp
+{
+    text-align: center;
+    font-size: 15px;
+    margin: -16px 15px 12px;
+}
+#Farmafre
+{
+    text-align: center;
+    font-size: 15px;
+    text-transform: uppercase;
+
+}
+#NomFaramacia
+{
+    color: #6a4ad5;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+}
+#ruc
+{
+    color: #866FD5;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: -16px 15px 12px;
+}
+
+.detallesFrp thead
+{
+    font-family: 'robotobold';
+    font-size: 11px;
+    text-align: center;
+    line-height: 20px;
+}
+.detallesFrp tbody
+{
+    font-family: 'robotoregular';
+    text-align: center;
+    font-size: 11px;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+.RobotoR{
+    font-family:'robotoregular';
+}
+.Ccolor
+{
+    color: #866FD5;
+}
+.PtAplicado
+{
+    color: red;
+    font-size: 12px;
+    margin: 16px 15px 12px;
+}
+.RegImp
+{
+    font-size: 11px;
+    color: rgba(106, 74, 213, 0.5);
+    opacity: 0.5;
+    text-transform: uppercase;
+}
+.canjePts
+{
+    color: red;
+    font-size: 14px;
+    margin: 16px 15px 12px;
+}
+#TxtObser{
+    font-size: 14px;
 }
