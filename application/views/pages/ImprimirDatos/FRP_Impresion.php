@@ -1,4 +1,5 @@
-<main class="mdl-layout__contents">
+<body onload="window.print();"><!-- Impresion de la Página al cargar... -->
+<main class="mdl-layout__contents" >
 
     <div class="">
 
@@ -93,7 +94,7 @@
               </table>
 
               <div class=" row">
-                  <div class="col s6 m6 l8 offset-l7 offset-m6 offset-s6">
+                  <div class="col s6 m4 l5 offset-l7 offset-m8 offset-s6">
                       <p class="PtAplicado RobotoB"> PUNTOS APLICADOS POR EL CANJE: 363,522 Pts.</p>
                   </div>
               </div>

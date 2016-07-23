@@ -414,7 +414,7 @@
 
         <div class="row">
             <div class="col s2 m2 l2 offset-l5 offset-s4 offset-m4">
-                <a  target="_blank" href="DetalleFRP" class=" BtnClose ">
+                <a  target="_blank"   href="DetalleFRP"  class=" BtnClose ">
                     <i class="medium material-icons">print</i>
                 </a>
             </div>
