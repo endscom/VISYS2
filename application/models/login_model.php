@@ -17,8 +17,8 @@ class Login_model extends CI_Model
         //echo $name;
         if($name != FALSE && $pass != FALSE){
 
-            $this->db->where('NombreUsuario', $name);
-            $this->db->where('Password',$pass);
+            $this->db->where('Nombre', $name);
+            $this->db->where('Clave',$pass);
             
             $query = $this->db->get('usuario');
             if($query->num_rows() == 1){

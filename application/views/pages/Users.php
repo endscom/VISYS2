@@ -63,32 +63,28 @@
                 <td id="activo">ACTIVO</td>
             </tr>
 
-            <tr>
-                <td>14/07/2015</td>
-                <td id="NomCliente">00001</td>
-                <td>215457889621478</td>
-                <td>farmacia david</td>
-                <td><i class=" BtnClose material-icons">highlight_off</i></td>
-                <td id="activo">ACTIVO</td>
-            </tr>
+                <?PHP
+                    if(!($Luser)){}
+                    else{
 
-            <tr>
-                <td>14/07/2015</td>
-                <td id="NomCliente">00001</td>
-                <td>215457889621478</td>
-                <td>farmacia david</td>
-                <td><i class=" BtnClose material-icons">highlight_off</i></td>
-                <td id="activo">ACTIVO</td>
-            </tr>
-
-            <tr>
-                <td>14/07/2015</td>
-                <td id="NomCliente">00001</td>
-                <td>215457889621478</td>
-                <td>farmacia david</td>
-                <td><i class=" BtnClose material-icons">highlight_off</i></td>
-                <td id="activo">ACTIVO</td>
-            </tr>
+                        foreach($Luser as $user )
+                        {
+                            if($user['Estado']==1)
+                            {$activo='Inactivo';}
+                            else{$activo='Activo';}
+                            echo "
+                                 <tr>
+                                    <td>".date('d/m/Y',strtotime(substr($user['FechaCreacion'], 0,10)))."</td>
+                                    <td id='NomCliente'>".$user['IdUsuario']."</td>
+                                    <td>".$user['RUC']."</td>
+                                    <td> <a  href='#Duser' class='modal-trigger'>".$user['Nombre']."</td></a>
+                                    <td><i class='BtnClose material-icons'>highlight_off</i></td>
+                                    <td id='activo'>".$activo."</td>
+                                </tr>
+                            ";
+                        }
+                    }
+                ?>
 
             </tbody>
 
@@ -97,15 +93,12 @@
 
     </div>
 </main>
-
 <!--/////////////////////////////////////////////////////////////////////////////////////////
                                         MODALES
 //////////////////////////////////////////////////////////////////////////////////////////-->
-
 <!-- AGREGAR USUARIO -->
 <div id="modal1" class="modal">
     <div class="modal-content">
-
         <div class="right row">
             <div class="col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
@@ -113,15 +106,12 @@
                 </a>
             </div>
         </div>
-
         <h6 class="center Mcolor AdUser">AGREGAR USUARIO VISYS </h6>
-
         <div class="row">
-            <form class="col s12" action=""method="post" name="formnuevo">
-
+            <form class="col s12" action="<?php echo base_url('index.php/NuevoUsuario');?>" method="post" name="formAddUser">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input name="unoUser" placeholder="Usuario / Cod. Cliente" id="NombreUser" type="text" class="validate">
+                        <input name="user" placeholder="Usuario / Cod. Cliente" id="NombreUser" type="text" class="validate">
                     </div>
 
                     <div class="input-field col s6">
@@ -131,23 +121,41 @@
 
                 <div class="row">
                     <div class="input-field col s6">
-                        <input name="rol" placeholder="Rol" id="rol" type="text" class="validate">
+                        <select name="rol" id="rol">
+                            <option value="" disabled selected> ROL</option>
+                            <?PHP
+                                if(!($Lrol)){
+                                } else {
+                                     foreach($Lrol as $rol) {
+                                          echo '<option value="'.$rol['IdRol'].'">'.$rol['Descripcion'].'</option>';
+                                     }
+                                 }
+                            ?>
+
+                        </select>
+
                     </div>
                     <div class="input-field col s6">
-                        <input name="vendedor" placeholder="Vendedor"id="vendednor" type="text" class="validate">
-                        <label for="pass2"></label>
+                        <select name="vendedor" id="vendedor">
+                            <option value="" disabled selected> VENDEDOR</option>
+                            <?PHP
+                            if(!($Lven)){
+                            } else {
+                                foreach($Lven as $rol) {
+                                    echo '<option value="'.$rol['IdVendedor'].'">'.$rol['Nombre'].'</option>';
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6">
+                        <a onclick="EnviodeDatos()" class="Btnadd  waves-effect  btn modal-trigger" >GENERAR</a>
                     </div>
                 </div>
             </form>
         </div>
-
-
-        <div class="row">
-            <div class="col s6">
-                <a href="#UserYes" class="Btnadd modal-action modal-close btn modal-trigger">GENERAR</a>
-            </div>
-        </div>
-
     </div><!-- FIN DEL CONTENIDO DEL MODAL -->
 
 </div>

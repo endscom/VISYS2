@@ -49,7 +49,7 @@ class Login_controller extends CI_Controller
     		} else {
                 $sessiondata = array(
                                 'id' => $data['user'][0]['IdUsuario'],
-                                'UserN' => $data['user'][0]['NombreUsuario'],
+                                'UserN' => $data['user'][0]['Nombre'],
                                 'Permiso' => $data['user'][0]['Privilegio'],
                                 'logged' => 1
                                 );

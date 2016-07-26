@@ -15,17 +15,20 @@ $route['salir'] = 'login_controller/Salir';
 // FIN LOGIN
 
 // RUTAS MENU
-$route['Main'] = 'main_controller/main';
-$route['EliminarVineta'] = 'main_controller/EliminarVineta';
-$route['Clientes'] = 'main_controller/Clientes';
-$route['BajaClientes'] = 'main_controller/BajaClientes';
-$route['PuntosClientes'] = 'main_controller/PuntosClientes';
-$route['DetalleFact'] = 'main_controller/DetalleFact';
-$route['Frp'] = 'main_controller/CanjeFrp';
-$route['FRE'] = 'main_controller/CanjeFre';
-$route['Catalogo'] = 'main_controller/Catalogo';
-$route['Usuarios'] = 'main_controller/Usuarios';
-$route['Reportes'] = 'main_controller/Reportes';
+$route['Main'] = 'vista_controller/main';
+$route['EliminarVineta'] = 'vista_controller/EliminarVineta';
+$route['Clientes'] = 'vista_controller/Clientes';
+$route['BajaClientes'] = 'vista_controller/BajaClientes';
+$route['PuntosClientes'] = 'vista_controller/PuntosClientes';
+$route['DetalleFact'] = 'vista_controller/DetalleFact';
+$route['Frp'] = 'vista_controller/CanjeFrp';
+$route['FRE'] = 'vista_controller/CanjeFre';
+$route['Catalogo'] = 'vista_controller/Catalogo';
+/*USUARIOS*/
+$route['Usuarios'] = 'vista_controller/Usuarios';
+$route['NuevoUsuario'] = 'vista_controller/addUser';
+
+$route['Reportes'] = 'vista_controller/Reportes';
 // FIN RUTAS MENU
 
 

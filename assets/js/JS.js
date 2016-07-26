@@ -201,8 +201,8 @@ $(document).ready(function() {
 
 
 
-
-
-
 } );
 
+function EnviodeDatos(){
+     document.formAddUser.submit();
+}

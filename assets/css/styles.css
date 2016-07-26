@@ -905,6 +905,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 #activo
 {
     color: #6a4ad5;
+    text-transform: uppercase;
 }
 
 #log{margin-top: -5px;}
