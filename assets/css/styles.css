@@ -455,7 +455,6 @@ _:-ms-input-placeholder, :root .demo-graph {
 {
     border: none;
 }
-
 .Btndell{
     margin-left: 90%;
     border-radius: 40px;
@@ -470,6 +469,13 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 .Btnadd{
     margin-left: 90%;
+    border-radius: 20px;
+    background: #1F0A71;
+    font-family: 'robotoregular';
+    font-weight: 500;
+    font-size: 13px;
+}
+.btnYes{
     border-radius: 20px;
     background: #1F0A71;
     font-family: 'robotoregular';
@@ -685,7 +691,9 @@ _:-ms-input-placeholder, :root .demo-graph {
 {
     background-color: #ffffff;
 }
-
+#Inactiva{
+    color: #ff0000;
+}
 
 #TblMaVinetas tr:nth-child(odd)
 {
@@ -1084,4 +1092,8 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 #TxtObser{
     font-size: 14px;
+}
+#Estado
+{
+
 }

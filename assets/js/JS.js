@@ -1,5 +1,12 @@
 $(document).ready(function() {
-    /**** DATA TABLES ****/
+
+   /* var Modal=document.getElementById("Modal").value;
+    if(Modal==1)
+    {
+        $('#UserYes').openModal();
+    }
+*/
+    /**** DATATABLES ****/
     $('#tblFREimpre').DataTable(
         {
             "info":    false,
@@ -14,10 +21,8 @@ $(document).ready(function() {
                 },
                 "lengthMenu":false
             }
-
         }
     );
-
     $('#TbCatalogo').DataTable(
         {
             "info":    false,
@@ -32,10 +37,8 @@ $(document).ready(function() {
                 },
                 "lengthMenu": "MOSTRAR _MENU_"
             }
-
         }
     );
-
     $('#TblMaVinetas').DataTable(
         {
             "info":    false,
@@ -50,10 +53,8 @@ $(document).ready(function() {
                 },
                 "lengthMenu": "MOSTRAR _MENU_"
             }
-
         }
     );
-
     $('#MCXP').DataTable(
         {
             "info":    false,
@@ -68,10 +69,8 @@ $(document).ready(function() {
                 },
                 "lengthMenu": "MOSTRAR _MENU_"
             }
-
         }
     );
-
     $('#tblEliminar').DataTable(
         {
             "info":    false,
@@ -86,11 +85,8 @@ $(document).ready(function() {
                     },
                    "lengthMenu": "MOSTRAR _MENU_"
             }
-
         }
     );
-
-
     $('#ClienteAdd').DataTable(
         {
             "info":    false,
@@ -105,7 +101,6 @@ $(document).ready(function() {
                 },
                 "lengthMenu": "MOSTRAR _MENU_"
             }
-
         }
     );
     $('#BajaCliente').DataTable(
@@ -122,7 +117,6 @@ $(document).ready(function() {
                 },
                 "lengthMenu": "MOSTRAR _MENU_"
             }
-
         }
     );
     $('#PtosCliente').DataTable(
@@ -139,7 +133,6 @@ $(document).ready(function() {
                 },
                 "lengthMenu": "MOSTRAR _MENU_"
             }
-
         }
     );
     $('#FRP').DataTable(
@@ -156,7 +149,6 @@ $(document).ready(function() {
                 },
                 "lengthMenu": "MOSTRAR _MENU_"
             }
-
         }
     );
     $('#tblpRODUCTOS').DataTable(
@@ -173,10 +165,8 @@ $(document).ready(function() {
                 },
                 "lengthMenu": "MOSTRAR _MENU_"
             }
-
         }
     );
-
     $('#tblModals').DataTable(
         {
             "info":    false,
@@ -191,18 +181,65 @@ $(document).ready(function() {
                 },
                 "lengthMenu": "MOSTRAR _MENU_"
             }
-
         }
     );
-
-    //$('#MCXP').DataTable();
     /**** END DATATABLES ****/
-    $('.modal-trigger').leanModal();// inicializar el modal
-
-
-
+        $('.modal-trigger').leanModal();// INICIAR LOS MODALES
 } );
 
-function EnviodeDatos(){
-     document.formAddUser.submit();
+
+
+/* FUNCIONES */
+//ENVIO DE DATOS DEL FORMULARIO
+function EnviodeDatos(usuario,clave,rol,vendedor){
+
+
+
+    //document.formAddUser.submit();
+   /* var user=document.getElementById("NombreUser").value;
+    var clave=document.getElementById("Contra").value;
+    var rol=document.getElementById("rol").value;
+    var vendedor=document.getElementById("vendedor").value;
+
+    if(/^\s*$/.test(user))
+    {
+        alert("El campo Nombre no puede estar vacio");
+        return false;
+    }
+    if(/^\s*$/.test(clave))
+    {
+        alert("No puede dejar el campo contraseña vacio");
+        return false;
+    }
+    if(/^\s*$/.test(rol))
+    {
+        alert("Debe de seleccionar el Rol de este usuario!");
+        return false;
+    }
+
+        $('EnvioDatos').onclick( function(){
+            $.post('index.php/NuevoUsuario/'+user+ '/' + clave + '/' + rol + '/' +vendedor, function( data ){
+                if(data==1)
+                {
+                    $('#UserYes').openModal();
+                }
+            } );
+        });*/
+    }
+
+function DellUsers(IdUser, Estado){
+    $('#DellUser').openModal();
+
+    $("#DellUsers").click(function(){
+        $.ajax({
+            url: "ActUser/"+IdUser+"/"+Estado,
+            type: "post",
+            async:true,
+            success: function(json){
+                 $(location).attr('href',"Usuarios");
+            }
+        });
+    });
 }
+
+

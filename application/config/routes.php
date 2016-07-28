@@ -25,9 +25,10 @@ $route['Frp'] = 'vista_controller/CanjeFrp';
 $route['FRE'] = 'vista_controller/CanjeFre';
 $route['Catalogo'] = 'vista_controller/Catalogo';
 /*USUARIOS*/
-$route['Usuarios'] = 'vista_controller/Usuarios';
-$route['NuevoUsuario'] = 'vista_controller/addUser';
-
+$route['Usuarios'] = 'vista_controller/Usuarios'; //cargar usuarios
+$route['NuevoUsuario'] = 'vista_controller/addUser'; //agregar usuario
+$route['ActUser/(:any)/(:any)'] = 'vista_controller/ActUser/$1/$2'; //borrar usuario
+/*USUARIOS*/
 $route['Reportes'] = 'vista_controller/Reportes';
 // FIN RUTAS MENU
 
