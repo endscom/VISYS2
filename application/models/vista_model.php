@@ -5,6 +5,7 @@ class Vista_model extends CI_Model
         parent::__construct();
         $this->load->database();
     }
+
     /* VISTA USUARIO*/
     public function LoadUser(){ /*CARGAR USUARIOS*/
         $this->db->select('*');
@@ -17,6 +18,7 @@ class Vista_model extends CI_Model
             return 0;
         }
     }
+
     public  function  LoadRol() {/*CARGAR ROLES*/
         $this->db->select('*');
         $this->db->from('Roles');
@@ -28,6 +30,7 @@ class Vista_model extends CI_Model
             return 0;
         }
     }
+
     public function LoadVendedor() {/*CARGAR VENDEDOR*/
         $this->db->select('*');
         $this->db->from('Vendedor');
@@ -39,13 +42,16 @@ class Vista_model extends CI_Model
             return 0;
         }
     }
+
     public function addUser($nombre, $clave, $rol, $fecha, $vendedor) {/*CREACIÓN DE USUARIOS*/
         $Usuario = array(
             'Nombre' => $nombre,
             'Clave' => $clave,
             'Rol' => $rol,
+            'Estado' =>0,
             'FechaCreacion' => $fecha,
-            'Vendedor' => $vendedor);
+            'Zona' => $vendedor);
+
         $query = $this->db->insert('usuario', $Usuario);
 
         if ($query) {
@@ -54,6 +60,7 @@ class Vista_model extends CI_Model
             return 0;
         }
     }
+
     public function ActUser($cod,$estado){ /* CAMBIAR ESTADO DEL USUARIO*/
 
         $data = array(

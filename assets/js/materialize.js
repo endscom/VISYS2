@@ -1415,7 +1415,7 @@ $(document).ready(function(){
               backdrop.css({
                 borderRadius: '14px 14px 0 0',
                 transformOrigin: '50% 90%',
-
+                marginTop: tooltipHeight,
                 marginLeft: (tooltipWidth/2) - (backdrop.width()/2)
               });
             }
@@ -1428,10 +1428,10 @@ $(document).ready(function(){
               tooltipHorizontalMovement = '-10px';
               backdrop.css({
                 width: '14px',
-
+                height: '14px',
                 borderRadius: '14px 0 0 14px',
                 transformOrigin: '95% 50%',
-
+                marginTop: tooltipHeight/2,
                 marginLeft: tooltipWidth
               });
             }
@@ -1444,10 +1444,10 @@ $(document).ready(function(){
               tooltipHorizontalMovement = '+10px';
               backdrop.css({
                 width: '14px',
-
+                height: '14px',
                 borderRadius: '0 14px 14px 0',
                 transformOrigin: '5% 50%',
-
+                marginTop: tooltipHeight/2,
                 marginLeft: '0px'
               });
             }
@@ -1960,7 +1960,7 @@ $(document).ready(function(){
         }
         else {
           // Insert as text;
-          toast.innerHTML = html; 
+          toast.innerHTML = html;
         }
         // Bind hammer
         var hammerHandler = new Hammer(toast, {prevent_default: false});
@@ -2539,9 +2539,9 @@ $(document).ready(function(){
 		    var offset = $(this.hash).offset().top + 1;
 
 //          offset - 200 allows elements near bottom of page to scroll
-			
+
 	    	$('html, body').animate({ scrollTop: offset - 200 }, {duration: 400, queue: false, easing: 'easeOutCubic'});
-			
+
 		  });
 		});
 		options = options || {
@@ -2742,7 +2742,7 @@ $(document).ready(function(){
         $(this).addClass('tabbed');
         var $this = $(this);
         $this.one('blur', function(e) {
-          
+
           $(this).removeClass('tabbed');
         });
         return;

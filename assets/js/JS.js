@@ -183,53 +183,60 @@ $(document).ready(function() {
             }
         }
     );
+
     /**** END DATATABLES ****/
-        $('.modal-trigger').leanModal();// INICIAR LOS MODALES
+    $('.modal-trigger').leanModal();// INICIAR LOS MODALES
 } );
-
-
 
 /* FUNCIONES */
 //ENVIO DE DATOS DEL FORMULARIO
-function EnviodeDatos(usuario,clave,rol,vendedor){
-
-
-   var user=document.getElementById("NombreUser").value;
+function EnviodeDatos(){
+    var user=document.getElementById("NombreUser").value;
     var clave=document.getElementById("Contra").value;
     var rol=document.getElementById("rol").value;
     var vendedor=document.getElementById("vendedor").value;
 
 
-    if(/^\s*$/.test(user))
-    {
-        alert("El campo Nombre no puede estar vacio");
-        return false;
+    if(/^\s*$/.test(user)){
+        alert("El campo Nombre no puede estar vacio"); return false;
     }
-    if(/^\s*$/.test(clave))
-    {
-        alert("No puede dejar el campo contraseña vacio");
-        return false;
+
+    if(/^\s*$/.test(clave)){
+        alert("No puede dejar el campo contraseña vacio"); return false;
     }
-    if(/^\s*$/.test(rol))
-    {
-        alert("Debe de seleccionar el Rol de este usuario!");
-        return false;
+
+    if(/^\s*$/.test(rol)){
+        alert("Debe de seleccionar el Rol de este usuario!"); return false;
     }
+
     if(rol==7){
-        if(/^\s*$/.test(vendedor))
-        {
-            alert("Debe de asignar un vendedor para este cliente!");
-            return false;
+        if(/^\s*$/.test(vendedor)){
+            alert("Debe de asignar un vendedor para este cliente!"); return false;
         }
+    } else {
+        vendedor = '0';
     }
 
-        $
+    $('#UserYes').openModal();
 
+    $.ajax({
+        url: "NuevoUsuario/"+user+"/"+clave+"/"+rol+"/"+vendedor,
+        type: "post",
+        async:true,
+        success:
+            function(json){
+                var myVar = setInterval(myTimer, 1000);
+            }
+        });
     }
+
+function myTimer() {
+    $(location).attr('href',"Usuarios");
+}
 
 //CAMBIAR DE ESTADO AL USUARIO
 function DellUsers(IdUser, Estado){
-    $('#DellUser').openModal();
+    $('#CsUser').openModal();
 
     $("#DellUsers").click(function(){
         $.ajax({

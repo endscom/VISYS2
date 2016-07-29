@@ -24,7 +24,7 @@ $route['Catalogo'] = 'vista_controller/Catalogo';
 
 /*USUARIOS*/
 $route['Usuarios'] = 'vista_controller/Usuarios'; //cargar usuarios
-$route['NuevoUsuario'] = 'vista_controller/addUser'; //agregar usuario
+$route['NuevoUsuario/(:any)/(:any)/(:any)/(:any)'] = 'vista_controller/addUser/$1/$2/$3/$4'; //agregar usuario
 $route['ActUser/(:any)/(:any)'] = 'vista_controller/ActUser/$1/$2'; //cambiar estado de usuario
 /*USUARIOS*/
 

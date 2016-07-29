@@ -3,6 +3,7 @@
         <span class=" title">usuarios</span>
     </div>
 </header>
+
 <!--//////////////////////////////////////////////////////////
                 CONTENIDO
 ///////////////////////////////////////////////////////////-->
@@ -26,18 +27,17 @@
         </div>
         <div class="right row">
             <div class="col s3">
-                <a href="#modal1" class="BtnBlue waves-effect  btn modal-trigger ">AGREGAR</a>
+                <a href="#AUsuario" class="BtnBlue waves-effect  btn modal-trigger ">AGREGAR</a>
             </div>
         </div>
         <table id="ClienteAdd" class=" TblDatos">
             <thead>
             <tr>
-                <th>CREADO</th>
+                <th>FECHA CREACIÓN</th>
+                <th>CÓDIGO</th>
                 <th>USUARIO</th>
-                <th>RUC</th>
-                <th>NOMBRE</th>
-                <th>ACCION</th>
                 <th>ESTADO</th>
+                <th>ACCIÓN</th>
             </tr>
             </thead>
             <tbody>
@@ -65,11 +65,10 @@
                                  <tr>
                                     <td>".date('d/m/Y',strtotime(substr($user['FechaCreacion'], 0,10)))."</td>
                                     <td id='NomCliente'>".$user['IdUsuario']."</td>
-                                    <td>".$user['RUC']."</td>
                                     <td> <a href='#Duser' class='modal-trigger'>".$user['Nombre']."</td></a>
-                                    <td><a data-tooltip='$Mmensaje' class='btn-flat tooltipped' onclick='DellUsers(".'"'.$user['IdUsuario'].'",'.'"'.$user['Estado'].'"'.")'><i style='color:".$mIcono."' class=' material-icons'>$Micono</i></td></a>
                                     <td id='activo'style='color:".$MColor."'>".$activo."</td>
-                                </tr>
+                                    <td><a data-tooltip='$Mmensaje' class='btn-flat tooltipped' onclick='DellUsers(".'"'.$user['IdUsuario'].'",'.'"'.$user['Estado'].'"'.")'><i style='color:".$mIcono."' class=' material-icons'>$Micono</i></td></a>
+                                 </tr>
                             ";
                         }
                     }
@@ -82,7 +81,7 @@
                                         MODALES
 //////////////////////////////////////////////////////////////////////////////////////////-->
 <!-- AGREGAR USUARIO -->
-<div id="modal1" class="modal">
+<div id="AUsuario" class="modal">
     <div class="modal-content">
         <div class="right row">
             <div class="col s1 m1 l1">
@@ -133,7 +132,7 @@
                 </div>
                 <div class="row">
                     <div class="col s6">
-                        <a  class="Btnadd  waves-effect btn" id="Adduser"  onclick="EnviodeDatos()">GENERAR</a></div>
+                        <a  class="Btnadd btn" id="Adduser"  onclick="EnviodeDatos()">GENERAR</a></div>
                 </div>
             </form>
         </div>
@@ -150,7 +149,7 @@
 <!-- FIN  DE MODAL #3 -->
 <!-- MODAL cambio de estado de usuario -->
 <!-- Modal Structure -->
-<div id="DellUser" class="modal">
+<div id="CsUser" class="modal">
     <div class="modal-content">
         <div class="right row">
             <div class="col s1 m1 l1">
@@ -159,6 +158,7 @@
                 </a>
             </div>
         </div>
+
         <h6 id="TxtObser" class="center Mcolor">DESEA CAMBIAR EL ESTADO DE USUARIO</h6>
         <div class="row">
             <div id="Estado" class="col s12 m12 l12">
