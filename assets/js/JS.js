@@ -194,12 +194,11 @@ $(document).ready(function() {
 function EnviodeDatos(usuario,clave,rol,vendedor){
 
 
-
-    //document.formAddUser.submit();
-   /* var user=document.getElementById("NombreUser").value;
+   var user=document.getElementById("NombreUser").value;
     var clave=document.getElementById("Contra").value;
     var rol=document.getElementById("rol").value;
     var vendedor=document.getElementById("vendedor").value;
+
 
     if(/^\s*$/.test(user))
     {
@@ -216,17 +215,19 @@ function EnviodeDatos(usuario,clave,rol,vendedor){
         alert("Debe de seleccionar el Rol de este usuario!");
         return false;
     }
-
-        $('EnvioDatos').onclick( function(){
-            $.post('index.php/NuevoUsuario/'+user+ '/' + clave + '/' + rol + '/' +vendedor, function( data ){
-                if(data==1)
-                {
-                    $('#UserYes').openModal();
-                }
-            } );
-        });*/
+    if(rol==7){
+        if(/^\s*$/.test(vendedor))
+        {
+            alert("Debe de asignar un vendedor para este cliente!");
+            return false;
+        }
     }
 
+        $
+
+    }
+
+//CAMBIAR DE ESTADO AL USUARIO
 function DellUsers(IdUser, Estado){
     $('#DellUser').openModal();
 

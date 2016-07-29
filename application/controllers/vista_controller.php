@@ -73,11 +73,10 @@ class Vista_controller extends CI_Controller
 /*Funionalidad de Usuario*/
     public function Usuarios($bandera=null) // CARGAR USUARIOS
     {
-        $query['Luser']=$this->User_model->LoadUser();
-        $query['Lrol']=$this->User_model->LoadRol();
-        $query['Lven']=$this->User_model->LoadVendedor();
-        if ($bandera==null) {$bandera=0;}else{$bandera=1;}
-        $query['LMod']= array('bandera'=>$bandera);
+        $query['Luser']=$this->vista_model->LoadUser();
+        $query['Lrol']=$this->vista_model->LoadRol();
+        $query['Lven']=$this->vista_model->LoadVendedor();
+
         $this->load->view('header/header');
         $this->load->view('pages/menu');
         $this->load->view('pages/Users',$query);
@@ -87,6 +86,7 @@ class Vista_controller extends CI_Controller
     {
         $this->form_validation->set_rules('user', 'Campo', 'required');
         $this->form_validation->set_rules('pass', 'Campo', 'required');
+
             if ($this->form_validation->run()== FALSE) {
                 $this->Usuarios();
             }
@@ -97,22 +97,16 @@ class Vista_controller extends CI_Controller
             $rol =$this->input->post('rol');
             $vendedor =$this->input->post('vendedor');
             $fecha =  date('Y-m-d');
-            $query = $this->User_model->addUser($nombre,$clave,$rol,$fecha,$vendedor);
+            $query = $this->vista_model->addUser($nombre,$clave,$rol,$fecha,$vendedor);
                 if ($query==1) {
                     redirect('Usuarios');
                 }
-            $bandera=1;
-            //$this->Usuarios($bandera);
             //redirect(base_url().'index.php/Usuarios','refresh');
         }
     }
-    public function ActUser($IdUser,$Estado) /*ELIMINAR USUARIO*/
+    public function ActUser($IdUser,$Estado) /*CAMBIAR ESTADO DE USUARIO*/
     {
-       $this->User_model->ActUser($IdUser,$Estado);
-
-        /*if($data){
-            redirect('Usuarios');
-        }*/
+       $this->vista_model->ActUser($IdUser,$Estado);
     }
 
     /*Funionalidad de Usuario*/

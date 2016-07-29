@@ -1,14 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
-#$route['default_controller'] = 'welcome';
 $route['default_controller'] = 'login_controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 /******** MIS RUTAS **********/
-
 // LOGIN
 $route['login'] = 'login_controller/Acreditar';
 $route['salir'] = 'login_controller/Salir';
@@ -24,12 +21,15 @@ $route['DetalleFact'] = 'vista_controller/DetalleFact';
 $route['Frp'] = 'vista_controller/CanjeFrp';
 $route['FRE'] = 'vista_controller/CanjeFre';
 $route['Catalogo'] = 'vista_controller/Catalogo';
+
 /*USUARIOS*/
 $route['Usuarios'] = 'vista_controller/Usuarios'; //cargar usuarios
 $route['NuevoUsuario'] = 'vista_controller/addUser'; //agregar usuario
-$route['ActUser/(:any)/(:any)'] = 'vista_controller/ActUser/$1/$2'; //borrar usuario
+$route['ActUser/(:any)/(:any)'] = 'vista_controller/ActUser/$1/$2'; //cambiar estado de usuario
 /*USUARIOS*/
+
 $route['Reportes'] = 'vista_controller/Reportes';
+
 // FIN RUTAS MENU
 
 

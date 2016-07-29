@@ -133,15 +133,13 @@
                 </div>
                 <div class="row">
                     <div class="col s6">
-                        <a class="Btnadd  waves-effect btn" onclick="EnviodeDatos('."$rol['Descripcion']".','."$vendedor['Nombre']".','."user".','."pass".')">GENERAR
-                        </a>
-                    </div>
+                        <a  class="Btnadd  waves-effect btn" id="Adduser"  onclick="EnviodeDatos()">GENERAR</a></div>
                 </div>
             </form>
         </div>
     </div><!-- FIN DEL CONTENIDO DEL MODAL -->
 </div>
-<!-- FIN  DE MODAL #1 -->
+<!-- FIN  DE MODAL #2 -->
 <!-- MODAL REPUESTA USUARIO -->
 <!-- Modal Structure -->
 <div id="UserYes" class="modal">
@@ -149,9 +147,8 @@
         <h6 class="center Mcolor user">EL USUARIO SE AGREGÓ CORRECTAMENTE </h6>
     </div>
 </div>
-<!-- FIN  DE MODAL #2 -->
-<!-- FIN  DE MODAL #1 -->
-<!-- MODAL REPUESTA USUARIO -->
+<!-- FIN  DE MODAL #3 -->
+<!-- MODAL cambio de estado de usuario -->
 <!-- Modal Structure -->
 <div id="DellUser" class="modal">
     <div class="modal-content">
@@ -167,15 +164,14 @@
             <div id="Estado" class="col s12 m12 l12">
                     <div class="row">
                         <div class="col s5 m5 l5 offset-l3">
-                            <a href="#" id="DellUsers" class="btnYes  btn">Aceptar</a>
+                            <a  href="#" id="DellUsers" class="btnYes  btn">Aceptar</a>
                         </div>
                     </div>
-
             </div>
         </div>
     </div>
 </div>
-<!-- FIN  DE MODAL #2 -->
+<!-- FIN  DE MODAL #3 -->
 <!-- MODAL DETALLES USUARIO -->
 <!-- Modal Structure -->
 <div id="Duser" class="modal">
