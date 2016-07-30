@@ -462,18 +462,22 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-family: 'robotoregular';
     font-weight: 500;
     font-size: 13px;
+    transition:  0.5s;
  }
 .Btndell:hover {
     background: rgba(255, 0, 0, 0.6);
-    transition:  0.5s;
+
+    color: #fff;
 }
 .Btnadd{
     margin-left: 90%;
+    text-align: center;
     border-radius: 20px;
     background: #1F0A71;
     font-family: 'robotoregular';
     font-weight: 500;
     font-size: 13px;
+    transition: 0.5s;
 }
 .btnYes{
     border-radius: 20px;
@@ -496,8 +500,9 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 .Btnadd:hover
 {
-    background:rgba(106, 74, 213, 0.5);
-    transition:  0.5s;
+    background:#866FD5;
+        color: #fff;
+    
 }
 .datos{margin-top: 20px;}
 .dato{
@@ -572,11 +577,13 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-weight: 500;
     font-size: 12px;
     margin-right: 25px;
+    transition: 0.5s;
 }
 .BtnBlue:hover
 {
     background: #402C82;
-    transition: 0.5s;
+    color: #fff;
+   
 }
 .TextTotal{
     margin-top: 20px;
@@ -1094,5 +1101,6 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-size: 14px;
 }
 #DellUsers{
-  margin: 0px -17px -27px;
+  /*margin: 0px -17px -27px;*/
+    color: green;
 }

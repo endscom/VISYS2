@@ -43,6 +43,22 @@ class Vista_model extends CI_Model
         }
     }
 
+    public function LoadClient(){ /* CARGAR CLIENTES */
+      $query = $this->sqlsrv -> fetchArray("SELECT CLIENTE, NOMBRE, VENDEDOR FROM Softland.umk.CLIENTE WHERE (ACTIVO = 'S')
+      AND (RUBRO1_CLI = 'S')",SQLSRV_FETCH_ASSOC);
+      $json = array();
+        $i=0;
+
+         foreach ($query as $key)
+         {
+             $json['data'][$i]['nombre'] = $key['NOMBRE'];
+             $i++;
+         }
+         return $json;
+
+        $this->sqlsrv->close();
+    }
+
     public function addUser($nombre, $clave, $rol, $fecha, $vendedor) {/*CREACIÓN DE USUARIOS*/
         $Usuario = array(
             'Nombre' => $nombre,

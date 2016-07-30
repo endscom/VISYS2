@@ -110,7 +110,7 @@
                                 if(!($Lrol)){
                                 } else {
                                      foreach($Lrol as $rol) {
-                                          echo '<option value="'.$rol['IdRol'].'">'.$rol['Descripcion'].'</option>';
+                                          echo '<option value="'.$rol['Descripcion'].'">'.$rol['Descripcion'].'</option>';
                                      }
                                  }
                             ?>
@@ -123,7 +123,7 @@
                             if(!($Lven)){
                             } else {
                                 foreach($Lven as $vendedor) {
-                                    echo '<option value="'.$vendedor['IdVendedor'].'">'.$vendedor['Nombre'].'</option>';
+                                    echo '<option value="'.$vendedor['Nombre'].'">'.$vendedor['Nombre'].'</option>';
                                 }
                             }
                             ?>
@@ -138,40 +138,34 @@
         </div>
     </div><!-- FIN DEL CONTENIDO DEL MODAL -->
 </div>
-<!-- FIN  DE MODAL #2 -->
-<!-- MODAL REPUESTA USUARIO -->
-<!-- Modal Structure -->
-<div id="UserYes" class="modal">
-    <div class="modal-content">
-        <h6 class="center Mcolor user">EL USUARIO SE AGREGÓ CORRECTAMENTE </h6>
-    </div>
-</div>
-<!-- FIN  DE MODAL #3 -->
+
 <!-- MODAL cambio de estado de usuario -->
 <!-- Modal Structure -->
 <div id="CsUser" class="modal">
     <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
+
+        <div class=" row">
+            <div class="col s12 m12 l12">
+                <p id="TxtObser" class="center Mcolor"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s1 m1 l1 offset-l4">
+                <a href="#" id="DellUsers" class=" modal-action modal-close ">
+                    <i class="material-icons">done_all</i>
+                </a>
+            </div>
+
+            <div class="col s1 m1 l1 offset-l2">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
                     <i class="material-icons">highlight_off</i>
                 </a>
             </div>
         </div>
-
-        <h6 id="TxtObser" class="center Mcolor">DESEA CAMBIAR EL ESTADO DE USUARIO</h6>
-        <div class="row">
-            <div id="Estado" class="col s12 m12 l12">
-                    <div class="row">
-                        <div class="col s5 m5 l5 offset-l3">
-                            <a  href="#" id="DellUsers" class="btnYes  btn">Aceptar</a>
-                        </div>
-                    </div>
-            </div>
-        </div>
     </div>
 </div>
-<!-- FIN  DE MODAL #3 -->
+
+
 <!-- MODAL DETALLES USUARIO -->
 <!-- Modal Structure -->
 <div id="Duser" class="modal">

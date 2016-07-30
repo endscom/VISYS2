@@ -1,11 +1,5 @@
 $(document).ready(function() {
 
-   /* var Modal=document.getElementById("Modal").value;
-    if(Modal==1)
-    {
-        $('#UserYes').openModal();
-    }
-*/
     /**** DATATABLES ****/
     $('#tblFREimpre').DataTable(
         {
@@ -186,6 +180,7 @@ $(document).ready(function() {
 
     /**** END DATATABLES ****/
     $('.modal-trigger').leanModal();// INICIAR LOS MODALES
+    Materialize.toast();
 } );
 
 /* FUNCIONES */
@@ -217,7 +212,6 @@ function EnviodeDatos(){
         vendedor = '0';
     }
 
-    $('#UserYes').openModal();
 
     $.ajax({
         url: "NuevoUsuario/"+user+"/"+clave+"/"+rol+"/"+vendedor,
@@ -225,18 +219,27 @@ function EnviodeDatos(){
         async:true,
         success:
             function(json){
-                var myVar = setInterval(myTimer, 1000);
+                Materialize.toast('EL USUARIO SE AGREGÓ CORRECTAMENTE', 3000);
+                var myVar = setInterval(myTimer, 2000);
+
             }
         });
     }
 
 function myTimer() {
+
     $(location).attr('href',"Usuarios");
 }
 
 //CAMBIAR DE ESTADO AL USUARIO
 function DellUsers(IdUser, Estado){
     $('#CsUser').openModal();
+
+    if(Estado==1){
+        $("p").html("DESEA CAMBIAR EL ESTADO ACTIVO AL USUARIO");
+    }else{
+        $("p").html("DESEA CAMBIAR EL ESTADO INACTIVO AL USUARIO");
+    }
 
     $("#DellUsers").click(function(){
         $.ajax({

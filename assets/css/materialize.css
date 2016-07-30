@@ -2666,9 +2666,14 @@ ul.browser-default {
 }
 
 a {
-  color: #039be5;
+  color: #1F0A71;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
+}
+a:hover
+{
+  color: #866FD5;
+  transition: 0.5s;
 }
 
 .valign-wrapper {
@@ -2700,7 +2705,7 @@ ul li {
   box-shadow: none !important;
 }
 
-.z-depth-1/*, nav*/, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
+.z-depth-1/*, nav*/, .card-panel, .card,  .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
  /* box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);*/
   border: 1px solid #1f0a71;
 }
@@ -4743,7 +4748,7 @@ small {
 }
 
 .toast {
-  border-radius: 2px;
+  /*border-radius: 2px;*/
   top: 0;
   width: auto;
   clear: both;
@@ -4751,14 +4756,16 @@ small {
   position: relative;
   max-width: 100%;
   height: auto;
-  min-height: 48px;
+  /*min-height: 48px;*/
   line-height: 1.5em;
   word-break: break-all;
-  background-color: #323232;
+  font-family: 'robotoregular';
+  background: #fff;
   padding: 10px 25px;
   font-size: 1.1rem;
   font-weight: 300;
-  color: #fff;
+  color: red;
+  box-shadow: -1px 1px 9px rgba(0,0,0,0.4);
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -4863,7 +4870,7 @@ small {
 
   font-size: 11px;
   z-index: 2000;
-  text-shadow: 1px 1px 2px #000;
+  text-shadow: 1px 1px 2px #ffffff;
   font-family: 'robotoregular';
   border-radius: 2px;
   color: #1F0A71;

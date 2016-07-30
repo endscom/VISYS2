@@ -71,10 +71,11 @@ class Vista_controller extends CI_Controller
     }
 
 /*Funionalidad de Usuario*/
-    public function Usuarios($bandera=null) {// CARGAR USUARIOS
-        $query['Luser']=$this->vista_model->LoadUser();
-        $query['Lrol']=$this->vista_model->LoadRol();
-        $query['Lven']=$this->vista_model->LoadVendedor();
+    public function Usuarios() {// CARGAR USUARIOS
+        $query['Luser'] = $this->vista_model->LoadUser();
+        $query['Lrol'] = $this->vista_model->LoadRol();
+        $query['Lven'] = $this->vista_model->LoadVendedor();
+        $query['Lcl'] = $this->vista_model->LoadClient();
 
         $this->load->view('header/header');
         $this->load->view('pages/menu');
@@ -82,7 +83,7 @@ class Vista_controller extends CI_Controller
         $this->load->view('footer/footer');
     }
     public function addUser($user,$clave,$rol,$vendedor) {// AGREGAR USUARIO
-        $fecha =  date('Y-m-d');
+        $fecha = date('Y-m-d H:i:s');
         $query = $this->vista_model->addUser($user,$clave,$rol,$fecha,$vendedor);
     }
     public function ActUser($IdUser,$Estado) {/*CAMBIAR ESTADO DE USUARIO*/
