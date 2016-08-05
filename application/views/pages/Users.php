@@ -95,7 +95,7 @@
             <form class="col s12" action="<?php /*echo base_url('index.php/NuevoUsuario');*/?>" method="post" name="formAddUser">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input name="user" placeholder="Usuario / Cod. Cliente" id="NombreUser" type="text" class="required">
+                        <input name="user" placeholder="Nombre de Usuario" id="NombreUser" type="text" class="required">
                     </div>
 
                     <div class="input-field col s6">
@@ -105,7 +105,7 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <select name="rol" id="rol">
-                            <option value="" disabled selected> ROL</option>
+                            <option value="" disabled selected> Rol de usuario</option>
                             <?PHP
                                 if(!($Lrol)){
                                 } else {
@@ -117,16 +117,8 @@
                         </select>
                     </div>
                     <div class="input-field col s6">
-                        <select name="vendedor" id="vendedor">
-                            <option value="" disabled selected> VENDEDOR</option>
-                            <?PHP
-                            if(!($Lven)){
-                            } else {
-                                foreach($Lven as $vendedor) {
-                                    echo '<option value="'.$vendedor['Nombre'].'">'.$vendedor['Nombre'].'</option>';
-                                }
-                            }
-                            ?>
+                        <select name="vendedor" id="vendedor" >
+                            <option value="" disabled selected> </option>
                         </select>
                     </div>
                 </div>

@@ -71,23 +71,34 @@ class Vista_controller extends CI_Controller
     }
 
 /*Funionalidad de Usuario*/
+
     public function Usuarios() {// CARGAR USUARIOS
         $query['Luser'] = $this->vista_model->LoadUser();
         $query['Lrol'] = $this->vista_model->LoadRol();
         $query['Lven'] = $this->vista_model->LoadVendedor();
-        $query['Lcl'] = $this->vista_model->LoadClient();
+        //$query['Lcl'] = $this->vista_model->LoadClient();
 
         $this->load->view('header/header');
         $this->load->view('pages/menu');
         $this->load->view('pages/Users',$query);
         $this->load->view('footer/footer');
     }
+
     public function addUser($user,$clave,$rol,$vendedor) {// AGREGAR USUARIO
         $fecha = date('Y-m-d H:i:s');
-        $query = $this->vista_model->addUser($user,$clave,$rol,$fecha,$vendedor);
+        $this->vista_model->addUser($user,$clave,$rol,$fecha,$vendedor);
     }
+
     public function ActUser($IdUser,$Estado) {/*CAMBIAR ESTADO DE USUARIO*/
        $this->vista_model->ActUser($IdUser,$Estado);
+    }
+
+    public function LoadClient(){//Cargar los clientes
+      $this->vista_model->LoadClient();
+    }
+
+    public function LoadVendedor(){//cargar los vendedores
+        $this->vista_model->LoadVendedores();
     }
 
     /*Funionalidad de Usuario*/

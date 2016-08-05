@@ -46,15 +46,25 @@ class Vista_model extends CI_Model
     public function LoadClient(){ /* CARGAR CLIENTES */
       $query = $this->sqlsrv -> fetchArray("SELECT CLIENTE, NOMBRE, VENDEDOR FROM Softland.umk.CLIENTE WHERE (ACTIVO = 'S')
       AND (RUBRO1_CLI = 'S')",SQLSRV_FETCH_ASSOC);
-      $json = array();
-        $i=0;
 
+        $i=0;
          foreach ($query as $key)
          {
-             $json['data'][$i]['nombre'] = $key['NOMBRE'];
+             echo '<option value="'.$key['NOMBRE'].'">'.$key['NOMBRE'].'</option>';
              $i++;
          }
-         return $json;
+
+        $this->sqlsrv->close();
+    }
+    public function LoadVendedores(){ /* CARGAR CLIENTES */
+        $query = $this->sqlsrv -> fetchArray("SELECT VENDEDOR, NOMBRE FROM Softland.umk.VENDEDOR WHERE  (VENDEDOR LIKE 'F%')",SQLSRV_FETCH_ASSOC);
+
+        $i=0;
+        foreach ($query as $key)
+        {
+            echo '<option value="'.$key['NOMBRE'].'">'.$key['NOMBRE'].'</option>';
+            $i++;
+        }
 
         $this->sqlsrv->close();
     }

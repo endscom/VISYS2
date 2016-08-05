@@ -1,10 +1,9 @@
 <header class="demo-header mdl-layout__header ">
     <div class="centrado  ColorHeader">
-
         <span class=" title">BIENVENIDOS AL SISTEMA DE PUNTOS UNIMARK</span>
-
     </div>
 </header>
+
 <main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-grid demo-content">
         <div class="column row">

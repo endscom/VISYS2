@@ -179,8 +179,39 @@ $(document).ready(function() {
     );
 
     /**** END DATATABLES ****/
+
     $('.modal-trigger').leanModal();// INICIAR LOS MODALES
     Materialize.toast();
+
+    //CARGAR LOS CLIENTES Y/O VENDEDORES EN EL SELECT (AGREGAR USUAARIO AL SISTEMA)
+    $("#rol").change(function(){
+        str = $( "#rol option:selected" ).val();
+
+        if(str=="Vendedor"||str=="Cliente"){
+            if (str=="Vendedor"){
+                str = "LoadVendedores";
+            }else {
+                str = "LoadCliente";
+            }
+
+            $.ajax({
+                url: str,
+                type: "get",
+                async:true,
+                success:
+                    function(json){
+                        //$("#vendedor").chosen().change(str);
+                        $("#vendedor").load(str);
+
+                    }
+            });
+
+        }else{
+            $("#vendedor option").remove();
+        }
+    });
+    //$("#vendedor").chosen();
+
 } );
 
 /* FUNCIONES */

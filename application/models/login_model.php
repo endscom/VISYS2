@@ -30,22 +30,12 @@ class Login_model extends CI_Model
         $data = array(
             'Name' => $name ,
             'Pass' => $Contraseña ,
-            'Privilegio' =>  $Permisos,
+            'Rol' =>  $Permisos,
             'Date_Creat' => date('Y-m-d')
         );
         $insert= $this->db->insert('user', $data);
 
         if($insert){
-            return 1;
-        }
-        return 0;
-    }
-
-    public function del($id){
-        $this->db->where('IdUser', $id);
-        $delete= $this->db->delete('user');
-
-        if($delete){
             return 1;
         }
         return 0;
