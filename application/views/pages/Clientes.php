@@ -31,22 +31,22 @@
                 </div>
 
                 <div class="col s1 m1 l1">
-                    <img src="<?PHP echo base_url();?>assets/img/icono_excel.png " width="30px">
+                    <a href="Exp_Clientes" onclick="generar_reporte_excel();"> <img src="<?PHP echo base_url();?>assets/img/icono_excel.png " width="30px"></a>
                 </div>
                 <div class="col s1 m1 l1 ">
-                    <img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="30px" >
+                    <a href="ExpPDF" target="_blank" onclick="generar_reporte_pdf();"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="30px" ></a>
                 </div>
             </div>
         </div>
 
         <div class="right row">
             <div class="col s8 m6 l5">
-                <a href="#modal1" class="BtnBlue waves-effect  btn modal-trigger ">AGREGAR</a>
+                <a href="#modal1" id="btngenerar" class="BtnBlue waves-effect  btn modal-trigger ">AGREGAR</a>
             </div>
         </div>
 
-
-        <table id="ClienteAdd" class=" TblDatos">
+     <form action="" name="FrmClientes" id="FrmClientes" method="post"> <!--Exportar datos a EXCEL -->
+        <table id="ClienteAdd" class="table TblDatos">
 
             <thead>
             <tr>
@@ -57,35 +57,27 @@
             </thead>
 
             <tbody>
+                <?PHP
+                if(!($query)){
+                    echo "fallo";
+                }
+                else{
+                    $i=0;
 
-            <tr>
-                <td id="NomCliente">xxxx</td>
-                <td>xxxxx</td>
-                <td>xxxx</td>
-            </tr>
-
-            <tr>
-                <td id="NomCliente">xxxx</td>
-                <td>xxxxx</td>
-                <td>xxxx</td>
-            </tr>
-
-            <tr>
-                <td id="NomCliente">xxxx</td>
-                <td>xxxxx</td>
-                <td>xxxx</td>
-            </tr>
-
-            <tr>
-                <td id="NomCliente">xxxx</td>
-                <td>xxxxx</td>
-                <td>xxxx</td>
-            </tr>
-
+                    foreach($query AS $cliente)
+                    {
+                        echo "<tr>
+                                   <td id='NomCliente'>".$query[$i]['NOMBRE']."</td>
+                                   <td>".$query[$i]['RUC']."</td>
+                                   <td>".$query[$i]['DIRECCION']."</td>
+                              </tr>";
+                        $i++;
+                    }
+                }
+                ?>
             </tbody>
-
         </table>
-
+        </form>
     </div><!-- Fin Contenedor -->
 </main>
 
@@ -194,3 +186,4 @@
 
 
 </div>
+

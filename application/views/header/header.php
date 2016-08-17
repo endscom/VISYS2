@@ -19,15 +19,23 @@
     <meta name="apple-mobile-web-app-title" content="Material Design Lite">
     <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
 
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
+
+    <!--<link rel="shortcut icon" href="images/favicon.png">-->
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
 
     <link rel="stylesheet"href="<?PHP echo base_url();?>assets/css/materialize.css">
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/material.cyan-light_blue.min.css">
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/media/icon.css">
+
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/styles.css">
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/chosen.css">
     <style>
         #view-source {
             position: fixed;

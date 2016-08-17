@@ -158,7 +158,7 @@
 }
 .demo-navigation .mdl-navigation__link .material-icons {
   font-size: 24px;
-  color: rgba(255, 255, 255, 0.56);
+  /*color: rgba(255, 255, 255, 0.56);*/
   margin-right: 25px;
 }
 
@@ -282,12 +282,10 @@ _:-ms-input-placeholder, :root .demo-graph {
     text-align: center;
     margin-top: 35px;
 }
-#contenedorL
-{
+#contenedorL{
     background: url('/VISYS2/assets/img/fondo_login.jpg');
 }
-#nombre
-{
+#nombre{
     font-family: 'robotoblack';
     color: #ffffff;
     font-size: 14px;
@@ -296,8 +294,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     width: 100%;
     text-align: center;
 }
-#pass
-{
+#pass{
     font-family: 'robotoblack';
     color: #ffffff;
     font-size: 14px;
@@ -307,15 +304,13 @@ _:-ms-input-placeholder, :root .demo-graph {
     text-align: center;
 
 }
-#recordar
-{
+#recordar{
     font-family: 'robotoblack';
     color: #ffffff;
     width: 100%;
     text-align: center;
 }
-#remember-me[type="checkbox"]:checked + label:before
-{
+#remember-me[type="checkbox"]:checked + label:before{
     border-right: 2px solid #fff;
     border-bottom: 2px solid #fff;
 
@@ -324,24 +319,20 @@ _:-ms-input-placeholder, :root .demo-graph {
     width: 100%;
     text-align: center;
 }
-#Acceder
-{
+#Acceder{
     border: 1px solid #fff;
     margin-top: 20px;
     font-family: 'robotoblack';
     font-size: 14px;
     border-radius: 10px;
 }
-#logos
-{
+#logos{
     margin-left: -15%;
 }
-#logos1
-{
+#logos1{
     margin-right: -15%;
 }
-#conTIcon
-{
+#conTIcon{
     margin-top:10%;
 }
 .Centrado
@@ -350,8 +341,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     margin-top: 41px;
     text-align: center;
 }
-.title span
-{
+.title span{
   margin-top: 80px;
 
 }
@@ -359,9 +349,9 @@ _:-ms-input-placeholder, :root .demo-graph {
     background: #1F0A71;
     font-family: 'robotoblack';
     font-weight: 500;
+
 }
-.contenedor
-{
+.contenedor{
     margin: auto;
     width: 950px;
 }
@@ -369,30 +359,25 @@ _:-ms-input-placeholder, :root .demo-graph {
     background: url('/VISYS2/assets/img/fondo_user.jpg');
 
 }
-#imgUser
-{
+#imgUser{
     margin-left: 20px;
 }
-#InputSearch
-{
+#InputSearch{
     font-family: 'robotoregular';
     font-size: 14px;
     color: #866FD5;
 
 }
-#buscar
-{
+#buscar{
     width: 100%;
     text-align: center;
 
 }
-.ColorHeader
-{
+.ColorHeader{
     background: #1F0A71;
     color: #fff;
     margin-top: 20px;
     text-align: center;
-
 }
 
 .margen
@@ -436,8 +421,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 #user
 {
-    margin-left: -10px;
-    margin-top: 15px;
+    margin: 11px -6px 15px;
 }
 .activo
 {
@@ -597,29 +581,23 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-size: 13px;
 }
 
-.text
-{
+.text{
     font-family: 'robotoblack';
     font-size: 17px;
     color: #1F0A71;
 }
 
-.TblDatos
-{
-
-    text-align: center;
+.TblDatos{
     border-collapse: separate;
     border-spacing: 1px;
-
 }
 
-.TblDatos th
-{
+.TblDatos th{
+
     background: #1F0A71;
     color: #fff;
     font-size: 14px;
     font-family: 'robotobold';
-
 }
 .Dato{
     font-family: 'robotoblack';
@@ -631,8 +609,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     color: #866FD5;
     font-size: 17px;
 }
-.datos1
-{
+.datos1{
     font-family: 'robotoblack';
     color: #402C82;
     font-size: 17px;
@@ -648,8 +625,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     color: #1F0A71;
     font-size: 12px;
 }
-.DatosModal th
-{
+.DatosModal th{
     font-family: 'robotobold';
     color: #fff;
     font-size: 14px;
@@ -677,7 +653,9 @@ _:-ms-input-placeholder, :root .demo-graph {
 #tblEliminar tr:nth-child(even) {
     background-color: #ffffff;
 }
-
+.select{
+    background: red;
+}
 #BajaCliente tr:nth-child(odd) {
     background-color: #e7e2f7;
 }
@@ -690,13 +668,13 @@ _:-ms-input-placeholder, :root .demo-graph {
     background-color: #e7e2f7;
 }
 
-#ClienteAdd tr:nth-child(odd)
+#ClienteAdd tr.odd
 {
-    background-color: #e7e2f7;
+    background: #e7e2f7;
 }
-#ClienteAdd tr:nth-child(even)
+#ClienteAdd tr.even
 {
-    background-color: #ffffff;
+    background: #ffffff;
 }
 #Inactiva{
     color: #ff0000;
@@ -720,13 +698,10 @@ _:-ms-input-placeholder, :root .demo-graph {
     background-color: #ffffff;
 }
 
-
-#FRP tr:nth-child(odd)
-{
+#FRP tr:nth-child(odd){
     background-color: #e7e2f7;
 }
-#FRP tr:nth-child(even)
-{
+#FRP tr:nth-child(even){
     background-color: #ffffff;
 }
 
@@ -735,12 +710,12 @@ _:-ms-input-placeholder, :root .demo-graph {
 #TPts{margin-top: 40px;}
 .Icono{color: #ff0000;}
 
-.redT {
+.redT{
     color: #ff0000;
     font-family: 'robotoblack';
     font-size: 17px;
 }
-.redT1 {
+.redT1{
     color: #ff0000;
     font-family: 'robotoblack';
     font-size: 14px;
@@ -752,8 +727,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     color: #1F0A71;
     font-weight: 500;
 }
-#frp
- {
+#frp{
      border: 1px solid #6a4ad5;
      box-shadow: none;
      text-align: center;
@@ -765,8 +739,7 @@ _:-ms-input-placeholder, :root .demo-graph {
      font-size: 12px;
 
  }
-#ImgContenedor
-{
+#ImgContenedor{
     border: 1px solid #6a4ad5;
     box-shadow: none;
     text-align: center;
@@ -786,8 +759,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     padding: 10px;
 }
 
-#fre
-{
+#fre{
     border: 1px solid #6a4ad5;
     box-shadow: none;
     text-align: center;
@@ -814,14 +786,12 @@ _:-ms-input-placeholder, :root .demo-graph {
     background: green;
     border-radius: 30px;
 }
-.Procesar:hover
-{
+.Procesar:hover{
     background: rgba(0, 128, 0, 0.6);
     transition: 0.5s;
 }
 
-#Nfarmacia
-{
+#Nfarmacia{
     font-size: 22px;
 }
 #titulM{
@@ -831,8 +801,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 #acumulado{
     font-size: 12px;
 }
-#AcuT
-{
+#AcuT{
     font-family: 'robotoblack';
     color: #866FD5;
     font-size: 20px;
@@ -840,23 +809,19 @@ _:-ms-input-placeholder, :root .demo-graph {
 #contenedor{
     margin-top: 15%;
 }
-#ModalFeet
-{
+#ModalFeet{
     font-size: 12px;
 }
-.IconBlue
-{
+.IconBlue{
     color: #6a4ad5;
 }
-.TextIconos
-{
+.TextIconos{
     color: #6a4ad5;
     font-family: 'robotoblack';
     font-size: 12px;
     text-align: center;
 }
-.iconoCenter
-{
+.iconoCenter{
     width: 100%;
     text-align: center;
 }
@@ -871,20 +836,16 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-family: 'robotoblack';
     font-size: 10px;
     color: #1F0A71;}
-#aplicado
-{
+#aplicado{
     color: #866FD5;
 }
-#dispo
-{
+#dispo{
     color: #6a4ad5;
 }
-#parcial
-{
+#parcial{
     color: #866FD5;
 }
-.texttotal
-{
+.texttotal{
     font-family: 'robotoblack';
     font-size: 18px;
     color: #6a4ad5;
@@ -896,8 +857,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-size: 15px;
 }
 .user{font-size: 16px;}
-.Cblack
-{
+.Cblack{
     font-family: 'robotoblack';
     color: #6a4ad5;
 }
@@ -917,97 +877,80 @@ _:-ms-input-placeholder, :root .demo-graph {
 .ruc{font-size: 12px;}
 #Format{font-size: 22px;}
 #Total{margin-top: 25px;}
-#activo
-{
+#activo{
     color: #6a4ad5;
     text-transform: uppercase;
 }
-
 #log{margin-top: -5px;}
 .detalles{
     color: #6a4ad5;
     font-family: 'robotoregular';
     font-size: 14px;
 }
-.fecha
-{
+.fecha{
     font-family: 'robotoblack';
     font-size: 14px;
     color: #1F0A71;
     border-bottom: 2px solid #1F0A71;
     text-align: center;
 }
-.rango
-{
+.rango{
     font-family: 'robotoregular';
     font-size: 14px;
     color: rgba(134, 111, 213, 0.5);
     margin-top: -17px;
     text-align: center;
 }
-#BtnAddArto
-{margin-top: 22px !important;}
-#BtnImgArto
-{margin-top: 8px !important;}
-#Iconos
-{
-    margin-top: 30px;
-}
+#BtnAddArto{margin-top: 22px !important;}
+#BtnImgArto{margin-top: 8px !important;}
+#Iconos{  margin-top: 30px;}
 
-.item
-{
+.item{
     text-transform: uppercase;
     font-family: 'robotoblack';
     font-size: 16px;
     color: #1F0A71;
 }
-.items
-{
+.items{
     text-transform: uppercase;
     font-family: 'robotobold';
     font-size: 17px;
     color: #1F0A71;
 }
-.descrip
-{
+.descrip{
     font-family: 'robotoregular';
     font-size: 11px;
     color: #1F0A71;
     text-transform: uppercase;
 }
-.puntos
-{
+.puntos{
     font-family: 'robotoblack';
     font-size: 14px;
     color: #1F0A71;
     text-transform: uppercase;
 }
-#cargarImg
-{
+#cargarImg{
    margin-left: 27px;
 }
 #buscarImg{
     margin-top: -35px;
 }
 
-.images_line {
+.images_line{
     display: inline-block;
     margin: 30px 15px 10px;
 }
-#dell
-{
+#dell{
     margin-top: 10px;
     position: absolute;
     right: 0;
     z-index: 999;
 }
-#textImg
-{
+#textImg{
     position: fixed;
 }
 
-#detalleFrp
-{
+#detalleFrp{
     font-family: 'robotoblack';
     color: rgba(106, 74, 213, 0.5);
     font-size: 22px;
@@ -1015,40 +958,34 @@ _:-ms-input-placeholder, :root .demo-graph {
     opacity: 0.5;
 }
 /*impresion de frp*/
-.RobotoB
-{
+.RobotoB{
     font-family: 'robotoblack';
 }
 .Color{
     color: #1F0A71;
 }
-#numFrp
-{
+#numFrp{
     font-size: 17px;
     text-align: center;
 }
-#fechafrp
-{
+#fechafrp{
     text-align: center;
     font-size: 15px;
     margin: -16px 15px 12px;
 }
-#Farmafre
-{
+#Farmafre{
     text-align: center;
     font-size: 15px;
     text-transform: uppercase;
 
 }
-#NomFaramacia
-{
+#NomFaramacia{
     color: #6a4ad5;
     font-size: 14px;
     text-transform: uppercase;
     text-align: center;
 }
-#ruc
-{
+#ruc{
     color: #866FD5;
     font-size: 12px;
     text-align: center;
@@ -1056,15 +993,13 @@ _:-ms-input-placeholder, :root .demo-graph {
     margin: -16px 15px 12px;
 }
 
-.detallesFrp thead
-{
+.detallesFrp thead{
     font-family: 'robotobold';
     font-size: 11px;
     text-align: center;
     line-height: 20px;
 }
-.detallesFrp tbody
-{
+.detallesFrp tbody{
     font-family: 'robotoregular';
     text-align: center;
     font-size: 11px;
@@ -1074,25 +1009,21 @@ _:-ms-input-placeholder, :root .demo-graph {
 .RobotoR{
     font-family:'robotoregular';
 }
-.Ccolor
-{
+.Ccolor{
     color: #866FD5;
 }
-.PtAplicado
-{
+.PtAplicado{
     color: red;
     font-size: 12px;
     margin: 16px 15px 12px;
 }
-.RegImp
-{
+.RegImp{
     font-size: 11px;
     color: rgba(106, 74, 213, 0.5);
     opacity: 0.5;
     text-transform: uppercase;
 }
-.canjePts
-{
+.canjePts{
     color: red;
     font-size: 14px;
     margin: 16px 15px 12px;
@@ -1101,6 +1032,26 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-size: 14px;
 }
 #DellUsers{
-  /*margin: 0px -17px -27px;*/
-    color: green;
+     color: green;
+}
+.active{
+    background: rgba(134, 111, 213, 0.5) !important;
+    color: #ffffff !important;
+}
+
+.menu a{
+    color: #fff;
+    text-transform: uppercase;
+}
+li{
+    padding: 6px 8px 6px;
+}
+li a{
+    margin: 10px;
+}
+li i{
+    color: #fff;
+}
+li img{
+    color: #fff;
 }

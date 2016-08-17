@@ -6541,7 +6541,7 @@ Picker.extend( 'pickadate', DatePicker )
     $counterElement = $('<span/>')
                         .addClass('character-counter')
                         .css('float','right')
-                        .css('font-size','12px')
+                        .css('font-size','10px')
                         .css('height', 1);
 
     $input.parent().append($counterElement);

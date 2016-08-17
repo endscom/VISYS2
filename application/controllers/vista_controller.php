@@ -5,6 +5,11 @@ class Vista_controller extends CI_Controller
 {
     public function __construct(){
         parent::__construct();
+        $this->load->library('session');
+
+        if($this->session->userdata('logged')==0){ //No aceptar a usuarios sin loguearse
+            redirect(base_url().'index.php/login','refresh');
+        }
     }
 
     public function main(){
@@ -22,9 +27,11 @@ class Vista_controller extends CI_Controller
     }
 
     public function Clientes(){
+        $query = $this->cliente_model->LoadClients();// Cargar Clientes
+
         $this->load->view('header/header');
         $this->load->view('pages/menu');
-        $this->load->view('pages/Clientes');
+        $this->load->view('pages/Clientes',$query);
         $this->load->view('footer/footer');
     }
 
@@ -73,10 +80,9 @@ class Vista_controller extends CI_Controller
 /*Funionalidad de Usuario*/
 
     public function Usuarios() {// CARGAR USUARIOS
-        $query['Luser'] = $this->vista_model->LoadUser();
-        $query['Lrol'] = $this->vista_model->LoadRol();
-        $query['Lven'] = $this->vista_model->LoadVendedor();
-        //$query['Lcl'] = $this->vista_model->LoadClient();
+        $query['Luser'] = $this->usuario_model->LoadUser();
+        $query['Lrol'] = $this->usuario_model->LoadRol();
+        $query['Lven'] = $this->usuario_model->LoadVendedor();
 
         $this->load->view('header/header');
         $this->load->view('pages/menu');
@@ -84,28 +90,12 @@ class Vista_controller extends CI_Controller
         $this->load->view('footer/footer');
     }
 
-    public function addUser($user,$clave,$rol,$vendedor) {// AGREGAR USUARIO
-        $fecha = date('Y-m-d H:i:s');
-        $this->vista_model->addUser($user,$clave,$rol,$fecha,$vendedor);
-    }
-
-    public function ActUser($IdUser,$Estado) {/*CAMBIAR ESTADO DE USUARIO*/
-       $this->vista_model->ActUser($IdUser,$Estado);
-    }
-
-    public function LoadClient(){//Cargar los clientes
-      $this->vista_model->LoadClient();
-    }
-
-    public function LoadVendedor(){//cargar los vendedores
-        $this->vista_model->LoadVendedores();
-    }
-
-    /*Funionalidad de Usuario*/
     public function Reportes(){
         $this->load->view('header/header');
         $this->load->view('pages/menu');
         $this->load->view('pages/Reportes');
         $this->load->view('footer/footer');
     }
+
+
 }

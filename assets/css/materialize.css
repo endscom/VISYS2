@@ -5067,7 +5067,7 @@ button.btn-floating {
 .btn-flat {
   box-shadow: none;
   background-color: transparent;
-  color: #343434;
+  color: #1F0A71;
   cursor: pointer;
 }
 
@@ -5323,7 +5323,7 @@ a.waves-effect .waves-ripple {
 }
 
 .modal .modal-content {
-  padding: 24px;
+  padding: 13px;
 }
 
 .modal .modal-close {
@@ -7836,6 +7836,8 @@ input[type=range]:focus::-ms-fill-upper {
 
 .picker__table th, .picker__table td {
   text-align: center;
+  color: #1F0A71;
+  font-family: 'robotoblack';
 }
 
 .picker__table td {
@@ -7947,6 +7949,7 @@ input[type=range]:focus::-ms-fill-upper {
   background: #ffffff;
   font-size: .8em;
   padding: .66em 0;
+
   font-weight: bold;
   width: 33%;
   display: inline-block;
@@ -8030,7 +8033,7 @@ input[type=range]:focus::-ms-fill-upper {
   text-align: center;
   background-color: #6a4ad5;
   font-family: 'robotobold';
-  color: #fff;
+  color: #1F0A71;
   font-size: 15px;
   padding-bottom: 10px;
 
@@ -8048,14 +8051,17 @@ input[type=range]:focus::-ms-fill-upper {
   padding: 6px;
   font-family: 'robotoregular';
   font-weight: 200;
-  letter-spacing: .5;
+  letter-spacing: 0.5;
   font-size: 12px;
   margin-bottom: 15px;
+
 }
 
 .picker__month-display {
   text-transform: uppercase;
   font-size: 2rem;
+  color: #fff;
+  font-family: 'robotoregular';
 }
 
 .picker__day-display {
@@ -8066,6 +8072,7 @@ input[type=range]:focus::-ms-fill-upper {
 .picker__year-display {
   font-size: 1.8rem;
   color: rgba(255, 255, 255, 0.4);
+  font-family: 'robotoregular';
 }
 
 .picker__box {
@@ -8086,7 +8093,8 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .picker__day--infocus {
-  color: #595959;
+  /*color: #595959;*/
+color:rgba(89, 89, 89, 0.66);
   letter-spacing: -.3;
   padding: .75rem 0;
   font-weight: 400;
@@ -8103,6 +8111,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .picker__weekday {
   font-size: .9rem;
+
 }
 
 .picker__day--selected,

@@ -24,10 +24,10 @@ $route['Catalogo'] = 'vista_controller/Catalogo';
 
 /*USUARIOS*/
 $route['Usuarios'] = 'vista_controller/Usuarios'; //cargar usuarios
-$route['NuevoUsuario/(:any)/(:any)/(:any)/(:any)'] = 'vista_controller/addUser/$1/$2/$3/$4'; //agregar usuario
-$route['ActUser/(:any)/(:any)'] = 'vista_controller/ActUser/$1/$2'; //cambiar estado de usuario
-$route['LoadVendedores'] = 'vista_controller/LoadVendedor';
-$route['LoadCliente'] = 'vista_controller/LoadClient';// cargar los clientes
+$route['NuevoUsuario/(:any)/(:any)/(:any)/(:any)'] = 'Usuario_controller/addUser/$1/$2/$3/$4'; //agregar usuario
+$route['ActUser/(:any)/(:any)'] = 'Usuario_controller/ActUser/$1/$2'; //cambiar estado de usuario
+$route['LoadVendedores'] = 'Usuario_controller/LoadVendedor';
+$route['LoadCliente'] = 'Usuario_controller/LoadClient';// cargar los clientes
 /*USUARIOS*/
 
 $route['Reportes'] = 'vista_controller/Reportes';
@@ -39,3 +39,10 @@ $route['Reportes'] = 'vista_controller/Reportes';
 $route['DetalleFRP'] = 'impresion_controller/DetalleFRP';
 $route['DetalleFRE'] = 'impresion_controller/DetalleFRE';
 // FIN IMPRESION
+
+// RUTA EXPORTACIÓN
+$route['Exp_Clientes'] = 'exportacion_controller/ExpoClients';
+$route['ExpPDF'] = 'exportacion_controller/ExpoPdf';
+// FIN EXPORTACIÓN
+
+

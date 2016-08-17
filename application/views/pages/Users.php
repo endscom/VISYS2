@@ -117,7 +117,7 @@
                         </select>
                     </div>
                     <div class="input-field col s6">
-                        <select name="vendedor" id="vendedor" >
+                        <select name="vendedor" id="vendedor" data-placeholder=buscar ...">
                             <option value="" disabled selected> </option>
                         </select>
                     </div>
@@ -130,7 +130,6 @@
         </div>
     </div><!-- FIN DEL CONTENIDO DEL MODAL -->
 </div>
-
 <!-- MODAL cambio de estado de usuario -->
 <!-- Modal Structure -->
 <div id="CsUser" class="modal">
@@ -156,8 +155,6 @@
         </div>
     </div>
 </div>
-
-
 <!-- MODAL DETALLES USUARIO -->
 <!-- Modal Structure -->
 <div id="Duser" class="modal">

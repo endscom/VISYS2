@@ -27,12 +27,12 @@
 
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!--<div class="row">
                                     <div class="input-field col s3 m3 l3 offset-l4  offset-m2 login-text">
                                         <input type="checkbox" id="remember-me"  name="recordarme" value="1">
-                                        <label id="recordar" for="remember-me">RECORDAR</label>
+                                        <label  for="remember-me">RECORDAR</label>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
 
                             <div class="row">
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
 
-                        </form>
+                        </form><!-- Fin del Formulario de Identificación -->
 
 
                 </div>
