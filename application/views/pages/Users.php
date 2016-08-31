@@ -30,7 +30,7 @@
                 <a href="#AUsuario" class="BtnBlue waves-effect  btn modal-trigger ">AGREGAR</a>
             </div>
         </div>
-        <table id="ClienteAdd" class=" TblDatos">
+        <table id="TbCatalogo" class=" TblDatos">
             <thead>
             <tr>
                 <th>FECHA CREACIÓN</th>
@@ -92,7 +92,7 @@
         </div>
         <h6 class="center Mcolor AdUser">AGREGAR USUARIO VISYS </h6>
         <div class="row">
-            <form class="col s12" action="<?php /*echo base_url('index.php/NuevoUsuario');*/?>" method="post" name="formAddUser">
+            <form class="col s12"  method="post" name="formAddUser">
                 <div class="row">
                     <div class="input-field col s6">
                         <input name="user" placeholder="Nombre de Usuario" id="NombreUser" type="text" class="required">

@@ -11,4 +11,8 @@ class Cliente_controller extends CI_Controller
             redirect(base_url().'index.php/login','refresh');
         }
     }
+
+    public function FindClient($cond){
+         $this->cliente_model($cond);
+    }
 }

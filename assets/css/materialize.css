@@ -2994,7 +2994,7 @@ ul.staggered-list li {
 footer.page-footer {
   margin-top: 20px;
   padding-top: 20px;
-  background-color: #ee6e73;
+ /* background-color: #ee6e73;*/
 }
 
 footer.page-footer .footer-copyright {
@@ -3758,8 +3758,8 @@ input[type=range] + .thumb {
     left: auto;
     right: auto;
   }
-  .row .col.m3 {
-    width: 25%;
+   .row .col.m3 {
+    /*width: 25%;*/
     margin-left: auto;
     left: auto;
     right: auto;
@@ -3948,7 +3948,7 @@ input[type=range] + .thumb {
     right: auto;
   }
   .row .col.l4 {
-    width: 33.3333333333%;
+    /*width: 33.3333333333%;*/
     margin-left: auto;
     left: auto;
     right: auto;
@@ -6579,6 +6579,7 @@ select:disabled {
   cursor: pointer;
   opacity: 0;
   filter: alpha(opacity=0);
+  width: 171px;
 }
 
 /* Range

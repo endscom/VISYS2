@@ -36,6 +36,7 @@
 
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/styles.css">
     <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="<?PHP echo base_url();?>assets/css/bootstrap.css">
     <style>
         #view-source {
             position: fixed;

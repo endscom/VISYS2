@@ -21,16 +21,16 @@
         <div class="container">
             <div class=" Buscar row column">
 
-                <div class="col s1 m1 l1 offset-l3 offset-s1">
+                <div class="col s1 m1 l1 offset-l3 offset-s1 offset-m2">
                     <i class="material-icons ColorS">search</i>
                 </div>
 
-                <div class="input-field col s2 m4 l4">
+                <div class="input-field col s5 m4 l4">
                     <input  id="search" type="text" placeholder="Buscar" class="validate">
                     <label for="search"></label>
                 </div>
 
-                <div class="col s1 m1 l1">
+                <div class="col s2 m1 l1">
                     <a href="Exp_Clientes" onclick="generar_reporte_excel();"> <img src="<?PHP echo base_url();?>assets/img/icono_excel.png " width="30px"></a>
                 </div>
                 <div class="col s1 m1 l1 ">
@@ -40,9 +40,7 @@
         </div>
 
         <div class="right row">
-            <div class="col s8 m6 l5">
-                <a href="#modal1" id="btngenerar" class="BtnBlue waves-effect  btn modal-trigger ">AGREGAR</a>
-            </div>
+                <a href="#modal1" id="btngenerar"  onclick="AddClients()" class="BtnBlue waves-effect  btn modal-trigger ">AGREGAR</a>
         </div>
 
      <form action="" name="FrmClientes" id="FrmClientes" method="post"> <!--Exportar datos a EXCEL -->

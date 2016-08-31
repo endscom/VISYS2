@@ -1,6 +1,6 @@
 var activo = false;
 $(document).ready(function() {
-    //Sección del menú
+    /****** Agregar clase Activo a items del Menú ******/
 
     $(".nav li a").each(function() {
         if(this.href.trim() == window.location){
@@ -11,8 +11,10 @@ $(document).ready(function() {
     if(!activo){
         $('.nav li a:first').addClass("active");
     }
-    //fin de la sección del menú
+    /****** Seccíon del Menú ******/
+
     /**** DATATABLES ****/
+
     $('#tblFREimpre').DataTable(
         {
             "info":    false,
@@ -194,7 +196,6 @@ $(document).ready(function() {
 
     $('.modal-trigger').leanModal();// INICIAR LOS MODALES
     Materialize.toast();
-
     //CARGAR LOS CLIENTES Y/O VENDEDORES EN EL SELECT (AGREGAR USUAARIO AL SISTEMA)
     $("#rol").change(function(){
         $("#vendedor").attr("disabled","disabled"); // inhabilitar el select
@@ -228,12 +229,16 @@ $(document).ready(function() {
     /********/
 
     $('#ClienteAdd tbody').on( 'click', 'tr', function () {
+        if($(this).hasClass('odd')){
+            $(this).removeClass('odd');
+            $(this).toggleClass('selected');
+        }else{
+            $(this).removeClass('even');
+            $(this).toggleClass('selected');
+        }
 
-        $(this).toggleClass('selected');
     } );
 
-
-    /******/
 
 } );//Fin Document ready
 
@@ -313,6 +318,32 @@ function DellUsers(IdUser, Estado){
         });
     });
 }
+
+function AddClients(){
+    //$('#CsUser').openModal();
+    $('#ClienteAdd tr').each( function () {
+        if($(this).is('.selected')) {
+            var cliente = $(this).find("td").eq(0).html();
+
+            console.log(cliente);
+            var patron="%20";
+
+            var cadena=cliente.replace(patron,'');
+            console.log(cadena);
+            $.ajax({
+                url: "FindClient/"+cadena,
+                type: "post",
+                async:true,
+                success: function(json){
+                   $(location).attr('Clientes');
+                }
+            });
+
+        }
+
+    });
+}
+
 //exportar a excel
 function generar_reporte_excel(){
     document.getElementById('FrmClientes').submit();
@@ -322,3 +353,5 @@ function generar_reporte_excel(){
 function  generar_reporte_pdf(){
     document.getElementById('FrmClientes').submit();
 }
+
+

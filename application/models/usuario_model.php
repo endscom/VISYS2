@@ -10,7 +10,7 @@ class Usuario_model extends CI_Model
     public function LoadUser(){ /*CARGAR USUARIOS*/
         $this->db->select('*');
         $this->db->from('usuario');
-        $this->db->order_by('IdUsuario','ASC');
+        $this->db->order_by('IdUsuario','desc');
         $query = $this->db->get();
 
         if($query->num_rows() > 0){
@@ -45,8 +45,11 @@ class Usuario_model extends CI_Model
     }
 
     public function LoadClient(){ /* CARGAR CLIENTES */
-      $query = $this->sqlsrv -> fetchArray("SELECT CLIENTE, NOMBRE, VENDEDOR FROM vtVS2_Clientes WHERE (ACTIVO = 'S')
-      AND (RUBRO1_CLI = 'S')",SQLSRV_FETCH_ASSOC);
+
+        $this->load->model('cliente_model');
+
+        $query = $this->sqlsrv -> fetchArray("SELECT CLIENTE, NOMBRE, VENDEDOR FROM vtVS2_Clientes WHERE CLIENTE NOT IN(".$this->cliente_model->LoadAllClients().") AND(ACTIVO = 'S') AND (RUBRO1_CLI = 'S')",SQLSRV_FETCH_ASSOC);
+
         $json = array();
         $i=0;
         echo '<option value="" disabled selected> BUSCAR... </option>';

@@ -14,7 +14,11 @@ $route['salir'] = 'login_controller/Salir';
 // RUTAS MENU
 $route['Main'] = 'vista_controller/main';
 $route['EliminarVineta'] = 'vista_controller/EliminarVineta';
+
+/* CLIENTES */
 $route['Clientes'] = 'vista_controller/Clientes';
+$route['FindClient/(:any)'] = 'clientes_controller/FindClient/$1';
+
 $route['BajaClientes'] = 'vista_controller/BajaClientes';
 $route['PuntosClientes'] = 'vista_controller/PuntosClientes';
 $route['DetalleFact'] = 'vista_controller/DetalleFact';

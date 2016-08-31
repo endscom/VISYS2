@@ -49,12 +49,5 @@
             </div>
         </div>
 
-        <div id="conTIcon" class="row">
-            <div id="logos" class="col s3 m3 l3">
-                <img  src="<?PHP echo base_url();?>assets/img/iconos_login.png"  >
-            </div>
-            <div id="logos1" class="right col s3 m3 l3 ">
-                <img  src="<?PHP echo base_url();?>assets/img/log_unimark.png" >
-            </div>
-        </div>
+
     </div>

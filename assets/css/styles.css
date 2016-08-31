@@ -352,8 +352,8 @@ _:-ms-input-placeholder, :root .demo-graph {
 
 }
 .contenedor{
-    margin: auto;
-    width: 950px;
+    margin: 20px;
+    width: auto;
 }
 #MenuFondo{
     background: url('/VISYS2/assets/img/fondo_user.jpg');
@@ -740,13 +740,14 @@ _:-ms-input-placeholder, :root .demo-graph {
 
  }
 #ImgContenedor{
-    border: 1px solid #6a4ad5;
+    border: 2px solid #6a4ad5;
     box-shadow: none;
     text-align: center;
     font-family: 'robotoregular';
     font-size: 12px;
     color: #1F0A71;
-    width: 84%;
+    width: 94%;
+    height: 175px;
 }
 #obser{
     border: 1px solid #6a4ad5;
@@ -902,7 +903,10 @@ _:-ms-input-placeholder, :root .demo-graph {
     text-align: center;
 }
 #BtnAddArto{margin-top: 22px !important;}
-#BtnImgArto{margin-top: 8px !important;}
+#BtnImgArto{
+    width: 90%;
+    text-align: center;}
+
 #Iconos{  margin-top: 30px;}
 
 .item{
@@ -1054,4 +1058,101 @@ li i{
 }
 li img{
     color: #fff;
+}
+.contedor_img{
+    text-align: center;
+}
+.images_ca{
+    display: inline-block;
+    padding: 10px 10px;
+    margin: 10px 10px;
+    border: 1px solid #1F0A71;
+    width: 200px;
+}
+.images_ca img {
+    max-width: 100%;
+}
+.images_ca i{
+    color: red;
+}
+.carga{
+    display: inline-block;
+    padding: 10px 10px;
+    margin: 10px 10px;
+    border: 1px solid #1F0A71;
+}
+.articulos{
+    display: inline-block;
+    width: 776px;
+}
+.cosa{
+    display: inline-block;
+    width: 289px !important;
+}
+#cargar{
+    background:#1F0A71;
+    border-radius: 20px;
+    font-family: 'robotoregular';
+    font-size: 12px;
+}
+#modificar{
+    background:#1F0A71;
+    border-radius: 20px;
+    font-family: 'robotoregular';
+    font-size: 11px;
+    line-height: 26px;
+    width: 95px;
+    height: 26px;
+    padding: 0;
+}
+#modificar:hover{
+    background: #6a4ad5;
+    color: #fff;
+}
+#cargar:hover{
+    background: #6a4ad5;
+    color: #fff;
+}
+#cancel{
+    border-radius: 20px;
+    font-family: 'robotoregular';
+    font-size: 12px;
+}
+#cancel:hover{
+    background: #6a4ad5;
+}
+.contedorImg{
+    text-align: center;
+}
+.catalog{
+    display: inline-block;
+    padding: 10px 10px;
+    margin: 10px 10px;
+    width: 200px;
+}
+.catalog img {
+    max-width: 100%;
+}
+.descripImg{
+    text-align: center;
+    }
+.codP{
+    color: #1F0A71;
+    font-family: 'robotobold';
+    font-size: 17px;
+    margin: 0;
+}
+.descript{
+    color: #1F0A71;
+    font-family: 'robotoregular';
+    font-size: 11px;
+    margin: 0;
+    text-transform: uppercase;
+}
+.ptsdes{
+    color: #1F0A71;
+    font-family: 'robotoblack';
+    font-size: 14px;
+    margin: 0;
+    text-transform: uppercase;
 }
