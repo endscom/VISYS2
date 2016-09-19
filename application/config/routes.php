@@ -24,7 +24,6 @@ $route['PuntosClientes'] = 'vista_controller/PuntosClientes';
 $route['DetalleFact'] = 'vista_controller/DetalleFact';
 $route['Frp'] = 'vista_controller/CanjeFrp';
 $route['FRE'] = 'vista_controller/CanjeFre';
-$route['Catalogo'] = 'vista_controller/Catalogo';
 
 /*USUARIOS*/
 $route['Usuarios'] = 'vista_controller/Usuarios'; //cargar usuarios
@@ -36,8 +35,12 @@ $route['LoadCliente'] = 'Usuario_controller/LoadClient';// cargar los clientes
 
 $route['Reportes'] = 'vista_controller/Reportes';
 
-// FIN RUTAS MENU
-
+/*RUTAS DE CATALOGO*/
+$route['NuevoCatalogo'] = 'catalogo_controller/NuevoCatalogo';
+$route['Catalogo'] = 'catalogo_controller/index';
+$route['subirImg'] = 'catalogo_controller/subirImg';
+$route['verificarImg'] = 'catalogo_controller/verificarImg';
+// FIN CATALOGO
 
 // RUTA IMPRESION
 $route['DetalleFRP'] = 'impresion_controller/DetalleFRP';
@@ -48,5 +51,3 @@ $route['DetalleFRE'] = 'impresion_controller/DetalleFRE';
 $route['Exp_Clientes'] = 'exportacion_controller/ExpoClients';
 $route['ExpPDF'] = 'exportacion_controller/ExpoPdf';
 // FIN EXPORTACIÓN
-
-

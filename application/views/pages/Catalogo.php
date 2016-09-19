@@ -1,201 +1,231 @@
 <header class="demo-header mdl-layout__header ">
     <div class="centrado  ColorHeader">
-
         <span class=" title">catálogo</span>
-
     </div>
 </header>
 <!--  CONTENIDO PRINCIPAL -->
 <main class="mdl-layout__content mdl-color--grey-100">
-    <div class="contenedor">
-
-        <div class=" row TextColor">
+    <div class="contenedor">        
+        <!-- fin de agregar nuevo articulo -->
+        <div class=" row TextColor center">
             <div class="col s5 m8 l12 offset-m1">
-               ingreso y modificación
+               catálogo de premios
             </div>
         </div>
-
-        <div class="row">
-            <div class="col s3 m5 l5 offset-m1">
-                <h6 class="item">nuevos articulos</h6>
-            </div>
+        <div class="row right">
+          <a onclick=" $('#nuevoArticulo').openModal()" class="redondo waves-effect waves-light btn"><i class="material-icons right">add</i>AGREGAR</a>
+          <a onclick=" $('#editarCatalogo').openModal()" class="redondo waves-effect waves-light btn"><i class="material-icons right">border_color</i>EDITAR</a>
         </div>
-
+        <div class="row center">
+          <table id="tblCatalogo2">
+            <thead>
+              <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+              </tr>
+            </thead>
+            <tbody>
+             <?php 
+              if (!($catalogo)) {}
+                else{
+                  foreach ($catalogo as $key) {
+                  echo "<tr>
+                        <td>
+                        <div class='images_ca'>
+                          <div class='row right'>
+                               <a href='#' onclick='darBaja(".'"'.$key['Imagen'].'"'.")'><i class='material-icons'>highlight_off</i></a>
+                           </div>
+                             <img src=".base_url()."assets/img/catalogo/".$key['Imagen']." alt=''>
+                          <div class='descripImg'>
+                              <p class='codP'>".$key['CodigoImg']."</p>
+                              <p class='descript'>".$key['Nombre']."</p>
+                              <p class='ptsdes'>".$key['Puntos']." puntos</p>
+                          </div>
+                          <a href='#' id='modificar' class='btn'>modificar</a>
+                      </div>
+                      </td>
+                      <td>
+                        <div class='images_ca'>
+                          <div class='row right'>
+                               <a href='#' onclick='darBaja(".'"'.$key['Imagen'].'"'.")'><i class='material-icons'>highlight_off</i></a>
+                           </div>
+                             <img src=".base_url()."assets/img/catalogo/".$key['Imagen']." alt=''>
+                          <div class='descripImg'>
+                              <p class='codP'>".$key['CodigoImg']."</p>
+                              <p class='descript'>".$key['Nombre']."</p>
+                              <p class='ptsdes'>".$key['Puntos']." puntos</p>
+                          </div>
+                          <a href='#' id='modificar' class='btn'>modificar</a>
+                      </div>
+                      </td>   
+                      <td>
+                        <div class='images_ca'>
+                          <div class='row right'>
+                               <a href='#' onclick='darBaja(".'"'.$key['Imagen'].'"'.")'><i class='material-icons'>highlight_off</i></a>
+                           </div>
+                             <img src=".base_url()."assets/img/catalogo/".$key['Imagen']." alt=''>
+                          <div class='descripImg'>
+                              <p class='codP'>".$key['CodigoImg']."</p>
+                              <p class='descript'>".$key['Nombre']."</p>
+                              <p class='ptsdes'>".$key['Puntos']." puntos</p>
+                          </div>
+                          <a href='#' id='modificar' class='btn'>modificar</a>
+                      </div>
+                      </td>   
+                      <td>
+                        <div class='images_ca'>
+                          <div class='row right'>
+                               <a href='#' onclick='darBaja(".'"'.$key['Imagen'].'"'.")'><i class='material-icons'>highlight_off</i></a>
+                           </div>
+                             <img src=".base_url()."assets/img/catalogo/".$key['Imagen']." alt=''>
+                          <div class='descripImg'>
+                              <p class='codP'>".$key['CodigoImg']."</p>
+                              <p class='descript'>".$key['Nombre']."</p>
+                              <p class='ptsdes'>".$key['Puntos']." puntos</p>
+                          </div>
+                          <a href='#' id='modificar' class='btn'>modificar</a>
+                      </div>
+                      </td>   
+                    </tr>";
+                  }
+                }
+              ?>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    </div>
+</main>
+<!-- FIN CONTENIDO PRINCIPAL -->
+  <!-- Modal Structure -->
+  <div id="modalIMG" class="modal">
+    <div class="btnCerrar right">
+      <i  style='color:red;' class="material-icons modal-action modal-close">highlight_off</i>
+    </div>
+    <div class="modal-content center">
+      <h5 class="medium" id="mensajeIMG"></h5>
+      <a id="aceptarIMG" class="btnaceptar redondo green regular waves-effect waves-light btn">ACEPTAR</a>
+    </div>
+  </div>
+   <!-- Modal Structure -->
+  <div id="nuevoArticulo" class="modal">
+    <div class="btnCerrar right">
+      <i  style='color:red;' class="material-icons modal-action modal-close">highlight_off</i>
+    </div>
+    <div class="modal-content">
+      <div class="row TextColor center">
+            <div class="col s5 m8 l12">
+               ingreso de artículo
+            </div>
+      </div>
                <div>
-                   <form class="col s6 m6 l6" action="" method="post" name="formNuevoArto">
-
+                   <form id="formimagen" enctype="multipart/form-data" class="col s6 m6 l6" action="<?PHP echo base_url('index.php/subirImg');?>" method="post" name="formNuevoArto">
                       <div class="articulos">
                           <div id="articulo" class="row">
                               <div class="input-field col s2 m5 l5 ">
-                                  <input name="unoUser" placeholder="Código" id="codigoArto" type="text" class="validate">
+                                  <input onmousedown="return false" onkeydown="return false" name="codigo" id="codigoArto" type="text" class="validate">
+                                  <label for="codigoArto">CODIGO:</label><label id="labelCodigo" class="labelValidacion">DIGITE EL CODIGO</label>
                               </div>
-
                               <div class="input-field col s2 m6 l6">
-                                  <input name="pass" placeholder="Nombre" id="NombArto" type="text" class="validate">
+                                  <input name="nombre" id="NombArto" type="text" class="validate">
+                                  <label for="NombArto">DESCRIPCIÓN</label><label id="labelDescripcion" class="labelValidacion">DIGITE LA DESCRIPCIÓN</label>
                               </div>
                           </div>
-
                           <div class="row">
                               <div class="input-field col s2 m5 l5">
-                                  <input name="rol" placeholder="Puntos Artículo" id="PtArto" type="text" class="validate">
+                                  <input name="puntos" min=0 step="any" id="PtArto" type="number" class="validate">
+                                  <label for="PtArto">PUNTOS</label><label id="labelPuntos" class="labelValidacion">DIGITE LOS PUNTOS</label>
                               </div>
-
-                              <div id="BtnAddArto" class="col s3 m2 l2">
-                                  <a href="#" class="BtnBlue  btn ">AGREGAR</a>
+                              <div id="BtnAddArto" class="col s3 m2 l6 center">
+                                  <a id="agregar" class="waves-effect btn-file waves-light btn" onclick="subirimagen()">AGREGAR</a>
+                                   <div id="loadIMG" style="display:none" class="preloader-wrapper big active">
+                                    <div class="spinner-layer spinner-blue-only">
+                                      <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                      </div><div class="gap-patch">
+                                        <div class="circle"></div>
+                                      </div><div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                      </div>
+                                    </div>
+                                  </div>
                               </div>
                           </div>
                       </div>
-
                        <div class="cosa">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                <div id="ImgContenedor" class="fileinput-new thumbnail" style="width: 250px; height: 150px; padding: 5px 0 10px !important;">
                                </div>
                                <div id="ImgContenedor" class="fileinput-preview fileinput-exists thumbnail" style="max-width:250px; max-height:150px;"></div>
-                               <div>
-                                   <span id="cargar" class="btn btn-default btn-file"><span class="fileinput-new">cargar</span>
-                                       <span id="cancel" class="fileinput-exists">cambiar</span><input type="file" name="..."></span>
+                               <div class="center">
+                                  <label id="labelImagen" class="labelValidacion">SELECCIONE UNA IMAGEN</label>
+                               </div>
+                               <div class="center">
+                                   <span id="cargar" class="btn btn-default btn-file"><span class="fileinput-new">cargar imagen</span>
+                                       <span id="cancel" class="fileinput-exists">cambiar</span>
+                                       <input id="txtimagen" type="file" name="txtimagen"></span>
                                    <a id="cargar" href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">cancelar</a>
                                </div>
                            </div>
-
                        </div>
-
-
-
                    </form>
                </div>
-        <!-- fin de agregar nuevo articulo -->
-
-        <div class="row">
-                <div class="col s8 m7 l3 offset-s2 offset-m5 of">
-                    <h6 class="item">CATÁLOGO DE PREMIOS</h6>
-                </div>
-        </div>
-                <div class="row">
-                    <div  class=" Buscar  row column">
-                        <div class="col s1 m1 l1 offset-s1 offset-m3 offset-l7">
-                            <i class="material-icons ColorS">search</i>
-                        </div>
-                        <div class="input-field col s7 m6 l3 offset-m3  ">
-                            <input  id="search" type="text" placeholder="Buscar" class="validate">
-                            <label for="search"></label>
-                        </div>
-                    </div>
-                </div>
-
-        <!-- Tabla de catálogo de imagenes -->
-        <div class="contedor_img">
-
-            <div class="images_ca">
-                <div class="row right">
-                     <i class="material-icons">highlight_off</i>
-                 </div>
-                   <img src="<?PHP echo base_url();?>assets/img/catalogo/101100.jpg" alt="">
-                <div class="descripImg">
-                    <p class="codP">102596</p>
-                    <p class="descript">Miniprocesador B&D hc3000</p>
-                    <p class="ptsdes">939 puntos</p>
-                </div>
-                <a href="#" id="modificar" class="btn">modificar</a>
-            </div>
-
-            <div class="images_ca">
-                <div class="row right">
-                    <i class="material-icons">highlight_off</i>
-                </div>
-                <img src="<?PHP echo base_url();?>assets/img/catalogo/101345.jpg" alt="">
-                <div class="descripImg">
-                    <p class="codP">102596</p>
-                    <p class="descript">Miniprocesador B&D hc3000</p>
-                    <p class="ptsdes">939 puntos</p>
-                </div>
-                <a href="#" id="modificar" class="btn">modificar</a>
-            </div>
-
-            <div class="images_ca">
-                <div class="row right">
-                    <i class="material-icons">highlight_off</i>
-                </div>
-                <img src="<?PHP echo base_url();?>assets/img/catalogo/101349.jpg" alt="">
-                <div class="descripImg">
-                    <p class="codP">102596</p>
-                    <p class="descript">Miniprocesador B&D hc3000</p>
-                    <p class="ptsdes">939 puntos</p>
-                </div>
-                <a href="#" id="modificar" class="btn">modificar</a>
-            </div>
-
-            <div class="images_ca">
-                <div class="row right">
-                    <i class="material-icons">highlight_off</i>
-                </div>
-                <img src="<?PHP echo base_url();?>assets/img/catalogo/101605.jpg" alt="">
-                <div class="descripImg">
-                    <p class="codP">102596</p>
-                    <p class="descript">Miniprocesador B&D hc3000</p>
-                    <p class="ptsdes">939 puntos</p>
-                </div>
-                <a href="#" id="modificar" class="btn">modificar</a>
-            </div>
-
-            <div class="images_ca">
-                <div class="row right">
-                    <i class="material-icons">highlight_off</i>
-                </div>
-                <img src="<?PHP echo base_url();?>assets/img/catalogo/101645.jpg" alt="">
-                <div class="descripImg">
-                    <p class="codP">102596</p>
-                    <p class="descript">Miniprocesador B&D hc3000</p>
-                    <p class="ptsdes">939 puntos</p>
-                </div>
-                <a href="#" id="modificar" class="btn">modificar</a>
-            </div>
-
-            <div class="images_ca">
-                <div class="row right">
-                    <i class="material-icons">highlight_off</i>
-                </div>
-                <img src="<?PHP echo base_url();?>assets/img/catalogo/102586.jpg" alt="">
-                <div class="descripImg">
-                    <p class="codP">102596</p>
-                    <p class="descript">Miniprocesador B&D hc3000</p>
-                    <p class="ptsdes">939 puntos</p>
-                </div>
-                <a href="#" id="modificar" class="btn">modificar</a>
-            </div>
-
-            <div class="images_ca">
-                <div class="row right">
-                    <i class="material-icons">highlight_off</i>
-                </div>
-                <img src="<?PHP echo base_url();?>assets/img/catalogo/102596.jpg" alt="">
-                <div class="descripImg">
-                    <p class="codP">102596</p>
-                    <p class="descript">Miniprocesador B&D hc3000</p>
-                    <p class="ptsdes">939 puntos</p>
-                </div>
-                <a href="#" id="modificar" class="btn">modificar</a>
-            </div>
-
-            <div class="images_ca">
-                <div class="row right">
-                    <i class="material-icons">highlight_off</i>
-                </div>
-                <img src="<?PHP echo base_url();?>assets/img/catalogo/103371.jpg" alt="">
-                <div class="descripImg">
-                    <p class="codP">102596</p>
-                    <p class="descript">Miniprocesador B&D hc3000</p>
-                    <p class="ptsdes">939 puntos</p>
-                </div>
-                <a href="#" id="modificar" class="btn">modificar</a>
-            </div>
-       </div>
-
     </div>
-
-
-
-
+  </div>
+     <!-- Modal Structure -->
+  <div id="editarCatalogo" class="modal">
+    <div class="btnCerrar right">
+      <i  style='color:red;' class="material-icons modal-action modal-close">highlight_off</i>
     </div>
-</main>
-<!-- FIN CONTENIDO PRINCIPAL -->
+    <div class="modal-content">
+      <div class="row TextColor center">
+            <div class="col s5 m8 l12">
+               creación de catalogo
+            </div>
+      </div>
+      <div class="row">
+          <div class="input-field col s12 m4 l4">
+            <select>
+              <option value="" disabled selected>ESCOJA UN CATALOGO</option>
+              <?php 
+                if (!$catalogos) {}
+                else{
+                  foreach ($catalogos as $key ) {
+                    $newDate = date("Y", strtotime($key['Fecha']));
+                    echo "<option value='".$key['IdCT']."'>".$key['Descripcion']." de ".$newDate."</option>";
+                  }
+                }
+               ?>
+            </select>
+          </div>
+           <div class="input-field col s12 m6">
+            <select class="icons">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="" data-icon="<?php echo base_url()."assets/img/catalogo/105348" ?>" class="circle">example 1</option>
+              <option value="" data-icon="images/office.jpg" class="circle">example 2</option>
+              <option value="" data-icon="images/yuna.jpg" class="circle">example 1</option>
+            </select>
+            <label>Images in select</label>
+          </div>
+      </div>         
+    </div>
+  </div>
+
+       <!-- Modal Structure DAR DE BAJA-->
+  <div id="darBaja" class="modal">
+    <div class="btnCerrar right">
+      <i  style='color:red;' class="material-icons modal-action modal-close">highlight_off</i>
+    </div>
+    <div class="modal-content">
+      <div class="row TextColor center">
+            <div class="col s5 m8 l12">
+               ¿está seguro que desea dar de baja a este artículo?
+            </div>
+      </div>
+      <div class="row center">
+            <a id="darBajaOK" class="redondo waves-effect waves-light btn">ACEPTAR</a>
+      </div>         
+    </div>
+  </div>

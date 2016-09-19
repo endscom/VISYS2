@@ -1,7 +1,47 @@
 var activo = false;
 $(document).ready(function() {
-    /****** Agregar clase Activo a items del Menú ******/
 
+  //$('#editarCatalogo').openModal();
+    $('select').material_select();
+
+$('#txtimagen').change(function(){
+    //var filename = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '');
+    var file = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
+    var codigo = file.split(".");$('#codigoArto').val(codigo[0]);
+});
+
+
+$('#tblCatalogoActual').DataTable( {
+            "info":    false,
+            "bPaginate": false,
+            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
+            "language": {
+                "paginate": {
+                    "first":      "Primera",
+                    "last":       "Última ",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"                    
+                },
+                "lengthMenu": "MOSTRAR _MENU_ REGISTORS",
+                "search":     "BUSCAR"
+            }
+        });
+$('#tblCatalogo2').DataTable( {
+            "info":    false,
+            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
+            "language": {
+                "paginate": {
+                    "first":      "Primera",
+                    "last":       "Última ",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"                    
+                },
+                "lengthMenu": "MOSTRAR _MENU_",
+                "search":     "BUSCAR"
+            }
+        });
+    /******Agregar clase Activo a items del Menú******/
+ $('#tblCatalogo').DataTable();
     $(".nav li a").each(function() {
         if(this.href.trim() == window.location){
             $(this).parent().addClass("active");
@@ -15,7 +55,7 @@ $(document).ready(function() {
 
     /**** DATATABLES ****/
 
-    $('#tblFREimpre').DataTable(
+    $('#tblFREimpre,#TbCatalogo,#TblMaVinetas,#MCXP,#tblEliminar,#ClienteAdd,#BajaCliente,#PtosCliente,#FRP,#tblpRODUCTOS,#tblModals').DataTable(
         {
             "info":    false,
             "searching": false,
@@ -31,168 +71,7 @@ $(document).ready(function() {
             }
         }
     );
-    $('#TbCatalogo').DataTable(
-        {
-            "info":    false,
-            "searching": false,
-            "lengthMenu": [[4,16,32,100,-1], [4,16,32,100,"Todo"]],
-            "language": {
-                "paginate": {
-                    "first":      "Primera",
-                    "last":       "Última ",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "lengthMenu": "MOSTRAR _MENU_"
-            }
-        }
-    );
-    $('#TblMaVinetas').DataTable(
-        {
-            "info":    false,
-            "searching": false,
-            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
-            "language": {
-                "paginate": {
-                    "first":      "Primera",
-                    "last":       "Última ",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "lengthMenu": "MOSTRAR _MENU_"
-            }
-        }
-    );
-    $('#MCXP').DataTable(
-        {
-            "info":    false,
-            "searching": false,
-            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
-            "language": {
-                "paginate": {
-                    "first":      "Primera",
-                    "last":       "Última ",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "lengthMenu": "MOSTRAR _MENU_"
-            }
-        }
-    );
-    $('#tblEliminar').DataTable(
-        {
-            "info":    false,
-            "searching": false,
-            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
-            "language": {
-                    "paginate": {
-                        "first":      "Primera",
-                        "last":       "Última ",
-                        "next":       "Siguiente",
-                        "previous":   "Anterior"
-                    },
-                   "lengthMenu": "MOSTRAR _MENU_"
-            }
-        }
-    );
-    $('#ClienteAdd').DataTable(
-        {
-            "info":    false,
-            "searching": false,
-            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
-            "language": {
-                "paginate": {
-                    "first":      "Primera",
-                    "last":       "Última ",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "lengthMenu": "MOSTRAR _MENU_"
-            }
-        }
-    );
-    $('#BajaCliente').DataTable(
-        {
-            "info":    false,
-            "searching": false,
-            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
-            "language": {
-                "paginate": {
-                    "first":      "Primera",
-                    "last":       "Última ",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "lengthMenu": "MOSTRAR _MENU_"
-            }
-        }
-    );
-    $('#PtosCliente').DataTable(
-        {
-            "info":    false,
-            "searching": false,
-            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
-            "language": {
-                "paginate": {
-                    "first":      "Primera",
-                    "last":       "Última ",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "lengthMenu": "MOSTRAR _MENU_"
-            }
-        }
-    );
-    $('#FRP').DataTable(
-        {
-            "info":    false,
-            "searching": false,
-            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
-            "language": {
-                "paginate": {
-                    "first":      "Primera",
-                    "last":       "Última ",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "lengthMenu": "MOSTRAR _MENU_"
-            }
-        }
-    );
-    $('#tblpRODUCTOS').DataTable(
-        {
-            "info":    false,
-            "searching": false,
-            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
-            "language": {
-                "paginate": {
-                    "first":      "Primera",
-                    "last":       "Última ",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "lengthMenu": "MOSTRAR _MENU_"
-            }
-        }
-    );
-    $('#tblModals').DataTable(
-        {
-            "info":    false,
-            "searching": false,
-            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
-            "language": {
-                "paginate": {
-                    "first":      "Primera",
-                    "last":       "Última ",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "lengthMenu": "MOSTRAR _MENU_"
-            }
-        }
-    );
-
-    /**** END DATATABLES ****/
+   /**** END DATATABLES ****/
 
     $('.modal-trigger').leanModal();// INICIAR LOS MODALES
     Materialize.toast();
@@ -256,29 +135,6 @@ function EnviodeDatos(){
     else{
         vendedores = vendedores;
     }
-
-    /*if(/^\s*$/.test(user)){
-        alert("El campo Nombre no puede estar vacio"); return false;
-    }
-
-    if(/^\s*$/.test(clave)){
-        alert("No puede dejar el campo contraseña vacio"); return false;
-    }
-
-    if(/^\s*$/.test(rol)){
-        alert("Debe de seleccionar el Rol de este usuario!"); return false;
-    }
-
-    if(rol==7){
-        if(/^\s*$/.test(vendedores)){
-            alert("Debe de asignar un vendedor para este cliente!"); return false;
-        }
-        else {
-            vendedores = '0';
-        }
-    }*/
-
-
     $.ajax({
         url: "NuevoUsuario/"+user+"/"+clave+"/"+rol+"/"+vendedores,
         type: "post",
@@ -343,15 +199,59 @@ function AddClients(){
 
     });
 }
-
 //exportar a excel
 function generar_reporte_excel(){
     document.getElementById('FrmClientes').submit();
 }
-
 //Exportar a PDF
 function  generar_reporte_pdf(){
     document.getElementById('FrmClientes').submit();
 }
+function subirimagen()
+{    
+    $('#labelCodigo').hide();
+    $('#labelDescripcion').hide();
+    $('#labelPuntos').hide();
+    $('#labelImagen').hide();
+    if ($('#txtimagen').val()=="") {$('#labelImagen').show(); return false;}   
+    if ($('#codigoArto').val()=="") {$('#labelCodigo').show();return false;}
+    if ($('#NombArto').val()=="") {$('#labelDescripcion').show();return false;}
+    if ($('#PtArto').val()=="") {$('#labelPuntos').show();return false;} 
+    else{   
+    $('#agregar').hide();
+    $('#loadIMG').show(); 
+    var file = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
+            var formData = new FormData($("#formimagen")[0]);
+            $.ajax({
+                url: "verificarImg",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(datos)
+                {
+                    if (datos!=0) {
+                    $("#mensajeIMG").html(datos);
+                    $('#modalIMG').openModal(); 
+                    $('#agregar').show();
+                    $('#loadIMG').hide();
+                    }else{
+                        $('#formimagen').submit();
+                    }
+                }
+            });
+        }
+}
 
-
+    $('#cmbCatalogos').change(function(){
+        alert(this.value);
+    });
+    $("#aceptarIMG").click(function(){
+        $('#formimagen').submit();
+    });
+function darBaja(id){
+      $('#darBaja').openModal(); 
+        $("#darBajaOK").click(function(){
+             alert("diste ok animal");
+    });     
+}

@@ -18,93 +18,117 @@
             </div>
 
         </div>
-        <div class="demo-separator mdl-cell--1-col"></div>
-        <!-- Cátalogo-->
-
-
+        <div class="row">
+          <!-- Cátalogo-->
               <!-- Tabla de catálogo de imagenes -->
-              <div class="contedorImg">
-                  <div class="catalog">
+          <table id="tblCatalogo" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><div class="catalog">
                       <!--<div class="row right">
                            <i class="material-icons">highlight_off</i>
                        </div>-->
                       <img src="<?PHP echo base_url();?>assets/img/catalogo/101100.jpg" alt="">
                      <div class="descripImg">
                            <p class="codP">102596</p>
-                           <p class="descript">Miniprocesador B&D hc3000</p>
+                           <p class="descript">COMEDOR B&D hc3000</p>
                            <p class="ptsdes">939 puntos</p>
                      </div>
-                  </div>
-
-                  <div class="catalog">
-                      <img src="<?PHP echo base_url();?>assets/img/catalogo/101345.jpg" alt="">
-                      <div class="descripImg">
-                          <p class="codP">102596</p>
-                          <p class="descript">Miniprocesador B&D hc3000</p>
-                          <p class="ptsdes">939 puntos</p>
-                      </div>
-                  </div>
-
-                  <div class="catalog">
-                      <img src="<?PHP echo base_url();?>assets/img/catalogo/101349.jpg" alt="">
-                      <div class="descripImg">
-                          <p class="codP">102596</p>
-                          <p class="descript">Miniprocesador B&D hc3000</p>
-                          <p class="ptsdes">939 puntos</p>
-                      </div>
-                  </div>
-
-                  <div class="catalog">
-                      <img src="<?PHP echo base_url();?>assets/img/catalogo/101605.jpg" alt="">
-                      <div class="descripImg">
-                          <p class="codP">102596</p>
-                          <p class="descript">Miniprocesador B&D hc3000</p>
-                          <p class="ptsdes">939 puntos</p>
-                      </div>
-                  </div>
-
-                  <div class="catalog">
+                  </div></td>
+                <td><div class="catalog">
+                      <!--<div class="row right">
+                           <i class="material-icons">highlight_off</i>
+                       </div>-->
+                      <img src="<?PHP echo base_url();?>assets/img/catalogo/129209.jpg" alt="">
+                     <div class="descripImg">
+                           <p class="codP">102596</p>
+                           <p class="descript">COMEDOR2 B&D hc3000</p>
+                           <p class="ptsdes">939 puntos</p>
+                     </div>
+                  </div></td>
+                <td><div class="catalog">
+                      <!--<div class="row right">
+                           <i class="material-icons">highlight_off</i>
+                       </div>-->
+                      <img src="<?PHP echo base_url();?>assets/img/catalogo/134027.jpg" alt="">
+                     <div class="descripImg">
+                           <p class="codP">102596</p>
+                           <p class="descript">COMEDOR3 B&D hc3000</p>
+                           <p class="ptsdes">939 puntos</p>
+                     </div>
+                  </div></td>
+                <td><div class="catalog">
+                      <!--<div class="row right">
+                           <i class="material-icons">highlight_off</i>
+                       </div>-->
                       <img src="<?PHP echo base_url();?>assets/img/catalogo/101645.jpg" alt="">
-                      <div class="descripImg">
-                          <p class="codP">102596</p>
-                          <p class="descript">Miniprocesador B&D hc3000</p>
-                          <p class="ptsdes">939 puntos</p>
-                      </div>
-                  </div>
-
-                  <div class="catalog">
-                      <img src="<?PHP echo base_url();?>assets/img/catalogo/102586.jpg" alt="">
-                      <div class="descripImg">
-                          <p class="codP">102596</p>
-                          <p class="descript">Miniprocesador B&D hc3000</p>
-                          <p class="ptsdes">939 puntos</p>
-                      </div>
-                  </div>
-
-                  <div class="catalog">
-                      <img src="<?PHP echo base_url();?>assets/img/catalogo/102596.jpg" alt="">
-                      <div class="descripImg">
-                          <p class="codP">102596</p>
-                          <p class="descript">Miniprocesador B&D hc3000</p>
-                          <p class="ptsdes">939 puntos</p>
-                      </div>
-                  </div>
-
-                  <div class="catalog">
+                     <div class="descripImg">
+                           <p class="codP">102596</p>
+                           <p class="descript">COMEDOR4 B&D hc3000</p>
+                           <p class="ptsdes">939 puntos</p>
+                     </div>
+                  </div></td>
+                
+            </tr>
+             <tr>
+                <td><div class="catalog">
+                      <!--<div class="row right">
+                           <i class="material-icons">highlight_off</i>
+                       </div>-->
                       <img src="<?PHP echo base_url();?>assets/img/catalogo/103371.jpg" alt="">
-                      <div class="descripImg">
-                          <p class="codP">102596</p>
-                          <p class="descript">Miniprocesador B&D hc3000</p>
-                          <p class="ptsdes">939 puntos</p>
-                      </div>
-                  </div>
-
-              </div>
-
-
-
-
-
+                     <div class="descripImg">
+                           <p class="codP">102596</p>
+                           <p class="descript">COMEDOR5 B&D hc3000</p>
+                           <p class="ptsdes">939 puntos</p>
+                     </div>
+                  </div></td>
+                <td><div class="catalog">
+                      <!--<div class="row right">
+                           <i class="material-icons">highlight_off</i>
+                       </div>-->
+                      <img src="<?PHP echo base_url();?>assets/img/catalogo/118171.jpg" alt="">
+                     <div class="descripImg">
+                           <p class="codP">102596</p>
+                           <p class="descript">COMEDOR52 B&D hc3000</p>
+                           <p class="ptsdes">939 puntos</p>
+                     </div>
+                  </div></td>
+                <td><div class="catalog">
+                      <!--<div class="row right">
+                           <i class="material-icons">highlight_off</i>
+                       </div>-->
+                      <img src="<?PHP echo base_url();?>assets/img/catalogo/114529.jpg" alt="">
+                     <div class="descripImg">
+                           <p class="codP">102596</p>
+                           <p class="descript">COMEDOR53 B&D hc3000</p>
+                           <p class="ptsdes">939 puntos</p>
+                     </div>
+                  </div></td>
+                <td><div class="catalog">
+                      <!--<div class="row right">
+                           <i class="material-icons">highlight_off</i>
+                       </div>-->
+                      <img src="<?PHP echo base_url();?>assets/img/catalogo/104089.jpg" alt="">
+                     <div class="descripImg">
+                           <p class="codP">102596</p>
+                           <p class="descript">COMEDOR45 B&D hc3000</p>
+                           <p class="ptsdes">939 puntos</p>
+                     </div>
+                  </div></td>
+                
+            </tr>
+        </tbody><br>
+        </div>
+        <div class="demo-separator mdl-cell--1-col"></div>
+        
     </div>
 </main>
 </div>
