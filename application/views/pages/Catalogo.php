@@ -20,6 +20,7 @@
           <table id="tblCatalogo2">
             <thead>
               <tr>
+
                   <th></th>
                   <th></th>
                   <th></th>
