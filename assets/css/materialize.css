@@ -15,31 +15,27 @@
   font-style: normal;
 
 }
-
+#tblCatalogoPasado tr td:nth-child(6){
+  display:none;
+}
 .materialize-red {
   background-color: #e51c23 !important;
 }
-
 .materialize-red-text {
   color: #e51c23 !important;
 }
-
 .materialize-red.lighten-5 {
   background-color: #fdeaeb !important;
 }
-
 .materialize-red-text.text-lighten-5 {
   color: #fdeaeb !important;
 }
-
 .materialize-red.lighten-4 {
   background-color: #f8c1c3 !important;
 }
-
 .materialize-red-text.text-lighten-4 {
   color: #f8c1c3 !important;
 }
-
 .materialize-red.lighten-3 {
   background-color: #f3989b !important;
 }
@@ -4143,7 +4139,6 @@ nav i.material-icons {
   height: 47px;
   line-height: 47px;
 }
-
 nav .nav-wrapper {
   position: relative;
   height: 100%;
@@ -4279,17 +4274,14 @@ nav .input-field label.active {
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
-
 .navbar-fixed {
   position: relative;
   height: 56px;
   z-index: 998;
 }
-
 .navbar-fixed nav {
   position: fixed;
 }
-
 @media only screen and (min-width: 601px) {
   nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
    /* height: 64px;*/
@@ -4760,11 +4752,11 @@ small {
   line-height: 1.5em;
   word-break: break-all;
   font-family: 'robotoregular';
-  background: #fff;
+  background: rgba(31, 10, 113, 0.74);
   padding: 10px 25px;
   font-size: 1.1rem;
   font-weight: 300;
-  color: red;
+  color: white;
   box-shadow: -1px 1px 9px rgba(0,0,0,0.4);
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -5244,7 +5236,6 @@ button.btn-floating {
   left: 0;
   z-index: 1;
 }
-
 .waves-circle {
   text-align: center;
   width: 2.5em;
@@ -5253,7 +5244,6 @@ button.btn-floating {
   border-radius: 50%;
   -webkit-mask-image: none;
 }
-
 .waves-block {
   display: block;
 }
@@ -5262,7 +5252,6 @@ button.btn-floating {
 a.waves-effect .waves-ripple {
   z-index: -1;
 }
-
 .modal {
   display: none;
   position: fixed;
@@ -5356,12 +5345,10 @@ a.waves-effect .waves-ripple {
   display: none;
   will-change: opacity;
 }
-
 .modal.modal-fixed-footer {
   padding: 0;
   height: 70%;
 }
-
 .modal.modal-fixed-footer .modal-content {
   position: absolute;
   height: calc(100% - 56px);
@@ -5369,13 +5356,11 @@ a.waves-effect .waves-ripple {
   width: 100%;
   overflow-y: auto;
 }
-
 .modal.modal-fixed-footer .modal-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   position: absolute;
   bottom: 0;
 }
-
 .modal.bottom-sheet {
   top: auto;
   bottom: -100%;
@@ -5385,14 +5370,12 @@ a.waves-effect .waves-ripple {
   border-radius: 0;
   will-change: bottom, opacity;
 }
-
 .collapsible {
   border-top: 1px solid #ddd;
   border-right: 1px solid #ddd;
   border-left: 1px solid #ddd;
   margin: 0.5rem 0 1rem 0;
 }
-
 .collapsible-header {
   display: block;
   cursor: pointer;
@@ -5464,23 +5447,19 @@ a.waves-effect .waves-ripple {
 .side-nav.fixed .collapsible-body li a {
   padding: 0 37.5px 0 45px;
 }
-
 .collapsible.popout {
   border: none;
   box-shadow: none;
 }
-
 .collapsible.popout > li {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   margin: 0 24px;
   transition: margin 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
 .collapsible.popout > li.active {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
   margin: 16px 0;
 }
-
 .chip {
   display: inline-block;
   height: 32px;
@@ -5492,7 +5471,6 @@ a.waves-effect .waves-ripple {
   border-radius: 16px;
   background-color: #e4e4e4;
 }
-
 .chip img {
   float: left;
   margin: 0 8px 0 -12px;
@@ -5609,7 +5587,7 @@ input[type=search] {
   border-bottom: 1px solid #9e9e9e;
   border-radius: 0;
   outline: none;
-  height: 3rem;
+  height: 1.5rem;
   width: 100%;
   font-size: 1rem;
   margin: 0 0 15px 0;
@@ -5662,7 +5640,7 @@ input[type=search]:disabled,
 input[type=search][readonly="readonly"],
 textarea.materialize-textarea:disabled,
 textarea.materialize-textarea[readonly="readonly"] {
-  color: rgba(0, 0, 0, 0.26);
+  color: rgba(0, 0, 0, 0.75);
   border-bottom: 1px dotted rgba(0, 0, 0, 0.26);
 }
 
@@ -6160,7 +6138,7 @@ form p:last-child {
   position: relative;
   padding-left: 35px;
   cursor: pointer;
-  display: inline-block;
+  /*display: inline-block;*/
   height:10px;
   line-height: 25px;
   font-size: 1rem;
@@ -6461,6 +6439,7 @@ select {
   margin: 0 0 15px 0;
   padding: 0;
   display: block;
+  font-family: 'robotoblack';
 }
 
 .select-wrapper span.caret {
@@ -8153,7 +8132,6 @@ color:rgba(89, 89, 89, 0.66);
   display: block;
   margin: 0 auto;
 }
-
 .picker__nav--next:before {
   border-right: 0;
   border-left: 0.75em solid #676767;

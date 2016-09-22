@@ -18,7 +18,7 @@
                <a href="PuntosClientes"><li><i class="material-icons">content_copy</i> puntos clientes</li></a>
                <a href="BajaClientes"><li><img src="<?PHP echo base_url()?>assets/img/bajacliente.png" width="30px"> baja clientes</li></a>
                <a href="Frp"><li><i class="material-icons">payment</i> canje puntos (frp)</li></a>
-               <a href="FRE"><li><i class="material-icons">payment</i> canje efectivo (fre)</li></a>
+               <a href="FRE"><li><i class="material-icons">attach_money</i> canje efectivo (fre)</li></a>
                <a href="EliminarVineta"><li><i class="material-icons">remove_circle</i> eliminar viñeta</li></a>
                <a href="Usuarios"><li><i class="material-icons">account_box</i> usuarios</li></a>
                <a href="Reportes"><li><i class="material-icons">description</i> reportes</li></a>

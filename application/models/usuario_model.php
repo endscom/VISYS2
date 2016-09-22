@@ -111,9 +111,8 @@ class Usuario_model extends CI_Model
         $consulta = str_replace('%20', ' ', $cond);
         $buscar = $this->sqlsrv->fetchArray("SELECT * from vtVS2_Vendedor where NOMBRE ='".$consulta."'",SQLSRV_FETCH_ASSOC);
 
-            $ids= $buscar [0]['VENDEDOR'];
-            $vendedores=$buscar [0]['NOMBRE'];
-
+        $ids= $buscar [0]['VENDEDOR'];
+        $vendedores=$buscar [0]['NOMBRE'];
 
         $this->sqlsrv->close();
 

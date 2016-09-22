@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="container">
-            <div class=" Buscar row column">
+            <div class="Buscar row column">
                 <div class="col s1 m1 l1 offset-l3">
                     <i class="material-icons ColorS">search</i>
                 </div>
@@ -30,7 +30,7 @@
                 <a href="#AUsuario" class="BtnBlue waves-effect  btn modal-trigger ">AGREGAR</a>
             </div>
         </div>
-        <table id="TbCatalogo" class=" TblDatos">
+        <table id="TbCatalogo" class="TblDatos center">
             <thead>
             <tr>
                 <th>FECHA CREACIÓN</th>
@@ -51,7 +51,6 @@
                             $MColor="#6a4ad5";
                             $mIcono = "#ff0000";
                             $activo='Activo';
-
                             if($user['Estado']==1)
                             {
                                 $activo='Inactivo';
@@ -64,9 +63,9 @@
                             echo "
                                  <tr>
                                     <td>".date('d/m/Y',strtotime(substr($user['FechaCreacion'], 0,10)))."</td>
-                                    <td id='NomCliente'>".$user['IdUsuario']."</td>
-                                    <td> <a href='#Duser' class='modal-trigger'>".$user['Nombre']."</td></a>
-                                    <td id='activo'style='color:".$MColor."'>".$activo."</td>
+                                    <td>".$user['IdUsuario']."</td>
+                                    <td class='negra'> <a href='#Duser' class='modal-trigger'>".$user['Nombre']."</td></a>
+                                    <td id='activo' style='color:".$MColor."'>".$activo."</td>
                                     <td><a data-tooltip='$Mmensaje' class='btn-flat tooltipped' onclick='DellUsers(".'"'.$user['IdUsuario'].'",'.'"'.$user['Estado'].'"'.")'><i style='color:".$mIcono."' class=' material-icons'>$Micono</i></td></a>
                                  </tr>
                             ";
@@ -96,16 +95,18 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <input name="user" placeholder="Nombre de Usuario" id="NombreUser" type="text" class="required">
+                        <label id="labelNombre" class="labelValidacion">DIGITE EL NOMBRE</label>
                     </div>
 
                     <div class="input-field col s6">
                         <input name="pass" placeholder="Contraseña" id="Contra" type="password" class="validate">
+                        <label id="labelPass" class="labelValidacion">DIGITE LA CONTRASEÑA</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <select name="rol" id="rol">
-                            <option value="" disabled selected> Rol de usuario</option>
+                            <option value="" disabled selected>SELECCIONE USUARIO</option>
                             <?PHP
                                 if(!($Lrol)){
                                 } else {
@@ -114,17 +115,30 @@
                                      }
                                  }
                             ?>
-                        </select>
+                        </select><label id="labelRol" class="labelValidacion">SELECCIONE UN ROL</label>
                     </div>
                     <div class="input-field col s6">
-                        <select name="vendedor" id="vendedor" data-placeholder=buscar ...">
-                            <option value="" disabled selected> </option>
+                        <select name="vendedor" id="vendedorid">
+                            <option value="" disabled selected>SELECCIONE VENDEDOR</option>
+                            <?PHP
+                                if(!($Lven)){
+                                } else {
+                                     foreach($Lven as $rol){
+                                          echo '<option value="'.$rol['IdVendedor'].'">'.$rol['Nombre'].'</option>';
+                                     }
+                                 }
+                            ?>
                         </select>
+                        <label id="labelVendedor" class="labelValidacion">SELECCIONE UN VENDEDOR</label>
                     </div>
                 </div>
                 <div class="row">
+                    <div class="progress" style="display:none">
+                          <div class="indeterminate violet"></div>
+                    </div>
                     <div class="col s6">
-                        <a  class="Btnadd btn" id="Adduser"  onclick="EnviodeDatos()">GENERAR</a></div>
+                        <a  class="Btnadd btn" id="Adduser"  onclick="EnviodeDatos()">GENERAR</a>
+                    </div>
                 </div>
             </form>
         </div>

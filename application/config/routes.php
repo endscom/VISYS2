@@ -40,6 +40,8 @@ $route['NuevoCatalogo'] = 'catalogo_controller/NuevoCatalogo';
 $route['Catalogo'] = 'catalogo_controller/index';
 $route['subirImg'] = 'catalogo_controller/subirImg';
 $route['verificarImg'] = 'catalogo_controller/verificarImg';
+$route['AjaxCatalogoPasado/(:any)'] = 'catalogo_controller/CatalogoPasado/$1';
+$route['actualizarPuntos/(:any)/(:any)/(:any)'] = 'catalogo_controller/actualizarPuntos/$1/$2/$3';
 // FIN CATALOGO
 
 // RUTA IMPRESION

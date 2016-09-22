@@ -45,7 +45,14 @@
     url('/VISYS2/assets/fonts/Robot/roboto-regular-webfont.svg#robotoregular') format('svg');
     font-weight: normal;
     font-style: normal;
-
+}
+#listaArticulosCatalogoActual{
+  width: 75%;
+  max-height: 85%;
+}
+.botonesAgregar{
+  color: #6A4AD5;
+  font-size: 40px!important;
 }
 .noMargen{
   margin: 0!important;
@@ -54,16 +61,16 @@
   width: 83%;
 }
 .negra{
-  font-family: 'robotoblack';
+  font-family: 'robotoblack'!important;
 }
 .regular{
-  font-family: 'robotoregular';
+  font-family: 'robotoregular'!important;
 }
 .medium{
-  font-family: 'robotomedium';
+  font-family: 'robotomedium'!important;
 }
 .bold{
-  font-family: 'robotobold';
+  font-family: 'robotobold'!important;
 }
 .demo-avatar {
   width: 48px;
@@ -633,9 +640,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     font-size: 14px;
     background: #1F0A71;
 }
-
 /****** Tabla zebra ********/
-
 #tblFREimpre tr:nth-child(even) {
     background-color: #ffffff;
 }
@@ -685,6 +690,29 @@ _:-ms-input-placeholder, :root .demo-graph {
 {
     background: #ffffff;
 }
+#TbCatalogo tr.odd{
+ background: #e7e2f7;
+}
+#TbCatalogo tr.even
+{
+    background: #ffffff;
+}
+#tblCatalogoActualModal tr.odd{
+ background: #e7e2f7;
+}
+#tblCatalogoActualModal tr.even
+{
+    background: #ffffff;
+}
+
+#tblCatalogoPasado tr.odd{
+ background: #e7e2f7;
+}
+#tblCatalogoPasado tr.even
+{
+    background: #ffffff;
+}
+
 #Inactiva{
     color: #ff0000;
 }
@@ -1047,17 +1075,13 @@ _:-ms-input-placeholder, :root .demo-graph {
 #DellUsers{
      color: green;
 }
-.active{
-    /*background: rgba(134, 111, 213, 0.5) !important;
-    color: #ffffff !important;*/
-}
-
 .labelValidacion{
   position: static!important;
   color: red!important;
   font-size: 12px!important;
   font-family: 'robotobold';
   display: none;
+  text-transform: uppercase;
 }
 .menu a{
     color: #fff;
@@ -1216,4 +1240,7 @@ select{
     margin-top: 5px;
     margin-right: 5px;
     margin-bottom: 0px;
-  }
+}
+.progress{
+      background-color: #1f0a71;
+}
