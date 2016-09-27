@@ -14,7 +14,6 @@
         </div>
         <div class="row right">
           <a onclick=" $('#nuevoArticulo').openModal()" class="redondo waves-effect waves-light btn"><i class="material-icons right">add</i>AGREGAR</a>
-          <a onclick=" $('#editarCatalogo').openModal()" class="redondo waves-effect waves-light btn"><i class="material-icons right">border_color</i>EDITAR</a>
         </div>
         <div class="row center">
           <table id="tblCatalogo2">
@@ -182,43 +181,6 @@
                </div>
     </div>
   </div>
-     <!-- Modal Structure -->
-  <div id="editarCatalogo" class="modal">
-    <div class="btnCerrar right">
-      <i  style='color:red;' class="material-icons modal-action modal-close">highlight_off</i>
-    </div>
-    <div class="modal-content">
-      <div class="row TextColor center">
-            <div class="col s5 m8 l12">
-               creación de catalogo
-            </div>
-      </div>
-      <div class="row">
-          <div class="input-field col s12 m4 l4">
-            <select>
-              <option value="" disabled selected>ESCOJA UN CATALOGO</option>
-              <?php 
-                if (!$catalogos) {}
-                else{
-                  foreach ($catalogos as $key ) {
-                    $newDate = date("Y", strtotime($key['Fecha']));
-                    echo "<option value='".$key['IdCT']."'>".$key['Descripcion']." de ".$newDate."</option>";
-                  }
-                }
-               ?>
-            </select>
-          </div>
-           <div class="input-field col s12 m6">
-            <select class="icons">
-              <option value="" disabled selected>Choose your option</option>
-              <option value="" data-icon="<?php echo base_url()."assets/img/catalogo/105348.jpg" ?>" class="circle">example 1</option>
-            </select>
-            <label>Images in select</label>
-          </div>
-      </div>         
-    </div>
-  </div>
-
        <!-- Modal Structure DAR DE BAJA-->
   <div id="darBaja" class="modal">
     <div class="btnCerrar right">

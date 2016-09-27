@@ -33,7 +33,6 @@ class Login_controller extends CI_Controller
         } else {
             $name = $this->input->get_post('txtUsuario');
             $pass = $this->input->get_post('txtpassword');
-
             $data['user'] = $this->login_model->login($name, $pass);
 
             if ($data['user'] == 0){
@@ -54,6 +53,6 @@ class Login_controller extends CI_Controller
 
             }
         }
-    }//fin de la fx Acreditar
+    }//fin de la funcion Acreditar
 
 }

@@ -14,13 +14,12 @@
         </div>
         <div class="row right">
           <a onclick=" $('#nuevoArticulo').openModal()" class="redondo waves-effect waves-light btn"><i class="material-icons right">add</i>AGREGAR</a>
-          <a onclick=" $('#editarCatalogo').openModal()" class="redondo waves-effect waves-light btn"><i class="material-icons right">border_color</i>EDITAR</a>
+          <a onclick=" $('#editarCatalogo').openModal()" class="redondo waves-effect waves-light btn"><i class="material-icons right">border_color</i>EDITAEEER</a>
         </div>
         <div class="row center">
           <table id="tblCatalogo2">
             <thead>
               <tr>
-
                   <th></th>
                   <th></th>
                   <th></th>
@@ -127,7 +126,7 @@
                           <div id="articulo" class="row">
                               <div class="input-field col s2 m5 l5 ">
                                   <input onmousedown="return false" onkeydown="return false" name="codigo" id="codigoArto" type="text" class="validate">
-                                  <label for="codigoArto">CODIGO:</label><label id="labelCodigo" class="labelValidacion">DIGITE EL CODIGO</label>
+                                  <label for="codigoArto">CODIGO AUTOMATICO:</label><label id="labelCodigo" class="labelValidacion">DIGITE EL CODIGO</label>
                               </div>
                               <div class="input-field col s2 m6 l6">
                                   <input name="nombre" id="NombArto" type="text" class="validate">

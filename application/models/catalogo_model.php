@@ -68,6 +68,34 @@ class Catalogo_model extends CI_Model
         }
         return 0;
     }
+    public function bandera()
+    {
+        $this->db->where('Estado',0);
+        $query = $this->db->get('catalogo');
+        if ($query->num_rows()>0) {
+            $R = $query->row();
+        }
+        $fecha = date_format(date_create(date('Y-m-d')),'Y');
+        $fecha2 = date_format(date_create($R->Fecha),'Y');
+        if (date_format(date_create(date('Y-m-d')),'Y')>date_format(date_create($R->Fecha),'Y')) {
+            return 1;
+        }
+        elseif (date_format(date_create(date('Y-m-d')),'m')>date_format(date_create($R->Fecha),'m')) {
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    public function traerCatalogosActual()
+    {
+        $this->db->where('Estado',0);
+        $query = $this->db->get('catalogo');
+        if ($query->num_rows()>0) {
+            return $query->result_array();
+        }
+        return 0;
+    }
     public function traerCatalogosHistorial()
     {
         $this->db->where('Estado',1);
@@ -85,6 +113,36 @@ class Catalogo_model extends CI_Model
         $this->db->where('IdCT',$codCatalogo);
         $this->db->where('CodigoImg',$codImagen);
         $this->db->update('detallect',$data);
+    }
+    public function crearCatalogo($descripcion,$fecha)
+    {
+        $data = array( 'Estado' => 1);
+        $this->db->update('catalogo',$data);
+        $data = array( 'Descripcion' => $descripcion,
+                       'Fecha' => date_format(date_create($fecha),'Y-m-d'),
+                       'Estado' => 0
+                    );
+        $this->db->insert('catalogo',$data);
+
+    }
+    public function actualizarCatalogo($codigo,$articulo,$puntos,$idCatalogo,$idCatalogoArticulo)
+    {
+        $this->db->where('IdCT',$idCatalogoArticulo);
+        $this->db->where('CodigoImg',$codigo);
+        $query = $this->db->get('detallect');
+        
+        if($query->num_rows() > 0){
+             $R = $query->row();
+             $data = array(
+               'IdCT' => $idCatalogo,
+               'CodigoImg' => $codigo,
+               'Nombre' => $articulo,
+               'Imagen' => $R->Imagen,
+               'Puntos' => $puntos,
+               'Estado' => 0
+            );
+            $this->db->insert('detallect', $data);
+        }
     }
 }
 ?>

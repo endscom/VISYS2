@@ -39,9 +39,11 @@ $route['Reportes'] = 'vista_controller/Reportes';
 $route['NuevoCatalogo'] = 'catalogo_controller/NuevoCatalogo';
 $route['Catalogo'] = 'catalogo_controller/index';
 $route['subirImg'] = 'catalogo_controller/subirImg';
+$route['crearCatalogo'] = 'catalogo_controller/crearCatalogo';
 $route['verificarImg'] = 'catalogo_controller/verificarImg';
 $route['AjaxCatalogoPasado/(:any)'] = 'catalogo_controller/CatalogoPasado/$1';
 $route['actualizarPuntos/(:any)/(:any)/(:any)'] = 'catalogo_controller/actualizarPuntos/$1/$2/$3';
+$route['actualizarCatalogo'] = 'catalogo_controller/actualizarCatalogo';//ruta para guardar los nuevos articulos en el catalogo
 // FIN CATALOGO
 
 // RUTA IMPRESION

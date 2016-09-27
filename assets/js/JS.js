@@ -1,6 +1,14 @@
 var activo = false;
 $(document).ready(function() {
 
+$('.datepicker').pickadate({ 
+        selectMonths: true,selectYears: 15,format: 'dd-mm-yyyy',
+        monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        weekdaysFull: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+        showMonthsShort: undefined,showWeekdaysFull: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],today: 'Hoy',
+        clear: 'BORRAR',close: 'CERRAR' });
+
     //$('#listaArticulosCatalogoActual').openModal();
     $('select').material_select();
 
@@ -9,7 +17,6 @@ $('#txtimagen').change(function(){
     var file = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
     var codigo = file.split(".");$('#codigoArto').val(codigo[0]);
 });
-
 var idImagenGlobal;
 var IdCatalogoGlobal;
 $('#tblCatalogoActual').DataTable( {
@@ -21,7 +28,7 @@ $('#tblCatalogoActual').DataTable( {
                     "first":      "Primera",
                     "last":       "Última ",
                     "next":       "Siguiente",
-                    "previous":   "Anterior"                    
+                    "previous":   "Anterior"
                 },
                 "lengthMenu": "MOSTRAR _MENU_ REGISTORS",
                 "search":     "BUSCAR"
@@ -29,7 +36,24 @@ $('#tblCatalogoActual').DataTable( {
         });
 $('#tblCatalogoPasado').DataTable( {
             "info":    false,
-            //"bPaginate": false,
+            "bPaginate": true,
+            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
+            "language": {
+                "paginate": {
+                    "first":      "Primera",
+                    "last":       "Última ",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+                "lengthMenu": "MOSTRAR _MENU_ REGISTROS",
+                "search":     "BUSCAR"
+            }
+        });
+$('#tblCatalogoActualModal').DataTable( {
+            "scrollY":        "280px",
+            "scrollCollapse": true,
+            "paging":         false,
+            "info":    false,
             "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
             "language": {
                 "paginate": {
@@ -38,40 +62,21 @@ $('#tblCatalogoPasado').DataTable( {
                     "next":       "Siguiente",
                     "previous":   "Anterior"                    
                 },
-                "lengthMenu": "MOSTRAR _MENU_ REGISTORS",
-                "search":     "BUSCAR"
-            }
-        });
-$('#tblCatalogoActualModal').DataTable( {
-            "info":    false,
-            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
-            "language": {                
-                "paginate": {
-                    "first":      "Primera",
-                    "last":       "Última ",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"                    
-                },
                 "lengthMenu": "MOSTRAR _MENU_",
                 "emptyTable": "No hay datos disponibles en la tabla",
                 "search":     "BUSCAR"
             }
         });
-$('#tblCatalogo2').DataTable( {
-            "info":    false,
-            "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
-            "language": {                
-                "paginate": {
-                    "first":      "Primera",
-                    "last":       "Última ",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"                    
-                },
-                "lengthMenu": "MOSTRAR _MENU_",
-                "emptyTable": "No hay datos disponibles en la tabla",
-                "search":     "BUSCAR"
-            }
-        });
+         $('#tblCatalogoActualModal tbody').on( 'click', 'tr', function () {
+                var table2 = $('#tblCatalogoActualModal').DataTable();
+                $('#tblCatalogoActualModal tbody').on( 'click', 'tr', function () {
+                    $(this).toggleClass('selected');
+                } );
+            } );         
+            $('#btnborrarSeleccionados').click( function () {
+                var table2 = $('#tblCatalogoActualModal').DataTable();
+                table2.row('.selected').remove().draw( false );
+            } );
     /******Agregar clase Activo a items del Menú******/
  $('#tblCatalogo').DataTable();
     $(".nav li a").each(function() {
@@ -86,7 +91,7 @@ $('#tblCatalogo2').DataTable( {
     /****** Seccíon del Menú ******/
 
     /**** DATATABLES ****/
-    $('#tblFREimpre,#TbCatalogo,#TblMaVinetas,#MCXP,#tblEliminar,#ClienteAdd,#BajaCliente,#PtosCliente,#FRP,#tblpRODUCTOS,#tblModals').DataTable(
+    $('#tblFREimpre,#TbCatalogo,#TblMaVinetas,#MCXP,#tblEliminar,#ClienteAdd,#BajaCliente,#PtosCliente,#FRP,#tblpRODUCTOS,#tblModals,#tblCatalogo2').DataTable(
         {
             "info":    false,
             "searching": false,
@@ -147,7 +152,6 @@ $('#tblCatalogo2').DataTable( {
             $(this).removeClass('even');
             $(this).toggleClass('selected');
         }
-
     } );
 } );//Fin Document ready
 
@@ -184,9 +188,12 @@ function EnviodeDatos(){
     }
 
 function myTimer() {
-    //$(location).attr('href',"Usuarios");
+    $(location).attr('href',"Usuarios");
 }
-
+function myTimer2() {
+    Materialize.toast('SE GUARDARON LOS CAMBIOS EN EL CATALOGO, ESPERE..', 3000);
+    $(location).attr('href',"NuevoCatalogo");
+}
 //CAMBIAR DE ESTADO AL USUARIO EKISDE
 function DellUsers(IdUser, Estado){
     $('#CsUser').openModal();
@@ -233,27 +240,24 @@ function AddClients(){
 
     });
 }
-//exportar a excel
-function generar_reporte_excel(){
-    document.getElementById('FrmClientes').submit();
-}
-//Exportar a PDF
-function  generar_reporte_pdf(){
-    document.getElementById('FrmClientes').submit();
-}
+    //exportar a excel
+    function generar_reporte_excel(){
+        document.getElementById('FrmClientes').submit();
+    }
+    //Exportar a PDF
+    function  generar_reporte_pdf(){
+        document.getElementById('FrmClientes').submit();
+    }
 function subirimagen()
 {    
-    $('#labelCodigo').hide();
-    $('#labelDescripcion').hide();
-    $('#labelPuntos').hide();
-    $('#labelImagen').hide();
+    $('#labelCodigo').hide();   $('#labelDescripcion').hide();
+    $('#labelPuntos').hide();   $('#labelImagen').hide();
     if ($('#txtimagen').val()=="") {$('#labelImagen').show(); return false;}   
     if ($('#codigoArto').val()=="") {$('#labelCodigo').show();return false;}
     if ($('#NombArto').val()=="") {$('#labelDescripcion').show();return false;}
     if ($('#PtArto').val()=="") {$('#labelPuntos').show();return false;} 
     else{   
-    $('#agregar').hide();
-    $('#loadIMG').show(); 
+    $('#agregar').hide();$('#loadIMG').show(); 
     var file = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
             var formData = new FormData($("#formimagen")[0]);
             $.ajax({
@@ -305,8 +309,7 @@ function subirimagen()
                     { "data": "Nombre" },
                     { "data": "Imagen" },
                     { "data": "Puntos" },
-                    { "data": "check" },
-                    { "data": "idCT" }
+                    { "data": "check" }
               ]
             });
         $('#listaArticulos').openModal();
@@ -314,7 +317,7 @@ function subirimagen()
 
     $("#aceptarIMG").click(function(){
         $('#formimagen').submit();
-    });
+    });      
     /*RECORRER LAS FILAS CHEKEADAS Y AGREGARLAS A LA TABLA DE CATALOGO ACTUAL EKISDE*/
     $('#addCatalogoAntiguo').click(function(){
          $("#tblCatalogoPasado input:checkbox:checked").each(function(index) {
@@ -323,7 +326,7 @@ function subirimagen()
             var campo1 = "";
             var campo2 = "";
             var campo3 = "";
-            var campo4 = ""; var campo5 = "";
+            var campo4 = ""; var campo5 = ""; var bandera = 0; 
             $(this).parents("tr").find("td").each(function(){
                 switch($(this).parent().children().index($(this))) {//obtengo el index de la columna EKISDE
                     case 0:
@@ -336,25 +339,35 @@ function subirimagen()
                         campo3 = $(this).html();
                         break;
                     case 3:
-                        campo4 = $(this).html();
+                        campo4 = $(this).html()+'<input id="'+campo1+'" type="hidden" value="'+$('#cmbCatalogos').val()+'"/>';
                         break;
                     case 5:
                         campo5 = $(this).html();
                         break;
                     default:x="";
                 }
-            });
-            table.row.add( [
+            });/*valido si el articulo ya esta agregado*/
+            table.cells().eq(0).each( function ( index ) {
+                var cell = table.cell(index);             
+                var data = cell.data();
+                if (campo1 == data) {bandera=1;};
+            } );
+            if (bandera == 0) {
+            table.row.add([
                         campo1,
                         campo2,
                         campo3,
-                        campo4,
-                        "<a href='#' onclick='darBaja("+campo1+","+campo5+")'><i class='material-icons'>delete_forever</i></a>"
-                    ] ).draw(false);
-            var $toastContent = $('<span>ARTÍCULO AGREGADO</span>');
-            Materialize.toast($toastContent, 3000,'rounded error');
+                        campo4
+                    ]).draw(false);var $toastContent = $('<span class"center">ARTÍCULO AGREGADO</span>');
+            Materialize.toast($toastContent, 3500,'rounded');
+            }
+            else{
+                var $toastContent = $('<span class="center">EL ARTICULO: <h6 class="negra noMargen">"'+campo2+'"</h6> YA ESTA AGREGADO</span>');
+                Materialize.toast($toastContent, 3500,'rounded error');
+            }
         });
     });
+
     function ActualizarPuntos(codImagen,IdCatalogo) {
         $('#tblCatalogoActual').hide();
         $('.progress2').show();
@@ -374,8 +387,84 @@ function subirimagen()
         $('#guardarCatalogo').hide();
         $('#darBaja').closeModal();
     });
-function darBaja(idImagen,IdCatalogo){
-    $('#darBaja').openModal();
-    idImagenGlobal = idImagen;
-    IdCatalogoGlobal = IdCatalogo;
-}
+     /*metodo para guardar el catalogo, con los nuevos articulos agregados*/
+    $("#guardarCatalogo").on('click',function(){
+            var codigo = ""; var articulo = ""; 
+            var puntos = ""; var IdCatalogoArticulo = ""; var bandera = 0; 
+            var IdCatalogo = $('#IdCatalogoActual').val(); $('#guardarCatalogo').hide();
+            var table = $('#tblCatalogoActual').DataTable();
+            $('.progress2').show();$('#tblCatalogoActualModal').hide();
+            $("#tblCatalogoActualModal tbody tr").each(function(index) {
+                $(this).children("td").each(function(index2){/*metodo para recorrer la tabla*/
+                    switch($(this).parent().children().index($(this))) {//obtengo el index de la columna EKISDE
+                        case 0:
+                            codigo = $(this).html();
+                            break;
+                        case 1:
+                            articulo = $(this).html();
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            puntos = $(this).html().split("<");
+                            puntos = puntos[0];
+                            IdCatalogoArticulo = $('#'+codigo+'').val();
+                            break;
+                        default: 
+                    }
+                });
+            table.cells().eq(0).each( function ( index ) {/*VALIDO SI EL ARTICULO YA ESTA AGREGADO EN LA TABLA*/
+                var cell = table.cell(index);             
+                var data = cell.data();
+                if (codigo == data) {bandera=1;};
+            } );
+            if (bandera!=1) {
+            var form_data = {
+                codigo: codigo,
+                puntos: puntos,
+                articulo: articulo,
+                IdCatalogo: IdCatalogo,
+                IdCatalogoArticulo: IdCatalogoArticulo
+                };
+             $.ajax({
+                url: "actualizarCatalogo",
+                type: "post",
+                async:true,
+                data: form_data,
+                success:
+                    function(json){
+                        var myVar = setInterval(myTimer2, 2000);
+                    }
+                });}
+             else{
+                var $toastContent = $('<span class="center">EL ARTICULO: <h6 class="negra noMargen">"'+articulo+'"</h6> YA EXISTE Y NO SE AGREGO</span>');
+                Materialize.toast($toastContent, 3500,'rounded error');
+                var myVar = setInterval(myTimer2, 2000);}
+            });
+    });
+
+    function darBaja(r){
+         var table = $('#tblCatalogoActualModal').DataTable();
+         
+            $('#tblCatalogoActualModal tbody').on( 'click', 'tr', function () {
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            } );         
+            $('#button').click( function () {
+                table.row('.selected').remove().draw( false );
+            } );
+    }
+    $("#CrearCatalogo").on('click',function(){
+        $('#labelDescripcion').hide();  $('#labelFecha').hide();
+        if ($('#descripcionCat').val()=="") {$('#labelDescripcion').show(); return false;}   
+        if ($('#fechaCat').val()=="") {$('#labelFecha').show();return false;}
+    else{
+        $('#CrearCatalogo').hide();
+        $('#formNuevoCatalogo').submit();
+        }
+    });

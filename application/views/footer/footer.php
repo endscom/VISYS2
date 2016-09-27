@@ -10,6 +10,7 @@
 <script src="<?PHP echo base_url();?>assets/js/materialize.js"></script>
 <script src="<?PHP echo base_url();?>assets/js/bootstrap.js"></script>
 
+
 <script>
     $('.datepicker1').pickadate({
         selectMonths: true, // Creates a dropdown to control month

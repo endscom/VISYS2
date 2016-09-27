@@ -9,7 +9,6 @@ class Catalogo_controller extends CI_Controller
         if($this->session->userdata('logged')==0){ //No aceptar a usuarios sin loguearse
             redirect(base_url().'index.php/login','refresh');
         }
-        $this->load->model('catalogo_model');
     }
     public function index()
     {
@@ -26,8 +25,20 @@ class Catalogo_controller extends CI_Controller
       $this->load->view('pages/menu');
       $data['catalogo'] = $this->catalogo_model->traerCatalogoImgActual();
       $data['catalogos'] = $this->catalogo_model->traerCatalogosHistorial();
+      $data['catActual'] = $this->catalogo_model->traerCatalogosActual();
+      $data['bandera'] = $this->catalogo_model->bandera();
       $this->load->view('pages/catalogo/nuevocatalogo',$data);
       $this->load->view('footer/footer');
+    }
+    public function actualizarCatalogo()
+    {
+      $codigo = $this->input->post('codigo');
+      $articulo = $this->input->post('articulo');
+      $puntos = $this->input->post('puntos');
+      $idCatalogo = $this->input->post('IdCatalogo');
+      $idCatalogoArticulo = $this->input->post('IdCatalogoArticulo');
+      //echo $codigo." ".$articulo." ".$puntos." ".$idCatalogo."<br>";
+      $this->catalogo_model->actualizarCatalogo($codigo,$articulo,$puntos,$idCatalogo,$idCatalogoArticulo);
     }
     public function CatalogoPasado($idCatalogo)
     {
@@ -37,6 +48,16 @@ class Catalogo_controller extends CI_Controller
     {
         $this->catalogo_model->actualizarPuntos($codImagen,$codCatalogo,$puntos);
         //redirect('NuevoCatalogo','refresh');
+    }
+    public function crearCatalogo()
+    {
+        $Descripcion = $this->input->post('descripcion');
+        $fecha = $this->input->post('fecha');
+        if ($Descripcion != "" and $fecha != "") {
+          $this->catalogo_model->crearCatalogo($Descripcion,$fecha);
+        }
+        $this->NuevoCatalogo();
+
     }
    	public function subirImg()
    	{   		
