@@ -462,8 +462,8 @@ _:-ms-input-placeholder, :root .demo-graph {
 
     color: #fff;
 }
+
 .Btnadd{
-    margin-left: 90%;
     text-align: center;
     border-radius: 20px;
     background: #1F0A71;
@@ -643,105 +643,34 @@ _:-ms-input-placeholder, :root .demo-graph {
     background: #1F0A71;
 }
 /****** Tabla zebra ********/
-#tblFREimpre tr:nth-child(even) {
-    background-color: #ffffff;
+table tr:nth-child(even) {
+    background-color: #ffffff!important;
+}
+table tr:nth-child(odd) {
+    background-color: #e7e2f7!important;
 }
 
-#tblFREimpre tr:nth-child(odd) {
-    background-color: #e7e2f7;
+table th {
+    background: #1F0A71;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'robotobold';
 }
-
-#MCXP tr:nth-child(even) {
-    background-color: #ffffff;
+.transparente th{
+  opacity: 0.0;
 }
-
-#MCXP tr:nth-child(odd) {
-    background-color: #e7e2f7;
-}
-
-#tblEliminar tr:nth-child(even) {
-    background-color: #ffffff;
-}
+#tblCatalogo2 tr:nth-child(odd) {
+      background-color: rgba(255, 255, 255, 0)!important;
+  }
+  #tblCatalogo2 tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0)!important;
+  }
 .select{
     background: red;
-}
-#BajaCliente tr:nth-child(odd) {
-    background-color: #e7e2f7;
-}
-
-#BajaCliente tr:nth-child(even) {
-    background-color: #ffffff;
-}
-
-#tblEliminar tr:nth-child(odd) {
-    background-color: #e7e2f7;
-}
-
-#ClienteAdd tr.odd
-{
-    background: #e7e2f7;
-}
-#ClienteAdd tr.even
-{
-    background: #ffffff;
-}
-#tblCatalogoActual tr.odd{
- background: #e7e2f7;
-}
-#tblCatalogoActual tr.even
-{
-    background: #ffffff;
-}
-#TbCatalogo tr.odd{
- background: #e7e2f7;
-}
-#TbCatalogo tr.even
-{
-    background: #ffffff;
-}
-#tblCatalogoActualModal tr.odd{
- background: #e7e2f7;
-}
-#tblCatalogoActualModal tr.even
-{
-    background: #ffffff;
-}
-
-#tblCatalogoPasado tr.odd{
- background: #e7e2f7;
-}
-#tblCatalogoPasado tr.even
-{
-    background: #ffffff;
 }
 
 #Inactiva{
     color: #ff0000;
-}
-
-#TblMaVinetas tr:nth-child(odd)
-{
-    background-color: #e7e2f7;
-}
-#TblMaVinetas tr:nth-child(even)
-{
-    background-color: #ffffff;
-}
-
-#PtosCliente tr:nth-child(odd)
-{
-    background-color: #e7e2f7;
-}
-#PtosCliente tr:nth-child(even)
-{
-    background-color: #ffffff;
-}
-
-#FRP tr:nth-child(odd){
-    background-color: #e7e2f7;
-}
-#FRP tr:nth-child(even){
-    background-color: #ffffff;
 }
 
 /****** Tabla zebra ********/
@@ -766,15 +695,15 @@ _:-ms-input-placeholder, :root .demo-graph {
     color: #1F0A71;
     font-weight: 500;
 }
-#frp{
-     border: 1px solid #6a4ad5;
+.frp{
+     border: 1px solid #6a4ad5!important;
      box-shadow: none;
      text-align: center;
      font-family: 'robotoblack';
      font-size: 12px;
      color: #1F0A71;
      font-weight: 500;
-     height: 40px;
+     height: 40px!important;
      font-size: 12px;
 
  }
@@ -1278,4 +1207,13 @@ label>select {
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
+}
+.mayuscula{
+  text-transform: uppercase!important;
+}
+.row{
+  width: 100%!important;
+}
+.dataTables_filter{
+  display: none!important;
 }

@@ -20,15 +20,13 @@
                     <i class="material-icons ColorS">search</i>
                 </div>
                 <div class="input-field col s6 m6 l4">
-                    <input  id="search" type="text" placeholder="Buscar" class="validate">
-                    <label for="search"></label>
+                    <input  id="searchUsuarios" type="text" placeholder="Buscar" class="validate">
+                    <label for="searchUsuarios"></label>
                 </div>
             </div>
         </div>
         <div class="right row">
-            <div class="col s3">
                 <a href="#AUsuario" class="BtnBlue waves-effect  btn modal-trigger ">AGREGAR</a>
-            </div>
         </div>
         <table id="TbCatalogo" class="TblDatos center">
             <thead>
@@ -82,13 +80,7 @@
 <!-- AGREGAR USUARIO -->
 <div id="AUsuario" class="modal">
     <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
+        <div class="btnCerrar right"><i style='color:red;' class="material-icons modal-action modal-close">highlight_off</i></div>
         <h6 class="center Mcolor AdUser">AGREGAR USUARIO VISYS </h6>
         <div class="row">
             <form class="col s12"  method="post" name="formAddUser">
@@ -111,7 +103,7 @@
                                 if(!($Lrol)){
                                 } else {
                                      foreach($Lrol as $rol) {
-                                          echo '<option value="'.$rol['Descripcion'].'">'.$rol['Descripcion'].'</option>';
+                                          echo '<option class="mayuscula" value="'.$rol['Descripcion'].'">'.$rol['Descripcion'].'</option>';
                                      }
                                  }
                             ?>
@@ -173,13 +165,7 @@
 <!-- Modal Structure -->
 <div id="Duser" class="modal">
     <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
+        <div class="btnCerrar right"><i style='color:red;' class="material-icons modal-action modal-close">highlight_off</i></div>
         <h6 class="center Mcolor AdUser">INFORMACIÓN DEL CLIENTE</h6>
         <p class="center datos1 cod "> COD. CLIENTE: 00449</p>
         <h6  class="center datos1 user linea">00449 FARMACIA CASTELLÓN</h6>

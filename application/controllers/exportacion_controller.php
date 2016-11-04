@@ -19,4 +19,17 @@ class Exportacion_controller extends CI_Controller
         $PdfCliente -> writeHTML($this->load->view('Exportar/Pdf_Cliente',$query,true));
         $PdfCliente->Output();
     }
+    public function ExpPDF_PuntosClientes()
+    {
+        $query = $this->cliente_model->LoadClientsPuntos();// Cargar puntos clientes
+        $PdfCliente = new mPDF('utf-8','A4');
+        $PdfCliente -> writeHTML($this->load->view('Exportar/pdf_PuntosClientes',$query,true));
+        $PdfCliente->Output();
+    }
+
+    public function ExpEXCEL_PuntosClientes()
+    {
+        $query = $this->cliente_model->LoadClientsPuntos();// Cargar puntos clientes
+        $this->load->view('Exportar/Excel_PuntosClientes',$query);
+    }
 }

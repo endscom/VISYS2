@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Cliente_controller extends CI_Controller
+class Clientes_controller extends CI_Controller
 {
     public function __construct(){
         parent::__construct();
@@ -15,4 +15,44 @@ class Cliente_controller extends CI_Controller
     public function FindClient($cond){
          $this->cliente_model($cond);
     }
+    public function Clientes(){
+        $query = $this->cliente_model->LoadClients();// Cargar Clientes
+
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/Clientes',$query);
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/js_clientes');
+    }
+    public  function BajaClientes(){
+        $query = $this->cliente_model->LoadClientsBaja();
+
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/BajaClientes',$query);
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/js_clientes');
+    }
+    public  function  PuntosClientes(){
+        $query = $this->cliente_model->LoadClientsPuntos();// Cargar puntos clientes
+        
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/PuntosClientes',$query);
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/js_clientes');
+    }
+    public function generarUsuarios()
+    {
+        $this->cliente_model->generarUsuarios($this->input->post('codigo'),$this->input->post('nombre'),$this->input->post('vendedor'));
+    }
+    public function traerUsuario($codigo)
+    {
+        $this->cliente_model->traerUsuario($codigo);
+    }
+    public function darBajaCliente()
+    {
+        $this->cliente_model->darBajaCliente($this->input->post('codigo'));
+    }
 }
+?>

@@ -10,8 +10,6 @@
         <div class="row">
             <div class="col s12">
                 <div id="body">
-
-
                         <form class="form" method="post" action="<?php echo base_url('index.php/login')?>">
                             <div class="container">
                                 <div  class=" row">
@@ -27,27 +25,13 @@
 
                                     </div>
                                 </div>
-                                <!--<div class="row">
-                                    <div class="input-field col s3 m3 l3 offset-l4  offset-m2 login-text">
-                                        <input type="checkbox" id="remember-me"  name="recordarme" value="1">
-                                        <label  for="remember-me">RECORDAR</label>
-                                    </div>
-                                </div>-->
                             </div>
-
-                            <div class="row">
-                                <div class="col s3 m2 l6">
+                            <div class="row center">
                                     <button id="Acceder" class="Btnadd modal-action modal-close btn" type="submit" name="action">ACCEDER</button>
-                                </div>
                             </div>
-
                         </form><!-- Fin del Formulario de Identificación -->
 
-
                 </div>
-
             </div>
         </div>
-
-
     </div>

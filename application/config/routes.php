@@ -16,13 +16,18 @@ $route['Main'] = 'vista_controller/main';
 $route['EliminarVineta'] = 'vista_controller/EliminarVineta';
 
 /* CLIENTES */
-$route['Clientes'] = 'vista_controller/Clientes';
+$route['Clientes'] = 'clientes_controller/Clientes';
 $route['FindClient/(:any)'] = 'clientes_controller/FindClient/$1';
+$route['BajaClientes'] = 'clientes_controller/BajaClientes';
+$route['PuntosClientes'] = 'clientes_controller/PuntosClientes';
+$route['generarUsuarios'] = 'clientes_controller/generarUsuarios';
+$route['traerUsuario/(:any)'] = 'clientes_controller/traerUsuario/$1';
+$route['darBajaCliente'] = 'clientes_controller/darBajaCliente';
 
-$route['BajaClientes'] = 'vista_controller/BajaClientes';
-$route['PuntosClientes'] = 'vista_controller/PuntosClientes';
 $route['DetalleFact'] = 'vista_controller/DetalleFact';
-$route['Frp'] = 'vista_controller/CanjeFrp';
+
+/*CANNJES FRP FRE*/
+$route['Frp'] = 'canje_controller';
 $route['FRE'] = 'vista_controller/CanjeFre';
 
 /*USUARIOS*/
@@ -33,6 +38,10 @@ $route['LoadVendedores'] = 'Usuario_controller/LoadVendedor';
 $route['LoadCliente'] = 'Usuario_controller/LoadClient';// cargar los clientes
 /*USUARIOS*/
 
+// RUTA FACTURAS
+$route['facturas'] = 'facturas_controller';
+$route['detallefacturas/(:any)'] = 'facturas_controller/detallefacturas/$1';
+// RUTA REPORTES
 $route['Reportes'] = 'vista_controller/Reportes';
 
 /*RUTAS DE CATALOGO*/
@@ -40,10 +49,14 @@ $route['NuevoCatalogo'] = 'catalogo_controller/NuevoCatalogo';
 $route['Catalogo'] = 'catalogo_controller/index';
 $route['subirImg'] = 'catalogo_controller/subirImg';
 $route['crearCatalogo'] = 'catalogo_controller/crearCatalogo';
-$route['verificarImg'] = 'catalogo_controller/verificarImg';
+$route['verificarImg/(:any)'] = 'catalogo_controller/verificarImg/$1';//verifico si la imagen existe ekisde
+$route['ActualizarEstadoArticulo'] = 'catalogo_controller/ActualizarEstadoArticulo';
 $route['AjaxCatalogoPasado/(:any)'] = 'catalogo_controller/CatalogoPasado/$1';
 $route['actualizarPuntos/(:any)/(:any)/(:any)'] = 'catalogo_controller/actualizarPuntos/$1/$2/$3';
 $route['actualizarCatalogo'] = 'catalogo_controller/actualizarCatalogo';//ruta para guardar los nuevos articulos en el catalogo
+$route['getArticulosInactivos'] = 'catalogo_controller/getArticulosInactivos';
+$route['subirVariasImagenes'] = 'catalogo_controller/subirVariasImagenes';
+$route['activarArticulos/(:any)'] = 'catalogo_controller/activarArticulos/$1';
 // FIN CATALOGO
 
 // RUTA IMPRESION
@@ -54,4 +67,6 @@ $route['DetalleFRE'] = 'impresion_controller/DetalleFRE';
 // RUTA EXPORTACIÓN
 $route['Exp_Clientes'] = 'exportacion_controller/ExpoClients';
 $route['ExpPDF'] = 'exportacion_controller/ExpoPdf';
+$route['ExpPDF_PuntosClientes'] = 'exportacion_controller/ExpPDF_PuntosClientes';
+$route['ExpEXCEL_PuntosClientes'] = 'exportacion_controller/ExpEXCEL_PuntosClientes';
 // FIN EXPORTACIÓN

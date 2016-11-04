@@ -106,10 +106,10 @@
         foreach($query AS $cliente)
         {
             echo "<tr>
-                                   <td id='NomCliente'>".$query[$i]['NOMBRE']."</td>
-                                   <td>".$query[$i]['RUC']."</td>
-                                   <td>".$query[$i]['DIRECCION']."</td>
-                              </tr>";
+                    <td id='NomCliente'>".$query[$i]['NOMBRE']."</td>
+                    <td>".$query[$i]['RUC']."</td>
+                    <td>".$query[$i]['DIRECCION']."</td>
+                </tr>";
             $i++;
         }
     }

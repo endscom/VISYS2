@@ -15,8 +15,10 @@ class Vista_controller extends CI_Controller
     public function main(){
         $this->load->view('header/header');
         $this->load->view('pages/menu');
-        $this->load->view('pages/main');
+        $data['catalogo'] = $this->catalogo_model->traerCatalogoImg();
+        $this->load->view('pages/main',$data);
         $this->load->view('footer/footer');
+        $this->load->view('jsview/js_catalogo');
     }
 
     public function EliminarVineta(){
@@ -26,40 +28,10 @@ class Vista_controller extends CI_Controller
         $this->load->view('footer/footer');
     }
 
-    public function Clientes(){
-        $query = $this->cliente_model->LoadClients();// Cargar Clientes
-
-        $this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/Clientes',$query);
-        $this->load->view('footer/footer');
-    }
-
-    public  function BajaClientes(){
-        $this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/BajaClientes');
-        $this->load->view('footer/footer');
-    }
-
-    public  function  PuntosClientes(){
-        $this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/PuntosClientes');
-        $this->load->view('footer/footer');
-    }
-
     public function DetalleFact(){
         $this->load->view('header/header');
         $this->load->view('pages/menu');
         $this->load->view('pages/DetalleFact');
-        $this->load->view('footer/footer');
-    }
-
-    public function CanjeFrp(){
-        $this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/CanjeFRP');
         $this->load->view('footer/footer');
     }
 
@@ -88,6 +60,7 @@ class Vista_controller extends CI_Controller
         $this->load->view('pages/menu');
         $this->load->view('pages/Users',$query);
         $this->load->view('footer/footer');
+        $this->load->view('jsview/js_usuarios');
     }
 
     public function Reportes(){

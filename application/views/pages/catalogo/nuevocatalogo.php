@@ -166,23 +166,6 @@
     </div>
 </div>
 
-  <!-- Modal Structure DAR DE BAJA-->
-  <div id="darBaja" class="modal">
-    <div class="btnCerrar right">
-      <i  style='color:red;' class="material-icons modal-action modal-close">highlight_off</i>
-    </div>
-    <div class="modal-content">
-      <div class="row TextColor center">
-            <div class="col s5 m8 l12">
-               ¿está seguro que desea dar de baja a este artículo?
-            </div>
-      </div>
-      <div class="row center">
-            <a id="darBajaOK" class="redondo waves-effect waves-light btn">ACEPTAR</a>
-      </div>         
-    </div>
-  </div>
-
   <!--Modal Structure nuevo catalogo-->
 <div id="modalNuevoCatalogo" class="modal">
     <div class="btnCerrar right">

@@ -403,6 +403,7 @@ table.dataTable td {
 .dataTables_wrapper .dataTables_paginate {
   color: #1F0A71;
   font-size: 10px;
+  /*display: none;*/
 }
 .dataTables_wrapper .dataTables_scroll {
   clear: both;
