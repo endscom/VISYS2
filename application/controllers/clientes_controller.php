@@ -54,5 +54,9 @@ class Clientes_controller extends CI_Controller
     {
         $this->cliente_model->darBajaCliente($this->input->post('codigo'));
     }
+    public function ListarClientes()
+    {
+        $this->cliente_model->ListarClientes();
+    }
 }
 ?>

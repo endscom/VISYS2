@@ -17,7 +17,7 @@ class Facturas_model extends CI_Model
             $json['query'][$i]['FACTURA'] = $key['FACTURA'];
             $json['query'][$i]['CLIENTE'] = $key['CLIENTE'];
             $json['query'][$i]['NOMBRE_CLIENTE'] = $key['NOMBRE_CLIENTE'];
-            $json['query'][$i]['PUNTOS'] = $key['PUNTOS'];
+            $json['query'][$i]['PUNTOS'] = number_format($key['PUNTOS'],2);
             $json['query'][$i]['VER'] = "<a  onclick='detalleFactura(".'"'.$key['FACTURA'].'"'.")' href='#!' class='modal-trigger noHover'><i class='material-icons'>remove_red_eye</i></a>";
             $i++;
         }
@@ -38,7 +38,7 @@ class Facturas_model extends CI_Model
         foreach($query as $key){
             $json['data'][$i]['ARTICULO'] = $key['ARTICULO'];
             $json['data'][$i]['DESCRIPCION'] = $key['DESCRIPCION'];
-            $json['data'][$i]['CANTIDAD'] = $key['CANTIDAD'];
+            $json['data'][$i]['CANTIDAD'] = number_format($key['CANTIDAD'],2);
             $json['data'][$i]['PUNTOS'] = $key['PUNTOS'];
             $json['data'][$i]['TOTAL'] = ($key['CANTIDAD']*$key['PUNTOS']);
             $i++;

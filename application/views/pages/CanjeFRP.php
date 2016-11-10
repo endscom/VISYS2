@@ -20,8 +20,8 @@
                 </div>
 
                 <div class="input-field col s5 m4 l4">
-                    <input  id="searchClientes" type="text" placeholder="Buscar" class="validate">
-                    <label for="searchClientes"></label>
+                    <input  id="searchFRP" type="text" placeholder="Buscar" class="validate">
+                    <label for="searchFRP"></label>
                 </div>
             </div>
         </div>
@@ -32,44 +32,44 @@
                 <a href="#MFrp" class="BtnBlue waves-effect  btn modal-trigger">canje</a>
         </div>
 
-        <table id="FRP" class=" TblDatos">
+        <table id="tblFRP" class=" TblDatos">
 
             <thead>
-            <tr>
-                <th>FECHA</th>
-                <th>#FRP</th>
-                <th>COD. CLIENTE</th>
-                <th>NOMBRE</th>
-                <th>ELIMINAR</th>
-            </tr>
+                <tr>
+                    <th>FECHA</th>
+                    <th>#FRP</th>
+                    <th>COD. CLIENTE</th>
+                    <th>NOMBRE</th>
+                    <th>ELIMINAR</th>
+                </tr>
             </thead>
 
-            <tbody>
+            <tbody class="center">
+            <?php 
+                if(!$Lista){
+            } else {
+                foreach($Lista as $frp){
 
-            <tr>
-                <td class="center"> 14/07/2015</td>
-                <td>00351</td>
-                <td>01003</td>
-                <td id="NomCliente">xxxxxx xxxxxxxx xxxxxx xxxxx x</td>
-                <td class="center">
-                    <a href="#Dell" class="Icono modal-trigger">
-                        <i class="material-icons">highlight_off</i>
-                    </a>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="center"> 14/07/2015</td>
-                <td>00351</td>
-                <td>01003</td>
-                <td id="NomCliente">xxxxxx xxxxxxxx xxxxxx xxxxx x</td>
-                <td class="center">
-                    <a href="#Dell" class="Icono modal-trigger">
-                        <i class="material-icons">highlight_off</i>
-                    </a>
-                </td>
-            </tr>
-
+                    if ($frp['Anulado'] == "S"){
+                        $clase="tachado";
+                        $delete="";
+                    } else {
+                        $clase="";
+                        $delete = "<a  onclick='dellFrp(".$frp['IdFRP'].")' href='#' class='Icono noHover'><i class='material-icons'>highlight_off</i></a>";
+                    }
+                    echo "<tr>
+                                <td class='".$clase."'>".$frp['Fecha']."</td>
+                                <td class='".$clase."'>".$frp['IdFRP']."</td>
+                                <td class='".$clase."'>".$frp['IdCliente']."</td>
+                                <td class='".$clase."' id='NomCliente'>".$frp['Nombre']."</td>
+                                <td class='center'>
+                                    <a  onclick='getview(".$frp['IdFRP'].")' href='#' class='noHover'><i class='material-icons'>&#xE417;</i></a>
+                                    ".$delete."
+                                </td>
+                          </tr>";
+                }
+            }
+            ?>
             </tbody>
 
         </table>
@@ -91,11 +91,11 @@
         </div>
 
         <h6 id="Format" class="center Mcolor">FORMATO DE REMISIÓN DE PUNTOS</h6>
-        <h6 id="Format" class="center Mcolor">CLIENTE</h6>
+        <h6 id="Format" class="center Mcolor noMargen">CLIENTE</h6>
 
         <div class="row noMargen valign-wrapper">
             <div class="DatoFrp input-field line col s3 m3 l2">
-                 N° FRP:<input id="frp" class="frp" type="text" class="validate">
+                 N° FRP:<input id="frp" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="frp" type="text" class="validate">
             </div>
 
             <div class="DatoFrp line col s3 m3 l3 offset-l7 offset-s4 offset-m4">
@@ -103,31 +103,36 @@
             </div>
         </div>
 
-        <div class="center row text noMargen">
+        <!--<div class="center row text noMargen">
             <div class="col s5 m5 l5">
                 <p class="Datos">PUNTOS CANJE: <span class="datos1">0 Pts.</span></p>
             </div>
             <div class="col s7 m7 l6 offset-l1">
-                <p class="Datos">PUNTOS APLICADOS: <span class="datos1">363,522 Pts.</span></p>
+                <p class="Datos">PUNTOS APLICADOS: <span id="ptsAplicados" class="datos1">0</span> Pts.</p>
             </div>
-        </div>
+        </div>-->
 
         <div class="row">
             <div class=" DatoFrp line input-field col s3 m3 l3">
-               COD. CLIENTE:<input id="frp" class="frp" type="text" class="validate">
+               COD. CLIENTE:<input id="txtCodCliente" readonly="readonly" style="color:#1F0A71!important;" class="frp" type="text" class="validate">
             </div>
 
             <div class="input-field col s6 m6 l6"  >
-                <select name="cliente" id="ListCliente">
+                <select class="chosen-select browser-default" name="cliente" id="ListCliente">
                     <option value="" disabled selected>CLIENTE</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    <?php
+                        if(!$data){}
+                        else{
+                                foreach($data as $asd){
+                                echo '<option value="'.$asd['CLIENTE'].'">'.$asd['NOMBRE'].'</option>';
+                            }
+                        }
+                    ?>
                 </select>
             </div>
 
             <div class="input-field col s3 m3 l3">
-                <input  id="frp" class="frp" type="text" class="validate">
+                <input  id="PtosDisponibles" class="frp" type="text" class="validate">
             </div>
         </div>
                 <h6 class="center Mcolor">PREMIO A CANJEAR</h6>
@@ -135,80 +140,70 @@
         <!-- datos de los premios a canjear  -->
         <div class="row ">
                 <div class=" DatoFrp line input-field col s2 m2 l2">
-                    COD. PREMIO:<input id="frp" class="frp" type="text" class="validate">
+                    COD. PREMIO:<input id="CodPremioFRP" class="frp" readonly="readonly" style="color:#1F0A71!important;" type="text" class="validate">
                 </div>
                 <div class="DatoFrp line input-field col s2 m2 l2">
-                    VALOR PREMIO:<input   id="frp" class="frp" type="text" class="validate">
+                    VALOR PREMIO:<input id="ValorPtsPremioFRP" readonly="readonly" style="color:#1F0A71!important;" class="frp" type="text" class="validate">
                 </div>
                 <div class="input-field col s2 m2 l4">
-                    <select name="PREMIO" id="ListCliente">
-                        <option value="" disabled selected>PREMIO</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
+                    <select class="chosen-select browser-default" name="PREMIO" id="ListCatalogo">
+                        <option value="" disabled selected>SELECCIONE PREMIO</option>
+                        <?php
+                            if(!$premios){
+                            } else {
+                                foreach($premios as $premio){
+                                    echo '<option value="'.$premio['IdIMG'].'">'.$premio['Nombre'].'</option>';
+                                }
+                            }
+                         ?>
                     </select>
                 </div>
                 <div class="DatoFrp line input-field col s2 m2 l2 valign-wrapper">
-                    CANTIDAD:<input   id="" class="frp" type="text" class="validate">
+                    CANTIDAD:<input  onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" id="CantPremioFRP" class="frp" type="text" class="validate">
                 </div>
                 <div id="Btnadd"class="center col s2 m2 l2">
-                    <a href="#" class="BtnBlue waves-effect  btn ">agregar</a>
+                    <div class="row noMargen center"><div id="loadIMG" style="display:none" class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" id="AddPremioTbl" class="BtnBlue waves-effect  btn ">agregar</a>
                 </div>
         </div>
 
         <div class="right row">
-            <div class="col s12 m2 l2 offset-l10">
-                <a href="#Dfrp" class="Procesar waves-effect modal-action modal-close btn modal-trigger">procesar</a>
-            </div>
+                <a href="#" id="btnProcesar" class="Procesar waves-effect btn">procesar</a>
         </div>
     <div class="row">
-                <table id="tblEliminar" class=" TblDatos">
+                <table id="tblFacturaFRP" class=" TblDatos">
                     <thead>
                     <tr>
                         <th>FECHA</th>
-                        <th>BOUCHER</th>
-                        <th>Pts.</th>
+                        <th>FACTURA</th>
+                        <th>PUNTOS</th>
                         <th>Pts. APLI.</th>
                         <th>Pts. DISP.</th>
                         <th> <i class="material-icons">done</i> </th>
                         <th>ESTADO</th>
                     </tr>
                     </thead>
-
-                    <tbody>
-                    <tr>
-                        <td>24/01/2016</td>
-                        <td id="black">067799</td>
-                        <td id="black">30,000 Pts.</td>
-                        <td>30,000</td>
-                        <td>0</td>
-                        <td>
-                            <p >
-                                <input type="checkbox" id="test1" />
-                                <label for="test1"></label>
-                            </p>
-                        </td>
-                        <td>APLICADO</td>
-                    </tr>
-                    <tr>
-                        <td>24/01/2016</td>
-                        <td id="black">067799</td>
-                        <td id="black">30,000 Pts.</td>
-                        <td>30,000</td>
-                        <td>0</td>
-                        <td>
-                            <p >
-                                <input type="checkbox" id="test2" />
-                                <label for="test2"></label>
-                            </p>
-                        </td>
-                        <td id="parcial">PARCIAL</td>
-                    </tr>
-
+                    <tbody class="center">
                     </tbody>
                 </table>
     </div>
-    
+        <div id="Total" class="right row">
+            <div class="col s12"><p class="Dato">PENDIENTES A APLICAR: <span class="dato" id="idttPtsCLsFRP">0</span> Pts.</p></div>
+        </div>
     <div class="row">
         <table id="tblpRODUCTOS" class=" TblDatos">
             <thead>
@@ -219,46 +214,15 @@
                 <th>Pts. </th>
                 <th>TOTAL Pts.</th>
                 <th>CANCELAR</th>
-
             </tr>
             </thead>
-
-            <tbody>
-            <tr>
-                <td>20</td>
-                <td id="black">146790</td>
-                <td id="black">CENTRO ENTRE FAMESA MUNICH</td>
-                <td>17,998</td>
-                <td>359,960</td>
-                <td>
-                    <a href="#!" class=" BtnClose">
-                        <i class="material-icons">highlight_off</i>
-                    </a>
-                </td>
-
-            </tr>
-            <tr>
-                <td>20</td>
-                <td id="black">146790</td>
-                <td id="black">CENTRO ENTRE FAMESA MUNICH</td>
-                <td>17,998</td>
-                <td>359,960</td>
-                <td>
-                    <a href="#!" class=" BtnClose">
-                        <i class="material-icons">highlight_off</i>
-                    </a>
-                </td>
-
-            </tr>
-
+            <tbody class="center">
             </tbody>
         </table>
     </div>
-        <div id="Total" class="right row text">
-            <div class="col s12 m12 l12">
-                <p class="Dato">TOTAL: <span class="dato">363,522 Pts.</span></p>
-            </div>
-        </div>
+    <div id="Total" class="right row text">
+        <div class="col s12 m12 l12"><p class="Dato">A APLICAR: <span class="dato" id="idttPtsFRP">0</span> Pts.</p></div>
+    </div>
 
     </div>
 
@@ -275,16 +239,16 @@
 <!-- Modal Structure -->
 <div id="Dell" class="modal">
     <div class="modal-content">
-        <div class="right row">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
+        <div class="right row noMargen">
+            <a href="#!" class=" BtnClose modal-action modal-close noHover">
+                <i class="material-icons">highlight_off</i>
+            </a>
         </div>
-        <h6 class="center Mcolor1">DESEA ELIMINAR EL FRP <span class="redT1">#00351</span></h6>
-        <div class="row">
-            <div class="col s2 m2 l2 offset-l4 offset-s3 offset-m4">
-                <a href="#DellRes" class="Procesar modal-action modal-close btn modal-trigger">Procesar</a>
-            </div>
+        <div class="row center ">
+        <h6 class="Mcolor1">DESEA ELIMINAR EL FRP #<span class="redT1" id="spnDellFRP">#</span></h6>
+        </div>
+        <div class="row center">
+                <a href="#" id="idProcederDell" class="Procesar btn">Procesar</a>
         </div>
     </div>
 </div>
@@ -308,112 +272,153 @@
                                         MODAL DETALLE FRP
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
-<!-- Modal #4
-                Modal Structure -->
+<!-- Modal #4 Modal Structure -->
 <div id="Dfrp" class="modal">
     <div class="modal-content">
+            <div class="container center">
+                <div class="col s1" >
+                    <div class="row">
+                        <div class="col s11"><span id="titulM" class="Mcolor"> DETALLE FRP</span></div>
+                        
+                        <div class="col s1 m1 l1" >
+                            <a href="#!" class=" BtnClose modal-action modal-close noHover">
+                                <i class="material-icons">highlight_off</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
+                <div class="row center " id="frpProgress">
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left"><div class="circle"></div></div>
+                            <div class="gap-patch"><div class="circle"></div></div>
+                            <div class="circle-clipper right"><div class="circle"></div></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="divTop">
+                    <div class="col s5">
+                        <span class="center datos1 frpT"> N° FRP <span id="spnFRP"> </span></span><br>
+                        <span class="center datos1 lineas"> <span id="spnFecha"></span></span>
+                    </div>
+
+                    <div class="col s1">
+                        <span id="Nfarmacia" class="center Mcolor">COD# <span id="spnCodCls"></span> NOMBRE: <span id="spnNombreCliente"></span></span><br>
+                    </div>
+                </div>
             </div>
-        </div>
-        <h6 id="titulM" class="center Mcolor"> DETALLE FRP</h6>
 
-       <div class="container">
-           <p class="center datos1 frpT"> N° FRP 38389</p>
-           <p class="center datos1 lineas"> 24/12/2016</p>
-       </div>
-        <h6 id="Nfarmacia" class="center Mcolor">00449 FARMACIA CASTELLÓN</h6>
-        <p class="center Datos linea ruc"> RUC 4412000183001H</p>
+           <div id="divTbl">
+               <table id="tblModal1" class="TblDatos">
+                   <thead>
+                    <tr>
+                        <th>FECHA</th>
+                        <th>FACTURA</th>
+                        <th>Pts.</th>
+                        <th>Pts. APLI.</th>
+                        <th>Pts. DISP.</th>
+                        <th>ESTADO</th>
+                    </tr>
+                   </thead>
 
+                   <tbody></tbody>
+               </table>
+               <h6 class="center Mcolor">PREMIO A CANJEAR</h6>
 
+               <table id="tblModal2" class="TblDatos">
+                   <thead>
+                    <tr>
+                        <th>CANT.</th>
+                        <th>COD. PREMIO</th>
+                        <th>DESCRIPCIÓN</th>
+                        <th>Pts. </th>
+                        <th>TOTAL Pts.</th>
+                    </tr>
+                   </thead>
 
-
-            <table id="tblModal1" class="TheadColor">
-                <thead>
-                <tr>
-                    <th>FECHA</th>
-                    <th>BOUCHER</th>
-                    <th>Pts.</th>
-                    <th>Pts. APLI.</th>
-                    <th>Pts. DISP.</th>
-                    <th>ESTADO</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-                    <td>24/01/2016</td>
-                    <td id="black">067792</td>
-                    <td id="black">300,000 Pts.</td>
-                    <td>300,000 Pts.</td>
-                    <td>0 Pts.</td>
-                    <td>APLICADO</td>
-                </tr>
-                <tr>
-                    <td>24/01/2016</td>
-                    <td id="black">067792</td>
-                    <td id="black">300,000 Pts.</td>
-                    <td>300,000 Pts.</td>
-                    <td>0 Pts.</td>
-                    <td id="parcial">PARCIAL</td>
-                </tr>
-
-                </tbody>
-            </table>
-        <h6 class="center Mcolor dat">PUNTOS APLICADOS: <span class="dato">363,522 Pts.</span> </h6>
-        <h6 class="center Mcolor">PREMIO A CANJEAR</h6>
+                   <tbody></tbody>
+               </table>
+               <h6 class="center Mcolor dat">TOTAL FRP <span class="dato"><span id="spnTotalFRP"></span></span> </h6>
+               <div class="row center" style="">
+                   <a class="noHover" href="#" onclick="callUrlPrint('ExpFRP','spnFRP')"  target=""><img src="<?PHP echo base_url();?>assets/img/ico_imprimir.png " width="45px" ></a>
+               </div>
+           </div>
 
 
-
-        <table id="tblModal1" class="TheadColor">
-            <thead>
-            <tr>
-                <th>CANT.</th>
-                <th>COD. PREMIO</th>
-                <th>DESCRIPCIÓN</th>
-                <th>Pts. </th>
-                <th>TOTAL Pts.</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr>
-                <td>20</td>
-                <td id="black">146790</td>
-                <td id="black">CENTRO ENTRET FAMESA MUNICH</td>
-                <td>17,998 Pts.</td>
-                <td>359,960 Pts.</td>
-            </tr>
-            <tr>
-                <td>20</td>
-                <td id="black">146790</td>
-                <td id="black">CENTRO ENTRET FAMESA MUNICH</td>
-                <td>17,998 Pts.</td>
-                <td>359,960 Pts.</td>
-            </tr>
-
-            </tbody>
-        </table>
-
-        <h6 class="center Mcolor dat">TOTAL <span class="dato">363,522 Pts.</span> </h6>
-
-        <div class="row">
-            <div class="col s2 m2 l2 offset-l5 offset-s4 offset-m4">
-                <a  target="_blank"   href="DetalleFRP"  class=" BtnClose ">
-                    <i class="medium material-icons">print</i>
-                </a>
-            </div>
-            <div class="col s2 m2 l1">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="35px" ></a>
-            </div>
-        </div>
     </div>
-
-
-
 </div>
-<!-- Fin de Modal#4-->
+
+
+<!--******************* -->
+<div id="idviewFRP" class="modal">
+    <div class="modal-content">
+                <div class="row right">
+                        <a href="#!" class=" BtnClose modal-action modal-close noHover">
+                            <i class="material-icons">highlight_off</i>
+                        </a>                    
+                </div>
+                <div class="center col s12 m12 l12">
+                        <h6 class="Mcolor noMargen">DETALLE FRP</h6>
+                    </div>
+
+                <div class="row center " id="vfrpProgress">
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left"><div class="circle"></div></div>
+                            <div class="gap-patch"><div class="circle"></div></div>
+                            <div class="circle-clipper right"><div class="circle"></div></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="vfrpTop row ">
+                    <div class="col s12 center">
+                        <span class="center datos1 frpT"> N° FRP <span id="spnviewFRP"> </span></span><br>
+                        <span class="center datos1 lineas"> <span id="spnviewFecha"></span></span>
+                    </div>
+
+                    <div class="col s12 center">
+                        <span id="Nfarmacia" class="center Mcolor">COD# <span id="spnviewCodCls"></span> NOMBRE: <span id="spnviewNombreCliente"></span></span><br>
+                    </div>
+                </div>
+            
+
+           <div id="vfrpTop">
+               <table id="tblviewDFacturaFRP" class="TblDatos">
+                   <thead>
+                        <tr>
+                            <th>FECHA</th>
+                            <th>FACTURA</th>
+                            <th>Pts.</th>
+                            <th>Pts. APLI.</th>
+                            <th>Pts. DISP.</th>
+                            <th>ESTADO</th>
+                        </tr>
+                   </thead>
+                   
+                   <tbody></tbody>
+               </table>
+               <h6 class="center Mcolor">PREMIO A CANJEAR</h6>
+
+               <table id="tblviewDPremioFRP" class="TblDatos">
+                   <thead>
+                        <tr>
+                            <th>CANT.</th>
+                            <th>COD. PREMIO</th>
+                            <th>DESCRIPCIÓN</th>
+                            <th>Pts. </th>
+                            <th>TOTAL Pts.</th>
+                        </tr>
+                   </thead>
+                   
+                   <tbody></tbody>
+               </table>
+               <h6 class="center Mcolor dat">TOTAL FRP <span class="dato"><span id="spnttFRP"></span> Pts.</span> </h6>
+               <div style = "display:none;" id = "iconoPrint" class="row center">
+                   <a class="noHover" href="#" onclick="callUrlPrint('ExpFRP','spnviewFRP')"><img src="<?PHP echo base_url();?>assets/img/ico_imprimir.png " width="45px" ></a>
+               </div>
+           </div>
+    </div>
+</div>

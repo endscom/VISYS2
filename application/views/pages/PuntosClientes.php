@@ -40,7 +40,7 @@
         <table id="PtosCliente" class=" TblDatos">
             <thead>
             <tr>
-                <th>COD</th>
+                <th>CÓDIGO</th>
                 <th>CLIENTE</th>
                 <th>RUC</th>
                 <th>PUNTOS</th>

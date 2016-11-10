@@ -26,8 +26,8 @@ class Cliente_model extends CI_Model
         $i=0;
         $json = array();
         $query = $this->sqlsrv->fetchArray("SELECT CLIENTE, NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS, (SELECT RUC FROM vtVS2_Clientes WHERE vtVS2_Clientes.CLIENTE= vtVS2_Facturas_CL.CLIENTE) AS RUC FROM vtVS2_Facturas_CL GROUP BY CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
-        $json['query'][$i]['CLIENTE']=$key['CLIENTE'];  $json['query'][$i]['NOMBRE']=$key['NOMBRE_CLIENTE'];
-        $json['query'][$i]['PUNTOS']=$key['PUNTOS'];    $json['query'][$i]['RUC']=$key['RUC'];
+        $json['query'][$i]['CLIENTE'] = "";  $json['query'][$i]['NOMBRE'] = "";
+        $json['query'][$i]['PUNTOS'] = "";    $json['query'][$i]['RUC'] = "";
 
         foreach($query as $key){
             $json['query'][$i]['CLIENTE']=$key['CLIENTE'];
@@ -131,5 +131,19 @@ class Cliente_model extends CI_Model
         $data = array('Estado' => 1);
         $this->db->where('IdCL',$codigo);
         $this->db->update('usuario',$data);
+    }
+    public function ListarClientes()
+    {
+        $i=0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray("SELECT DISTINCT CLIENTE,NOMBRE FROM vtVS2_Clientes",SQLSRV_FETCH_ASSOC);
+
+        foreach($query as $key){
+            $json['data'][$i]['CLIENTE']=$key['CLIENTE'];
+            $json['data'][$i]['NOMBRE']=$key['NOMBRE'];            
+            $i++;
+        }
+        return $json;
+        $this->sqlsrv->close();
     }
 }

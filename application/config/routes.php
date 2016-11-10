@@ -23,12 +23,23 @@ $route['PuntosClientes'] = 'clientes_controller/PuntosClientes';
 $route['generarUsuarios'] = 'clientes_controller/generarUsuarios';
 $route['traerUsuario/(:any)'] = 'clientes_controller/traerUsuario/$1';
 $route['darBajaCliente'] = 'clientes_controller/darBajaCliente';
-
 $route['DetalleFact'] = 'vista_controller/DetalleFact';
 
-/*CANNJES FRP FRE*/
+/*CANNJES FRP*/
 $route['Frp'] = 'canje_controller';
-$route['FRE'] = 'vista_controller/CanjeFre';
+$route['ListarClientes'] = 'clientes_controller/ListarClientes';
+$route['getAplicadoP/(:any)'] = 'canje_controller/getAplicadoP/$1';
+$route['getFacturaFRP/(:any)'] = 'canje_controller/getFacturaFRP/$1';
+$route['BuscaFRP/(:any)'] = 'canje_controller/BuscaFRP/$1';
+$route['saveFRP'] = 'canje_controller/SaverFRP';
+$route['viewPtsItemCatalogo'] = 'canje_controller/getPuntosArticulosCatalogo';
+$route['ExpFRP/(:any)'] = 'exportacion_controller/ExpoFrp/$1';
+$route['getviewFRP'] = 'canje_controller/viewFrp';
+$route['delFRP'] = 'canje_controller/inactivar';
+
+/*CANJES FRE*/
+$route['FRE'] = 'canje_efectivo_controller';
+
 
 /*USUARIOS*/
 $route['Usuarios'] = 'vista_controller/Usuarios'; //cargar usuarios

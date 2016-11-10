@@ -1,6 +1,5 @@
 <body onload="window.print();"><!-- Impresion de la Página al cargar... -->
 <main class="mdl-layout__contents">
-
     <div class="">
 
         <div class=" row TextColor">
@@ -80,9 +79,6 @@
                     </div>
                 </form>
             </div>
-
-
-
             <h6 class="center RegImp  RobotoB">imp0001/FRE</h6>
 
         </div>

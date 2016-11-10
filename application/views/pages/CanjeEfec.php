@@ -13,30 +13,28 @@
 
     <div class="contenedor">
 
-        <div id="search" class=" right Buscar row column">
-            <div class="col s1 m1 l2">
-                <i class="material-icons ColorS">search</i>
-            </div>
+        <div class="container">
+            <div class=" Buscar row column">
+                <div class="col s1 m1 l1 offset-l3 offset-s1 offset-m2">
+                    <i class="material-icons ColorS">search</i>
+                </div>
 
-            <div class="input-field col s6 m6 l10">
-                <input  id="search" type="text" placeholder="Buscar" class="validate">
-                <label for="search"></label>
+                <div class="input-field col s5 m4 l4">
+                    <input  id="searchFRE" type="text" placeholder="Buscar" class="validate">
+                    <label for="searchFRE"></label>
+                </div>
             </div>
         </div>
 
-        <div class=" row TextColor">
-            <div class="col s5 m5 l12">
+        <div class="row center TextColor">
                canje por efectivo
-            </div>
         </div>
 
         <div class="right row">
-            <div class="col s2">
-                <a href="#Efec" class="BtnBlue waves-effect  btn modal-trigger">efectivo</a>
-            </div>
+            <a href="#Efec" class="BtnBlue waves-effect  btn modal-trigger">efectivo</a>
         </div>
 
-        <table id="FRP" class=" TblDatos">
+        <table id="tblFRE" class=" TblDatos">
 
             <thead>
             <tr>
@@ -50,7 +48,7 @@
             </tr>
             </thead>
 
-            <tbody>
+            <tbody class="center">
 
             <tr>
                 <td> 14/07/2015</td>
@@ -133,11 +131,9 @@
 <div id="Efec" class="modal">
     <div class="modal-content">
         <div class="right row">
-            <div class="col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
                     <i class="material-icons">highlight_off</i>
                 </a>
-            </div>
         </div>
 
         <h6 class="center Mcolor">FORMATO DE REMISIÓN DE EFECTIVO</h6>

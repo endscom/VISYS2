@@ -35,13 +35,6 @@ class Vista_controller extends CI_Controller
         $this->load->view('footer/footer');
     }
 
-    public function CanjeFre(){
-        $this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/CanjeEfec');
-        $this->load->view('footer/footer');
-    }
-
     public function Catalogo(){
         $this->load->view('header/header');
         $this->load->view('pages/menu');

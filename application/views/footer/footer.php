@@ -8,6 +8,8 @@
 <script src="<?PHP echo base_url();?>assets/js/materialize.js"></script>
 <script src="<?PHP echo base_url();?>assets/js/bootstrap.js"></script>
 
+<script src="<?PHP echo base_url();?>assets/js/chosen.jquery.js"></script>
+
 
 <script>
     $('.datepicker1').pickadate({
@@ -24,6 +26,15 @@
         clear: 'Borrar',
         close: 'Cerrar'
     });
+    
+    var config = {
+        '.chosen-select'           : {
+
+        }
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
 </script>
 
 </body>

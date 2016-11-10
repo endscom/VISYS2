@@ -23,7 +23,7 @@
                     <tr>
                         <th>FECHA</th>
                         <th>FACTURA</th>
-                        <th>CODIGO</th>
+                        <th>CÓDIGO</th>
                         <th>CLIENTE</th>
                         <th>PUNTOS</th>
                         <th>VER</th>

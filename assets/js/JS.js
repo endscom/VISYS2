@@ -12,6 +12,13 @@ $('.datepicker').pickadate({
     //$('#listaArticulosCatalogoActual').openModal();
     $('select').material_select();
 
+    $(function() {//funcion para agregar el active en el menu, segun la pagina en la que se encuentre el usuario
+        var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
+        $("ul a li").each(function(){
+            if($(this).attr("href") == pgurl || $(this).attr("href") == '' || $(this).attr("href")+"#" == pgurl)
+            $(this).addClass("urlActual");
+         })
+    });
 
 $('#tblCatalogoActual').DataTable( {
             "info":    false,
@@ -84,7 +91,7 @@ $('#tblCatalogoActualModal').DataTable( {
     /****** Seccíon del Menú ******/
 
     /**** DATATABLES ****/
-    $('#tblFREimpre,#TblMaVinetas,#MCXP,#BajaCliente,#FRP,#tblModals').DataTable(
+    $('#tblFREimpre,#TblMaVinetas,#MCXP,#BajaCliente,#tblModals').DataTable(
         {
             "info":    false,
             "searching": false,
