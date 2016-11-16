@@ -13,11 +13,37 @@ class Canje_efectivo_controller extends CI_Controller
     }
     public function index()
     {
+    	$data = $this->cliente_model->ListarClientes();
+    	$data['fre'] = $this->canje_efectivo_model->traerAllFRE();
+
     	$this->load->view('header/header');
         $this->load->view('pages/menu');
-        $this->load->view('pages/CanjeEfec');
+        $this->load->view('pages/CanjeEfec',$data);
         $this->load->view('footer/footer');
         $this->load->view('jsview/js_canje_efectivo');
+    }
+    public function getAplicadoP($idCliente)
+    {
+        $this->canje_efectivo_model->getAplicadoP($idCliente);
+    }
+    public function getFacturaFRE($idCliente)
+    {
+        $this->canje_efectivo_model->getFacturaFRE($idCliente);
+    }
+    public function BuscaFRE($FRE){
+        echo $this->canje_efectivo_model->BuscaFRE($FRE);
+    }
+    public function SaverFRE(){
+        echo $this->canje_efectivo_model->save(
+            $this->input->post('frp'),
+            $this->input->post('fac'),
+            $this->input->post('log'));
+    }
+    public function viewFre(){
+        $id =  $this->input->post('fre');
+        $data['top'] = $this->canje_efectivo_model->getFRE($id,'fre');
+        $data['DFactura'] = $this->canje_efectivo_model->getFRE($id,"view_fre_factura");
+        echo json_encode($data);
     }
 }
 ?>

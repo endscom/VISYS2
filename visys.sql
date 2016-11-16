@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : LOCALHOST
-Source Server Version : 50136
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : visys
 
 Target Server Type    : MYSQL
-Target Server Version : 50136
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2016-09-22 09:06:14
+Date: 2016-11-10 15:43:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,13 +25,13 @@ CREATE TABLE `catalogo` (
   `Estado` bit(1) DEFAULT NULL,
   `Fecha` date DEFAULT NULL,
   PRIMARY KEY (`IdCT`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of catalogo
 -- ----------------------------
-INSERT INTO `catalogo` VALUES ('1', 'Septiembre', '\0', '2016-09-13');
 INSERT INTO `catalogo` VALUES ('3', 'Agosto', '', '2016-08-01');
+INSERT INTO `catalogo` VALUES ('8', 'CATALOGO DE SEPTIEMBRE', '\0', '2016-09-01');
 
 -- ----------------------------
 -- Table structure for detallect
@@ -39,9 +39,9 @@ INSERT INTO `catalogo` VALUES ('3', 'Agosto', '', '2016-08-01');
 DROP TABLE IF EXISTS `detallect`;
 CREATE TABLE `detallect` (
   `IdCT` int(11) DEFAULT NULL COMMENT 'Id de Imagén',
-  `CodigoImg` varchar(15) DEFAULT NULL,
+  `IdIMG` varchar(15) DEFAULT NULL,
   `Nombre` varchar(255) DEFAULT NULL,
-  `Imagen` varchar(150) DEFAULT NULL COMMENT 'nombre de la imagén',
+  `IMG` varchar(150) DEFAULT NULL COMMENT 'nombre de la imagén',
   `Puntos` int(20) DEFAULT NULL,
   `Estado` bit(1) DEFAULT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
@@ -49,100 +49,249 @@ CREATE TABLE `detallect` (
 -- ----------------------------
 -- Records of detallect
 -- ----------------------------
-INSERT INTO `detallect` VALUES ('3', '1234', 'COMEDOR  B&D HC3000', '101100.jpg', '1500', '\0');
-INSERT INTO `detallect` VALUES ('1', '1234', 'COMEDOR  B&D HC3000', '101100.jpg', '1500', '\0');
-INSERT INTO `detallect` VALUES ('1', '12345', 'MINIPROCESADOR B&D HC3000', '101345.jpg', '1000', '\0');
-INSERT INTO `detallect` VALUES ('1', '12345', 'MINIPROCESADOR BLANCO HC3000', '101349.jpg', '1200', '\0');
-INSERT INTO `detallect` VALUES ('1', '1299', 'ARROCERA B&D HC3000', '101605.jpg', '1300', '\0');
-INSERT INTO `detallect` VALUES ('1', '1236', 'HOLLA B&D HC3000', '101645.jpg', '1000', '\0');
-INSERT INTO `detallect` VALUES ('1', '1237', 'LICUADORA B&D HC3000', '102586.jpg', '800', '\0');
-INSERT INTO `detallect` VALUES ('1', '1238', 'ESPRIMIDOR B&D HC3000', '102596.jpg', '1800', '\0');
-INSERT INTO `detallect` VALUES ('1', '1239', 'CAMA MATRIMONIAL B&D HC3000', '103409.jpg', '3200', '\0');
-INSERT INTO `detallect` VALUES ('1', '1210', 'CAMA UNIPERSONAL B&D HC3000', '105348.jpg', '2000', '\0');
-INSERT INTO `detallect` VALUES ('1', '1211', 'MICROONDAS B&D HC3000', '107192.jpg', '2100', '\0');
-INSERT INTO `detallect` VALUES ('1', '1212', 'MUEBLES SALA B&D HC3000', '105975.jpg', '4800', '\0');
-INSERT INTO `detallect` VALUES ('1', '1213', 'MESA DE 4 B&D HC3000', '116242.jpg', '2300', '\0');
-INSERT INTO `detallect` VALUES ('1', '1214', 'ABANICO B&D HC3000', '119141.jpg', '1350', '\0');
-INSERT INTO `detallect` VALUES ('1', '1216', 'MAQUINA DE CONCER B&D HC3000', '119527.jpg', '2385', '\0');
-INSERT INTO `detallect` VALUES ('1', '1217', 'COCINA 4 QUEMADORES HC3000', '114529.jpg', '2850', '\0');
-INSERT INTO `detallect` VALUES ('1', '1219', 'ROPERO B&D HC3000', '124686.jpg', '4880', '\0');
-INSERT INTO `detallect` VALUES ('1', '1220', 'PLANCHA B&D HC3000', '125105.jpg', '1450', '\0');
-INSERT INTO `detallect` VALUES ('1', '1221', 'JUEGO SALA B&D HC3000', '124353.jpg', '5150', '\0');
-INSERT INTO `detallect` VALUES ('1', '1221', 'RESURADORA B&D HC3000', '125365.jpg', '1170', '\0');
-INSERT INTO `detallect` VALUES ('1', '1222', 'ABANICO B&D HC3000', '121577.jpg', '1340', '\0');
-INSERT INTO `detallect` VALUES ('1', '1223', 'MUEBLE COCINA C3000', '126921.jpg', '11800', '\0');
-INSERT INTO `detallect` VALUES ('1', '1224', 'ASADOR B&D HC3000', '129209.jpg', '1500', '\0');
-INSERT INTO `detallect` VALUES ('1', '1225', 'PLANCHADOR B&D HC3000', '129863.jpg', '1420', '\0');
-INSERT INTO `detallect` VALUES ('1', '1226', 'REFRIGERADOR B&D HC3000', '123780.jpg', '2600', '\0');
-INSERT INTO `detallect` VALUES ('1', '1227', 'MINI HORNO B&D HC3000', '126858.jpg', '3000', '\0');
-INSERT INTO `detallect` VALUES ('1', '1228', 'PSP SLIM HC', '128314.jpg', '2180', '\0');
-INSERT INTO `detallect` VALUES ('1', '1226', 'SALA DE ESTAR B&D HC3000', '130374.jpg', '7231', '\0');
-INSERT INTO `detallect` VALUES ('1', '1228', 'TELEVISOR 24\"', '131380.jpg', '2456', '\0');
-INSERT INTO `detallect` VALUES ('1', '1229', 'ROPERO DE NIñO Y NIñA B&D HC3000', '135218.jpg', '2487', '\0');
-INSERT INTO `detallect` VALUES ('1', '1230', 'COMPUTADOR DE MESA', '134027.jpg', '4896', '\0');
-INSERT INTO `detallect` VALUES ('1', '1231', 'MOTO MONTAÑERA 150CC', '130707.jpg', '15866', '\0');
-INSERT INTO `detallect` VALUES ('1', '1232', 'MOTO MENSAJERA 125CC', '130712.jpg', '14845', '\0');
-INSERT INTO `detallect` VALUES ('1', '1233', 'MOTO MONTAñERA 200CC', '130723.jpg', '16842', '\0');
-INSERT INTO `detallect` VALUES ('1', '1234', 'SCOTER 150CC ROJA', '134388.jpg', '15678', '\0');
-INSERT INTO `detallect` VALUES ('1', '1235', 'PSP 3 SONY', '136179.jpg', '6842', '\0');
-INSERT INTO `detallect` VALUES ('1', '1236', 'COCINA 6 QUEMADORES ATLAS', '131588.jpg', '11258', '\0');
-INSERT INTO `detallect` VALUES ('1', '1237', 'LAVADORA 50 LITROS', '134445.jpg', '9580', '\0');
-INSERT INTO `detallect` VALUES ('1', '1285', 'SAMSUNG J1', '140576.jpg', '3582', '\0');
-INSERT INTO `detallect` VALUES ('1', '1240', 'CONTENEDOR REFRIGERADORA ', '126405.jpg', '12385', '\0');
-INSERT INTO `detallect` VALUES ('1', '1242', 'SISTEMA DE SONIDO ENVOLVENTE', '133553.jpg', '15785', '\0');
-INSERT INTO `detallect` VALUES ('1', '1245', 'LAPTOP TOSHIBA 16\"', '146071.jpg', '12858', '\0');
-INSERT INTO `detallect` VALUES ('1', '1249', 'PARRILLA ASADOR PARA PATIO', '145389.jpg', '25876', '\0');
-INSERT INTO `detallect` VALUES ('1', '1250', 'GIFT CARD WALMART', 'PPUMK-0001.jpg', '500', '\0');
-INSERT INTO `detallect` VALUES ('1', '1254', 'GIFT CARD WALMART 500', 'PPUMK-0002.jpg', '800', '\0');
-INSERT INTO `detallect` VALUES ('1', '1246', 'IMPRESORA HP DESKJET1200', '148948.jpg', '4877', '\0');
-INSERT INTO `detallect` VALUES ('2', '1255', 'CAMARA SONY 18MEGAPIXELES', '138566.jpg', '14588', '\0');
-INSERT INTO `detallect` VALUES ('2', '12255', 'EQUIPO DE SONIDO SONY', '142920.jpg', '5444', '\0');
-INSERT INTO `detallect` VALUES ('3', '12345', 'MINIPROCESADOR B&D HC3000', '101345.jpg', '1000', '\0');
-INSERT INTO `detallect` VALUES ('3', '12345', 'MINIPROCESADOR BLANCO HC3000', '101349.jpg', '1200', '\0');
-INSERT INTO `detallect` VALUES ('3', '1245', 'ARROCERA B&D HC3000', '101605.jpg', '1300', '\0');
-INSERT INTO `detallect` VALUES ('3', '1236', 'HOLLA B&D HC3000', '101645.jpg', '1000', '\0');
-INSERT INTO `detallect` VALUES ('3', '1237', 'LICUADORA B&D HC3000', '102586.jpg', '800', '\0');
-INSERT INTO `detallect` VALUES ('3', '1238', 'ESPRIMIDOR B&D HC3000', '102596.jpg', '1800', '\0');
-INSERT INTO `detallect` VALUES ('3', '1239', 'CAMA MATRIMONIAL B&D HC3000', '103409.jpg', '3200', '\0');
-INSERT INTO `detallect` VALUES ('3', '1210', 'CAMA UNIPERSONAL B&D HC3000', '105348.jpg', '2500', '\0');
-INSERT INTO `detallect` VALUES ('3', '1211', 'MICROONDAS B&D HC3000', '107192.jpg', '2100', '\0');
-INSERT INTO `detallect` VALUES ('3', '1212', 'MUEBLES SALA B&D HC3000', '105975.jpg', '4800', '\0');
-INSERT INTO `detallect` VALUES ('3', '1213', 'MESA DE 4 B&D HC3000', '116242.jpg', '2300', '\0');
-INSERT INTO `detallect` VALUES ('3', '1214', 'ABANICO B&D HC3000', '119141.jpg', '1350', '\0');
-INSERT INTO `detallect` VALUES ('3', '1216', 'MAQUINA DE CONCER B&D HC3000', '119527.jpg', '2385', '\0');
-INSERT INTO `detallect` VALUES ('3', '1217', 'COCINA 4 QUEMADORES HC3000', '114529.jpg', '2850', '\0');
-INSERT INTO `detallect` VALUES ('3', '1219', 'ROPERO B&D HC3000', '124686.jpg', '4880', '\0');
-INSERT INTO `detallect` VALUES ('3', '1220', 'PLANCHA B&D HC3000', '125105.jpg', '1450', '\0');
-INSERT INTO `detallect` VALUES ('3', '1221', 'JUEGO SALA B&D HC3000', '124353.jpg', '5150', '\0');
-INSERT INTO `detallect` VALUES ('3', '1221', 'RESURADORA B&D HC3000', '125365.jpg', '1170', '\0');
-INSERT INTO `detallect` VALUES ('3', '1222', 'ABANICO B&D HC3000', '121577.jpg', '1340', '\0');
-INSERT INTO `detallect` VALUES ('3', '1223', 'MUEBLE COCINA C3000', '126921.jpg', '11800', '\0');
-INSERT INTO `detallect` VALUES ('3', '1224', 'ASADOR B&D HC3000', '129209.jpg', '1500', '\0');
-INSERT INTO `detallect` VALUES ('3', '1225', 'PLANCHADOR B&D HC3000', '129863.jpg', '1420', '\0');
-INSERT INTO `detallect` VALUES ('3', '1226', 'REFRIGERADOR B&D HC3000', '123780.jpg', '2600', '\0');
-INSERT INTO `detallect` VALUES ('3', '1227', 'MINI HORNO B&D HC3000', '126858.jpg', '3000', '\0');
-INSERT INTO `detallect` VALUES ('3', '1228', 'PSP SLIM HC', '128314.jpg', '2180', '\0');
-INSERT INTO `detallect` VALUES ('3', '1226', 'SALA DE ESTAR B&D HC3000', '130374.jpg', '7231', '\0');
-INSERT INTO `detallect` VALUES ('3', '1228', 'TELEVISOR 24\"', '131380.jpg', '2456', '\0');
-INSERT INTO `detallect` VALUES ('3', '1229', 'ROPERO DE NIñO Y NIñA B&D HC3000', '135218.jpg', '2487', '\0');
-INSERT INTO `detallect` VALUES ('3', '1230', 'COMPUTADOR DE MESA', '134027.jpg', '4896', '\0');
-INSERT INTO `detallect` VALUES ('3', '1231', 'MOTO MONTAñERA 150CC', '130707.jpg', '15866', '\0');
-INSERT INTO `detallect` VALUES ('3', '1232', 'MOTO MENSAJERA 125CC', '130712.jpg', '14845', '\0');
-INSERT INTO `detallect` VALUES ('3', '1233', 'MOTO MONTAñERA 200CC', '130723.jpg', '16842', '\0');
-INSERT INTO `detallect` VALUES ('3', '1234', 'SCOTER 150CC ROJA', '134388.jpg', '15678', '\0');
-INSERT INTO `detallect` VALUES ('3', '1235', 'PSP 3 SONY', '136179.jpg', '6842', '\0');
-INSERT INTO `detallect` VALUES ('3', '1236', 'COCINA 6 QUEMADORES ATLAS', '131588.jpg', '11258', '\0');
-INSERT INTO `detallect` VALUES ('3', '1237', 'LAVADORA 50 LITROS', '134445.jpg', '9580', '\0');
-INSERT INTO `detallect` VALUES ('3', '1285', 'SAMSUNG J1', '140576.jpg', '3582', '\0');
-INSERT INTO `detallect` VALUES ('3', '1240', 'CONTENEDOR REFRIGERADORA ', '126405.jpg', '12385', '\0');
-INSERT INTO `detallect` VALUES ('3', '1242', 'SISTEMA DE SONIDO ENVOLVENTE', '133553.jpg', '15785', '\0');
-INSERT INTO `detallect` VALUES ('3', '1245', 'LAPTOP TOSHIBA 16\"', '146071.jpg', '12858', '\0');
-INSERT INTO `detallect` VALUES ('3', '1249', 'PARRILLA ASADOR PARA PATIO', '145389.jpg', '25876', '\0');
-INSERT INTO `detallect` VALUES ('3', '1250', 'GIFT CARD WALMART', 'PPUMK-0001.jpg', '500', '\0');
-INSERT INTO `detallect` VALUES ('3', '1254', 'GIFT CARD WALMART 500', 'PPUMK-0002.jpg', '800', '\0');
-INSERT INTO `detallect` VALUES ('3', '1246', 'IMPRESORA HP DESKJET1200', '148948.jpg', '4877', '\0');
-INSERT INTO `detallect` VALUES ('3', '1255', 'CAMARA SONY 18MEGAPIXELES', '138566.jpg', '14588', '\0');
-INSERT INTO `detallect` VALUES ('3', '12255', 'EQUIPO DE SONIDO SONY', '142920.jpg', '5444', '\0');
+INSERT INTO `detallect` VALUES ('8', '142489', 'A/C SPLIT FRIGID FASX12F2MBHLW INVERTER', '142489.jpg', '29969', '\0');
+INSERT INTO `detallect` VALUES ('8', '125686', 'ABAN BOX LASKO 3300', '125686.jpg', '3035', '\0');
+INSERT INTO `detallect` VALUES ('8', '127065', 'ABAN MESA AERO SPEED AC800 8\"', '127065.jpg', '1432', '\0');
+INSERT INTO `detallect` VALUES ('8', '112991', 'ABAN PIE LASKO 1824 18\"', '112991.jpg', '1698', '\0');
+INSERT INTO `detallect` VALUES ('8', '112989', 'ABAN PIE LASKO 1827 18\"', '112989.jpg', '2877', '\0');
+INSERT INTO `detallect` VALUES ('8', '112990', 'ABAN PIE LASKO 1850 18\"', '112990.jpg', '3886', '\0');
+INSERT INTO `detallect` VALUES ('8', '111066', 'ABAN PIE LASKO 2526 16\"', '111066.jpg', '2722', '\0');
+INSERT INTO `detallect` VALUES ('8', '145499', 'ABAN PIE SANKEY FN1746 16\"', '145499.jpg', '2423', '\0');
+INSERT INTO `detallect` VALUES ('8', '131385', 'ABAN PIE SANKEY FN17A02B 16\"', '131385.jpg', '1971', '\0');
+INSERT INTO `detallect` VALUES ('8', '112986', 'ABAN TORRE LASKO 2510 36\"', '112986.jpg', '4514', '\0');
+INSERT INTO `detallect` VALUES ('8', '133898', 'ABAN TORRE LASKO 2519 36\"', '133898.jpg', '4718', '\0');
+INSERT INTO `detallect` VALUES ('8', '149049', 'ABAN TORRE LASKO 2535 52\"', '149049.jpg', '4984', '\0');
+INSERT INTO `detallect` VALUES ('8', '149990', 'CAFETERA HBEACH 43253R 12TZ', '149990.jpg', '3567', '\0');
+INSERT INTO `detallect` VALUES ('8', '139245', 'CAFETERA B&D BCM1410B 12TZ NEG', '139245.jpg', '2010', '\0');
+INSERT INTO `detallect` VALUES ('8', '149989', 'CAFETERA HBEACH 46201 12TZ', '149989.jpg', '3849', '\0');
+INSERT INTO `detallect` VALUES ('8', '148338', 'CENTRO ENTRET FAMESA BROOKLYN', '148338.jpg', '10188', '\0');
+INSERT INTO `detallect` VALUES ('8', '148402', 'CENTRO ENTRET FAMESA MANHATHAN', '148402.jpg', '12340', '\0');
+INSERT INTO `detallect` VALUES ('8', '148397', 'CENTRO ENTRET FAMESA MEDIEVAL', '148397.jpg', '23694', '\0');
+INSERT INTO `detallect` VALUES ('8', '148337', 'CENTRO ENTRET FAMESA NEW SHARI', '148337.jpg', '13434', '\0');
+INSERT INTO `detallect` VALUES ('8', '139561', 'CENTRO ENTRET FAMESA TIKAL', '139561.jpg', '13705', '\0');
+INSERT INTO `detallect` VALUES ('8', '137056', 'COC GAS ATLAS EAG2006BIB1 20\" 4Q BLC', '137056.jpg', '9936', '\0');
+INSERT INTO `detallect` VALUES ('8', '142599', 'COC GAS FRIGID FKGD20C3NNG 20\" 4Q PLT', '142599.jpg', '12149', '\0');
+INSERT INTO `detallect` VALUES ('8', '149629', 'COC GAS FRIGID FKGM30C3BBPG 30\" 5Q GRIS', '149629.jpg', '17884', '\0');
+INSERT INTO `detallect` VALUES ('8', '142597', 'COC GAS FRIGID FKGD30J3NNG 30\" 6Q PLT', '142597.jpg', '18967', '\0');
+INSERT INTO `detallect` VALUES ('8', '146637', 'COC GAS MABE EM5132BI01 20\" 4Q BLC', '146637.jpg', '10979', '\0');
+INSERT INTO `detallect` VALUES ('8', '143131', 'COC GAS GE EG3092CX2 30\" 6Q INOX', '143131.jpg', '34464', '\0');
+INSERT INTO `detallect` VALUES ('8', '151795', 'COC GAS MABE EM7671CFIX0 30\" 6Q INOX', '151795.jpg', '24998', '\0');
+INSERT INTO `detallect` VALUES ('8', '152089', 'COMP PORT LENOVO N22 N3050 4GB32GB 11.6\"', '152089.jpg', '14304', '\0');
+INSERT INTO `detallect` VALUES ('8', '147899', 'COMP PORT HP 14AC111LA CI3 1TB 14\" W10', '147899.jpg', '33472', '\0');
+INSERT INTO `detallect` VALUES ('8', '152005', 'COMP PORT LENOVO B4080 14\" I3 500GB W10', '152005.jpg', '27998', '\0');
+INSERT INTO `detallect` VALUES ('8', '148510', 'CONG HTL FRIGID FFC09A3MPW 9CF BLC', '148510.jpg', '16635', '\0');
+INSERT INTO `detallect` VALUES ('8', '148511', 'CONG HTL FRIGID FFC15A3MNW 15CF BLC', '148511.jpg', '24918', '\0');
+INSERT INTO `detallect` VALUES ('8', '148139', 'CONG HTL FRIGID FFC18A3MNW 18CF BLC', '148139.jpg', '33293', '\0');
+INSERT INTO `detallect` VALUES ('8', '144396', 'CONG HTL FRIGID FFFC22M6QW 22CF BLC', '144396.jpg', '43294', '\0');
+INSERT INTO `detallect` VALUES ('8', '149695', 'CONG HTL LG GC34BPW 12CF INOX', '149695.jpg', '20503', '\0');
+INSERT INTO `detallect` VALUES ('8', '136783', 'DVD LG DP132 2.1CH DIVX', '136783.jpg', '2598', '\0');
+INSERT INTO `detallect` VALUES ('8', '134857', 'DVD SONY DVPSR370 USB', '134857.jpg', '2754', '\0');
+INSERT INTO `detallect` VALUES ('8', '149085', 'EXTRACTOR HBEACH 67801', '149085.jpg', '1892', '\0');
+INSERT INTO `detallect` VALUES ('8', '124498', 'HORNO MIC LG MS1140S 1.1CF GR', '124498.jpg', '5921', '\0');
+INSERT INTO `detallect` VALUES ('8', '135383', 'HORNO MIC LG MS1142GW 1.1CF BLC', '135383.jpg', '5170', '\0');
+INSERT INTO `detallect` VALUES ('8', '131237', 'HORNO MIC SAMSUNG AMW831K 0.8CF BLC', '131237.jpg', '4498', '\0');
+INSERT INTO `detallect` VALUES ('8', '135742', 'HORNO MIC TELSTAR TMD2015DQ 0.7CF BLC', '135742.jpg', '3598', '\0');
+INSERT INTO `detallect` VALUES ('8', '107192', 'HORNO MIC WHIRLP WM1111D 1.1CF GR', '107192.jpg', '5729', '\0');
+INSERT INTO `detallect` VALUES ('8', '129466', 'HORNO MIC WHIRLP WMP07ZDTS 0.7CF SILVER', '129466.jpg', '4735', '\0');
+INSERT INTO `detallect` VALUES ('8', '139249', 'HORNO TOST B&D CTO6335S', '139249.jpg', '7035', '\0');
+INSERT INTO `detallect` VALUES ('8', '142470', 'HORNO TOST B&D TO1303RB', '142470.jpg', '2686', '\0');
+INSERT INTO `detallect` VALUES ('8', '126858', 'HORNO TOST B&D TO1420B', '126858.jpg', '1798', '\0');
+INSERT INTO `detallect` VALUES ('8', '120344', 'HORNO TOST B&D TRO420', '120344.jpg', '2083', '\0');
+INSERT INTO `detallect` VALUES ('8', '149995', 'HORNO TOST HBEACH 22722', '149995.jpg', '2883', '\0');
+INSERT INTO `detallect` VALUES ('8', '141399', 'JGO COMEDOR PREMIUM ITALIA 4 S', '141399.jpg', '13851', '\0');
+INSERT INTO `detallect` VALUES ('8', '150344', 'JGO COMEDOR PRIMIUN MADRID 4 S', '150344.jpg', '14358', '\0');
+INSERT INTO `detallect` VALUES ('8', '139751', 'JGO COMEDOR PRIMIUN TEVEZ 6 S', '139751.jpg', '18526', '\0');
+INSERT INTO `detallect` VALUES ('8', '146153', 'JGO COMEDOR TRISWIFT FRANKLIN 4 S', '146153.jpg', '7867', '\0');
+INSERT INTO `detallect` VALUES ('8', '150494', 'JGO SALA CAPRI DELUXE ESQUINERA 22', '150494.jpg', '23292', '\0');
+INSERT INTO `detallect` VALUES ('8', '150493', 'JGO SALA CAPRI NOVA MODULAR 32', '150493.jpg', '25494', '\0');
+INSERT INTO `detallect` VALUES ('8', '105233', 'JGO SALA CAPRI SINAI', '105233.jpg', '19616', '\0');
+INSERT INTO `detallect` VALUES ('8', '149887', 'JGO SALA CAPRI SINAI AZ', '149887.jpg', '19998', '\0');
+INSERT INTO `detallect` VALUES ('8', '149890', 'JGO SALA CAPRI SINAI CAF', '149890.jpg', '19998', '\0');
+INSERT INTO `detallect` VALUES ('8', '149888', 'JGO SALA CAPRI SINAI VERD', '149888.jpg', '19998', '\0');
+INSERT INTO `detallect` VALUES ('8', '149065', 'JGO SALA DULER BALI 32 CAF', '149065.jpg', '28210', '\0');
+INSERT INTO `detallect` VALUES ('8', '149066', 'JGO SALA DULER BALI 32 ROJ', '149066.jpg', '28485', '\0');
+INSERT INTO `detallect` VALUES ('8', '149058', 'JGO SALA DULER COLIMA 32 CAF', '149058.jpg', '25960', '\0');
+INSERT INTO `detallect` VALUES ('8', '149059', 'JGO SALA DULER COLIMA 32 TERRACOTA', '149059.jpg', '25773', '\0');
+INSERT INTO `detallect` VALUES ('8', '149064', 'JGO SALA DULER MONTREAL TERRACOTA', '149064.jpg', '47753', '\0');
+INSERT INTO `detallect` VALUES ('8', '149060', 'JGO SALA DULER WYN ESQ TERRACOTA', '149060.jpg', '37213', '\0');
+INSERT INTO `detallect` VALUES ('8', '149061', 'JGO SALA DULER WYN ESQ TURQ', '149061.jpg', '36682', '\0');
+INSERT INTO `detallect` VALUES ('8', '144930', 'JGO SALA MAXISALAS MODULAR PALERMO', '144930.jpg', '30228', '\0');
+INSERT INTO `detallect` VALUES ('8', '138883', 'JGO SALA MAXISALAS TORONTO 321', '138883.jpg', '41178', '\0');
+INSERT INTO `detallect` VALUES ('8', '150894', 'JGO SALA MERJEN BOREAL CAF OSCURO', '150894.jpg', '22518', '\0');
+INSERT INTO `detallect` VALUES ('8', '150890', 'JGO SALA MERJEN BOREAL ROJ', '150890.jpg', '22797', '\0');
+INSERT INTO `detallect` VALUES ('8', '150893', 'JGO SALA MERJEN BOREAL TURQ', '150893.jpg', '22710', '\0');
+INSERT INTO `detallect` VALUES ('8', '150888', 'JGO SALA MERJEN MALAGA ESQUINERO', '150888.jpg', '24530', '\0');
+INSERT INTO `detallect` VALUES ('8', '105975', 'JGO SALA TRAVERS EMPERADOR', '105975.jpg', '25744', '\0');
+INSERT INTO `detallect` VALUES ('8', '149343', 'JGO SALA VASQUEZ URBAN BEIGE', '149343.jpg', '19943', '\0');
+INSERT INTO `detallect` VALUES ('8', '146568', 'LAV AUTO FRIGID FWAC19H4MSMNW 19KG BLC', '146568.jpg', '27787', '\0');
+INSERT INTO `detallect` VALUES ('8', '145573', 'LAV AUTO FRIGID FWIL20F3MNW 20KG BLC', '145573.jpg', '24542', '\0');
+INSERT INTO `detallect` VALUES ('8', '114045', 'LAV AUTO FRIGID FWLI126FBGWT 12KG BLC', '114045.jpg', '16693', '\0');
+INSERT INTO `detallect` VALUES ('8', '134445', 'LAV AUTO LG WFS1634EK 16KG SILVER', '134445.jpg', '24167', '\0');
+INSERT INTO `detallect` VALUES ('8', '135758', 'LAV AUTO FRIGID FWLI13B3MSLG 13KG GR', '135758.jpg', '19121', '\0');
+INSERT INTO `detallect` VALUES ('8', '151800', 'LAV AUTO MABE LMA77113CBAB0 17KG BLC', '151800.jpg', '22305', '\0');
+INSERT INTO `detallect` VALUES ('8', '150637', 'LAV AUTO WHIRLP 7MWTW1500EM 15KG BLC', '150637.jpg', '25505', '\0');
+INSERT INTO `detallect` VALUES ('8', '135470', 'LAV SEMI ATLAS LAD1400CB 14KG BLC', '135470.jpg', '10240', '\0');
+INSERT INTO `detallect` VALUES ('8', '147478', 'LAV SEMI TELSTAR TLS13050CF 13KG BLC', '147478.jpg', '8714', '\0');
+INSERT INTO `detallect` VALUES ('8', '139335', 'LAV SEMI TELSTAR TLS18050CF 18KG BLC', '139335.jpg', '11374', '\0');
+INSERT INTO `detallect` VALUES ('8', '142471', 'LICUADORA B&D BL1110RG VID 12 V', '142471.jpg', '2609', '\0');
+INSERT INTO `detallect` VALUES ('8', '140064', 'LICUADORA B&D BL1130SGM VID 12 V', '140064.jpg', '2870', '\0');
+INSERT INTO `detallect` VALUES ('8', '149084', 'LICUADORA HBEACH 58148 VID 4 V', '149084.jpg', '2033', '\0');
+INSERT INTO `detallect` VALUES ('8', '145186', 'MINICOMP LG CM4350 3000W', '145186.jpg', '9998', '\0');
+INSERT INTO `detallect` VALUES ('8', '149532', 'MINICOMP LG CM4360 2500W', '149532.jpg', '9183', '\0');
+INSERT INTO `detallect` VALUES ('8', '149862', 'MINICOMP LG CM4460 5300W', '149862.jpg', '11916', '\0');
+INSERT INTO `detallect` VALUES ('8', '149863', 'MINICOMP LG CM4560 8000W', '149863.jpg', '15238', '\0');
+INSERT INTO `detallect` VALUES ('8', '149866', 'MINICOMP LG CM5760 13200W', '149866.jpg', '17871', '\0');
+INSERT INTO `detallect` VALUES ('8', '149864', 'MINICOMP LG CM8460 32000W', '149864.jpg', '29531', '\0');
+INSERT INTO `detallect` VALUES ('8', '150116', 'MINICOMP LG CM9960 52800W', '150116.jpg', '64599', '\0');
+INSERT INTO `detallect` VALUES ('8', '140062', 'MINIPROCESADOR B&D FP2500B', '140062.jpg', '3543', '\0');
+INSERT INTO `detallect` VALUES ('8', '148948', 'MULTIFUNCIONAL INYEC HP UIA4535', '148948.jpg', '4958', '\0');
+INSERT INTO `detallect` VALUES ('8', '151325', 'OLLA ARROC B&D RC5200M INOX 20TZ', '151325.jpg', '2329', '\0');
+INSERT INTO `detallect` VALUES ('8', '148350', 'OLLA ARROC B&D RC5280 30TZ', '148350.jpg', '2904', '\0');
+INSERT INTO `detallect` VALUES ('8', '106042', 'OLLA ARROC B&D RC860 10TZ', '106042.jpg', '2917', '\0');
+INSERT INTO `detallect` VALUES ('8', '127450', 'OLLA ARROC HBEACH 37538 12TZ ROJ', '127450.jpg', '1760', '\0');
+INSERT INTO `detallect` VALUES ('8', '104089', 'OLLA ARROC OSTER 4730 12TZ', '104089.jpg', '2785', '\0');
+INSERT INTO `detallect` VALUES ('8', '131193', 'OLLA PRES TELSTAR TPS1300NR 13L', '131193.jpg', '1851', '\0');
+INSERT INTO `detallect` VALUES ('8', '149088', 'PARRILLA ELEC HBEACH 38546', '149088.jpg', '3569', '\0');
+INSERT INTO `detallect` VALUES ('8', '146981', 'PERCOLADOR HBEACH 40516 42TZ', '146981.jpg', '3191', '\0');
+INSERT INTO `detallect` VALUES ('8', '125106', 'PLANCHA OSTER GCSTBS5803 VAPOR', '125106.jpg', '1051', '\0');
+INSERT INTO `detallect` VALUES ('8', '150022', 'PLANCHA B&D IR1820 VAPOR', '150022.jpg', '1161', '\0');
+INSERT INTO `detallect` VALUES ('8', '131194', 'PLANT GAS TELSTAR TPG0255YK 2Q INOX', '131194.jpg', '1399', '\0');
+INSERT INTO `detallect` VALUES ('8', '131195', 'PLANT GAS TELSTAR TPG0355YK 3Q INOX', '131195.jpg', '1508', '\0');
+INSERT INTO `detallect` VALUES ('8', '146899', 'RADIOGRAB SONY ZSPS50 MP3', '146899.jpg', '5598', '\0');
+INSERT INTO `detallect` VALUES ('8', '142922', 'REF AUTO ATLAS RTA1025VCAB0 10CF275L BLC', '142922.jpg', '19965', '\0');
+INSERT INTO `detallect` VALUES ('8', '146346', 'REF AUTO FRIGID FRT40K3MPS 14CF405L INOX', '146346.jpg', '28749', '\0');
+INSERT INTO `detallect` VALUES ('8', '142376', 'REF AUTO LG GT32BPP 12CF 330L SILVER', '142376.jpg', '29988', '\0');
+INSERT INTO `detallect` VALUES ('8', '146149', 'REF AUTO LG GT29BPP 9CF 272L INOX', '146149.jpg', '23990', '\0');
+INSERT INTO `detallect` VALUES ('8', '131776', 'REF AUTO MABE RME1436YMX 14CF 380L GRAF', '131776.jpg', '29552', '\0');
+INSERT INTO `detallect` VALUES ('8', '150255', 'REF SEMI CETRON RCC300WNS 11CF 325L GRAF', '150255.jpg', '15669', '\0');
+INSERT INTO `detallect` VALUES ('8', '144399', 'REF SEMI FRIGID FRT13G3HNW 6CF 168L BLC', '144399.jpg', '12958', '\0');
+INSERT INTO `detallect` VALUES ('8', '140175', 'REF SEMI TELSTAR TRS09510MD 4CF 95L BLC', '140175.jpg', '8478', '\0');
+INSERT INTO `detallect` VALUES ('8', '140174', 'REF SEMI TELSTAR TRS14005MD 5CF 140L SIL', '140174.jpg', '8495', '\0');
+INSERT INTO `detallect` VALUES ('8', '146044', 'REF SXS FRIGID FFSS2614QS 26CF 736L INOX', '146044.jpg', '73998', '\0');
+INSERT INTO `detallect` VALUES ('8', '139831', 'REF SXS GE PSMS6FGFFSS 26CF 736L INOX', '139831.jpg', '77105', '\0');
+INSERT INTO `detallect` VALUES ('8', '148044', 'ROPERO FAMESA OCRE COLONIAL WENGUE', '148044.jpg', '24481', '\0');
+INSERT INTO `detallect` VALUES ('8', '117212', 'ROPERO FAMESA MADRID CAOBA 4PTAS', '117212.jpg', '22044', '\0');
+INSERT INTO `detallect` VALUES ('8', '129209', 'SART ELEC TELSTAR TSE3030FH 12\"', '129209.jpg', '1450', '\0');
+INSERT INTO `detallect` VALUES ('8', '134670', 'SET COL CAPRI REST MASTER 3EN1 QUEEN 160', '134670.jpg', '18668', '\0');
+INSERT INTO `detallect` VALUES ('8', '118659', 'SET COL CAPRI REST MASTER ORTHO QUEEN 16', '118659.jpg', '18239', '\0');
+INSERT INTO `detallect` VALUES ('8', '146146', 'TABLET HUAWEI MEDIA PAD T1 7\" 8GB 3G', '146146.jpg', '7870', '\0');
+INSERT INTO `detallect` VALUES ('8', '137547', 'TABLET SANKEY TAB1011 10.1\" DC 8GB', '137547.jpg', '5060', '\0');
+INSERT INTO `detallect` VALUES ('8', '146974', 'TEATRO EN CASA C/DVD LG LHD625', '146974.jpg', '15108', '\0');
+INSERT INTO `detallect` VALUES ('8', '149750', 'TV LED 20\" TELSTAR TTL020230KK ISDBT', '149750.jpg', '7378', '\0');
+INSERT INTO `detallect` VALUES ('8', '148155', 'TV LED 24\" TELSTAR TTL024430KK ISDBT', '148155.jpg', '9479', '\0');
+INSERT INTO `detallect` VALUES ('8', '149626', 'TV LED 28\" TELSTAR TTL028430KK ISDBT', '149626.jpg', '10798', '\0');
+INSERT INTO `detallect` VALUES ('8', '150046', 'TV LED 43\" TELSTAR TTL043430KK ISDBT', '150046.jpg', '21596', '\0');
+INSERT INTO `detallect` VALUES ('8', '151168', 'TV LED 24\" LG 24MT48', '151168.jpg', '10598', '\0');
+INSERT INTO `detallect` VALUES ('8', '150134', 'TV LED 32\" LG 32LH510B', '150134.jpg', '16598', '\0');
+INSERT INTO `detallect` VALUES ('8', '150140', 'TV LED 43\" LG 43LH5100', '150140.jpg', '25006', '\0');
+INSERT INTO `detallect` VALUES ('8', '150029', 'TV LED 48\" SONY KDL48W655D LA8 SMART', '150029.jpg', '49085', '\0');
+INSERT INTO `detallect` VALUES ('8', '135360', 'TV LED 32\" SONY KDL32W605 LA8 SMART', '135360.jpg', '24065', '\0');
+INSERT INTO `detallect` VALUES ('8', '145384', 'TEL CEL 3G LG Y30 JOY', '145384.jpg', '6992', '\0');
+INSERT INTO `detallect` VALUES ('8', '151091', 'TEL CEL 3G HUAWEI Y5 II', '151091.jpg', '8481', '\0');
+INSERT INTO `detallect` VALUES ('8', '145175', 'TEL CEL 3G HUAWEI Y520', '145175.jpg', '6778', '\0');
+INSERT INTO `detallect` VALUES ('8', '150381', 'TEL CEL 3G SAMSUNG GALAXY J1 MINI', '150381.jpg', '7198', '\0');
+INSERT INTO `detallect` VALUES ('8', '150380', 'TEL CEL 4G HUAWEI GR5', '150380.jpg', '24426', '\0');
+INSERT INTO `detallect` VALUES ('8', '148419', 'TEL CEL 4G SAMSUNG GALAXY A3 2016', '148419.jpg', '25903', '\0');
+INSERT INTO `detallect` VALUES ('8', '151376', 'TEL CEL 4G SAMSUNG GALAXY J1 2016', '151376.jpg', '11645', '\0');
+INSERT INTO `detallect` VALUES ('8', '148781', 'TEL CEL 4G SAMSUNG GALAXY J2 LTE', '148781.jpg', '12468', '\0');
+INSERT INTO `detallect` VALUES ('8', '149891', 'TEL CEL 4G SAMSUNG GALAXY J3', '149891.jpg', '14782', '\0');
+INSERT INTO `detallect` VALUES ('8', '148110', 'TEL CEL 4G SAMSUNG GALAXY J5 LTE', '148110.jpg', '17015', '\0');
+INSERT INTO `detallect` VALUES ('8', '148111', 'TEL CEL 4G SAMSUNG GALAXY J7 LTE', '148111.jpg', '22020', '\0');
+INSERT INTO `detallect` VALUES ('8', '150672', 'MOTO SERPENTO BOA 150CC NEG 2017', '150672.jpg', '66352', '\0');
+INSERT INTO `detallect` VALUES ('8', '150673', 'MOTO SERPENTO BOA 150CC ROJ 2017', '150673.jpg', '66208', '\0');
+INSERT INTO `detallect` VALUES ('8', '146693', 'MOTO SERPENTO CLICK 150 AZ 2016', '146693.jpg', '58845', '\0');
+INSERT INTO `detallect` VALUES ('8', '150548', 'MOTO SERPENTO COBRA 150 NEG 2017', '150548.jpg', '51519', '\0');
+INSERT INTO `detallect` VALUES ('8', '150549', 'MOTO SERPENTO COBRA 150 ROJ 2017', '150549.jpg', '51516', '\0');
+INSERT INTO `detallect` VALUES ('8', '146699', 'MOTO SERPENTO CORAL 150 NEG 2016', '146699.jpg', '48527', '\0');
+INSERT INTO `detallect` VALUES ('8', '146700', 'MOTO SERPENTO CORAL 150 ROJ 2016', '146700.jpg', '49366', '\0');
+INSERT INTO `detallect` VALUES ('8', '146694', 'MOTO SERPENTO DEFENDER 150 NEG 2016', '146694.jpg', '55944', '\0');
+INSERT INTO `detallect` VALUES ('8', '146695', 'MOTO SERPENTO DEFENDER 150 VER 2016', '146695.jpg', '56335', '\0');
+INSERT INTO `detallect` VALUES ('8', '152067', 'MOTO SERPENTO DRACO 200 NEG MATTE 2017', '152067.jpg', '80499', '\0');
+INSERT INTO `detallect` VALUES ('8', '152065', 'MOTO SERPENTO DRACO 200 ROJ/NEG 2017', '152065.jpg', '80499', '\0');
+INSERT INTO `detallect` VALUES ('8', '146704', 'MOTO SERPENTO NAGA 200 NEG 2016', '146704.jpg', '64807', '\0');
+INSERT INTO `detallect` VALUES ('8', '146705', 'MOTO SERPENTO NAGA 200 ROJ 2016', '146705.jpg', '65422', '\0');
+INSERT INTO `detallect` VALUES ('8', '146707', 'MOTO SERPENTO SPIRIT 250 BLC 2016', '146707.jpg', '120323', '\0');
+INSERT INTO `detallect` VALUES ('8', '146706', 'MOTO SERPENTO SPIRIT 250 ROJ 2016', '146706.jpg', '120312', '\0');
+INSERT INTO `detallect` VALUES ('8', '151069', 'MOTO SERPENTO TAYPAN 150 NEG 2017', '151069.jpg', '43178', '\0');
+INSERT INTO `detallect` VALUES ('8', '150541', 'MOTO SERPENTO TAYPAN 150 ROJ 2017', '150541.jpg', '43206', '\0');
+INSERT INTO `detallect` VALUES ('8', '146714', 'MOTO SERPENTO YARA S 200 AZ 2016', '146714.jpg', '69385', '\0');
+INSERT INTO `detallect` VALUES ('8', '146715', 'MOTO SERPENTO YARA S200 ROJ 2016', '146715.jpg', '69450', '\0');
+
+-- ----------------------------
+-- Table structure for detallefre
+-- ----------------------------
+DROP TABLE IF EXISTS `detallefre`;
+CREATE TABLE `detallefre` (
+  `IdFRE` int(11) DEFAULT NULL,
+  `Factura` varchar(255) DEFAULT NULL,
+  `Fecha` datetime DEFAULT NULL,
+  `Puntos` int(11) DEFAULT NULL,
+  `Efectivo` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of detallefre
+-- ----------------------------
+INSERT INTO `detallefre` VALUES ('7777', '5555', '2016-11-10 14:14:03', '1400', '700');
+
+-- ----------------------------
+-- Table structure for detallefrp
+-- ----------------------------
+DROP TABLE IF EXISTS `detallefrp`;
+CREATE TABLE `detallefrp` (
+  `IdFRP` int(10) NOT NULL,
+  `Factura` varchar(10) NOT NULL,
+  `Fecha` varchar(15) NOT NULL,
+  `Faplicado` int(20) NOT NULL,
+  `IdArticulo` int(10) NOT NULL,
+  `Descripcion` varchar(50) NOT NULL,
+  `Puntos` int(20) NOT NULL,
+  `Cantidad` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Detalles del FRP';
+
+-- ----------------------------
+-- Records of detallefrp
+-- ----------------------------
+INSERT INTO `detallefrp` VALUES ('1234', '00082874', '2016-10-03', '3500', '125106', 'PLANCHA OSTER GCSTBS5803 VAPOR', '1051', '1');
+INSERT INTO `detallefrp` VALUES ('1234', '00008247', '2016-10-03', '2000', '125106', 'plancha', '50', '1');
+
+-- ----------------------------
+-- Table structure for fre
+-- ----------------------------
+DROP TABLE IF EXISTS `fre`;
+CREATE TABLE `fre` (
+  `IdFRE` int(11) NOT NULL,
+  `Fecha` datetime DEFAULT NULL,
+  `IdCliente` varchar(255) DEFAULT NULL,
+  `Nombre` varchar(255) DEFAULT NULL,
+  `IdUsuario` int(11) DEFAULT NULL,
+  `Anulado` varchar(255) DEFAULT NULL,
+  `Comentario` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`IdFRE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of fre
+-- ----------------------------
+INSERT INTO `fre` VALUES ('7777', '2016-11-10 14:10:02', '02355', 'ALDER HERNANDEZ', '1', 'N', null);
+
+-- ----------------------------
+-- Table structure for frp
+-- ----------------------------
+DROP TABLE IF EXISTS `frp`;
+CREATE TABLE `frp` (
+  `IdFRP` int(10) NOT NULL,
+  `Fecha` datetime NOT NULL,
+  `IdCliente` varchar(10) NOT NULL,
+  `Nombre` varchar(50) NOT NULL,
+  `IdUsuario` int(11) NOT NULL,
+  `Anulado` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of frp
+-- ----------------------------
+INSERT INTO `frp` VALUES ('1234', '2016-11-10 00:00:00', '02355', 'FARMACIA PICON', '220', 'N');
 
 -- ----------------------------
 -- Table structure for logcatalogo
@@ -159,6 +308,23 @@ CREATE TABLE `logcatalogo` (
 -- ----------------------------
 -- Records of logcatalogo
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for rfactura
+-- ----------------------------
+DROP TABLE IF EXISTS `rfactura`;
+CREATE TABLE `rfactura` (
+  `IdCliente` varchar(20) NOT NULL,
+  `Factura` varchar(20) NOT NULL,
+  `ttPuntos` int(100) NOT NULL,
+  `Puntos` int(20) NOT NULL,
+  `FechaActualizacion` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of rfactura
+-- ----------------------------
+INSERT INTO `rfactura` VALUES ('02355', '00082874', '3500', '3500', '2016-11-10 05:48:05');
 
 -- ----------------------------
 -- Table structure for roles
@@ -188,42 +354,72 @@ INSERT INTO `roles` VALUES ('8', 'Corp.');
 DROP TABLE IF EXISTS `tmp_catalogo`;
 CREATE TABLE `tmp_catalogo` (
   `v_IdCT1` int(11) DEFAULT NULL,
-  `v_CodImg1` int(11) DEFAULT NULL,
+  `v_IdIMG1` int(11) DEFAULT NULL,
   `v_Nombre1` varchar(255) DEFAULT NULL,
-  `v_Imagen1` varchar(150) DEFAULT NULL,
+  `v_IMG1` varchar(150) DEFAULT NULL,
   `v_Puntos1` int(11) DEFAULT NULL,
   `v_IdCT2` int(11) DEFAULT NULL,
-  `v_CodImg2` int(11) DEFAULT NULL,
+  `v_IdIMG2` int(11) DEFAULT NULL,
   `v_Nombre2` varchar(255) DEFAULT NULL,
-  `v_Imagen2` varchar(150) DEFAULT NULL,
+  `v_IMG2` varchar(150) DEFAULT NULL,
   `v_Puntos2` int(11) DEFAULT NULL,
   `v_IdCT3` int(11) DEFAULT NULL,
-  `v_CodImg3` int(11) DEFAULT NULL,
+  `v_IdIMG3` int(11) DEFAULT NULL,
   `v_Nombre3` varchar(255) DEFAULT NULL,
-  `v_Imagen3` varchar(150) DEFAULT NULL,
+  `v_IMG3` varchar(150) DEFAULT NULL,
   `v_Puntos3` int(11) DEFAULT NULL,
   `v_IdCT4` varchar(255) DEFAULT NULL,
-  `v_CodImg4` int(11) DEFAULT NULL,
+  `v_IdIMG4` int(11) DEFAULT NULL,
   `v_Nombre4` varchar(255) DEFAULT NULL,
-  `v_Imagen4` varchar(150) DEFAULT NULL,
+  `v_IMG4` varchar(150) DEFAULT NULL,
   `v_Puntos4` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tmp_catalogo
 -- ----------------------------
-INSERT INTO `tmp_catalogo` VALUES ('1', '1210', 'CAMA UNIPERSONAL B&D HC3000', '105348.jpg', '2500', '1', '1211', 'MICROONDAS B&D HC3000', '107192.jpg', '2100', '1', '1212', 'MUEBLES SALA B&D HC3000', '105975.jpg', '4800', '1', '1213', 'MESA DE 4 B&D HC3000', '116242.jpg', '2300');
-INSERT INTO `tmp_catalogo` VALUES ('1', '1214', 'ABANICO B&D HC3000', '119141.jpg', '1350', '1', '1216', 'MAQUINA DE CONCER B&D HC3000', '119527.jpg', '2385', '1', '1217', 'COCINA 4 QUEMADORES HC3000', '114529.jpg', '2850', '1', '1219', 'ROPERO B&D HC3000', '124686.jpg', '4880');
-INSERT INTO `tmp_catalogo` VALUES ('1', '1220', 'PLANCHA B&D HC3000', '125105.jpg', '1450', '1', '1221', 'JUEGO SALA B&D HC3000', '124353.jpg', '5150', '1', '1221', 'RESURADORA B&D HC3000', '125365.jpg', '1170', '1', '1222', 'ABANICO B&D HC3000', '121577.jpg', '1340');
-INSERT INTO `tmp_catalogo` VALUES ('1', '1223', 'MUEBLE COCINA C3000', '126921.jpg', '11800', '1', '1224', 'ASADOR B&D HC3000', '129209.jpg', '1500', '1', '1225', 'PLANCHADOR B&D HC3000', '129863.jpg', '1420', '1', '1226', 'REFRIGERADOR B&D HC3000', '123780.jpg', '2600');
-INSERT INTO `tmp_catalogo` VALUES ('1', '1226', 'SALA DE ESTAR B&D HC3000', '130374.jpg', '7231', '1', '1227', 'MINI HORNO B&D HC3000', '126858.jpg', '3000', '1', '1228', 'PSP SLIM HC', '128314.jpg', '2180', '1', '1228', 'TELEVISOR 24\"', '131380.jpg', '2456');
-INSERT INTO `tmp_catalogo` VALUES ('1', '1229', 'ROPERO DE NIñO Y NIñA B&D HC3000', '135218.jpg', '2487', '1', '1230', 'COMPUTADOR DE MESA', '134027.jpg', '4896', '1', '1231', 'MOTO MONTAñERA 150CC', '130707.jpg', '15866', '1', '1232', 'MOTO MENSAJERA 125CC', '130712.jpg', '14845');
-INSERT INTO `tmp_catalogo` VALUES ('1', '1233', 'MOTO MONTAñERA 200CC', '130723.jpg', '16842', '1', '1234', 'COMEDOR  B&D HC3000', '101100.jpg', '1500', '1', '1234', 'SCOTER 150CC ROJA', '134388.jpg', '15678', '1', '12345', 'MINIPROCESADOR B&D HC3000', '101345.jpg', '1000');
-INSERT INTO `tmp_catalogo` VALUES ('1', '12345', 'MINIPROCESADOR BLANCO HC3000', '101349.jpg', '1200', '1', '1235', 'PSP 3 SONY', '136179.jpg', '6842', '1', '1236', 'HOLLA B&D HC3000', '101645.jpg', '1000', '1', '1236', 'COCINA 6 QUEMADORES ATLAS', '131588.jpg', '11258');
-INSERT INTO `tmp_catalogo` VALUES ('1', '1237', 'LICUADORA B&D HC3000', '102586.jpg', '800', '1', '1237', 'LAVADORA 50 LITROS', '134445.jpg', '9580', '1', '1238', 'ESPRIMIDOR B&D HC3000', '102596.jpg', '1800', '1', '1239', 'CAMA MATRIMONIAL B&D HC3000', '103409.jpg', '3200');
-INSERT INTO `tmp_catalogo` VALUES ('1', '1240', 'CONTENEDOR REFRIGERADORA ', '126405.jpg', '12385', '1', '1242', 'SISTEMA DE SONIDO ENVOLVENTE', '133553.jpg', '15785', '1', '1245', 'ARROCERA B&D HC3000', '101605.jpg', '1300', '1', '1245', 'LAPTOP TOSHIBA 16\"', '146071.jpg', '12858');
-INSERT INTO `tmp_catalogo` VALUES ('1', '1246', 'IMPRESORA HP DESKJET1200', '148948.jpg', '4877', '1', '1249', 'PARRILLA ASADOR PARA PATIO', '145389.jpg', '25876', '1', '1250', 'GIFT CARD WALMART', 'PPUMK-0001.jpg', '500', '1', '1254', 'GIFT CARD WALMART 500', 'PPUMK-0002.jpg', '800');
-INSERT INTO `tmp_catalogo` VALUES ('1', '1285', 'SAMSUNG J1', '140576.jpg', '3582', '0', '0', '', '', '0', '0', '0', '', '', '0', '', '0', '', '', '0');
+INSERT INTO `tmp_catalogo` VALUES ('8', '104089', 'OLLA ARROC OSTER 4730 12TZ', '104089.jpg', '2785', '8', '105233', 'JGO SALA CAPRI SINAI', '105233.jpg', '19616', '8', '105975', 'JGO SALA TRAVERS EMPERADOR', '105975.jpg', '25744', '8', '106042', 'OLLA ARROC B&D RC860 10TZ', '106042.jpg', '2917');
+INSERT INTO `tmp_catalogo` VALUES ('8', '107192', 'HORNO MIC WHIRLP WM1111D 1.1CF GR', '107192.jpg', '5729', '8', '111066', 'ABAN PIE LASKO 2526 16\"', '111066.jpg', '2722', '8', '112986', 'ABAN TORRE LASKO 2510 36\"', '112986.jpg', '4514', '8', '112989', 'ABAN PIE LASKO 1827 18\"', '112989.jpg', '2877');
+INSERT INTO `tmp_catalogo` VALUES ('8', '112990', 'ABAN PIE LASKO 1850 18\"', '112990.jpg', '3886', '8', '112991', 'ABAN PIE LASKO 1824 18\"', '112991.jpg', '1698', '8', '114045', 'LAV AUTO FRIGID FWLI126FBGWT 12KG BLC', '114045.jpg', '16693', '8', '117212', 'ROPERO FAMESA MADRID CAOBA 4PTAS', '117212.jpg', '22044');
+INSERT INTO `tmp_catalogo` VALUES ('8', '118659', 'SET COL CAPRI REST MASTER ORTHO QUEEN 16', '118659.jpg', '18239', '8', '120344', 'HORNO TOST B&D TRO420', '120344.jpg', '2083', '8', '124498', 'HORNO MIC LG MS1140S 1.1CF GR', '124498.jpg', '5921', '8', '125106', 'PLANCHA OSTER GCSTBS5803 VAPOR', '125106.jpg', '1051');
+INSERT INTO `tmp_catalogo` VALUES ('8', '125686', 'ABAN BOX LASKO 3300', '125686.jpg', '3035', '8', '126858', 'HORNO TOST B&D TO1420B', '126858.jpg', '1798', '8', '127065', 'ABAN MESA AERO SPEED AC800 8\"', '127065.jpg', '1432', '8', '127450', 'OLLA ARROC HBEACH 37538 12TZ ROJ', '127450.jpg', '1760');
+INSERT INTO `tmp_catalogo` VALUES ('8', '129209', 'SART ELEC TELSTAR TSE3030FH 12\"', '129209.jpg', '1450', '8', '129466', 'HORNO MIC WHIRLP WMP07ZDTS 0.7CF SILVER', '129466.jpg', '4735', '8', '131193', 'OLLA PRES TELSTAR TPS1300NR 13L', '131193.jpg', '1851', '8', '131194', 'PLANT GAS TELSTAR TPG0255YK 2Q INOX', '131194.jpg', '1399');
+INSERT INTO `tmp_catalogo` VALUES ('8', '131195', 'PLANT GAS TELSTAR TPG0355YK 3Q INOX', '131195.jpg', '1508', '8', '131237', 'HORNO MIC SAMSUNG AMW831K 0.8CF BLC', '131237.jpg', '4498', '8', '131385', 'ABAN PIE SANKEY FN17A02B 16\"', '131385.jpg', '1971', '8', '131776', 'REF AUTO MABE RME1436YMX 14CF 380L GRAF', '131776.jpg', '29552');
+INSERT INTO `tmp_catalogo` VALUES ('8', '133898', 'ABAN TORRE LASKO 2519 36\"', '133898.jpg', '4718', '8', '134445', 'LAV AUTO LG WFS1634EK 16KG SILVER', '134445.jpg', '24167', '8', '134670', 'SET COL CAPRI REST MASTER 3EN1 QUEEN 160', '134670.jpg', '18668', '8', '134857', 'DVD SONY DVPSR370 USB', '134857.jpg', '2754');
+INSERT INTO `tmp_catalogo` VALUES ('8', '135360', 'TV LED 32\" SONY KDL32W605 LA8 SMART', '135360.jpg', '24065', '8', '135383', 'HORNO MIC LG MS1142GW 1.1CF BLC', '135383.jpg', '5170', '8', '135470', 'LAV SEMI ATLAS LAD1400CB 14KG BLC', '135470.jpg', '10240', '8', '135742', 'HORNO MIC TELSTAR TMD2015DQ 0.7CF BLC', '135742.jpg', '3598');
+INSERT INTO `tmp_catalogo` VALUES ('8', '135758', 'LAV AUTO FRIGID FWLI13B3MSLG 13KG GR', '135758.jpg', '19121', '8', '136783', 'DVD LG DP132 2.1CH DIVX', '136783.jpg', '2598', '8', '137056', 'COC GAS ATLAS EAG2006BIB1 20\" 4Q BLC', '137056.jpg', '9936', '8', '137547', 'TABLET SANKEY TAB1011 10.1\" DC 8GB', '137547.jpg', '5060');
+INSERT INTO `tmp_catalogo` VALUES ('8', '138883', 'JGO SALA MAXISALAS TORONTO 321', '138883.jpg', '41178', '8', '139245', 'CAFETERA B&D BCM1410B 12TZ NEG', '139245.jpg', '2010', '8', '139249', 'HORNO TOST B&D CTO6335S', '139249.jpg', '7035', '8', '139335', 'LAV SEMI TELSTAR TLS18050CF 18KG BLC', '139335.jpg', '11374');
+INSERT INTO `tmp_catalogo` VALUES ('8', '139561', 'CENTRO ENTRET FAMESA TIKAL', '139561.jpg', '13705', '8', '139751', 'JGO COMEDOR PRIMIUN TEVEZ 6 S', '139751.jpg', '18526', '8', '139831', 'REF SXS GE PSMS6FGFFSS 26CF 736L INOX', '139831.jpg', '77105', '8', '140062', 'MINIPROCESADOR B&D FP2500B', '140062.jpg', '3543');
+INSERT INTO `tmp_catalogo` VALUES ('8', '140064', 'LICUADORA B&D BL1130SGM VID 12 V', '140064.jpg', '2870', '8', '140174', 'REF SEMI TELSTAR TRS14005MD 5CF 140L SIL', '140174.jpg', '8495', '8', '140175', 'REF SEMI TELSTAR TRS09510MD 4CF 95L BLC', '140175.jpg', '8478', '8', '141399', 'JGO COMEDOR PREMIUM ITALIA 4 S', '141399.jpg', '13851');
+INSERT INTO `tmp_catalogo` VALUES ('8', '142376', 'REF AUTO LG GT32BPP 12CF 330L SILVER', '142376.jpg', '29988', '8', '142470', 'HORNO TOST B&D TO1303RB', '142470.jpg', '2686', '8', '142471', 'LICUADORA B&D BL1110RG VID 12 V', '142471.jpg', '2609', '8', '142489', 'A/C SPLIT FRIGID FASX12F2MBHLW INVERTER', '142489.jpg', '29969');
+INSERT INTO `tmp_catalogo` VALUES ('8', '142597', 'COC GAS FRIGID FKGD30J3NNG 30\" 6Q PLT', '142597.jpg', '18967', '8', '142599', 'COC GAS FRIGID FKGD20C3NNG 20\" 4Q PLT', '142599.jpg', '12149', '8', '142922', 'REF AUTO ATLAS RTA1025VCAB0 10CF275L BLC', '142922.jpg', '19965', '8', '143131', 'COC GAS GE EG3092CX2 30\" 6Q INOX', '143131.jpg', '34464');
+INSERT INTO `tmp_catalogo` VALUES ('8', '144396', 'CONG HTL FRIGID FFFC22M6QW 22CF BLC', '144396.jpg', '43294', '8', '144399', 'REF SEMI FRIGID FRT13G3HNW 6CF 168L BLC', '144399.jpg', '12958', '8', '144930', 'JGO SALA MAXISALAS MODULAR PALERMO', '144930.jpg', '30228', '8', '145175', 'TEL CEL 3G HUAWEI Y520', '145175.jpg', '6778');
+INSERT INTO `tmp_catalogo` VALUES ('8', '145186', 'MINICOMP LG CM4350 3000W', '145186.jpg', '9998', '8', '145384', 'TEL CEL 3G LG Y30 JOY', '145384.jpg', '6992', '8', '145499', 'ABAN PIE SANKEY FN1746 16\"', '145499.jpg', '2423', '8', '145573', 'LAV AUTO FRIGID FWIL20F3MNW 20KG BLC', '145573.jpg', '24542');
+INSERT INTO `tmp_catalogo` VALUES ('8', '146044', 'REF SXS FRIGID FFSS2614QS 26CF 736L INOX', '146044.jpg', '73998', '8', '146146', 'TABLET HUAWEI MEDIA PAD T1 7\" 8GB 3G', '146146.jpg', '7870', '8', '146149', 'REF AUTO LG GT29BPP 9CF 272L INOX', '146149.jpg', '23990', '8', '146153', 'JGO COMEDOR TRISWIFT FRANKLIN 4 S', '146153.jpg', '7867');
+INSERT INTO `tmp_catalogo` VALUES ('8', '146346', 'REF AUTO FRIGID FRT40K3MPS 14CF405L INOX', '146346.jpg', '28749', '8', '146568', 'LAV AUTO FRIGID FWAC19H4MSMNW 19KG BLC', '146568.jpg', '27787', '8', '146637', 'COC GAS MABE EM5132BI01 20\" 4Q BLC', '146637.jpg', '10979', '8', '146693', 'MOTO SERPENTO CLICK 150 AZ 2016', '146693.jpg', '58845');
+INSERT INTO `tmp_catalogo` VALUES ('8', '146694', 'MOTO SERPENTO DEFENDER 150 NEG 2016', '146694.jpg', '55944', '8', '146695', 'MOTO SERPENTO DEFENDER 150 VER 2016', '146695.jpg', '56335', '8', '146699', 'MOTO SERPENTO CORAL 150 NEG 2016', '146699.jpg', '48527', '8', '146700', 'MOTO SERPENTO CORAL 150 ROJ 2016', '146700.jpg', '49366');
+INSERT INTO `tmp_catalogo` VALUES ('8', '146704', 'MOTO SERPENTO NAGA 200 NEG 2016', '146704.jpg', '64807', '8', '146705', 'MOTO SERPENTO NAGA 200 ROJ 2016', '146705.jpg', '65422', '8', '146706', 'MOTO SERPENTO SPIRIT 250 ROJ 2016', '146706.jpg', '120312', '8', '146707', 'MOTO SERPENTO SPIRIT 250 BLC 2016', '146707.jpg', '120323');
+INSERT INTO `tmp_catalogo` VALUES ('8', '146714', 'MOTO SERPENTO YARA S 200 AZ 2016', '146714.jpg', '69385', '8', '146715', 'MOTO SERPENTO YARA S200 ROJ 2016', '146715.jpg', '69450', '8', '146899', 'RADIOGRAB SONY ZSPS50 MP3', '146899.jpg', '5598', '8', '146974', 'TEATRO EN CASA C/DVD LG LHD625', '146974.jpg', '15108');
+INSERT INTO `tmp_catalogo` VALUES ('8', '146981', 'PERCOLADOR HBEACH 40516 42TZ', '146981.jpg', '3191', '8', '147478', 'LAV SEMI TELSTAR TLS13050CF 13KG BLC', '147478.jpg', '8714', '8', '147899', 'COMP PORT HP 14AC111LA CI3 1TB 14\" W10', '147899.jpg', '33472', '8', '148044', 'ROPERO FAMESA OCRE COLONIAL WENGUE', '148044.jpg', '24481');
+INSERT INTO `tmp_catalogo` VALUES ('8', '148110', 'TEL CEL 4G SAMSUNG GALAXY J5 LTE', '148110.jpg', '17015', '8', '148111', 'TEL CEL 4G SAMSUNG GALAXY J7 LTE', '148111.jpg', '22020', '8', '148139', 'CONG HTL FRIGID FFC18A3MNW 18CF BLC', '148139.jpg', '33293', '8', '148155', 'TV LED 24\" TELSTAR TTL024430KK ISDBT', '148155.jpg', '9479');
+INSERT INTO `tmp_catalogo` VALUES ('8', '148337', 'CENTRO ENTRET FAMESA NEW SHARI', '148337.jpg', '13434', '8', '148338', 'CENTRO ENTRET FAMESA BROOKLYN', '148338.jpg', '10188', '8', '148350', 'OLLA ARROC B&D RC5280 30TZ', '148350.jpg', '2904', '8', '148397', 'CENTRO ENTRET FAMESA MEDIEVAL', '148397.jpg', '23694');
+INSERT INTO `tmp_catalogo` VALUES ('8', '148402', 'CENTRO ENTRET FAMESA MANHATHAN', '148402.jpg', '12340', '8', '148419', 'TEL CEL 4G SAMSUNG GALAXY A3 2016', '148419.jpg', '25903', '8', '148510', 'CONG HTL FRIGID FFC09A3MPW 9CF BLC', '148510.jpg', '16635', '8', '148511', 'CONG HTL FRIGID FFC15A3MNW 15CF BLC', '148511.jpg', '24918');
+INSERT INTO `tmp_catalogo` VALUES ('8', '148781', 'TEL CEL 4G SAMSUNG GALAXY J2 LTE', '148781.jpg', '12468', '8', '148948', 'MULTIFUNCIONAL INYEC HP UIA4535', '148948.jpg', '4958', '8', '149049', 'ABAN TORRE LASKO 2535 52\"', '149049.jpg', '4984', '8', '149058', 'JGO SALA DULER COLIMA 32 CAF', '149058.jpg', '25960');
+INSERT INTO `tmp_catalogo` VALUES ('8', '149059', 'JGO SALA DULER COLIMA 32 TERRACOTA', '149059.jpg', '25773', '8', '149060', 'JGO SALA DULER WYN ESQ TERRACOTA', '149060.jpg', '37213', '8', '149061', 'JGO SALA DULER WYN ESQ TURQ', '149061.jpg', '36682', '8', '149064', 'JGO SALA DULER MONTREAL TERRACOTA', '149064.jpg', '47753');
+INSERT INTO `tmp_catalogo` VALUES ('8', '149065', 'JGO SALA DULER BALI 32 CAF', '149065.jpg', '28210', '8', '149066', 'JGO SALA DULER BALI 32 ROJ', '149066.jpg', '28485', '8', '149084', 'LICUADORA HBEACH 58148 VID 4 V', '149084.jpg', '2033', '8', '149085', 'EXTRACTOR HBEACH 67801', '149085.jpg', '1892');
+INSERT INTO `tmp_catalogo` VALUES ('8', '149088', 'PARRILLA ELEC HBEACH 38546', '149088.jpg', '3569', '8', '149343', 'JGO SALA VASQUEZ URBAN BEIGE', '149343.jpg', '19943', '8', '149532', 'MINICOMP LG CM4360 2500W', '149532.jpg', '9183', '8', '149626', 'TV LED 28\" TELSTAR TTL028430KK ISDBT', '149626.jpg', '10798');
+INSERT INTO `tmp_catalogo` VALUES ('8', '149629', 'COC GAS FRIGID FKGM30C3BBPG 30\" 5Q GRIS', '149629.jpg', '17884', '8', '149695', 'CONG HTL LG GC34BPW 12CF INOX', '149695.jpg', '20503', '8', '149750', 'TV LED 20\" TELSTAR TTL020230KK ISDBT', '149750.jpg', '7378', '8', '149862', 'MINICOMP LG CM4460 5300W', '149862.jpg', '11916');
+INSERT INTO `tmp_catalogo` VALUES ('8', '149863', 'MINICOMP LG CM4560 8000W', '149863.jpg', '15238', '8', '149864', 'MINICOMP LG CM8460 32000W', '149864.jpg', '29531', '8', '149866', 'MINICOMP LG CM5760 13200W', '149866.jpg', '17871', '8', '149887', 'JGO SALA CAPRI SINAI AZ', '149887.jpg', '19998');
+INSERT INTO `tmp_catalogo` VALUES ('8', '149888', 'JGO SALA CAPRI SINAI VERD', '149888.jpg', '19998', '8', '149890', 'JGO SALA CAPRI SINAI CAF', '149890.jpg', '19998', '8', '149891', 'TEL CEL 4G SAMSUNG GALAXY J3', '149891.jpg', '14782', '8', '149989', 'CAFETERA HBEACH 46201 12TZ', '149989.jpg', '3849');
+INSERT INTO `tmp_catalogo` VALUES ('8', '149990', 'CAFETERA HBEACH 43253R 12TZ', '149990.jpg', '3567', '8', '149995', 'HORNO TOST HBEACH 22722', '149995.jpg', '2883', '8', '150022', 'PLANCHA B&D IR1820 VAPOR', '150022.jpg', '1161', '8', '150029', 'TV LED 48\" SONY KDL48W655D LA8 SMART', '150029.jpg', '49085');
+INSERT INTO `tmp_catalogo` VALUES ('8', '150046', 'TV LED 43\" TELSTAR TTL043430KK ISDBT', '150046.jpg', '21596', '8', '150116', 'MINICOMP LG CM9960 52800W', '150116.jpg', '64599', '8', '150134', 'TV LED 32\" LG 32LH510B', '150134.jpg', '16598', '8', '150140', 'TV LED 43\" LG 43LH5100', '150140.jpg', '25006');
+INSERT INTO `tmp_catalogo` VALUES ('8', '150255', 'REF SEMI CETRON RCC300WNS 11CF 325L GRAF', '150255.jpg', '15669', '8', '150344', 'JGO COMEDOR PRIMIUN MADRID 4 S', '150344.jpg', '14358', '8', '150380', 'TEL CEL 4G HUAWEI GR5', '150380.jpg', '24426', '8', '150381', 'TEL CEL 3G SAMSUNG GALAXY J1 MINI', '150381.jpg', '7198');
+INSERT INTO `tmp_catalogo` VALUES ('8', '150493', 'JGO SALA CAPRI NOVA MODULAR 32', '150493.jpg', '25494', '8', '150494', 'JGO SALA CAPRI DELUXE ESQUINERA 22', '150494.jpg', '23292', '8', '150541', 'MOTO SERPENTO TAYPAN 150 ROJ 2017', '150541.jpg', '43206', '8', '150548', 'MOTO SERPENTO COBRA 150 NEG 2017', '150548.jpg', '51519');
+INSERT INTO `tmp_catalogo` VALUES ('8', '150549', 'MOTO SERPENTO COBRA 150 ROJ 2017', '150549.jpg', '51516', '8', '150637', 'LAV AUTO WHIRLP 7MWTW1500EM 15KG BLC', '150637.jpg', '25505', '8', '150672', 'MOTO SERPENTO BOA 150CC NEG 2017', '150672.jpg', '66352', '8', '150673', 'MOTO SERPENTO BOA 150CC ROJ 2017', '150673.jpg', '66208');
+INSERT INTO `tmp_catalogo` VALUES ('8', '150888', 'JGO SALA MERJEN MALAGA ESQUINERO', '150888.jpg', '24530', '8', '150890', 'JGO SALA MERJEN BOREAL ROJ', '150890.jpg', '22797', '8', '150893', 'JGO SALA MERJEN BOREAL TURQ', '150893.jpg', '22710', '8', '150894', 'JGO SALA MERJEN BOREAL CAF OSCURO', '150894.jpg', '22518');
+INSERT INTO `tmp_catalogo` VALUES ('8', '151069', 'MOTO SERPENTO TAYPAN 150 NEG 2017', '151069.jpg', '43178', '8', '151091', 'TEL CEL 3G HUAWEI Y5 II', '151091.jpg', '8481', '8', '151168', 'TV LED 24\" LG 24MT48', '151168.jpg', '10598', '8', '151325', 'OLLA ARROC B&D RC5200M INOX 20TZ', '151325.jpg', '2329');
+INSERT INTO `tmp_catalogo` VALUES ('8', '151376', 'TEL CEL 4G SAMSUNG GALAXY J1 2016', '151376.jpg', '11645', '8', '151795', 'COC GAS MABE EM7671CFIX0 30\" 6Q INOX', '151795.jpg', '24998', '8', '151800', 'LAV AUTO MABE LMA77113CBAB0 17KG BLC', '151800.jpg', '22305', '8', '152005', 'COMP PORT LENOVO B4080 14\" I3 500GB W10', '152005.jpg', '27998');
+INSERT INTO `tmp_catalogo` VALUES ('8', '152065', 'MOTO SERPENTO DRACO 200 ROJ/NEG 2017', '152065.jpg', '80499', '8', '152067', 'MOTO SERPENTO DRACO 200 NEG MATTE 2017', '152067.jpg', '80499', '8', '152089', 'COMP PORT LENOVO N22 N3050 4GB32GB 11.6\"', '152089.jpg', '14304', '0', '0', '', '', '0');
 
 -- ----------------------------
 -- Table structure for usuario
@@ -242,25 +438,16 @@ CREATE TABLE `usuario` (
   `FechaCreacion` datetime NOT NULL COMMENT 'Fecha de Creación del Usuario',
   `FechaBaja` datetime DEFAULT NULL COMMENT 'Fecha de Baja del Usuario',
   PRIMARY KEY (`IdUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=220 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=246 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of usuario
 -- ----------------------------
-INSERT INTO `usuario` VALUES ('1', 'admin', 'admin', '123', 'Administrador', '', null, '', '\0', '2016-06-27 00:00:00', '2016-08-09 15:32:21');
-INSERT INTO `usuario` VALUES ('200', 'cliente1', 'FARMACIA PICHARDO - RUC 2910912590002X', '123', 'Cliente', '00019', 'FARMACIA PICHARDO - RUC 2910912590002X', 'F06', '\0', '2016-08-15 08:17:45', '2016-08-15 09:30:35');
-INSERT INTO `usuario` VALUES ('201', 'FDavid', 'FARMACIA DAVID', '123456', 'Cliente', '00001', 'FARMACIA DAVID', 'F09', '\0', '2016-08-19 18:51:04', null);
-INSERT INTO `usuario` VALUES ('202', 'FLaPrinicpal', 'FARMACIA LA PRINCIPAL', '123', 'Cliente', '00002', 'FARMACIA LA PRINCIPAL', 'F06', '\0', '2016-08-19 22:28:28', null);
-INSERT INTO `usuario` VALUES ('203', 'FProvidencia', 'FARMACIA LA PROVIDENCIA', '123', 'Cliente', '00003', 'FARMACIA LA PROVIDENCIA', 'F06', '\0', '2016-08-19 22:32:16', null);
-INSERT INTO `usuario` VALUES ('204', 'FUnion', 'FARMACIA LA UNION', '123', 'Cliente', '01292', 'FARMACIA LA UNIÓN', 'F19', '\0', '2016-08-19 22:34:49', null);
-INSERT INTO `usuario` VALUES ('205', 'FMeg24', 'FARMACIA MEG 24', '123', 'Cliente', '00007', 'FARMACIA MEG 24', 'F06', '\0', '2016-08-19 22:35:41', null);
-INSERT INTO `usuario` VALUES ('206', 'FNorma', 'FARMACIA NORMA', '123', 'Cliente', '03140', 'FARMACIA NORMA ', 'F14', '\0', '2016-08-19 23:33:12', null);
-INSERT INTO `usuario` VALUES ('207', 'asaenz', 'asaenz', 'a9734', 'SuperAdministrador', '', null, null, '\0', '2016-09-21 16:56:31', null);
-INSERT INTO `usuario` VALUES ('215', 'alder', 'alder', '123', 'SuperAdministrador', '', null, null, '\0', '2016-09-22 08:53:15', null);
-INSERT INTO `usuario` VALUES ('216', 'alder', 'alder', '123', 'SuperAdministrador', '', null, null, '\0', '2016-09-22 08:53:51', null);
-INSERT INTO `usuario` VALUES ('217', 'admin', 'admin', '123', 'Super%20Administrador', '', null, null, '\0', '2016-09-22 08:54:46', null);
-INSERT INTO `usuario` VALUES ('218', 'admin', 'admin', '123', 'SuperAdministrador', '', null, null, '\0', '2016-09-22 08:55:10', null);
-INSERT INTO `usuario` VALUES ('219', 'admin', 'admin', '123', 'SuperAdministrador', '', null, null, '\0', '2016-09-22 08:56:01', null);
+INSERT INTO `usuario` VALUES ('1', 'admin', 'admin', '123', 'Administrador', '', null, '', '\0', '2016-06-27 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `usuario` VALUES ('242', 'FDAVID', 'FARMACIA DAVID', 'b98d198ef05bac61e274736f64721e6e', 'Vendedor', '00001', 'FARMACIA DAVID', 'F09', '\0', '2016-11-03 03:31:27', '2016-11-04 11:42:19');
+INSERT INTO `usuario` VALUES ('244', 'FLAPROVIDENCIA', 'FARMACIA LA PROVIDENCIA', 'FL8621', 'Vendedor', '00003', 'FARMACIA LA PROVIDENCIA', 'F06', '\0', '2016-11-04 10:57:18', '2016-11-04 11:42:38');
+INSERT INTO `usuario` VALUES ('245', 'FLAPRINCIPAL', 'FARMACIA LA PRINCIPAL', 'FL6977', 'Vendedor', '00002', 'FARMACIA LA PRINCIPAL', 'F06', '\0', '2016-11-04 10:57:18', '2016-11-04 11:42:35');
+INSERT INTO `usuario` VALUES ('220', 'alder', 'alder', '123', 'SuperAdministrador', '', null, null, '\0', '2016-09-22 13:31:24', null);
 
 -- ----------------------------
 -- Table structure for vendedor
@@ -304,16 +491,142 @@ INSERT INTO `vendedor` VALUES ('21', 'F21', 'F021', '\0');
 -- ----------------------------
 DROP VIEW IF EXISTS `view_catalogo_activo`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_catalogo_activo` AS SELECT
-detallect.CodigoImg,
-detallect.Nombre,
-detallect.Imagen,
-detallect.Puntos,
-detallect.IdCT,
-catalogo.Descripcion
+	`detallect`.`IdIMG` AS `IdIMG`,
+	`detallect`.`Nombre` AS `Nombre`,
+	`detallect`.`IMG` AS `IMG`,
+	`detallect`.`Puntos` AS `Puntos`,
+	`catalogo`.`Descripcion` AS `Descripcion`,
+	`catalogo`.`IdCT` AS `IdCT`
 FROM
-detallect
-INNER JOIN catalogo ON catalogo.IdCT = detallect.IdCT 
-WHERE catalogo.Estado=0 AND detallect.Estado=0 ;
+	(
+		`catalogo`
+		LEFT JOIN `detallect` ON (
+			(
+				`detallect`.`IdCT` = `catalogo`.`IdCT`
+			)
+		)
+	)
+WHERE
+	(`catalogo`.`Estado` = 0) ;
+
+-- ----------------------------
+-- View structure for view_clientesactivos
+-- ----------------------------
+DROP VIEW IF EXISTS `view_clientesactivos`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_clientesactivos` AS SELECT
+	group_concat(
+		concat('\'', `usuario`.`IdCL`, '\'') SEPARATOR ','
+	) AS `CLIENTES`
+FROM
+	`usuario`
+WHERE
+	(`usuario`.`IdCL` <> '' AND Usuario.Estado <>1) ;
+
+-- ----------------------------
+-- View structure for view_fre_factura
+-- ----------------------------
+DROP VIEW IF EXISTS `view_fre_factura`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_fre_factura` AS SELECT
+	fre.IdFRE,
+	detallefre.Factura,
+	fre.IdCliente,
+	detallefre.Puntos,
+	detallefre.Efectivo,
+	fre.Anulado
+FROM
+	fre
+INNER JOIN detallefre ON fre.IdFRE = detallefre.IdFRE ;
+
+-- ----------------------------
+-- View structure for view_frp_articulo
+-- ----------------------------
+DROP VIEW IF EXISTS `view_frp_articulo`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_frp_articulo` AS SELECT
+	`t0`.`IdFRP` AS `IdFRP`,
+	`t0`.`Cantidad` AS `Cantidad`,
+	`t0`.`IdArticulo` AS `IdArticulo`,
+	`t0`.`Descripcion` AS `Descripcion`,
+	(
+		(
+			SELECT
+				sum(`t1`.`Puntos`)
+			FROM
+				`detallefrp` `t1`
+			WHERE
+				(
+					(`t1`.`IdFRP` = `t0`.`IdFRP`)
+					AND (
+						`t1`.`IdArticulo` = `t0`.`IdArticulo`
+					)
+				)
+		) / `t0`.`Cantidad`
+	) AS `Puntos`,
+	(
+		SELECT
+			sum(`t1`.`Puntos`)
+		FROM
+			`detallefrp` `t1`
+		WHERE
+			(
+				(`t1`.`IdFRP` = `t0`.`IdFRP`)
+				AND (
+					`t1`.`IdArticulo` = `t0`.`IdArticulo`
+				)
+			)
+	) AS `Total`
+FROM
+	`detallefrp` `t0`
+GROUP BY
+	`t0`.`IdFRP`,
+	`t0`.`IdArticulo` ;
+
+-- ----------------------------
+-- View structure for view_frp_factura
+-- ----------------------------
+DROP VIEW IF EXISTS `view_frp_factura`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_frp_factura` AS SELECT
+	`t0`.`IdFRP` AS `IdFRP`,
+	(
+		SELECT
+			`t1`.`IdCliente`
+		FROM
+			`frp` `t1`
+		WHERE
+			(`t1`.`IdFRP` = `t0`.`IdFRP`)
+	) AS `IdCliente`,
+	`t0`.`Faplicado` AS `Faplicado`,
+	`t0`.`Factura` AS `Factura`,
+	`t0`.`Fecha` AS `Fecha`,
+	sum(`t0`.`Puntos`) AS `Puntos`,
+	(
+		`t0`.`Faplicado` - (
+			SELECT
+				sum(`t1`.`Puntos`)
+			FROM
+				`detallefrp` `t1`
+			WHERE
+				(
+					(`t1`.`IdFRP` = `t0`.`IdFRP`)
+					AND (
+						`t1`.`Factura` = `t0`.`Factura`
+					)
+				)
+		)
+	) AS `SALDO`,
+	(
+		SELECT
+			`t1`.`Anulado`
+		FROM
+			`frp` `t1`
+		WHERE
+			(`t1`.`IdFRP` = `t0`.`IdFRP`)
+	) AS `Anulado`
+FROM
+	`detallefrp` `t0`
+GROUP BY
+	`t0`.`Factura`,
+	`t0`.`IdFRP`,
+	`t0`.`Faplicado` ;
 
 -- ----------------------------
 -- View structure for vt_clientesuser
@@ -333,80 +646,147 @@ WHERE
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `pc_Catalogo`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pc_Catalogo`(IN `CATALOGO` INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pc_Catalogo`(IN CATALOGO int)
 BEGIN
-		DECLARE v_CodImg 	INT;
-		DECLARE v_Nombre 	VARCHAR(255);
-		DECLARE v_Imagen 	VARCHAR(150);
-		DECLARE v_Puntos 	INT;
-		DECLARE v_IdCT 		INT;
-		DECLARE cont INT DEFAULT 1;
-		DECLARE conse INT DEFAULT 1;
-		DECLARE CSQL VARCHAR(8000) DEFAULT "(";
-		DECLARE RELLENO INT DEFAULT 0;
-		DECLARE errores INT DEFAULT 0;
+		DECLARE v_IdCT, v_CodImg, v_Puntos 	INT;
+		DECLARE v_Nombre VARCHAR(255);
+		DECLARE v_Imagen VARCHAR(150);
+		
+		DECLARE cont, conse INT DEFAULT 1;
+		
+		DECLARE CSQL VARCHAR(20000) DEFAULT "(";
+		DECLARE RELLENO, errores INT DEFAULT 0;
 		
 		DECLARE data_cursor CURSOR FOR 
-			SELECT detallect.IdCT, detallect.CodigoImg, detallect.Nombre, detallect.Imagen, detallect.Puntos
+			SELECT detallect.IdCT, detallect.IdIMG, detallect.Nombre, detallect.IMG, detallect.Puntos
 			FROM detallect
-			INNER JOIN catalogo ON catalogo.IdCT = detallect.IdCT 
-			WHERE detallect.IdCT = CATALOGO
-			ORDER BY detallect.CodigoImg;
+			WHERE detallect.IdCT = CATALOGO AND detallect.Estado <> 1
+			ORDER BY detallect.IdIMG;
 		DECLARE CONTINUE HANDLER FOR NOT FOUND SET errores = 1;
 
-		SELECT COUNT(IdCT) INTO RELLENO FROM detallect WHERE detallect.IdCT = CATALOGO;
-
-		OPEN data_cursor;
-  
-		read_data: LOOP
-				FETCH data_cursor INTO v_IdCT, v_CodImg, v_Nombre, v_Imagen, v_Puntos;
+		SELECT COUNT(IdCT) INTO RELLENO FROM detallect WHERE detallect.IdCT = CATALOGO AND detallect.Estado <> 1;
+       
+        IF RELLENO <> 0 THEN
+          OPEN data_cursor;
+               read_data: LOOP
+                          FETCH data_cursor INTO v_IdCT, v_CodImg, v_Nombre, v_Imagen, v_Puntos;
 				
-				IF errores = 1 THEN
-					LEAVE read_data;
-				END IF;
-
-				SET CSQL = CONCAT(CSQL, v_IdCT, ",", v_CodImg, ",'", v_Nombre, "','", v_Imagen, "',", v_Puntos);
-					
-				IF cont = 4 THEN
-					SET CSQL = CONCAT(CSQL, "),(");
-					SET cont = 0;
-				ELSEIF conse < RELLENO THEN
-					SET CSQL = CONCAT(CSQL, ",");
-				END IF;
+				           IF errores = 1 THEN LEAVE read_data; END IF;
+                
+				           SET CSQL = CONCAT(CSQL, v_IdCT, ",", v_CodImg, ",'", v_Nombre, "','", v_Imagen, "',", v_Puntos);
+                
+				           IF cont = 4 THEN                    
+                              IF conse = RELLENO THEN
+                                 SET CSQL = CONCAT(CSQL, ")");
+                              ELSE
+                                  SET CSQL = CONCAT(CSQL, "),(");
+                              END IF;	
+                    
+                              SET cont = 0;
+                          ELSEIF conse < RELLENO THEN
+                              SET CSQL = CONCAT(CSQL, ",");   
+                          END IF;
 				
-				SET cont = cont + 1;
-				SET conse = conse + 1;
-		END LOOP read_data;
-		
-		CLOSE data_cursor;
-		
-		SET RELLENO = 4 - (((RELLENO/4) - FLOOR(RELLENO/4)) * 4);
-		
-		IF RELLENO <> 4 THEN
-			SET CSQL = CONCAT(CSQL, ",");
-
-			WHILE RELLENO <> 0 DO
-				SET CSQL = CONCAT(CSQL, "'','','','',''");
-				SET RELLENO = RELLENO - 1;
-
-				IF RELLENO <> 0 THEN
-					SET CSQL = CONCAT(CSQL, ",");
-				END IF;
-			END WHILE;
-
-			SET CSQL = CONCAT(CSQL, ")");
-		ELSE
-			SET CSQL=SUBSTRING(CSQL,1,length(CSQL)-2);
+				          SET cont = cont + 1;
+				          SET conse = conse + 1;
+                END LOOP read_data;
+		    CLOSE data_cursor;
+            	    
+		    SET RELLENO = 4 - (((RELLENO/4) - FLOOR(RELLENO/4)) * 4);
+		    
+		    IF RELLENO < 4 THEN
+               SET CSQL = CONCAT(CSQL, ",");
+               
+			   WHILE RELLENO <> 0 DO
+			         SET CSQL = CONCAT(CSQL, "'0','0','','','0'");
+            		 SET RELLENO = RELLENO - 1;
+                
+				     IF RELLENO <> 0 THEN
+				        SET CSQL = CONCAT(CSQL, ",");
+                     ELSE
+                        SET CSQL = CONCAT(CSQL, ")");
+                     END IF;
+               END WHILE;
+           END IF;
+   	       
+		   DELETE FROM tmp_Catalogo;
+           
+		   SET @query = CONCAT("INSERT INTO tmp_Catalogo VALUES", CSQL);
+           
+		   PREPARE IC FROM @query; 
+		   EXECUTE IC; 
+		   DEALLOCATE PREPARE IC;
 		END IF;
-		
-		
-		DELETE FROM tmp_Catalogo;
+END
+;;
+DELIMITER ;
 
-		SET @query = CONCAT("INSERT INTO tmp_Catalogo VALUES", CSQL);
+-- ----------------------------
+-- Procedure structure for pc_Clientes_Facturas
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `pc_Clientes_Facturas`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pc_Clientes_Facturas`(IN cod VARCHAR(20))
+BEGIN
+				SELECT GROUP_CONCAT(CONCAT("'",Factura,"'")) as Facturas  
+				FROM view_frp_factura
+				WHERE IdCliente = cod AND SALDO = 0 AND ANULADO = 'N'
+				GROUP BY IdCliente;					
+END
+;;
+DELIMITER ;
 
-		PREPARE IC FROM @query; 
-		EXECUTE IC; 
-		DEALLOCATE PREPARE IC;
+-- ----------------------------
+-- Procedure structure for pc_clientes_pa
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `pc_clientes_pa`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pc_clientes_pa`(
+	IN CODIGO INT
+)
+BEGIN
+SELECT T0.IdCliente, SUM(T0.Puntos) AS Puntos FROM view_frp_factura T0
+  WHERE T0.Anulado = 'N' AND T0.IdCliente = CODIGO
+  GROUP BY T0.IdCliente;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for pc_MFactura
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `pc_MFactura`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pc_MFactura`(IN infactura CHAR(20),
+                IN inpuntos INT,
+                IN fecha DATETIME)
+BEGIN
+             UPDATE rfactura SET Puntos = (Puntos + INPUNTOS), FechaActualizacion = FECHA  WHERE Factura = INFACTURA;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for pc_RFactura
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `pc_RFactura`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pc_RFactura`(IN INFACTURA CHAR(20),
+                IN INPUNTOS INT,
+                IN CLIENTE CHAR(30),
+                IN FECHA DATETIME,
+                IN ttpuntos INT)
+BEGIN
+                IF EXISTS(SELECT Factura FROM rfactura  WHERE Factura=INFACTURA) THEN
+                BEGIN
+                    UPDATE rfactura SET Puntos= (Puntos - INPUNTOS), FechaActualizacion = FECHA  WHERE Factura = INFACTURA;
+                END;
+                ELSE
+                BEGIN
+                               INSERT INTO rfactura (IdCliente,Factura,ttPuntos,Puntos,FechaActualizacion) 
+                               VALUES(CLIENTE,INFACTURA,ttpuntos,ttpuntos-INPUNTOS,FECHA);       
+               END;
+END IF ;
 END
 ;;
 DELIMITER ;

@@ -10,18 +10,13 @@ class Canje_model extends CI_Model
     {
         
        $query = $this->sqlsrv->fetchArray("SELECT SUM(TT_PUNTOS) AS PUNTOS FROM PRODUCCION.dbo.vtVS2_Facturas_CL
-                                         WHERE CLIENTE = '".$idCliente."' and FECHA >='2016-10-01'",SQLSRV_FETCH_ASSOC);
-
-       /*$query = $this->sqlsrv->fetchArray("SELECT FACTURA,TT_PUNTOS AS PUNTOS FROM PRODUCCION.dbo.vtVS2_Facturas_CL
-                                         WHERE CLIENTE = '".$idCliente."' and FECHA >='2016-10-01'",SQLSRV_FETCH_ASSOC);*/
+                                         WHERE CLIENTE = '".$idCliente."' and FECHA >= '".$this->CONDICION."'",SQLSRV_FETCH_ASSOC);
+       
         $i=0;
         $json = array();
-        $PUNTOS=0;
-        
+        $PUNTOS=0;        
         foreach($query as $key){
-            $PUNTOS = $key['PUNTOS'];
-            //echo $key['PUNTOS']."<br>";
-            //echo $key['PUNTOS']."->".$key['FACTURA']."<br>";
+            $PUNTOS = $key['PUNTOS'];            
             $i++;
         }
         $query = $this->db->query("call pc_clientes_pa ('".$idCliente."')");
@@ -31,22 +26,41 @@ class Canje_model extends CI_Model
         }else{
             $Arestar = 0;
         }
+        $query->next_result();
+        $query->free_result();
+        $query = $this->db->query("call pc_clientes_pe ('".$idCliente."')");
+        if($query->num_rows() > 0){
+            $Arestar += $query->result_array()[0]['Puntos'];
+        }
         echo  intval($PUNTOS) - intval($Arestar);
         $this->sqlsrv->close();
     }
     public function getFacturaFRP($idCliente)
-    {
+    {   $query="";
         $q_rows = $this->db->query("call pc_Clientes_Facturas ('".$idCliente."')");
         if ($q_rows->num_rows() > 0) {
             $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
-                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].")
-                    GROUP BY FACTURA, FECHA";
-        } else {
+                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].")";
+        }
+        $q_rows->next_result();
+        $q_rows->free_result();
+
+        $q_rows = $this->db->query("call pc_Clientes_Facturas_Fre ('".$idCliente."')");
+        if ($q_rows->num_rows() > 0) {
+            if ($query=="") {
+                $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
+                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
+            }else{
+                $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
+            }
+        }
+        
+        if ($query==""){
             $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
                     WHERE CLIENTE = '".$idCliente."' AND FECHA >= '".$this->CONDICION."' GROUP BY FACTURA, FECHA ";
         }
-        //echo $query."<br>";
-        //echo $this->sqlsrv->dbname;
+        $q_rows->next_result();
+        $q_rows->free_result();
         $query = $this->sqlsrv->fetchArray($query,SQLSRV_FETCH_ASSOC);
         $json = array();
         $i=0;
@@ -80,30 +94,25 @@ class Canje_model extends CI_Model
         return $json;
     }
     public function getSaldoParcial($id,$pts){
-        $link = @mysql_connect('localhost', 'root', 'a7m1425.')or die('No se pudo conectar: ' . mysql_error());            
-        mysql_select_db('visys') or die('No se pudo seleccionar la base de datos');
-        $query = "SELECT Puntos FROM rfactura WHERE Puntos <> 0 AND Factura = '".$id."'";
-
-        $result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
-        $line = mysql_fetch_array($result, MYSQL_ASSOC);
-        $rows_factura = $line['Puntos'];
-            
-        if($rows_factura == "" ){
-            $rows_factura_ajx = $pts;
-        }else {
-            $rows_factura_ajx = $rows_factura;
+        $this->db->where('Puntos <>',0);
+        $this->db->where('Factura',$id);
+        $this->db->select('Puntos');
+        $query = $this->db->get('rfactura');
+        if($query->num_rows() > 0){
+            $parcial = $query->result_array()[0]['Puntos'];
+        } else {
+            $parcial = $pts;
         }
-        return $rows_factura_ajx;
+        return $parcial;
     }
     public function BuscaFRP($FRP) {//BUSCA SI EXISTE UN FRP EN LA BASE DE MYSQL BY CEREBRO
         $this->db->select('IdFRP');
         $this->db->from('frp');
         $this->db->where('IdFRP',$FRP);
-        $query = $this->db->get();
-        
+        $query = $this->db->get();        
         if($query->num_rows() > 0){
             return $query->result_array()[0]['IdFRP'];
-        } else {
+        }else{
             return 0;
         }
     }

@@ -31,7 +31,7 @@
         </div>
 
         <div class="right row">
-            <a href="#Efec" class="BtnBlue waves-effect  btn modal-trigger">efectivo</a>
+            <a href="#modalEfec" class="BtnBlue waves-effect  btn modal-trigger">efectivo</a>
         </div>
 
         <table id="tblFRE" class=" TblDatos">
@@ -39,51 +39,222 @@
             <thead>
             <tr>
                 <th>FECHA</th>
-                <th># FRP</th>
+                <th>FRE #</th>
                 <th>COD. CLIENTE</th>
                 <th>NOMBRE</th>
-                <th>Pts.</th>
+                <th>PUNTOS</th>
                 <th>EFECTIVO</th>
                 <th>ELIMINAR</th>
             </tr>
             </thead>
-
             <tbody class="center">
-
-            <tr>
-                <td> 14/07/2015</td>
-                <td id="black">fc002332</td>
-                <td>00022</td>
-                <td  id="Codigo">xxxxxx xxxxxxxx xxxxxx xxxxx x</td>
-                <td  id="Codigo">2,742 Pts.</td>
-                <td  id="Codigo">C$ 1,371</td>
-                <td>
-                    <a href="#Dell" class="Icono modal-trigger">
-                        <i class="material-icons">highlight_off</i>
-                    </a>
-                </td>
-            </tr>
-
-            <tr>
-                <td> 14/07/2015</td>
-                <td id="black">fc002332</td>
-                <td>00022</td>
-                <td  id="Codigo">xxxxxx xxxxxxxx xxxxxx xxxxx x</td>
-                <td  id="Codigo">2,742 Pts.</td>
-                <td  id="Codigo">C$ 1,371</td>
-                <td>
-                    <a href="#Dell" class="Icono modal-trigger">
-                        <i class="material-icons">highlight_off</i>
-                    </a>
-                </td>
-            </tr>
-
+                <?php 
+                    if (!($fre)) {}
+                    else{
+                        foreach ($fre as $key ) {
+                            if ($key['Anulado'] == "S"){
+                                $clase="tachado";
+                                $delete="";
+                            } else {
+                                $clase="";
+                                $delete = "<a  onclick='dellFrp(".$key['IdFRE'].")' href='#' class='Icono noHover'><i class='material-icons'>highlight_off</i></a>";
+                            }
+                            echo "<tr>
+                                    <td>".date('d-m-Y', strtotime($key['Fecha']))."</td>
+                                    <td class='negra'>".$key['IdFRE']."</td>
+                                    <td>".$key['IdCliente']."</td>
+                                    <td class='negra'>".$key['Nombre']."</td>
+                                    <td>".$key['Puntos']."</td>
+                                    <td>".$key['Efectivo']."</td>
+                                    <td class='center'>
+                                    <a  onclick='getview(".$key['IdFRE'].")' href='#' class='noHover'><i class='material-icons'>&#xE417;</i></a>
+                                    ".$delete."
+                                </td>
+                            </tr>";
+                        }
+                    }
+                ?>
             </tbody>
 
         </table>
 
     </div>
 </main>
+
+
+<!--////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                    MODAL PRINCIPAL
+/////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!-- Modal #1
+                Modal Structure -->
+<div id="modalEfec" class="modal">
+    <div class="modal-content">
+        <div class="right row">
+                <a href="#!" class=" BtnClose modal-action modal-close ">
+                    <i class="material-icons">highlight_off</i>
+                </a>
+        </div>
+
+        <h6 class="center Mcolor">FORMATO DE REMISIÓN DE EFECTIVO</h6>
+
+        <div class="row noMargen valign-wrapper">
+            <div class="DatoFrp input-field line col s3 m3 l2">
+                 N° FRE:<input id="frp" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="frp" type="text" class="validate">
+            </div>
+
+            <div class="DatoFrp line col s3 m3 l3 offset-l7 offset-s4 offset-m4">
+                FECHA:<input type="text" id="date1" class="datepicker1"><br>
+            </div>
+        </div>
+
+        <div class="row ">
+            <div class=" DatoFrp line input-field col s3 m3 l3">
+                COD. CLIENTE:<input id="txtCodCliente" type="text" class="validate frp">
+            </div>
+
+            <div class="input-field col s7 m7 l7"  >
+                <select name="cliente" id="ListCliente" class="chosen-select browser-default">
+                    <option value="" disabled selected>CLIENTE</option>
+                    <?php
+                        if(!$data){}
+                        else{
+                                foreach($data as $cliente){
+                                if ($cliente['CLIENTE']=="02355") {
+                                    echo '<option value="'.$cliente['CLIENTE'].'">'.$cliente['NOMBRE'].'</option>';
+                                }
+                                //echo '<option value="'.$cliente['CLIENTE'].'">'.$cliente['NOMBRE'].'</option>';
+                            }
+                        }
+                    ?>
+                </select>
+            </div>
+
+            <div class="input-field col s2 m2 l2">
+                <input  id="PtosDisponibles" type="text" class="validate frp">
+            </div>
+        </div>
+
+        <div class="right row">
+            <a href="#btnProcesar" onclick="procesar()" class="Procesar waves-effect btn">procesar</a>
+        </div>
+    
+        <table id="tblFacturaFRE" class=" TblDatos">
+            <thead>
+            <tr>
+                <th>FECHA</th>
+                <th># FATURA</th>
+                <th>PUNTOS</th>
+                <th>PUNTOS A EFECTIVO</th>
+                <th><i class="material-icons">check</i></th>
+            </tr>
+            </thead>
+
+            <tbody class="center mayuscula">            
+            </tbody>
+        </table>
+    
+        <div id="Total" class="right row text">
+            <div class="col s11 m12 l12">
+                <p class="Dato">TOTAL EFECTIVO: <span class="dato">C$ </span><span id="totalEfectivo" class="dato">0</span></p>
+            </div>
+
+        </div>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <p class="Datos">OBSERVACIONES</p>
+                        <textarea id="observaciones" class="materialize-textarea observaciones"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+<!-- FIN MODAL -->
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                        MODAL DETALLE FRE
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<!-- Modal #4
+                Modal Structure -->
+<div id="Dfre" class="modal">
+    <div class="modal-content">
+
+        <div class="right row">
+                <a href="#!" class=" BtnClose modal-action modal-close ">
+                    <i class="material-icons">highlight_off</i>
+                </a>
+        </div>
+
+        <h6 class="center Mcolor">DETALLE FRE</h6>
+
+         <div class="row center " id="frpProgress">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left"><div class="circle"></div></div>
+                        <div class="gap-patch"><div class="circle"></div></div>
+                    <div class="circle-clipper right"><div class="circle"></div></div>
+                </div>
+            </div>
+        </div>
+                
+        <div class="row center">
+            <div class="col s12 center">
+                <span class="center datos1 frpT"> N° FRP <span id="spnFRP"> </span></span><br>
+                <span class="center datos1 lineas"> <span id="spnFecha"></span></span>
+            </div>
+            <div class="col s12 center">
+                <span id="Nfarmacia" class="center Mcolor">COD# <span id="spnCodCls"></span> NOMBRE: <span id="spnNombreCliente"></span></span><br>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col s4 m4 l3 center">
+            <p class="canjePts RobotoB">CANJE: <span id="totalCanje">100,000</span> PTS.</p>
+        </div>
+        <div class="col s4 m4 l3 offset-l6 offset-s4 offset-m4 center">
+            <p class="canjePts RobotoB">EFECTIVO: C$<span id="totalEfectivo2"> 100,000</span></p>
+        </div>
+    </div>
+    <div class="row">
+        <table id="tblModal1" class=" TblDatos">
+            <thead>
+                <tr>
+                    <th>FECHA</th>
+                    <th>FACTURA #</th>
+                    <th>PUNTOS</th>
+                    <th>PUNTOS A EFECTIVO</th>
+                    <th>ESTADO</th>
+                </tr>
+            </thead>
+            <tbody class="center">            
+            </tbody>
+        </table>
+    </div>
+        <div class="row">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <p class="Datos">OBSERVACIONES</p>
+                        <textarea id="obser" class="materialize-textarea observaciones"></textarea>
+                    </div>
+            </form>
+        </div>
+
+        <div class="row center" id="iconoPrint">
+            <!--<div class="col s2 m2 l2 offset-l5 offset-s4 offset-m4">-->
+                <a class="noHover" href="#" onclick="callUrlPrint('DetalleFRE','spnFRP')"><img src="<?PHP echo base_url();?>assets/img/ico_imprimir.png " width="45px" ></a>
+            <!--</div>-->
+            <!--<div class="col s2 m2 l1">
+                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="35px" ></a>
+            </div>-->
+        </div>
+    </div><!-- fin del contenido del modal -->
+
+</div>
+<!-- Fin de Modal#4-->
+
 
 <!--///////////////////////////////////////////////////////////////////////////////////////////////
                                      MODALES ELIMINACION DE FRE
@@ -123,223 +294,3 @@
     </div>
     </div>
 </div>
-<!--////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                    MODAL PRINCIPAL
-/////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-<!-- Modal #1
-                Modal Structure -->
-<div id="Efec" class="modal">
-    <div class="modal-content">
-        <div class="right row">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-        </div>
-
-        <h6 class="center Mcolor">FORMATO DE REMISIÓN DE EFECTIVO</h6>
-
-        <div class="row">
-            <div class="Datos input-field line col s3 m3 l3">
-               COD.FRE:<input id="fre" type="text" class="validate">
-            </div>
-            <div class="Datos line col s3 m3 l3 offset-l5 offset-s4 offset-m4">
-                <p id="fecha" class="Datos">FECHA:</p>  <input type="text" id="date1" class="datepicker1">
-            </div>
-        </div>
-
-
-        <div class="row ">
-            <div class=" DatoFrp line input-field col s3 m3 l3">
-                COD. CLIENTE:<input id="frp" type="text" class="validate">
-            </div>
-
-            <div class="input-field col s2 m3 l6"  >
-                <select name="cliente" id="ListCliente">
-                    <option value="" disabled selected>CLIENTE</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                </select>
-            </div>
-
-            <div class="input-field col s2 m2 l2">
-                <input  id="frp" type="text" class="validate">
-            </div>
-        </div>
-
-        <div class="right row">
-            <div class="col s2 m2 l2">
-                <a href="#Dfre" class="Procesar waves-effect modal-action modal-close btn modal-trigger">procesar</a>
-            </div>
-        </div>
-
-        <table id="tblEliminar" class=" TblDatos">
-            <thead>
-            <tr>
-                <th>FECHA</th>
-                <th>#FATURA</th>
-                <th>Pts.</th>
-                <th>Pts. a EFECT.</th>
-                <th><i class="material-icons">done</i> </th>
-                <th>ESTADO</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr>
-                <td>24/01/2016</td>
-                <td id="black">067799</td>
-                <td id="black">30,000 Pts.</td>
-                <td id="black">C$ 30,000</td>
-                <td>
-                    <p >
-                        <input type="checkbox" id="test1" />
-                        <label for="test1"></label>
-                    </p>
-                </td>
-                <td id="dispo">DISPONIBLE</td>
-            </tr>
-            <tr>
-                <td>24/01/2016</td>
-                <td id="black">067799</td>
-                <td id="black">30,000 Pts.</td>
-                <td id="black">C$ 30,000</td>
-                <td>
-                    <p >
-                        <input type="checkbox" id="test2" />
-                        <label for="test2"></label>
-                    </p>
-                </td>
-                <td id="dispo">DISPONIBLE</td>
-            </tr>
-
-            </tbody>
-        </table>
-
-        <div id="Total" class="right row text">
-            <div class="col s8 m8 l12">
-                <p class="Dato">TOTAL EFECTIVO: <span class="dato">C$ 363,522 </span></p>
-            </div>
-
-        </div>
-        <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <p class="Datos">OBSERVACIONES</p>
-                        <textarea id="obser" class="materialize-textarea"></textarea>
-
-                    </div>
-                </div>
-            </form>
-        </div>
-
-    </div>
-
-
-
-
-
-</div>
-<!-- FIN MODAL -->
-<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        MODAL DETALLE FRE
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-<!-- Modal #4
-                Modal Structure -->
-<div id="Dfre" class="modal">
-    <div class="modal-content">
-
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
-
-        <h6 id="titulM" class="center Mcolor">DETALLE FRE</h6>
-
-        <div class="container">
-            <p class="center datos1 frpT"> N°FRE FC02389</p>
-            <p class="center datos1 lineas"> 24/12/2016</p>
-        </div>
-        <h6  class="center datos1">00449 FARMACIA CASTELLÓN</h6>
-        <p class="center Datos linea ruc"> RUC 4412000183001H</p>
-
-        <div class="row text">
-            <div class="col col s4 m4 l3">
-                <p class="Datos ruc Cblack">CANJE: 100,000 Pts</p>
-            </div>
-            <div class="col s4 m4 l3 offset-l6 offset-s4 offset-m4">
-                <p class="Datos ruc Cblack">EFECTIVO: C$ 50,000</p>
-            </div>
-        </div>
-
-        <table id="tblpRODUCTOS" class=" TblDatos">
-            <thead>
-            <tr>
-                <th>FECHA</th>
-                <th>#FACTURA</th>
-                <th>Pts</th>
-                <th>Pts. a EFECT.</th>
-                <th>ESTADO</th>
-
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr>
-                <td>24/01/2016</td>
-                <td id="black">069424</td>
-                <td id="black">25,000 Pts</td>
-                <td>C$ 12,000</td>
-                <td>PAGADO</td>
-
-            </tr>
-            <tr>
-                <td>24/01/2016</td>
-                <td id="black">069424</td>
-                <td id="black">25,000 Pts</td>
-                <td>C$ 12,000</td>
-                <td>PAGADO</td>
-
-            </tr>
-
-            </tbody>
-        </table>
-
-        <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <p class="Datos">OBSERVACIONES</p>
-                        <textarea id="obser" class="materialize-textarea">
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                        </textarea>
-
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div class="row">
-            <div class="col s2 m2 l2 offset-l5 offset-s4 offset-m4">
-                <a  target="_blank" href="DetalleFRE" class=" BtnClose ">
-                    <i class="medium material-icons">print</i>
-                </a>
-            </div>
-            <div class="col s2 m2 l1">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="35px" ></a>
-            </div>
-        </div>
-
-
-
-    </div><!-- fin del contenido del modal -->
-
-
-
-</div>
-<!-- Fin de Modal#4-->

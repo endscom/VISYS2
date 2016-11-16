@@ -39,7 +39,10 @@ $route['delFRP'] = 'canje_controller/inactivar';
 
 /*CANJES FRE*/
 $route['FRE'] = 'canje_efectivo_controller';
-
+$route['getFacturaFRE/(:any)'] = 'canje_efectivo_controller/getFacturaFRE/$1';
+$route['BuscaFRE/(:any)'] = 'canje_efectivo_controller/BuscaFRE/$1';
+$route['saveFRE'] = 'canje_efectivo_controller/SaverFRE';
+$route['getviewFRE'] = 'canje_efectivo_controller/viewFre';
 
 /*USUARIOS*/
 $route['Usuarios'] = 'vista_controller/Usuarios'; //cargar usuarios
@@ -72,7 +75,7 @@ $route['activarArticulos/(:any)'] = 'catalogo_controller/activarArticulos/$1';
 
 // RUTA IMPRESION
 $route['DetalleFRP'] = 'impresion_controller/DetalleFRP';
-$route['DetalleFRE'] = 'impresion_controller/DetalleFRE';
+$route['DetalleFRE/(:any)'] = 'impresion_controller/DetalleFRE/$1';
 // FIN IMPRESION
 
 // RUTA EXPORTACIÓN

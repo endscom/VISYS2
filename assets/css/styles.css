@@ -717,16 +717,6 @@ table th {
     width: 94%;
     height: 175px;
 }
-#obser{
-    border: 1px solid #6a4ad5;
-    box-shadow: none;
-    font-family: 'robotoregular';
-    font-size: 12px;
-    color: #1F0A71;
-    font-weight: 500;
-    width: 98%;
-    padding: 10px;
-}
 
 #fre{
     border: 1px solid #6a4ad5;
@@ -1232,4 +1222,14 @@ label>select {
 .tachado{
   text-decoration: line-through!important;
   color: #ff002a!important;
+}
+.observaciones{
+    border: 1px solid #6a4ad5!important;
+    box-shadow: none !important;
+    font-family: 'robotoregular'!important;
+    font-size: 12px!important;
+    color: #1F0A71!important;
+    font-weight: 500!important;
+    width: 98%!important;
+    padding: 10px!important;
 }

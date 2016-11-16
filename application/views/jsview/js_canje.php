@@ -2,7 +2,7 @@
 <script>
 	$( document ).ready(function(){
 	//$('#MFrp').openModal();
-        function limpiarTabla (idTabla) {
+    function limpiarTabla (idTabla) {
         idTabla = $(idTabla).DataTable();
         idTabla.destroy();
         idTabla.clear();
