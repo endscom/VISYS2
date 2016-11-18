@@ -547,7 +547,7 @@ function getview(id){
                     if (data != 1){
                         mensaje("SELECCIONE UN CLIENTE PRIMERO","error");
                     } else {
-                        window.setTimeout($(location).attr('href',"Frp"), 2000);
+                        window.setTimeout($(location).attr('href',"Frp"), 3000);
                         $("#dellCorrectoFRP").text(id);
                     }
                 }

@@ -118,7 +118,6 @@ class Canje_efectivo_model extends CI_Model
     }
     public function traerAllFRE()
     {
-        $this->db->where('Anulado','N');
         $query = $this->db->get('view_all_fre');
         if ($query->num_rows() >0) {
             return $query->result_array();
@@ -133,6 +132,19 @@ class Canje_efectivo_model extends CI_Model
             return $query->result_array();
         }
         return 0;
+    }
+    public function inactivar($id){
+        $this->FREInac($id);
+        $this->db->where('IdFRE',$id);
+        return $this->db->update('fre',array('Anulado' => 'S'));
+    }
+    public function FREInac($fre){
+        $this->db->where('IdFRE',$fre);
+        $query = $this->db->get('detallefre');
+        
+        foreach ($query->result_array() as $row){
+            $this->db->query("call pc_MFactura ('".$row['Factura']."','".$row['Puntos']."','".date('Y-m-d h:i:s')."')");
+        }
     }
 }
 ?>

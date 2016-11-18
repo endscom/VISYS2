@@ -1,6 +1,6 @@
 <script>
 $(document).ready(function() {
-	$('#Dfre').openModal();
+	//$('#Dfre').openModal();
 	$('#searchFRE').on( 'keyup', function () {
         var table = $('#tblFRE').DataTable();
         table.search( this.value ).draw();
@@ -267,4 +267,32 @@ $(document).ready(function() {
         a.target = '_blank';
         window.open(a);
     }
+    function dellFrp(id){
+        $("#Dell").openModal();
+        $("#spnDellFRP").text(id);
+    }
+    $('#ProceDell').on( 'click', function () {
+        var id = $("#spnDellFRP").text();
+        $("#dellCorrectoFRE").text(id);
+        var form_data = {
+            fre: id
+        };
+        $("#DellRes").openModal();
+        $.ajax({
+            url: "delFRE",
+            type: "post",
+            async:true,
+            data: form_data,
+            success:
+                function(data){
+                    console.log(data)
+                    if (data != 1){
+                        mensaje("SELECCIONE UN FRE PRIMERO...","error");
+                    } else {
+                        //window.setTimeout($(location).attr('href',"FRE"), 2000);
+                        $("#dellCorrectoFRE").text(id);
+                    }
+                }
+        });
+    });
 </script>

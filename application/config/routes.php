@@ -43,6 +43,7 @@ $route['getFacturaFRE/(:any)'] = 'canje_efectivo_controller/getFacturaFRE/$1';
 $route['BuscaFRE/(:any)'] = 'canje_efectivo_controller/BuscaFRE/$1';
 $route['saveFRE'] = 'canje_efectivo_controller/SaverFRE';
 $route['getviewFRE'] = 'canje_efectivo_controller/viewFre';
+$route['delFRE'] = 'canje_efectivo_controller/inactivar';
 
 /*USUARIOS*/
 $route['Usuarios'] = 'vista_controller/Usuarios'; //cargar usuarios

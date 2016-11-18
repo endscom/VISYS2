@@ -45,5 +45,8 @@ class Canje_efectivo_controller extends CI_Controller
         $data['DFactura'] = $this->canje_efectivo_model->getFRE($id,"view_fre_factura");
         echo json_encode($data);
     }
+     public function inactivar(){
+        echo $this->canje_efectivo_model->inactivar($this->input->post('fre'));
+    }
 }
 ?>

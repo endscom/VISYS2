@@ -60,12 +60,12 @@
                                 $delete = "<a  onclick='dellFrp(".$key['IdFRE'].")' href='#' class='Icono noHover'><i class='material-icons'>highlight_off</i></a>";
                             }
                             echo "<tr>
-                                    <td>".date('d-m-Y', strtotime($key['Fecha']))."</td>
-                                    <td class='negra'>".$key['IdFRE']."</td>
-                                    <td>".$key['IdCliente']."</td>
-                                    <td class='negra'>".$key['Nombre']."</td>
-                                    <td>".$key['Puntos']."</td>
-                                    <td>".$key['Efectivo']."</td>
+                                    <td class='".$clase."'>".date('d-m-Y', strtotime($key['Fecha']))."</td>
+                                    <td class='negra ".$clase."'>".$key['IdFRE']."</td>
+                                    <td class='".$clase."'>".$key['IdCliente']."</td>
+                                    <td class='negra ".$clase."'>".$key['Nombre']."</td>
+                                    <td class='".$clase."'>".$key['Puntos']."</td>
+                                    <td class='".$clase."'>".$key['Efectivo']."</td>
                                     <td class='center'>
                                     <a  onclick='getview(".$key['IdFRE'].")' href='#' class='noHover'><i class='material-icons'>&#xE417;</i></a>
                                     ".$delete."
@@ -77,7 +77,6 @@
             </tbody>
 
         </table>
-
     </div>
 </main>
 
@@ -255,42 +254,34 @@
 </div>
 <!-- Fin de Modal#4-->
 
-
+</div>
 <!--///////////////////////////////////////////////////////////////////////////////////////////////
                                      MODALES ELIMINACION DE FRE
 ////////////////////////////////////////////////////////////////////////////////////////////////-->
-<!-- Modal #2 -->
-<!-- Modal Structure -->
-<div id="Dell" class="modal">
-    <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
-        <h6 class="center Mcolor1">DESEA ELIMINAR EL FRE <span class="redT1">#fc02258</span></h6>
-        <div class="row">
-            <div class="col s2 m2 l2 offset-l4 offset-s3 offset-m4">
-                <a href="#DellRes" class="Procesar modal-action modal-close btn modal-trigger">Procesar</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal #3 -->
-<!-- Modal Structure -->
 
-<div id="DellRes" class="modal">
+
+ <div id="Dell" class="modal">
     <div class="modal-content">
         <div class="right row">
-            <div class="col s1 m1 l1">
+            <a href="#!" class=" BtnClose modal-action modal-close ">
+                <i class="material-icons">highlight_off</i>
+            </a>
+        </div>
+        <h6 class="center Mcolor1">DESEA ELIMINAR EL FRE #<span id="spnDellFRP" class="redT1">#indefinido</span></h6>
+        <div class="row center">
+                <a id="ProceDell" href="#" class="Procesar modal-action btn ">Procesar</a>
+        </div>
+    </div>
+  </div>
+
+  <div id="DellRes" class="modal">
+    <div class="modal-content">
+        <div class="right row">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
                     <i class="material-icons">highlight_off</i>
                 </a>
-            </div>
         </div>
-        <h6 class="center Mcolor1">ELIMINADO CORRECTAMENTE FRE <span class="redT1">#fc02258</span></h6>
-    </div>
+        <h6 class="center Mcolor1">FRE <span id="dellCorrectoFRE" class="redT1">#fc02258</span> ELIMINADO CORRECTAMENTE</h6>
+        <h6 class="center Mcolor1">Espere...</h6>
     </div>
 </div>
