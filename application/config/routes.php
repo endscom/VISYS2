@@ -13,7 +13,6 @@ $route['salir'] = 'login_controller/Salir';
 
 // RUTAS MENU
 $route['Main'] = 'vista_controller/main';
-$route['EliminarVineta'] = 'vista_controller/EliminarVineta';
 
 /* CLIENTES */
 $route['Clientes'] = 'clientes_controller/Clientes';
@@ -24,6 +23,10 @@ $route['generarUsuarios'] = 'clientes_controller/generarUsuarios';
 $route['traerUsuario/(:any)'] = 'clientes_controller/traerUsuario/$1';
 $route['darBajaCliente'] = 'clientes_controller/darBajaCliente';
 $route['DetalleFact'] = 'vista_controller/DetalleFact';
+
+/*BOUCHER*/
+$route['EliminarVineta'] = 'boucher_controller';
+
 
 /*CANNJES FRP*/
 $route['Frp'] = 'canje_controller';

@@ -7,11 +7,13 @@ class Canje_efectivo_model extends CI_Model
     }
 	public $CONDICION = '2016-10-01';
     public function getFacturaFRE($idCliente)
-    {   $query="";
+    {   
+        $query="";
         $q_rows = $this->db->query("call pc_Clientes_Facturas ('".$idCliente."')");
         if ($q_rows->num_rows() > 0) {
             $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
                     WHERE CLIENTE = '".$idCliente."' AND FECHA >= '".$this->CONDICION."' AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].")";
+                    //echo "entro en el 1er if <br>";
         }
         $q_rows->next_result();
         $q_rows->free_result();
@@ -21,15 +23,19 @@ class Canje_efectivo_model extends CI_Model
             if ($query=="") {
                 $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
                     WHERE CLIENTE = '".$idCliente."' AND FECHA >= '".$this->CONDICION."' AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
+                    //echo "entro en el 2do if <br>";
+                    
             }else{
                 $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
+
             }
         }
-        
+
         if ($query==""){
             $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
                     WHERE CLIENTE = '".$idCliente."' AND FECHA >= '".$this->CONDICION."' GROUP BY FACTURA, FECHA ";
         }
+        //echo "query----->".$query."<br>";
 		$q_rows->next_result();
         $q_rows->free_result();
         $query = $this->sqlsrv->fetchArray($query,SQLSRV_FETCH_ASSOC);
@@ -42,8 +48,8 @@ class Canje_efectivo_model extends CI_Model
         $json['data'][$i]['PUNTOS']     = "";
         $json['data'][$i]['EFECTIVO']   = "";
         $json['data'][$i]['OPCION']     = "";
-        
-        
+
+
         foreach($query as $key){
         	$ID_ROW = "CHK" . $key['FACTURA'];
         	$ID_LBL = "LBL" . $key['FACTURA'];
@@ -51,30 +57,31 @@ class Canje_efectivo_model extends CI_Model
             $json['data'][$i]['FECHA']      = $key['FECHA']->format('Y-m-d');
             $json['data'][$i]['FACTURA']    = $key['FACTURA'];
             $json['data'][$i]['DISPONIBLE'] = intval($this->getSaldoParcial($key['FACTURA'],$key['DISPONIBLE']));
-            $json['data'][$i]['EFECTIVO']   = intval($key['DISPONIBLE']/2);
+            $json['data'][$i]['EFECTIVO']   = intval($this->getSaldoParcial($key['FACTURA'],$key['DISPONIBLE'])/2);
             $json['data'][$i]['OPCION']     = "<p><input type='checkbox' onclick='isVerificar(".$i.','.'"'.$key['FACTURA'].'"'.")' id='".$ID_ROW."' /><label 								id='".$ID_LBL."' for='".$ID_ROW."'></label></p>";
             $i++;
         }
-        echo json_encode($json);
-        return $json;
-    }
-    public function getSaldoParcial($id,$pts){
-        $this->db->where('Puntos <>',0);
-        $this->db->where('Factura',$id);
-        $this->db->select('Puntos');
-        $query = $this->db->get('rfactura');
-        if($query->num_rows() > 0){
-            $parcial = $query->result_array()[0]['Puntos'];
-        } else {
-            $parcial = $pts;
+            echo json_encode($json);
+            return $json;
         }
-        return $parcial;
-    }
+    public function getSaldoParcial($id,$pts){
+            $this->db->where('Puntos <>',0);
+            $this->db->where('Factura',$id);
+            $this->db->select('Puntos');
+            $query = $this->db->get('rfactura');
+            if($query->num_rows() > 0){
+                $parcial = $query->result_array()[0]['Puntos'];
+            } else {
+                $parcial = $pts;
+            }
+            return $parcial;
+        }
     public function BuscaFRE($FRE) {
-        $this->db->select('IdFRE');
-        $this->db->from('fre');
-        $this->db->where('IdFRE',$FRE);
-        $query = $this->db->get();        
+            $this->db->select('IdFRE');
+            $this->db->from('fre');
+            $this->db->where('IdFRE',$FRE);
+            $this->db->where('Anulado','N');
+            $query = $this->db->get();        
         if($query->num_rows() > 0){
             return $query->result_array()[0]['IdFRE'];
         }else{
@@ -136,7 +143,9 @@ class Canje_efectivo_model extends CI_Model
     public function inactivar($id){
         $this->FREInac($id);
         $this->db->where('IdFRE',$id);
-        return $this->db->update('fre',array('Anulado' => 'S'));
+        if ($this->db->update('fre',array('Anulado' => 'S'))) {
+            return $this->db->query("CALL pc_MFactura ('".$id."'')");
+        }
     }
     public function FREInac($fre){
         $this->db->where('IdFRE',$fre);

@@ -21,12 +21,6 @@ class Vista_controller extends CI_Controller
         $this->load->view('jsview/js_catalogo');
     }
 
-    public function EliminarVineta(){
-        $this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/EliminarVineta');
-        $this->load->view('footer/footer');
-    }
 
     public function DetalleFact(){
         $this->load->view('header/header');

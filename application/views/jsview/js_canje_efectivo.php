@@ -150,6 +150,9 @@ $(document).ready(function() {
                 i++;
             }
         });
+        if (jQuery.isEmptyObject(detallesFactura)==true) {
+            mensaje("SELECCIONE AL MENOS 1 FACTURA","error");
+        }else{
          var form_data = {
             frp: [idFrp, Fecha, IdCliente,Nombre,Comentario],
             fac: detallesFactura,
@@ -208,6 +211,7 @@ $(document).ready(function() {
                     }
                 }
         });
+        }
     }
     function getview(id){
         $('#Dfre').openModal();
@@ -289,7 +293,7 @@ $(document).ready(function() {
                     if (data != 1){
                         mensaje("SELECCIONE UN FRE PRIMERO...","error");
                     } else {
-                        //window.setTimeout($(location).attr('href',"FRE"), 2000);
+                        window.setTimeout($(location).attr('href',"FRE"), 3500);
                         $("#dellCorrectoFRE").text(id);
                     }
                 }

@@ -48,9 +48,7 @@
             </div>
 
             <div class="right row">
-                <div class="col s2 m2 l2">
                     <a href="#modal1" class="BtnEliminar waves-effect  btn modal-trigger">ELIMINAR</a>
-                </div>
             </div>
 <!--//////////////////////////////////////////////////////////////////////////////////
                                 TABLA

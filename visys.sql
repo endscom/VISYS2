@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2016-11-10 15:43:07
+Date: 2016-11-22 08:46:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -232,7 +232,8 @@ CREATE TABLE `detallefre` (
 -- ----------------------------
 -- Records of detallefre
 -- ----------------------------
-INSERT INTO `detallefre` VALUES ('7777', '5555', '2016-11-10 14:14:03', '1400', '700');
+INSERT INTO `detallefre` VALUES ('121212', '00082874', '2016-10-03 00:00:00', '2449', '1224');
+INSERT INTO `detallefre` VALUES ('121212', '00082874', '2016-10-03 00:00:00', '2449', '1224');
 
 -- ----------------------------
 -- Table structure for detallefrp
@@ -253,7 +254,6 @@ CREATE TABLE `detallefrp` (
 -- Records of detallefrp
 -- ----------------------------
 INSERT INTO `detallefrp` VALUES ('1234', '00082874', '2016-10-03', '3500', '125106', 'PLANCHA OSTER GCSTBS5803 VAPOR', '1051', '1');
-INSERT INTO `detallefrp` VALUES ('1234', '00008247', '2016-10-03', '2000', '125106', 'plancha', '50', '1');
 
 -- ----------------------------
 -- Table structure for fre
@@ -266,14 +266,14 @@ CREATE TABLE `fre` (
   `Nombre` varchar(255) DEFAULT NULL,
   `IdUsuario` int(11) DEFAULT NULL,
   `Anulado` varchar(255) DEFAULT NULL,
-  `Comentario` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`IdFRE`)
+  `Comentario` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of fre
 -- ----------------------------
-INSERT INTO `fre` VALUES ('7777', '2016-11-10 14:10:02', '02355', 'ALDER HERNANDEZ', '1', 'N', null);
+INSERT INTO `fre` VALUES ('121212', '2016-11-19 00:00:00', '02355', 'FARMACIA PICON', '220', 'S', '$data[\'fre\']');
+INSERT INTO `fre` VALUES ('121212', '2016-11-19 00:00:00', '02355', 'FARMACIA PICON', '220', 'N', '121212');
 
 -- ----------------------------
 -- Table structure for frp
@@ -291,7 +291,7 @@ CREATE TABLE `frp` (
 -- ----------------------------
 -- Records of frp
 -- ----------------------------
-INSERT INTO `frp` VALUES ('1234', '2016-11-10 00:00:00', '02355', 'FARMACIA PICON', '220', 'N');
+INSERT INTO `frp` VALUES ('1234', '2016-11-19 00:00:00', '02355', 'FARMACIA PICON', '220', 'N');
 
 -- ----------------------------
 -- Table structure for logcatalogo
@@ -324,7 +324,7 @@ CREATE TABLE `rfactura` (
 -- ----------------------------
 -- Records of rfactura
 -- ----------------------------
-INSERT INTO `rfactura` VALUES ('02355', '00082874', '3500', '3500', '2016-11-10 05:48:05');
+INSERT INTO `rfactura` VALUES ('02355', '00082874', '3500', '0', '2016-11-19 05:48:49');
 
 -- ----------------------------
 -- Table structure for roles
@@ -487,6 +487,31 @@ INSERT INTO `vendedor` VALUES ('20', 'F20', 'F020', '\0');
 INSERT INTO `vendedor` VALUES ('21', 'F21', 'F021', '\0');
 
 -- ----------------------------
+-- View structure for fr_total
+-- ----------------------------
+DROP VIEW IF EXISTS `fr_total`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `fr_total` AS SELECT  DISTINCT FACTURA,SALDO FROM view_frp_factura
+UNION ALL
+SELECT DISTINCT FACTURA,1 FROM view_fre_factura ;
+
+-- ----------------------------
+-- View structure for view_all_fre
+-- ----------------------------
+DROP VIEW IF EXISTS `view_all_fre`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_all_fre` AS SELECT
+fre.Fecha,
+fre.IdFRE,
+fre.IdCliente,
+fre.Nombre,
+Sum(detallefre.Puntos) AS Puntos,
+Sum(detallefre.Efectivo) AS Efectivo,
+fre.Anulado
+FROM
+fre
+INNER JOIN detallefre ON fre.IdFRE = detallefre.IdFRE
+GROUP BY fre.IdFRE,fre.Anulado ;
+
+-- ----------------------------
 -- View structure for view_catalogo_activo
 -- ----------------------------
 DROP VIEW IF EXISTS `view_catalogo_activo`;
@@ -527,12 +552,13 @@ WHERE
 -- ----------------------------
 DROP VIEW IF EXISTS `view_fre_factura`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_fre_factura` AS SELECT
-	fre.IdFRE,
-	detallefre.Factura,
-	fre.IdCliente,
-	detallefre.Puntos,
-	detallefre.Efectivo,
-	fre.Anulado
+fre.IdFRE,
+detallefre.Factura,
+fre.IdCliente,
+detallefre.Puntos,
+detallefre.Efectivo,
+fre.Anulado,
+detallefre.Fecha
 FROM
 	fre
 INNER JOIN detallefre ON fre.IdFRE = detallefre.IdFRE ;
@@ -737,6 +763,22 @@ END
 DELIMITER ;
 
 -- ----------------------------
+-- Procedure structure for pc_Clientes_Facturas_Fre
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `pc_Clientes_Facturas_Fre`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pc_Clientes_Facturas_Fre`(IN cod  CHAR(20))
+BEGIN
+								SELECT GROUP_CONCAT(CONCAT("'",Factura,"'")) as Facturas  
+								FROM view_fre_factura
+								WHERE IdCliente = cod
+								AND Anulado='N'
+								GROUP BY IdCliente;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
 -- Procedure structure for pc_clientes_pa
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `pc_clientes_pa`;
@@ -748,6 +790,20 @@ BEGIN
 SELECT T0.IdCliente, SUM(T0.Puntos) AS Puntos FROM view_frp_factura T0
   WHERE T0.Anulado = 'N' AND T0.IdCliente = CODIGO
   GROUP BY T0.IdCliente;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for pc_clientes_pe
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `pc_clientes_pe`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pc_clientes_pe`(IN cod CHAR(20))
+BEGIN
+                SELECT T0.IdCliente, SUM(T0.Puntos) AS Puntos FROM view_fre_factura T0
+								WHERE T0.Anulado = 'N' AND T0.IdCliente = cod
+								GROUP BY T0.IdCliente;
 END
 ;;
 DELIMITER ;
