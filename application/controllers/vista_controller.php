@@ -50,12 +50,4 @@ class Vista_controller extends CI_Controller
         $this->load->view('jsview/js_usuarios');
     }
 
-    public function Reportes(){
-        $this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/Reportes');
-        $this->load->view('footer/footer');
-    }
-
-
 }

@@ -293,7 +293,7 @@ $(document).ready(function() {
                     if (data != 1){
                         mensaje("SELECCIONE UN FRE PRIMERO...","error");
                     } else {
-                        window.setTimeout($(location).attr('href',"FRE"), 3500);
+                        //window.setTimeout($(location).attr('href',"FRE"), 3500);
                         $("#dellCorrectoFRE").text(id);
                     }
                 }

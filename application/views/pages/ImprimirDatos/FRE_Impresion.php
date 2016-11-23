@@ -69,7 +69,7 @@
             <div class="row noMargen">
                 <div class="input-field col s12 m12 l12">
                         <p id="TxtObser" class="RobotoB Ccolor">OBSERVACIONES</p>
-                        <textarea id="obser" class="materialize-textarea"><?php echo $fre[0]['Comentario']; ?></textarea>
+                        <textarea id="obser" class="materialize-textarea observaciones"><?php echo $fre[0]['Comentario']; ?></textarea>
                 </div>
             </div>
             <h6 class="center RegImp  RobotoB">GENERADO EL: <?php echo date('d-m-Y H:i:s'); ?></h6>

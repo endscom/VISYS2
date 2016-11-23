@@ -59,8 +59,11 @@ $route['LoadCliente'] = 'Usuario_controller/LoadClient';// cargar los clientes
 // RUTA FACTURAS
 $route['facturas'] = 'facturas_controller';
 $route['detallefacturas/(:any)'] = 'facturas_controller/detallefacturas/$1';
+
 // RUTA REPORTES
-$route['Reportes'] = 'vista_controller/Reportes';
+$route['Reportes'] = 'reportes_controller';
+$route['cuentaXcliente'] = 'reportes_controller/cuentaXcliente';
+$route['datosCliente/(:any)'] = 'reportes_controller/datosCliente/$1';
 
 /*RUTAS DE CATALOGO*/
 $route['NuevoCatalogo'] = 'catalogo_controller/NuevoCatalogo';
@@ -80,6 +83,9 @@ $route['activarArticulos/(:any)'] = 'catalogo_controller/activarArticulos/$1';
 // RUTA IMPRESION
 $route['DetalleFRP'] = 'impresion_controller/DetalleFRP';
 $route['DetalleFRE/(:any)'] = 'impresion_controller/DetalleFRE/$1';
+
+
+
 // FIN IMPRESION
 
 // RUTA EXPORTACIÓN
@@ -87,4 +93,5 @@ $route['Exp_Clientes'] = 'exportacion_controller/ExpoClients';
 $route['ExpPDF'] = 'exportacion_controller/ExpoPdf';
 $route['ExpPDF_PuntosClientes'] = 'exportacion_controller/ExpPDF_PuntosClientes';
 $route['ExpEXCEL_PuntosClientes'] = 'exportacion_controller/ExpEXCEL_PuntosClientes';
+$route['pdfCTAxCLIENTE/(:any)/(:any)/(:any)'] = 'exportacion_controller/pdfCTAxCLIENTE/$1/$2/$3';
 // FIN EXPORTACIÓN

@@ -84,11 +84,9 @@
 <div id="cuentaXcliente" class="modal">
     <div class="modal-content">
         <div class="right row">
-            <div class="col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
                     <i class="material-icons">highlight_off</i>
                 </a>
-            </div>
         </div>
 
         <h6 class="center Mcolor AdUser">CUENTA POR CLIENTE</h6>
@@ -97,31 +95,34 @@
             <form class="col s12" action=""method="post" name="formnuevo">
 
                 <div class="row">
-                    <div class="input-field col s3">
-                        <input name="unoUser" placeholder="Cod. Cliente" id="CodCliente" type="text" class="validate">
-                    </div>
-
-                    <div class="input-field col s9">
-                        <input name="pass" placeholder="" id="Contra" type="text" class="validate">
-                    </div>
-
+                    <select name="cliente" id="ListCliente" class="chosen-select browser-default">
+                    <option value="" disabled selected>CLIENTE</option>
+                    <?php
+                        if(!$data){}
+                        else{
+                                foreach($data as $cliente){
+                                if ($cliente['CLIENTE']=="02355") {
+                                    echo '<option value="'.$cliente['CLIENTE'].'">'.$cliente['CLIENTE'].' | '.$cliente['NOMBRE'].'</option>';
+                                }
+                            }
+                        }
+                    ?>
+                </select>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s6">
-                        <input name="fecha1" placeholder="Desde" id="fecha1" type="text" class="datepicker1">
+                        <input name="fecha1" placeholder="Desde" id="CXCfecha1" type="text" class="datepicker1">
                     </div>
                     <div class="input-field col s6">
-                        <input name="fecha2" placeholder="Hasta" id="vendednor" type="text" class="datepicker1">
+                        <input name="fecha2" placeholder="Hasta" id="CXCfecha2" type="text" class="datepicker1">
 
                     </div>
                 </div>
             </form>
         </div>
-        <div class="row">
-            <div class="col s6 m6 l5">
-                <a href="#CtaXcte" class="Btnadd modal-action modal-close btn modal-trigger">GENERAR</a>
-            </div>
+        <div class="row center">
+                <a id="generarCtaXcte" href="#" class="Btnadd btn">GENERAR</a>
         </div>
     </div><!-- fin del contenido modal -->
 </div>
@@ -131,11 +132,9 @@
 <div id="CtaXcte" class="modal">
     <div class="modal-content">
         <div class="right row">
-            <div class="col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
                     <i class="material-icons">highlight_off</i>
                 </a>
-            </div>
         </div>
         <!-- LOGO SISTEMA DE VISYS -->
         <center><img src="<?PHP echo base_url(); ?>assets/img/logo_sp.png" width="30%"></center>
@@ -146,67 +145,46 @@
 
         <div class="row">
             <div class="col s5 m3 l6">
-                <p class="Mcolor cod">00635 </p>
-                <p class="Mcolor cod linea">FARMACIA VIDA</p>
-                <p class="detalles linea">Frente a Unión Fenosa, Ocotal </p>
-                <p class="detalles linea">27323298</p>
+                <p id="CXCdetalleCodigo" class="Mcolor cod"></p>
+                <p id="CXCdetalleRUC" class="detalles linea"></p>
+                <p id="CXCdetalleDIR" class="detalles linea"></p>
             </div>
             <div class="col s3 m4 l3">
-                <p class="fecha">01/05/2016</p>
+                <p id="CXCdetallefecha1" class="fecha"></p>
                    <p class="rango">Desde</p>
             </div>
             <div class="col s3 m4 l3">
-                <p class="fecha">22/06/2016</p>
+                <p id="CXCdetallefecha2" class="fecha"></p>
                 <p class="rango">Hasta</p>
             </div>
         </div>
         <!-- TOTAL DE PUNTOS DEL CLIENTE -->
         <div id="Total" class="right row text">
             <div class="col s8 m8 l12">
-                <p class="Dato">TOTAL DE PUNTOS: <span class="dato">6,000 Pts. </span></p>
+                <p class="Dato">TOTAL DE PUNTOS: <span id="CXCdetalleTotal" class="dato"></span></p>
             </div>
         </div>
         <!-- TABLA DE DETALLES -->
-            <table id="tblEliminar" class=" TblDatos">
+            <table id="tblcuentaXcliente" class=" TblDatos">
                 <thead>
                 <tr>
-                    <th>FECHA</th>
                     <th>FACTURA</th>
-                    <th>PUNTOS X COMPRA</th>
-                    <th>ESTADO</th>
-
+                    <th>FECHA</th>
+                    <th>PUNTOS X FACTURA</th>
+                    <th>PUNTOS APLICADOS</th>
+                    <th>PUNTOS DISPONIBLES</th>
                 </tr>
                 </thead>
-
-                <tbody>
-                <tr>
-                    <td>24/01/2016</td>
-                    <td id="black">067799</td>
-                    <td >30,000 Pts.</td>
-                    <td>ACTIVO</td>
-
-                </tr>
-                <tr>
-                    <td>24/01/2016</td>
-                    <td id="black">067799</td>
-                    <td >30,000 Pts.</td>
-                    <td>ACTIVO</td>
-                </tr>
-
+                <tbody class="center">
                 </tbody>
             </table>
 
-        <div id="Iconos" class="row">
-            <div class="col s2 m2 l1 offset-l4 offset-s4 offset-m4">
-                <a href="#!" class=" BtnClose ">
-                    <i class="medium material-icons"  >print</i>
-                </a>
+        <div id="Iconos" class="row center">
+            <div class="col l1 offset-l5">
+                <a href="#" ><img src="<?PHP echo base_url();?>assets/img/icono_excel.png" width="38px" ></a>
             </div>
-            <div class="col s2 m2 l1 offset-l1">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono_excel.png " width="38px" ></a>
-            </div>
-            <div class="col s2 m2 l1 offset-l1">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="38px" ></a>
+            <div class="col l1">
+                <a href="#" onclick="PrintPDF(cuentaXcliente)"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png" width="38px" ></a>
             </div>
         </div>
 

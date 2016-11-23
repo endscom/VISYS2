@@ -105,7 +105,7 @@ class Canje_efectivo_model extends CI_Model
             $InsertDetalles = array(
                 'IdFRE'         => $Facturas[0],
                 'Factura'       => $Facturas[1],
-                'Fecha'     => $Facturas[2],
+                'Fecha'         => $Facturas[2],
                 'Puntos'        => $Facturas[3],
                 'Efectivo'      => $Facturas[4]
             );
@@ -143,9 +143,11 @@ class Canje_efectivo_model extends CI_Model
     public function inactivar($id){
         $this->FREInac($id);
         $this->db->where('IdFRE',$id);
-        if ($this->db->update('fre',array('Anulado' => 'S'))) {
-            return $this->db->query("CALL pc_MFactura ('".$id."'')");
-        }
+        $this->db->delete('detallefre', array('IdFRE' => $id));
+        return $this->db->delete('fre', array('IdFRE' => $id));
+        //if ($this->db->update('fre',array('Anulado' => 'S'))) {
+        //return $this->db->query("CALL pc_MFactura ('".$id."'')");
+        //}
     }
     public function FREInac($fre){
         $this->db->where('IdFRE',$fre);
