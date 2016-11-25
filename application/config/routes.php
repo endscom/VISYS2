@@ -64,6 +64,11 @@ $route['detallefacturas/(:any)'] = 'facturas_controller/detallefacturas/$1';
 $route['Reportes'] = 'reportes_controller';
 $route['cuentaXcliente'] = 'reportes_controller/cuentaXcliente';
 $route['datosCliente/(:any)'] = 'reportes_controller/datosCliente/$1';
+$route['masterClientes/(:any)/(:any)'] = 'reportes_controller/masterClientes/$1/$2';
+$route['masterCompras/(:any)/(:any)'] = 'reportes_controller/masterCompras/$1/$2';
+$route['canjePremios/(:any)/(:any)'] = 'reportes_controller/canjePremios/$1/$2';
+$route['masterFacturas/(:any)/(:any)'] = 'reportes_controller/masterFacturas/$1/$2';
+$route['reporteXfecha/(:any)/(:any)'] = 'reportes_controller/reporteXfecha/$1/$2';
 
 /*RUTAS DE CATALOGO*/
 $route['NuevoCatalogo'] = 'catalogo_controller/NuevoCatalogo';
@@ -94,4 +99,5 @@ $route['ExpPDF'] = 'exportacion_controller/ExpoPdf';
 $route['ExpPDF_PuntosClientes'] = 'exportacion_controller/ExpPDF_PuntosClientes';
 $route['ExpEXCEL_PuntosClientes'] = 'exportacion_controller/ExpEXCEL_PuntosClientes';
 $route['pdfCTAxCLIENTE/(:any)/(:any)/(:any)'] = 'exportacion_controller/pdfCTAxCLIENTE/$1/$2/$3';
+$route['excelCTAxCLIENTE'] = 'exportacion_controller/excelCTAxCLIENTE';
 // FIN EXPORTACIÓN

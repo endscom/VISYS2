@@ -80,4 +80,136 @@ class Reportes_model extends CI_Model
         return $json;
         $this->sqlsrv->close();
     }
+    public function masterClientes($fecha1,$fecha2)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray("SELECT CLIENTE,NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            GROUP BY CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
+                                            
+        foreach($query as $key){
+            $json['data'][$i]['NUMERO'] = $i+1;
+            $json['data'][$i]['CODIGO'] = $key['CLIENTE'];
+            $json['data'][$i]['CLIENTE'] = $key['NOMBRE_CLIENTE'];
+            $json['data'][$i]['PUNTOS'] = $key['PUNTOS'];
+            $i++;
+        }
+            $json['columns'][0]['data'] = "NUMERO";
+            $json['columns'][0]['name'] = "NUMERO";
+            $json['columns'][1]['data'] = "CODIGO";
+            $json['columns'][1]['name'] = "CODIGO";
+            $json['columns'][2]['data'] = "CLIENTE";
+            $json['columns'][2]['name'] = "CLIENTE";
+            $json['columns'][3]['data'] = "PUNTOS";
+            $json['columns'][3]['name'] = "PUNTOS";
+
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function canjePremios($fecha1,$fecha2)
+    {
+        
+    }
+    public function masterFacturas($fecha1,$fecha2)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray("SELECT FECHA,FACTURA,CLIENTE,NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS  FROM vtVS2_Facturas_CL
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            GROUP BY FACTURA,FECHA,CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
+                                            
+        foreach($query as $key){
+            $json['data'][$i]['FACTURA'] = $key['FACTURA'];
+            $json['data'][$i]['CODIGO'] = $key['CLIENTE'];
+            $json['data'][$i]['CLIENTE'] = $key['NOMBRE_CLIENTE'];
+            $json['data'][$i]['PUNTOS'] = $this->canje_model->getSaldoParcial($key['FACTURA'],$key['PUNTOS']);
+            $json['data'][$i]['ESTADO'] = ($json['data'][$i]['PUNTOS']==0) ? "APLICADO" : "ACTIVO";
+            $i++;
+        }
+            $json['columns'][0]['data'] = "FACTURA";
+            $json['columns'][0]['name'] = "FACTURA";
+            $json['columns'][1]['data'] = "CODIGO";
+            $json['columns'][1]['name'] = "CODIGO";
+            $json['columns'][2]['data'] = "CLIENTE";
+            $json['columns'][2]['name'] = "CLIENTE";
+            $json['columns'][3]['data'] = "PUNTOS";
+            $json['columns'][3]['name'] = "PUNTOS";
+            $json['columns'][4]['data'] = "ESTADO";
+            $json['columns'][4]['name'] = "ESTADO";
+
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function masterCompras($fecha1,$fecha2)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray("SELECT DESCRIPCION,CANTIDAD,CLIENTE,NOMBRE_CLIENTE,RUTA,FACTURA,FECHA FROM vtVS2_MASTER_COMPRAS WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'"
+                                            ,SQLSRV_FETCH_ASSOC);
+                                            
+        foreach($query as $key){
+            $json['data'][$i]['NUMERO'] = $i+1;
+            $json['data'][$i]['DESCRIPCION'] = $key['DESCRIPCION'];
+            $json['data'][$i]['CANTIDAD'] = $key['CANTIDAD'];
+            $json['data'][$i]['CLIENTE'] = $key['CLIENTE'];
+            $json['data'][$i]['NOMBRE'] = $key['NOMBRE_CLIENTE'];
+            $json['data'][$i]['RUTA'] = $key['RUTA'];
+            $json['data'][$i]['FACTURA'] = $key['FACTURA'];
+            $json['data'][$i]['FECHA'] = $key['FECHA']->format('d-m-Y');
+            $i++;
+        }
+            $json['columns'][0]['data'] = "NUMERO";
+            $json['columns'][0]['name'] = "NUMERO";
+            $json['columns'][1]['data'] = "DESCRIPCION";
+            $json['columns'][1]['name'] = "DESCRIPCION";
+            $json['columns'][2]['data'] = "CANTIDAD";
+            $json['columns'][2]['name'] = "CANTIDAD";
+            $json['columns'][3]['data'] = "CLIENTE";
+            $json['columns'][3]['name'] = "CODIGO";
+            $json['columns'][4]['data'] = "NOMBRE";
+            $json['columns'][4]['name'] = "NOMBRE";
+            $json['columns'][5]['data'] = "RUTA";
+            $json['columns'][5]['name'] = "RUTA";
+            $json['columns'][6]['data'] = "FACTURA";
+            $json['columns'][6]['name'] = "FACTURA";
+            $json['columns'][7]['data'] = "FECHA";
+            $json['columns'][7]['name'] = "FECHA";
+
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function reporteXfecha($fecha1,$fecha2)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray("SELECT FECHA,RUTA,SUM(TT_PUNTOS) AS PUNTOS, FACTURA,CLIENTE, NOMBRE_CLIENTE from vtVS2_Facturas_CL
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            GROUP BY FACTURA,FECHA,RUTA,CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
+                                            
+        foreach($query as $key){
+            $json['data'][$i]['FECHA'] = $key['FECHA']->format('d-m-Y');
+            $json['data'][$i]['RUTA'] = $key['RUTA'];
+            $json['data'][$i]['PUNTOS'] = $key['PUNTOS'];
+            $json['data'][$i]['FACTURA'] = $key['FACTURA'];
+            $json['data'][$i]['CLIENTE'] = $key['CLIENTE'];
+            $json['data'][$i]['NOMBRE'] = $key['NOMBRE_CLIENTE'];
+            $i++;
+        }
+            $json['columns'][0]['data'] = "FECHA";
+            $json['columns'][0]['name'] = "FECHA";
+            $json['columns'][1]['data'] = "RUTA";
+            $json['columns'][1]['name'] = "RUTA";
+            $json['columns'][2]['data'] = "PUNTOS";
+            $json['columns'][2]['name'] = "PUNTOS";
+            $json['columns'][3]['data'] = "FACTURA";
+            $json['columns'][3]['name'] = "FACTURA";
+            $json['columns'][4]['data'] = "CLIENTE";
+            $json['columns'][4]['name'] = "CLIENTE";
+            $json['columns'][5]['data'] = "NOMBRE";
+            $json['columns'][5]['name'] = "NOMBRE";
+
+        echo json_encode($json);
+        $this->sqlsrv->close();   
+    }
 }

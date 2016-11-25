@@ -37,4 +37,34 @@ class Reportes_controller extends CI_Controller
     {
         $this->reportes_model->datosCliente($codigo);
     }
+    public function masterClientes($fecha1,$fecha2)
+    {
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $fecha1;
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : $fecha2;
+        $this->reportes_model->masterClientes($fecha1,$fecha2);
+    }
+    public function masterCompras($fecha1,$fecha2)
+    {
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $fecha1;
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : $fecha2;
+        $this->reportes_model->masterCompras($fecha1,$fecha2);   
+    }
+    public function canjePremios($fecha1,$fecha2)
+    {
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $fecha1;
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : $fecha2;
+        $this->reportes_model->canjePremios($fecha1,$fecha2);
+    }
+    public function masterFacturas($fecha1,$fecha2)
+    {
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $fecha1;
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : $fecha2;
+        $this->reportes_model->masterFacturas($fecha1,$fecha2);
+    }
+    public function reporteXfecha($fecha1,$fecha2)
+    {
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $fecha1;
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : $fecha2;
+        $this->reportes_model->reporteXfecha($fecha1,$fecha2);   
+    }
 }

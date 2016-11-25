@@ -1,14 +1,19 @@
 <script>
 	$(document).ready(function () {
-		$('#cuentaXcliente').openModal();
-		
+		var rutaGlobal = "";
+
+        $('#searchReporte').on( 'keyup', function () {
+            var table = $('#tblDetalleReportes').DataTable();
+            table.search(this.value).draw();
+        });
+
 		$('#generarCtaXcte').click(function(){			
 			var idCliente = $('#ListCliente').val();
             var Fecha1 = $('#CXCfecha1').val();
             var Fecha2 = $('#CXCfecha2').val();
-            $('#CXCdetallefecha1').text(Fecha1);
-            $('#CXCdetallefecha2').text(Fecha2);
-            $('#CXCdetalleCodigo').text($('#ListCliente option:selected').text());
+            $('#CXCdetallefecha1').val(Fecha1);
+            $('#CXCdetallefecha2').val(Fecha2);
+            $('#CXCdetalleCodigo').val($('#ListCliente option:selected').text());
             if (idCliente==null) {mensaje("SELECCIONE UN CLIENTE","error");}
             else{
         	$('#CtaXcte').openModal();
@@ -48,13 +53,6 @@
                     { "data": "DISPONIBLE" }
               ]
             });
-                $('#tblcuentaXcliente').on( 'init.dt', function () {
-                    var totalAcumulado=0;
-                    obj = $('#tblcuentaXcliente').DataTable();
-                    obj.rows().data().each( function (index,value) {
-                        totalAcumulado += parseInt(obj.row(value).data().DISPONIBLE);
-                    });
-                    $('#CXCdetalleTotal').text(totalAcumulado);
                     $.ajax({
                         url: "datosCliente/"+idCliente,
                         type: "GET",
@@ -69,6 +67,14 @@
                             });
                         }
                     });
+                $('#tblcuentaXcliente').on( 'init.dt', function () {
+                    var totalAcumulado=0;
+                    obj = $('#tblcuentaXcliente').DataTable();
+                    obj.rows().data().each( function (index,value) {
+                        totalAcumulado += parseInt(obj.row(value).data().DISPONIBLE);
+                    });
+                    $('#CXCdetalleTotal').text(totalAcumulado);
+                    
                 }).dataTable();
             }
     	});
@@ -100,4 +106,77 @@
             }
             window.open(a);
         }
+        function generarExcel(formulario){
+            document.getElementById('CXCexcel').submit();
+        }
+        function FiltrarReporte(titulo,ruta) {
+            rutaGlobal=ruta;
+            $('#modalFiltrado').openModal();
+            $('#tituloFiltrado').text(titulo);
+            $('#tituloFiltrado2').text(titulo);
+        }
+
+        $("#generarDetalleReporte").click(function(){
+            var f1 = $('#fecha1').val()
+            var f2 = $('#fecha2').val()
+            if(f1!=""){
+            document.getElementById('miTablaReportes').innerHTML='';
+            document.getElementById('miTablaReportes').innerHTML='<table id="tblDetalleReportes" class="TblDatos center"><thead><tr></tr></thead></table>';
+            var data,
+                tableName= '#tblDetalleReportes',
+                columns,
+                str,
+                jqxhr = $.ajax(rutaGlobal+"/"+f1+"/"+f2)
+                        .done(function () {
+                            data = JSON.parse(jqxhr.responseText);
+
+                // Iterate each column and print table headers for Datatables
+                $.each(data.columns, function (k, colObj) {
+                    str = '<th>' + colObj.name + '</th>';
+                    $(str).appendTo(tableName+'>thead>tr');
+                });
+                // Add some Render transformations to Columns
+                // Not a good practice to add any of this in API/ Json side
+                data.columns[3].render = function (data, type, row) {
+                     return data.replace(".000000","");
+                }
+                $(tableName).dataTable({
+                    "data": data.data,
+                    "columns": data.columns,
+                    "fnInitComplete": function () {
+                    $('#tblDetalleReportes').on( 'init.dt', function () {
+                        var totalAcumulado = 0;
+                        obj = $('#tblDetalleReportes').DataTable();
+                        obj.rows().data().each( function (index,value) {
+                            totalAcumulado += parseInt(obj.row(value).data().PUNTOS.replace(".000000",""));
+
+                        });
+                        $('#spanTotal').text(totalAcumulado);
+                    }).dataTable();
+                    }
+                });
+            })
+            .fail(function (jqXHR, exception) {
+                            var msg = '';
+                            if (jqXHR.status === 0) {
+                                msg = 'Not connect.\n Verify Network.';
+                            } else if (jqXHR.status == 404) {
+                                msg = 'Requested page not found. [404]';
+                            } else if (jqXHR.status == 500) {
+                                msg = 'Internal Server Error [500].';
+                            } else if (exception === 'parsererror') {
+                                msg = 'Requested JSON parse failed.';
+                            } else if (exception === 'timeout') {
+                                msg = 'Time out error.';
+                            } else if (exception === 'abort') {
+                                msg = 'Ajax request aborted.';
+                            } else {
+                                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                            }
+                console.log(msg);
+                mensaje(msg,"error");
+            });
+        $('#SPdet').openModal();
+        }else{mensaje("SELECCIONE ALGUNA FECHA","error");}
+        });
 </script>

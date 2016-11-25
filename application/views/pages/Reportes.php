@@ -22,46 +22,46 @@
                     </a>
                 </div>
                 <div class="col s3 m3 l2 offset-l1">
-                    <a href="#SP" class=" IconBlue modal-action modal-close modal-trigger ">
+                    <a href="#" onclick="FiltrarReporte('MASTER DE CLIENTES','masterClientes')" class=" IconBlue">
                         <i class="medium material-icons iconoCenter ">supervisor_account</i>
-                        <p class="TextIconos">MASTER CUENTA SP</p>
+                        <p class="TextIconos">MASTER CLIENTES</p>
                     </a>
                 </div>
                 <div class="col s3 m3 l3 offset-l1">
-                    <a href="#CompraxProduc" class=" IconBlue modal-action modal-close  modal-trigger ">
+                    <a href="#" onclick="FiltrarReporte('MASTER COMPRAS POR PRODUCTOS','masterCompras')" class=" IconBlue">
                         <i class="medium material-icons iconoCenter">shopping_cart</i>
                         <p class="TextIconos">MASTER COMPRAS POR PRODUCTOS</p>
                     </a>
                 </div>
                 <div class="col s3 m3 l3">
-                    <a href="#MxP" class=" IconBlue modal-action modal-close modal-trigger">
+                    <a href="#" onclick="FiltrarReporte('CANJE DE PREMIOS','masterClientes')" class=" IconBlue">
                         <i class="medium material-icons iconoCenter">add_shopping_cart</i>
-                        <p class="TextIconos">MOVIMIENTO PRODUCTOS</p>
+                        <p class="TextIconos">CANJE DE PREMIOS</p>
                     </a>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col s3 m3 l2">
-                    <a href="#CanjeSP" class=" IconBlue modal-action modal-close modal-trigger">
+                    <a href="#" class=" IconBlue ">
                         <i class="medium material-icons iconoCenter">redeem</i>
                         <p class="TextIconos">CANJE PREMIOS SP</p>
                     </a>
                 </div>
                 <div class="col s3 m3 l2 offset-l1">
-                    <a href="#ReFecha" class=" IconBlue modal-action modal-close modal-trigger">
+                    <a href="#" onclick="FiltrarReporte('CANJE DE PREMIOS','reporteXfecha')" class=" IconBlue ">
                         <i class="medium material-icons iconoCenter">date_range</i>
                         <p class="TextIconos">REPORTE POR FECHA</p>
                     </a>
                 </div>
                 <div class="col s3 m3 l3 offset-l1">
-                    <a href="#MaVineta" class=" IconBlue modal-action modal-close modal-trigger">
+                    <a href="#" onclick="FiltrarReporte('MASTER DE FACTURAS','masterFacturas')" class=" IconBlue ">
                         <i class="medium material-icons iconoCenter">receipt</i>
-                        <p class="TextIconos">MASTER VIÑETAS</p>
+                        <p class="TextIconos">MASTER DE FACTURAS</p>
                     </a>
                 </div>
                 <div class="col s3 m3 l3">
-                    <a href="#!" class=" IconBlue modal-action modal-close ">
+                    <a href="#" class=" IconBlue">
                         <i class="medium material-icons iconoCenter">assignment_turned_in</i>
                         <p class="TextIconos">MÁS REPORTES</p>
                     </a>
@@ -144,19 +144,25 @@
       <p class="frpT pts">DATOS DEL CLIENTE</p>
 
         <div class="row">
+        <form name="CXCexcel" id="CXCexcel" action="<?php echo base_url('index.php/excelCTAxCLIENTE')?>" target="_blank" method="post">
             <div class="col s5 m3 l6">
-                <p id="CXCdetalleCodigo" class="Mcolor cod"></p>
-                <p id="CXCdetalleRUC" class="detalles linea"></p>
+                <input name="CXCcodigo" id="CXCdetalleCodigo" readonly class="Mcolor cod left" type="text" value="asdfdsfs">
+                <!--<p id="CXCdetalleCodigo" class="Mcolor cod"></p><-->
+                <br>
+                <p id="CXCdetalleRUC" class="detalles linea"></p><br>
                 <p id="CXCdetalleDIR" class="detalles linea"></p>
             </div>
             <div class="col s3 m4 l3">
-                <p id="CXCdetallefecha1" class="fecha"></p>
-                   <p class="rango">Desde</p>
+                <!--<p id="CXCdetallefecha1" class="fecha"></p>-->
+                <input name="CXCf1" readonly class="fecha" id="CXCdetallefecha1" type="text">
+                <p class="rango">Desde</p>
             </div>
             <div class="col s3 m4 l3">
-                <p id="CXCdetallefecha2" class="fecha"></p>
+                <!--<p id="CXCdetallefecha2" class="fecha"></p>-->
+                <input name="CXCf2" readonly class="fecha" id="CXCdetallefecha2" type="text">
                 <p class="rango">Hasta</p>
             </div>
+        </form>
         </div>
         <!-- TOTAL DE PUNTOS DEL CLIENTE -->
         <div id="Total" class="right row text">
@@ -181,7 +187,7 @@
 
         <div id="Iconos" class="row center">
             <div class="col l1 offset-l5">
-                <a href="#" ><img src="<?PHP echo base_url();?>assets/img/icono_excel.png" width="38px" ></a>
+                <a href="#" onclick="generarExcel('CXCexcel')" ><img src="<?PHP echo base_url();?>assets/img/icono_excel.png" width="38px" ></a>
             </div>
             <div class="col l1">
                 <a href="#" onclick="PrintPDF(cuentaXcliente)"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png" width="38px" ></a>
@@ -191,23 +197,20 @@
     </div>
 </div>
 <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                         Fin   Modal Cuenta por Cliente
+                                        FIN MODAL DETALLE DE CUENTA POR CLIENTE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
 <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                            Modal Master Cuenta SP
+                                        MODAL FILTRADO DE FECHAS OTROS REPORTES
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-<div id="SP" class="modal">
+<div id="modalFiltrado" class="modal">
     <div class="modal-content">
         <div class="right row">
-            <div class="col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
                     <i class="material-icons">highlight_off</i>
                 </a>
-            </div>
         </div>
 
-        <h6 class="center Mcolor AdUser">MASTER CUENTA SP</h6>
+        <h6 id="tituloFiltrado" class="center Mcolor AdUser"></h6>
 
         <div class="row">
             <form class="col s12" action=""method="post" name="formSP">
@@ -223,30 +226,27 @@
                 </div>
             </form>
         </div>
-        <div class="row">
-            <div class="col s6 m6 l5">
-                <a href="#SPdet" class="Btnadd modal-action modal-close btn modal-trigger">GENERAR</a>
-            </div>
+        <div class="row center">
+                <a href="#" id="generarDetalleReporte" class="Btnadd btn">GENERAR</a>
         </div>
     </div><!-- FIN CONTENIDO MODAL -->
 </div>
+<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                            MODAL DE DETALLES DE REPORTE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 <!-- Detalles del Master de Clientes SP -->
 
 <div id="SPdet" class="modal">
     <div class="modal-content">
         <div class="right row">
-            <div class="col s1 m1 l1">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
                     <i class="material-icons">highlight_off</i>
                 </a>
-            </div>
         </div>
-        <!-- LOGO SISTEMA DE VISYS -->
         <center><img src="<?PHP echo base_url(); ?>assets/img/logo_sp.png" width="20%"></center>
+        <h6 id="tituloFiltrado2" class="center Mcolor AdUser">MASTER CLIENTES SP</h6>
 
-        <h6 class="center Mcolor AdUser">MASTER CLIENTES SP</h6>
-
-        <div class="row">
+        <div class="row noMargen">
             <div class="col s3 m4 l3 offset-l3 offset-m3 offset-s3">
                 <p class="fecha">01/05/2016</p>
                 <p class="rango">Desde</p>
@@ -256,57 +256,39 @@
                 <p class="rango">Hasta</p>
             </div>
         </div>
+        <div class="noMargen Buscar row column">
+            <div class="col s1 m1 l1 offset-l3 offset-s1 offset-m2">
+                <i class="material-icons ColorS">search</i>
+            </div>
 
-        <!-- TOTAL DE PUNTOS DEL CLIENTE -->
-        <div id="Total" class="right row text">
-            <div class="col s8 m8 l12">
-                <p class="Dato">TOTAL DE PUNTOS: <span class="dato">6,000 Pts. </span></p>
+            <div class="input-field col s5 m4 l4">
+                <input  id="searchReporte" type="text" placeholder="Buscar" class="validate">
+                <label for="searchReporte"></label>
             </div>
         </div>
-        <!-- TABLA DE DETALLES -->
-        <table id="FRP" class=" TblDatos">
-            <thead>
-            <tr>
-                <th>COD. CLIENTE</th>
-                <th>RUC</th>
-                <th>CLIENTE</th>
-                <th>Pts.</th>
-                <th>RUTA</th>
-
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr>
-                <td id="Codigo">067799</td>
-                <td >0010202860051M</td>
-                <td>farmacia san martín</td>
-                <td id="Codigo">10,800 Pts.</td>
-                <td id="Codigo">F09</td>
-
-            </tr>
-            <tr>
-                <td id="Codigo">067799</td>
-                <td >0010202860051M</td>
-                <td>farmacia san martín</td>
-                <td id="Codigo">10,800 Pts.</td>
-                <td id="Codigo">F09</td>
-            </tr>
-
-            </tbody>
-        </table>
-
-        <div id="Iconos" class="row">
-            <div class="col s2 m2 l1 offset-l4 offset-s4 offset-m4">
-                <a href="#!" class=" BtnClose ">
-                    <i class="medium material-icons"  >print</i>
-                </a>
+        <div id="Total" class="right row text noMargen">
+            <div class="col s8 m8 l12">
+                <p class="Dato">TOTAL DE PUNTOS: <span id="spanTotal" class="dato"></span></p>
             </div>
-            <div class="col s2 m2 l1">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono_excel.png " width="40px" ></a>
+        </div>
+        <div class="row" id="miTablaReportes">
+            <div id="loadIMG" style="display:none" class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left"><div class="circle"></div></div>
+                        <div class="gap-patch"><div class="circle"></div></div>
+                    <div class="circle-clipper right"><div class="circle"></div></div>
+                </div>
             </div>
-            <div class="col s2 m2 l1 ">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="38px" ></a>
+            <table id="tblDetalleReportes" class="TblDatos">
+               <thead><tr></tr></thead>
+            </table>
+        </div>
+        <div id="Iconos" class="row center">
+            <div class="col l1 offset-l5">
+                <a href="#"  ><img src="<?PHP echo base_url();?>assets/img/icono_excel.png" width="38px" ></a>
+            </div>
+            <div class="col l1">
+                <a href="#"  ><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png" width="38px" ></a>
             </div>
         </div>
     </div><!-- Fin Contenido Modal -->
@@ -316,629 +298,3 @@
                                         Fin Modal Master Cuenta SP
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                            Modal Master Compras X Producto
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-<div id="CompraxProduc" class="modal">
-    <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
-
-        <h6 class="center Mcolor AdUser">MASTER COMPRAS POR PRODUCTO</h6>
-
-        <div class="row">
-            <form class="col s12" action=""method="post" name="formCXP">
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input name="fecha1" placeholder="Desde" id="fecha1" type="text" class="datepicker1">
-                    </div>
-                    <div class="input-field col s6">
-                        <input name="fecha2" placeholder="Hasta" id="fecha2" type="text" class="datepicker1">
-
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="row">
-            <div class="col s6 m6 l5">
-                <a href="#cxpdet" class="Btnadd modal-action modal-close btn modal-trigger">GENERAR</a>
-            </div>
-        </div>
-    </div><!-- FIN CONTENIDO MODAL -->
-</div>
-<!-- Detalles del Master Compras X Producto -->
-
-<div id="cxpdet" class="modal">
-    <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
-        <!-- LOGO SISTEMA DE VISYS -->
-        <center><img src="<?PHP echo base_url(); ?>assets/img/logo_sp.png" width="20%"></center>
-
-        <h6 class="center Mcolor AdUser">MASTER COMPRAS POR PRODUCTO</h6>
-
-        <div class="row">
-            <div class="col s3 m4 l3 offset-l3 offset-m3 offset-s3">
-                <p class="fecha">01/05/2016</p>
-                <p class="rango">Desde</p>
-            </div>
-            <div class="col s3 m4 l3">
-                <p class="fecha">22/06/2016</p>
-                <p class="rango">Hasta</p>
-            </div>
-        </div>
-
-        <!-- TOTAL DE PUNTOS DEL CLIENTE -->
-        <div id="Total" class="right row text">
-            <div class="col s8 m8 l12">
-                <p class="Dato">TOTAL DE PUNTOS: <span class="dato">6,000 Pts. </span></p>
-            </div>
-        </div>
-        <!-- TABLA DE DETALLES -->
-        <table id="MCXP" class=" TblDatos">
-            <thead>
-            <tr>
-                <th>N°</th>
-                <th>FECHA</th>
-                <th>FACTURA</th>
-                <th>CANT.</th>
-                <th>DESCRIPCIÓN</th>
-                <th>LABOR.</th>
-                <th>COD.</th>
-                <th>CLIENTE</th>
-                <th>RUTA</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>01/06/2016</td>
-                <td>FC002678</td>
-                <td>6</td>
-                <td>acetominofen jarabe 120 ML</td>
-                <td id="NomCliente">RAMOS</td>
-                <td>03317</td>
-                <td>farmacia mi farmacia</td>
-                <td id="NomCliente">F10</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>01/06/2016</td>
-                <td>FC002678</td>
-                <td>6</td>
-                <td>acetominofen jarabe 120 ML</td>
-                <td id="NomCliente">RAMOS</td>
-                <td>03317</td>
-                <td>farmacia mi farmacia</td>
-                <td id="NomCliente">F10</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>01/06/2016</td>
-                <td>FC002678</td>
-                <td>6</td>
-                <td>acetominofen jarabe 120 ML</td>
-                <td id="NomCliente">RAMOS</td>
-                <td>03317</td>
-                <td>farmacia mi farmacia</td>
-                <td id="NomCliente">F10</td>
-            </tr>
-            </tbody>
-
-
-        </table>
-
-        <div id="Iconos" class="row">
-            <div class="col s2 m2 l1 offset-l4 offset-s4 offset-m4">
-                <a href="#!" class=" BtnClose ">
-                    <i class="medium material-icons"  >print</i>
-                </a>
-            </div>
-            <div class="col s2 m2 l1">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono_excel.png " width="40px" ></a>
-            </div>
-            <div class="col s2 m2 l1 ">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="38px" ></a>
-            </div>
-        </div>
-    </div><!-- Fin Contenido Modal -->
-</div>
-
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        Fin Modal Master Compras X Producto
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                            Modal Movimiento Producto
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-<div id="MxP" class="modal">
-    <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
-
-        <h6 class="center Mcolor AdUser">MOVIMIENTO PRODUCTOS</h6>
-
-        <div class="row">
-            <form class="col s12" action=""method="post" name="formMxP">
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input name="fecha1" placeholder="Desde" id="fecha1" type="text" class="datepicker1">
-                    </div>
-                    <div class="input-field col s6">
-                        <input name="fecha2" placeholder="Hasta" id="fecha2" type="text" class="datepicker1">
-
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="row">
-            <div class="col s6 m6 l5">
-                <a href="#MxPdet" class="Btnadd modal-action modal-close btn modal-trigger">GENERAR</a>
-            </div>
-        </div>
-    </div><!-- FIN CONTENIDO MODAL -->
-</div>
-<!-- Detalles del Movientos por Productos -->
-
-<div id="MxPdet" class="modal">
-    <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
-        <!-- LOGO SISTEMA DE VISYS -->
-        <center><img src="<?PHP echo base_url(); ?>assets/img/logo_sp.png" width="20%"></center>
-
-        <h6 class="center Mcolor AdUser">MOVIMIENTO PRODUCTOS</h6>
-
-        <div class="row">
-            <div class="col s3 m4 l3 offset-l3 offset-m3 offset-s3">
-                <p class="fecha">01/05/2016</p>
-                <p class="rango">Desde</p>
-            </div>
-            <div class="col s3 m4 l3">
-                <p class="fecha">22/06/2016</p>
-                <p class="rango">Hasta</p>
-            </div>
-        </div>
-
-        <!-- TOTAL DE PUNTOS DEL CLIENTE -->
-        <div id="Total" class="right row text">
-            <div class="col s8 m8 l12">
-                <p class="Dato">TOTAL DE PUNTOS: <span class="dato">6,000 Pts. </span></p>
-            </div>
-        </div>
-        <!-- TABLA DE DETALLES -->
-        <table id="ClienteAdd" class=" TblDatos">
-            <thead>
-            <tr>
-                <th>COD. ARTO.</th>
-                <th>DESCRIPCIÓN</th>
-                <th>LABOR.</th>
-                <th>CANT.</th>
-                <th>PUNTOS</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>13614012</td>
-                <td>xxxxxxx xxxxxxx xxxxxxx xxxxxx xxxxx</td>
-                <td id="NomCliente">NANJIN</td>
-                <td>6</td>
-                <td id="NomCliente">28,940.00 pts.</td>
-            </tr>
-            <tr>
-                <td>13614012</td>
-                <td>xxxxxxx xxxxxxx xxxxxxx xxxxxx xxxxx</td>
-                <td id="NomCliente">NANJIN</td>
-                <td>6</td>
-                <td id="NomCliente">28,940.00 pts.</td>
-            </tr>
-            <tr>
-                <td>13614012</td>
-                <td>xxxxxxx xxxxxxx xxxxxxx xxxxxx xxxxx</td>
-                <td id="NomCliente">NANJIN</td>
-                <td>6</td>
-                <td id="NomCliente">28,940.00 pts.</td>
-            </tr>
-            </tbody>
-
-
-        </table>
-
-        <div id="Iconos" class="row">
-            <div class="col s2 m2 l1 offset-l4 offset-s4 offset-m4">
-                <a href="#!" class=" BtnClose ">
-                    <i class="medium material-icons"  >print</i>
-                </a>
-            </div>
-            <div class="col s2 m2 l1">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono_excel.png " width="40px" ></a>
-            </div>
-            <div class="col s2 m2 l1 ">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="38px" ></a>
-            </div>
-        </div>
-    </div><!-- Fin Contenido Modal -->
-</div>
-
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        Fin Modal Movimiento Producto
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        Modal Canje Premios SP
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-<div id="CanjeSP" class="modal">
-    <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
-
-        <h6 class="center Mcolor AdUser">CANJE PREMIOS SP</h6>
-
-        <div class="row">
-            <form class="col s12" action=""method="post" name="formMxP">
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input name="fecha1" placeholder="Desde" id="fecha1" type="text" class="datepicker1">
-                    </div>
-                    <div class="input-field col s6">
-                        <input name="fecha2" placeholder="Hasta" id="fecha2" type="text" class="datepicker1">
-
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="row">
-            <div class="col s6 m6 l5">
-                <a href="#CanjeSPDdet" class="Btnadd modal-action modal-close btn modal-trigger">GENERAR</a>
-            </div>
-        </div>
-    </div><!-- FIN CONTENIDO MODAL -->
-</div>
-<!-- Detalles del Canje SP -->
-
-<div id="CanjeSPDdet" class="modal">
-    <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
-        <!-- LOGO SISTEMA DE VISYS -->
-        <center><img src="<?PHP echo base_url(); ?>assets/img/logo_sp.png" width="20%"></center>
-
-        <h6 class="center Mcolor AdUser">CANJE PREMIOS SP</h6>
-
-        <div class="row">
-            <div class="col s3 m4 l3 offset-l3 offset-m3 offset-s3">
-                <p class="fecha">01/05/2016</p>
-                <p class="rango">Desde</p>
-            </div>
-            <div class="col s3 m4 l3">
-                <p class="fecha">22/06/2016</p>
-                <p class="rango">Hasta</p>
-            </div>
-        </div>
-
-        <!-- TABLA DE DETALLES -->
-        <table id="BajaCliente" class=" TblDatos">
-            <thead>
-            <tr>
-                <th>N°</th>
-                <th>CANT.</th>
-                <th>CREADO</th>
-                <th>#FRP</th>
-                <th>COD. CLIENTE</th>
-                <th>COD. ARTO.</th>
-                <th>DESCRIPCIÓN</th>
-                <th>Pts.</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>23/06/2016</td>
-                <td id="NomCliente">386</td>
-                <td id="NomCliente">00641</td>
-                <td id="NomCliente">134271</td>
-                <td>maq coser singer 1408</td>
-                <td id="NomCliente">6,208 pts.</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>23/06/2016</td>
-                <td id="NomCliente">386</td>
-                <td id="NomCliente">00641</td>
-                <td id="NomCliente">134271</td>
-                <td>maq coser singer 1408</td>
-                <td id="NomCliente">6,208 pts.</td>
-            </tr>
-            </tbody>
-
-
-        </table>
-
-        <div id="Iconos" class="row">
-            <div class="col s2 m2 l1 offset-l4 offset-s4 offset-m4">
-                <a href="#!" class=" BtnClose ">
-                    <i class="medium material-icons"  >print</i>
-                </a>
-            </div>
-            <div class="col s2 m2 l1">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono_excel.png " width="40px" ></a>
-            </div>
-            <div class="col s2 m2 l1 ">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="38px" ></a>
-            </div>
-        </div>
-    </div><!-- Fin Contenido Modal -->
-</div>
-
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        Fin Modal Canje Premios SP
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        Modal Reporte X Fecha
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-<div id="ReFecha" class="modal">
-    <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
-
-        <h6 class="center Mcolor AdUser">REPORTE POR FECHA</h6>
-
-        <div class="row">
-            <form class="col s12" action=""method="post" name="formReFecha">
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input name="fecha1" placeholder="Desde" id="fecha1" type="text" class="datepicker1">
-                    </div>
-                    <div class="input-field col s6">
-                        <input name="fecha2" placeholder="Hasta" id="fecha2" type="text" class="datepicker1">
-
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="row">
-            <div class="col s6 m6 l5">
-                <a href="#RepFechadet" class="Btnadd modal-action modal-close btn modal-trigger">GENERAR</a>
-            </div>
-        </div>
-    </div><!-- FIN CONTENIDO MODAL -->
-</div>
-<!-- Detalles de Reporte por Fecha -->
-
-<div id="RepFechadet" class="modal">
-    <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
-        <!-- LOGO SISTEMA DE VISYS -->
-        <center><img src="<?PHP echo base_url(); ?>assets/img/logo_sp.png" width="20%"></center>
-
-        <h6 class="center Mcolor AdUser">REPORTE POR FECHA</h6>
-
-        <div class="row">
-            <div class="col s3 m4 l3 offset-l3 offset-m3 offset-s3">
-                <p class="fecha">01/05/2016</p>
-                <p class="rango">Desde</p>
-            </div>
-            <div class="col s3 m4 l3">
-                <p class="fecha">22/06/2016</p>
-                <p class="rango">Hasta</p>
-            </div>
-        </div>
-
-        <!-- TABLA DE DETALLES -->
-        <table id="tblpRODUCTOS" class=" TblDatos">
-            <thead>
-            <tr>
-                <th>N°</th>
-                <th>FECHA</th>
-                <th>FACTURA</th>
-                <th>RUTA</th>
-                <th>PUNTOS</th>
-                <th>COD. CLIENTE</th>
-                <th>CLIENTE</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>24/05/2015</td>
-                <td id="NomCliente">0075821</td>
-                <td>F05</td>
-                <td id="NomCliente">140 Pts.</td>
-                <td>00115</td>
-                <td>xxxx xxxxx xxxxx xxxx</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>24/05/2015</td>
-                <td id="NomCliente">0075821</td>
-                <td>F05</td>
-                <td id="NomCliente">140 Pts.</td>
-                <td>00115</td>
-                <td>xxxx xxxxx xxxxx xxxx</td>
-            </tr>
-            </tbody>
-
-
-        </table>
-
-        <div id="Iconos" class="row">
-            <div class="col s2 m2 l1 offset-l4 offset-s4 offset-m4">
-                <a href="#!" class=" BtnClose ">
-                    <i class="medium material-icons"  >print</i>
-                </a>
-            </div>
-            <div class="col s2 m2 l1">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono_excel.png " width="40px" ></a>
-            </div>
-            <div class="col s2 m2 l1 ">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="38px" ></a>
-            </div>
-        </div>
-    </div><!-- Fin Contenido Modal -->
-</div>
-
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        Fin Modal Reporte X Fecha
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        Modal Master de Viñetas
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-<div id="MaVineta" class="modal">
-    <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
-
-        <h6 class="center Mcolor AdUser">MASTER DE VIÑETAS</h6>
-
-        <div class="row">
-            <form class="col s12" action=""method="post" name="formMaVineta">
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input name="fecha1" placeholder="Desde" id="fecha1" type="text" class="datepicker1">
-                    </div>
-                    <div class="input-field col s6">
-                        <input name="fecha2" placeholder="Hasta" id="fecha2" type="text" class="datepicker1">
-
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="row">
-            <div class="col s6 m6 l5">
-                <a href="#MaVinetadet" class="Btnadd modal-action modal-close btn modal-trigger">GENERAR</a>
-            </div>
-        </div>
-    </div><!-- FIN CONTENIDO MODAL -->
-</div>
-<!-- Detalles de Master de Viñetas -->
-
-<div id="MaVinetadet" class="modal">
-    <div class="modal-content">
-        <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
-        </div>
-        <!-- LOGO SISTEMA DE VISYS -->
-        <center><img src="<?PHP echo base_url(); ?>assets/img/logo_sp.png" width="20%"></center>
-
-        <h6 class="center Mcolor AdUser">MASTER VIÑETAS</h6>
-
-        <div class="row">
-            <div class="col s3 m4 l3 offset-l3 offset-m3 offset-s3">
-                <p class="fecha">01/05/2016</p>
-                <p class="rango">Desde</p>
-            </div>
-            <div class="col s3 m4 l3">
-                <p class="fecha">22/06/2016</p>
-                <p class="rango">Hasta</p>
-            </div>
-        </div>
-
-
-        <!-- TABLA DE DETALLES -->
-        <table id="TblMaVinetas" class=" TblDatos">
-            <thead>
-            <tr>
-                <th>N°</th>
-                <th>FECHA</th>
-                <th>FACTURA</th>
-                <th>COD. CLIENTE</th>
-                <th>CLIENTE</th>
-                <th>PUNTOS X COMPRA</th>
-                <th>ESTADO</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>25/05/2015</td>
-                <td id="Codigo">00000</td>
-                <td>0000</td>
-                <td>xxxxx xxxxx xxxxx</td>
-                <td id="Codigo">000 pts.</td>
-                <td id="dispo">ACTIVO</td>
-            </tr>
-
-            </tbody>
-
-
-        </table>
-
-        <div id="Iconos" class="row">
-            <div class="col s2 m2 l1 offset-l4 offset-s4 offset-m4">
-                <a href="#!" class=" BtnClose ">
-                    <i class="medium material-icons"  >print</i>
-                </a>
-            </div>
-            <div class="col s2 m2 l1 offset-l1">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono_excel.png " width="40px" ></a>
-            </div>
-            <div class="col s2 m2 l1 offset-l1">
-                <a href="#"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png " width="38px" ></a>
-            </div>
-        </div>
-    </div><!-- Fin Contenido Modal -->
-</div>
-
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        Fin Modal Master de Viñetas
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->

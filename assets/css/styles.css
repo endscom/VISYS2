@@ -1236,3 +1236,15 @@ label>select {
 #cuentaXcliente{
   height: 80%!important;
 }
+#CtaXcte{
+  width: 85%!important;
+  max-height: 85%!important;
+}
+#modalFiltrado{
+  max-height: 80%!important;
+  height: 60%;
+}
+#SPdet{
+  width: 85%!important;
+  max-height: 85%!important;
+}
