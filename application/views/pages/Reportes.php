@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col s3 m3 l2">
                     <a href="#cuentaXcliente" class=" IconBlue modal-action modal-close modal-trigger ">
-                        <i class="medium material-icons iconoCenter">assignment</i>
+                        <i class="medium material-icons iconoCenter">local_library</i>
                         <p class="TextIconos">CUENTA POR CLIENTE</p>
                     </a>
                 </div>
@@ -28,46 +28,85 @@
                     </a>
                 </div>
                 <div class="col s3 m3 l3 offset-l1">
-                    <a href="#" onclick="FiltrarReporte('MASTER COMPRAS POR PRODUCTOS','masterCompras')" class=" IconBlue">
-                        <i class="medium material-icons iconoCenter">shopping_cart</i>
-                        <p class="TextIconos">MASTER COMPRAS POR PRODUCTOS</p>
+                    <a href="#" onclick="FiltrarReporte('CLIENTES NUEVOS','clientes_nuevos')" class=" IconBlue ">
+                        <i class="medium material-icons iconoCenter">person_add</i>
+                        <p class="TextIconos">CLIENTES NUEVOS</p>
                     </a>
                 </div>
                 <div class="col s3 m3 l3">
-                    <a href="#" onclick="FiltrarReporte('CANJE DE PREMIOS','masterClientes')" class=" IconBlue">
-                        <i class="medium material-icons iconoCenter">add_shopping_cart</i>
-                        <p class="TextIconos">CANJE DE PREMIOS</p>
+                    <a href="#" class=" IconBlue">
+                        <a href="#" onclick="FiltrarReporte('PUNTOS POR CLIENTE','puntosXcliente')" class=" IconBlue ">
+                        <i class="medium material-icons iconoCenter">perm_identity</i>
+                        <p class="TextIconos">PUNTOS POR CLIENTE</p>
                     </a>
+                    
                 </div>
             </div>
 
             <div class="row">
                 <div class="col s3 m3 l2">
-                    <a href="#" class=" IconBlue ">
-                        <i class="medium material-icons iconoCenter">redeem</i>
-                        <p class="TextIconos">CANJE PREMIOS SP</p>
+                    <a href="#" onclick="FiltrarReporte('CANJES','canjes')" class=" IconBlue ">
+                        <i class="medium material-icons iconoCenter">timeline</i>
+                        <p class="TextIconos">CANJES</p>
                     </a>
                 </div>
                 <div class="col s3 m3 l2 offset-l1">
-                    <a href="#" onclick="FiltrarReporte('CANJE DE PREMIOS','reporteXfecha')" class=" IconBlue ">
-                        <i class="medium material-icons iconoCenter">date_range</i>
-                        <p class="TextIconos">REPORTE POR FECHA</p>
+                    <a href="#" onclick="FiltrarReporte('DETALLES DE CANJE','asdf')" class=" IconBlue ">
+                        <i class="medium material-icons iconoCenter">view_list</i>
+                        <p class="TextIconos">DETALLES DE CANJE</p>
+                    </a>                    
+                </div>
+                <div class="col s3 m3 l3 offset-l1">
+                    <a href="#" onclick="FiltrarReporte('CANJE DE PREMIOS','asda')" class=" IconBlue">
+                        <i class="medium material-icons iconoCenter">add_shopping_cart</i>
+                        <p class="TextIconos">CANJE DE PREMIOS</p>
+                    </a>
+                </div>
+                <div class="col s3 m3 l3">
+                    <a href="#" onclick="FiltrarReporte('MASTER DE FACTURAS','masterFacturas')" class=" IconBlue ">
+                        <i class="medium material-icons iconoCenter">monetization_on</i>
+                        <p class="TextIconos">MASTER DE FACTURAS</p>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col s3 m3 l2">
+                    <a href="#" onclick="FiltrarReporte('MASTER COMPRAS POR PRODUCTOS','masterCompras')" class=" IconBlue">
+                        <i class="medium material-icons iconoCenter">shopping_cart</i>
+                        <p class="TextIconos">MASTER COMPRAS POR PRODUCTOS</p>
+                    </a>
+                </div>
+                <div class="col s3 m3 l2 offset-l1">
+                    <a href="#" onclick="FiltrarReporte('MOVIMIENTO DE PRODUCTOS','movimientoProductos')" class=" IconBlue ">
+                        <i class="medium material-icons iconoCenter">multiline_chart</i>
+                        <p class="TextIconos">MOVIMIENTO DE PRODUCTOS</p>
                     </a>
                 </div>
                 <div class="col s3 m3 l3 offset-l1">
-                    <a href="#" onclick="FiltrarReporte('MASTER DE FACTURAS','masterFacturas')" class=" IconBlue ">
-                        <i class="medium material-icons iconoCenter">receipt</i>
-                        <p class="TextIconos">MASTER DE FACTURAS</p>
+                    <a href="#" onclick="FiltrarReporte('CANJE DE PREMIOS','reporteXfecha')" class=" IconBlue ">
+                        <i class="medium material-icons iconoCenter">event_note</i>
+                        <p class="TextIconos">REPORTE POR FECHA</p>
                     </a>
                 </div>
                 <div class="col s3 m3 l3">
                     <a href="#" class=" IconBlue">
-                        <i class="medium material-icons iconoCenter">assignment_turned_in</i>
-                        <p class="TextIconos">MÁS REPORTES</p>
+                        <a href="#" onclick="FiltrarReporte('10 MÁS VENDIDOS','mas_vendidos')" class=" IconBlue ">
+                        <i class="medium material-icons iconoCenter">thumb_up</i>
+                        <p class="TextIconos">TOP 10 MÁS VENDIDOS</p>
                     </a>
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col s3 m3 l3 offset-l4">
+                    <a href="#" class=" IconBlue">
+                        <a href="#" onclick="FiltrarReporte('10 MENOS VENDIDOS','menos_vendidos')" class=" IconBlue ">
+                        <i class="medium material-icons iconoCenter">thumb_down</i>
+                        <p class="TextIconos">TOP 10 MENOS VENDIDOS</p>
+                    </a>
+                </div>
+            </div>
 
 
     </div>
@@ -248,11 +287,11 @@
 
         <div class="row noMargen">
             <div class="col s3 m4 l3 offset-l3 offset-m3 offset-s3">
-                <p class="fecha">01/05/2016</p>
+                <p id="f1Detail" class="fecha"></p>
                 <p class="rango">Desde</p>
             </div>
             <div class="col s3 m4 l3">
-                <p class="fecha">22/06/2016</p>
+                <p id="f2Detail" class="fecha"></p>
                 <p class="rango">Hasta</p>
             </div>
         </div>
@@ -266,7 +305,7 @@
                 <label for="searchReporte"></label>
             </div>
         </div>
-        <div id="Total" class="right row text noMargen">
+        <div id="Total2" class="right row text noMargen" style="display:none;">
             <div class="col s8 m8 l12">
                 <p class="Dato">TOTAL DE PUNTOS: <span id="spanTotal" class="dato"></span></p>
             </div>
@@ -283,18 +322,17 @@
                <thead><tr></tr></thead>
             </table>
         </div>
-        <div id="Iconos" class="row center">
+       <!-- <div id="Iconos" class="row center">
             <div class="col l1 offset-l5">
                 <a href="#"  ><img src="<?PHP echo base_url();?>assets/img/icono_excel.png" width="38px" ></a>
             </div>
             <div class="col l1">
                 <a href="#"  ><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png" width="38px" ></a>
             </div>
-        </div>
+        </div>-->
     </div><!-- Fin Contenido Modal -->
 </div>
 
 <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                         Fin Modal Master Cuenta SP
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-

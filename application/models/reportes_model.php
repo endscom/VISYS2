@@ -7,6 +7,14 @@ class Reportes_model extends CI_Model
         $this->load->model('canje_efectivo_model');
     }
 	public $CONDICION = '2016-10-01';
+    public function formatDecimal($valor)
+    {
+        if ($valor == ".000000") {
+            return 0;
+        }else{
+            return $valor = str_replace(".000000","",$valor);
+        }
+    }
     public function cuentaXcliente($codigo,$f1,$f2)
     {
     	$query="";
@@ -145,7 +153,8 @@ class Reportes_model extends CI_Model
     {
         $i=0;
         $json = array();
-        $query = $this->sqlsrv->fetchArray("SELECT DESCRIPCION,CANTIDAD,CLIENTE,NOMBRE_CLIENTE,RUTA,FACTURA,FECHA FROM vtVS2_MASTER_COMPRAS WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'"
+        $query = $this->sqlsrv->fetchArray("SELECT DESCRIPCION,CANTIDAD,CLIENTE,NOMBRE_CLIENTE,RUTA,FACTURA,FECHA FROM vtVS2_MASTER_COMPRAS 
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'"
                                             ,SQLSRV_FETCH_ASSOC);
                                             
         foreach($query as $key){
@@ -210,6 +219,440 @@ class Reportes_model extends CI_Model
             $json['columns'][5]['name'] = "NOMBRE";
 
         echo json_encode($json);
-        $this->sqlsrv->close();   
+        $this->sqlsrv->close();
+    }
+    public function movimientoProductos($fecha1,$fecha2)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray("SELECT TOP 10 ARTICULO,DESCRIPCION,SUM(CANTIDAD) AS CANTIDAD,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            GROUP BY ARTICULO,DESCRIPCION ORDER BY PUNTOS DESC",SQLSRV_FETCH_ASSOC);
+
+        foreach($query as $key){
+            $json['data'][$i]['NUMERO'] = $i+1;
+            $json['data'][$i]['ARTICULO'] = $key['ARTICULO'];
+            $json['data'][$i]['DESCRIPCION'] = $key['DESCRIPCION'];
+            $json['data'][$i]['CANTIDAD'] = number_format($key['CANTIDAD'],2);
+            $json['data'][$i]['PUNTOS'] = number_format($key['PUNTOS'],0);
+            $i++;
+        }
+            $json['columns'][0]['data'] = "NUMERO";
+            $json['columns'][0]['name'] = "NUMERO";
+            $json['columns'][1]['data'] = "ARTICULO";
+            $json['columns'][1]['name'] = "ARTICULO";
+            $json['columns'][2]['data'] = "DESCRIPCION";
+            $json['columns'][2]['name'] = "DESCRIPCION";
+            $json['columns'][3]['data'] = "CANTIDAD";
+            $json['columns'][3]['name'] = "CANTIDAD";
+            $json['columns'][4]['data'] = "PUNTOS";
+            $json['columns'][4]['name'] = "PUNTOS";
+
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function clientes_nuevos($fecha1,$fecha2)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray("SELECT 
+                                            COUNT(CASE WHEN MONTH(FECHA_INGRESO)=1 THEN FECHA_INGRESO END) AS ENE,
+                                            COUNT(CASE WHEN MONTH(FECHA_INGRESO)=2 THEN FECHA_INGRESO END) AS FEB,
+                                            COUNT(CASE WHEN MONTH(FECHA_INGRESO)=3 THEN FECHA_INGRESO END) AS MAR,
+                                            COUNT(CASE WHEN MONTH(FECHA_INGRESO)=4 THEN FECHA_INGRESO END) AS ABR,
+                                            COUNT(CASE WHEN MONTH(FECHA_INGRESO)=5 THEN FECHA_INGRESO END) AS MAY,
+                                            COUNT(CASE WHEN MONTH(FECHA_INGRESO)=6 THEN FECHA_INGRESO END) AS JUN,
+                                            COUNT(CASE WHEN MONTH(FECHA_INGRESO)=7 THEN FECHA_INGRESO END) AS JUL,
+                                            COUNT(CASE WHEN MONTH(FECHA_INGRESO)=8 THEN FECHA_INGRESO END) AS AGO,
+                                            COUNT(CASE WHEN MONTH(FECHA_INGRESO)=9 THEN FECHA_INGRESO END) AS SEP,
+                                            COUNT(CASE WHEN MONTH(FECHA_INGRESO)=10 THEN FECHA_INGRESO END) AS OCT,
+                                            COUNT(CASE WHEN MONTH(FECHA_INGRESO)=11 THEN FECHA_INGRESO END) AS NOV,
+                                            COUNT(CASE WHEN MONTH(FECHA_INGRESO)=12 THEN FECHA_INGRESO END) AS DIC
+                                            FROM umk.CLIENTE
+                                            WHERE FECHA_INGRESO BETWEEN '".$fecha1."' AND '".$fecha2."'
+                                            AND FECHA_INGRESO >= '".$this->CONDICION."'",SQLSRV_FETCH_ASSOC);
+
+        foreach($query as $key){
+            $json['data'][$i]['ENE'] =$key['ENE'];
+            $json['data'][$i]['FEB'] = $key['FEB'];
+            $json['data'][$i]['MAR'] = $key['MAR'];
+            $json['data'][$i]['ABR'] = $key['ABR'];
+            $json['data'][$i]['MAY'] = $key['MAY'];
+            $json['data'][$i]['JUN'] = $key['JUN'];
+            $json['data'][$i]['JUL'] = $key['JUL'];
+            $json['data'][$i]['AGO'] = $key['AGO'];
+            $json['data'][$i]['SEP'] = $key['SEP'];
+            $json['data'][$i]['OCT'] = $key['OCT'];
+            $json['data'][$i]['NOV'] = $key['NOV'];
+            $json['data'][$i]['DIC'] = $key['DIC'];            
+            $i++;
+        }
+            $json['columns'][0]['data'] = "ENE";
+            $json['columns'][0]['name'] = "ENE";
+            $json['columns'][1]['data'] = "FEB";
+            $json['columns'][1]['name'] = "FEB";
+            $json['columns'][2]['data'] = "MAR";
+            $json['columns'][2]['name'] = "MAR";
+            $json['columns'][3]['data'] = "ABR";
+            $json['columns'][3]['name'] = "ABR";
+            $json['columns'][4]['data'] = "MAY";
+            $json['columns'][4]['name'] = "MAY";
+            $json['columns'][5]['data'] = "JUN";
+            $json['columns'][5]['name'] = "JUN";
+            $json['columns'][6]['data'] = "JUL";
+            $json['columns'][6]['name'] = "JUL";
+            $json['columns'][7]['data'] = "AGO";
+            $json['columns'][7]['name'] = "AGO";
+            $json['columns'][8]['data'] = "SEP";
+            $json['columns'][8]['name'] = "SEP";
+            $json['columns'][9]['data'] = "OCT";
+            $json['columns'][9]['name'] = "OCT";
+            $json['columns'][10]['data'] = "NOV";
+            $json['columns'][10]['name'] = "NOV";
+            $json['columns'][11]['data'] = "DIC";
+            $json['columns'][11]['name'] = "DIC";
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function mas_vendidos($fecha1,$fecha2)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray("SELECT TOP 10 DESCRIPCION, SUM(CANTIDAD) AS TOTAL,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=1 THEN TT_PUNTOS END),0) AS ENE,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=2 THEN TT_PUNTOS END),0) AS FEB,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=3 THEN TT_PUNTOS END),0) AS MAR,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=4 THEN TT_PUNTOS END),0) AS ABR,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=5 THEN TT_PUNTOS END),0) AS MAY,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=6 THEN TT_PUNTOS END),0) AS JUN,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=7 THEN TT_PUNTOS END),0) AS JUL,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=8 THEN TT_PUNTOS END),0) AS AGO,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=9 THEN TT_PUNTOS END),0) AS SEP,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=10 THEN TT_PUNTOS END),0) AS OCT,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=11 THEN TT_PUNTOS END),0) AS NOV,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=12 THEN TT_PUNTOS END),0) AS DIC
+                                            FROM vtVS2_Facturas_CL 
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            GROUP BY DESCRIPCION
+                                            ORDER BY TOTAL DESC;",SQLSRV_FETCH_ASSOC);
+        
+        foreach($query as $key){
+            $json['data'][$i]['DESCRIPCION'] = '<p class="negra noMargen">'.$key['DESCRIPCION']."</p>";
+            $json['data'][$i]['TOTAL'] = '<p class="bold noMargen">'.$this->formatDecimal($key['TOTAL'])."</p>";
+            $json['data'][$i]['ENE'] = $this->formatDecimal($key['ENE']);
+            $json['data'][$i]['FEB'] = $this->formatDecimal($key['FEB']);
+            $json['data'][$i]['MAR'] = $this->formatDecimal($key['MAR']);
+            $json['data'][$i]['ABR'] = $this->formatDecimal($key['ABR']);
+            $json['data'][$i]['MAY'] = $this->formatDecimal($key['MAY']);
+            $json['data'][$i]['JUN'] = $this->formatDecimal($key['JUN']);
+            $json['data'][$i]['JUL'] = $this->formatDecimal($key['JUL']);
+            $json['data'][$i]['AGO'] = $this->formatDecimal($key['AGO']);
+            $json['data'][$i]['SEP'] = $this->formatDecimal($key['SEP']);
+            $json['data'][$i]['OCT'] = $this->formatDecimal($key['OCT']);
+            $json['data'][$i]['NOV'] = $this->formatDecimal($key['NOV']);
+            $json['data'][$i]['DIC'] = $this->formatDecimal($key['DIC']);            
+            $i++;
+        }
+            $json['columns'][0]['data'] = "DESCRIPCION";
+            $json['columns'][0]['name'] = "DESCRIPCION";
+            $json['columns'][1]['data'] = "TOTAL";
+            $json['columns'][1]['name'] = "TOTAL";
+            $json['columns'][2]['data'] = "ENE";
+            $json['columns'][2]['name'] = "ENE";
+            $json['columns'][3]['data'] = "FEB";
+            $json['columns'][3]['name'] = "FEB";
+            $json['columns'][4]['data'] = "MAR";
+            $json['columns'][4]['name'] = "MAR";
+            $json['columns'][5]['data'] = "ABR";
+            $json['columns'][5]['name'] = "ABR";
+            $json['columns'][6]['data'] = "MAY";
+            $json['columns'][6]['name'] = "MAY";
+            $json['columns'][7]['data'] = "JUN";
+            $json['columns'][7]['name'] = "JUN";
+            $json['columns'][8]['data'] = "JUL";
+            $json['columns'][8]['name'] = "JUL";
+            $json['columns'][9]['data'] = "AGO";
+            $json['columns'][9]['name'] = "AGO";
+            $json['columns'][10]['data'] = "SEP";
+            $json['columns'][10]['name'] = "SEP";
+            $json['columns'][11]['data'] = "OCT";
+            $json['columns'][11]['name'] = "OCT";
+            $json['columns'][12]['data'] = "NOV";
+            $json['columns'][12]['name'] = "NOV";
+            $json['columns'][13]['data'] = "DIC";
+            $json['columns'][13]['name'] = "DIC";
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function menos_vendidos($fecha1,$fecha2)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray("SELECT TOP 10 DESCRIPCION, SUM(CANTIDAD) AS TOTAL,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=1 THEN TT_PUNTOS END),0) AS ENE,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=2 THEN TT_PUNTOS END),0) AS FEB,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=3 THEN TT_PUNTOS END),0) AS MAR,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=4 THEN TT_PUNTOS END),0) AS ABR,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=5 THEN TT_PUNTOS END),0) AS MAY,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=6 THEN TT_PUNTOS END),0) AS JUN,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=7 THEN TT_PUNTOS END),0) AS JUL,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=8 THEN TT_PUNTOS END),0) AS AGO,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=9 THEN TT_PUNTOS END),0) AS SEP,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=10 THEN TT_PUNTOS END),0) AS OCT,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=11 THEN TT_PUNTOS END),0) AS NOV,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=12 THEN TT_PUNTOS END),0) AS DIC
+                                            FROM vtVS2_Facturas_CL 
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            GROUP BY DESCRIPCION
+                                            ORDER BY TOTAL",SQLSRV_FETCH_ASSOC);
+        
+        foreach($query as $key){
+            $json['data'][$i]['DESCRIPCION'] = '<p class="negra noMargen">'.$key['DESCRIPCION']."</p>";
+            $json['data'][$i]['TOTAL'] = '<p class="bold noMargen">'.$this->formatDecimal($key['TOTAL'])."</p>";
+            $json['data'][$i]['ENE'] = $this->formatDecimal($key['ENE']);
+            $json['data'][$i]['FEB'] = $this->formatDecimal($key['FEB']);
+            $json['data'][$i]['MAR'] = $this->formatDecimal($key['MAR']);
+            $json['data'][$i]['ABR'] = $this->formatDecimal($key['ABR']);
+            $json['data'][$i]['MAY'] = $this->formatDecimal($key['MAY']);
+            $json['data'][$i]['JUN'] = $this->formatDecimal($key['JUN']);
+            $json['data'][$i]['JUL'] = $this->formatDecimal($key['JUL']);
+            $json['data'][$i]['AGO'] = $this->formatDecimal($key['AGO']);
+            $json['data'][$i]['SEP'] = $this->formatDecimal($key['SEP']);
+            $json['data'][$i]['OCT'] = $this->formatDecimal($key['OCT']);
+            $json['data'][$i]['NOV'] = $this->formatDecimal($key['NOV']);
+            $json['data'][$i]['DIC'] = $this->formatDecimal($key['DIC']);            
+            $i++;
+        }
+            $json['columns'][0]['data'] = "DESCRIPCION";
+            $json['columns'][0]['name'] = "DESCRIPCION";
+            $json['columns'][1]['data'] = "TOTAL";
+            $json['columns'][1]['name'] = "TOTAL";
+            $json['columns'][2]['data'] = "ENE";
+            $json['columns'][2]['name'] = "ENE";
+            $json['columns'][3]['data'] = "FEB";
+            $json['columns'][3]['name'] = "FEB";
+            $json['columns'][4]['data'] = "MAR";
+            $json['columns'][4]['name'] = "MAR";
+            $json['columns'][5]['data'] = "ABR";
+            $json['columns'][5]['name'] = "ABR";
+            $json['columns'][6]['data'] = "MAY";
+            $json['columns'][6]['name'] = "MAY";
+            $json['columns'][7]['data'] = "JUN";
+            $json['columns'][7]['name'] = "JUN";
+            $json['columns'][8]['data'] = "JUL";
+            $json['columns'][8]['name'] = "JUL";
+            $json['columns'][9]['data'] = "AGO";
+            $json['columns'][9]['name'] = "AGO";
+            $json['columns'][10]['data'] = "SEP";
+            $json['columns'][10]['name'] = "SEP";
+            $json['columns'][11]['data'] = "OCT";
+            $json['columns'][11]['name'] = "OCT";
+            $json['columns'][12]['data'] = "NOV";
+            $json['columns'][12]['name'] = "NOV";
+            $json['columns'][13]['data'] = "DIC";
+            $json['columns'][13]['name'] = "DIC";
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function puntosXcliente($fecha1,$fecha2)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray("SELECT CLIENTE,NOMBRE_CLIENTE,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=1 THEN TT_PUNTOS END),0) AS ENE,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=2 THEN TT_PUNTOS END),0) AS FEB,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=3 THEN TT_PUNTOS END),0) AS MAR,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=4 THEN TT_PUNTOS END),0) AS ABR,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=5 THEN TT_PUNTOS END),0) AS MAY,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=6 THEN TT_PUNTOS END),0) AS JUN,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=7 THEN TT_PUNTOS END),0) AS JUL,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=8 THEN TT_PUNTOS END),0) AS AGO,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=9 THEN TT_PUNTOS END),0) AS SEP,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=10 THEN TT_PUNTOS END),0) AS OCT,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=11 THEN TT_PUNTOS END),0) AS NOV,
+                                            ISNULL(SUM(CASE WHEN MONTH(FECHA)=12 THEN TT_PUNTOS END),0) AS DIC
+                                            FROM vtVS2_Facturas_CL
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            GROUP BY CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
+        
+        foreach($query as $key){
+            $json['data'][$i]['CODIGO'] = '<p class="negra noMargen">'.$key['CLIENTE']."</p>";
+            $json['data'][$i]['NOMBRE'] = '<p class="bold noMargen">'.$key['NOMBRE_CLIENTE']."</p>";
+            $json['data'][$i]['ENE'] = $this->formatDecimal($key['ENE']);
+            $json['data'][$i]['FEB'] = $this->formatDecimal($key['FEB']);
+            $json['data'][$i]['MAR'] = $this->formatDecimal($key['MAR']);
+            $json['data'][$i]['ABR'] = $this->formatDecimal($key['ABR']);
+            $json['data'][$i]['MAY'] = $this->formatDecimal($key['MAY']);
+            $json['data'][$i]['JUN'] = $this->formatDecimal($key['JUN']);
+            $json['data'][$i]['JUL'] = $this->formatDecimal($key['JUL']);
+            $json['data'][$i]['AGO'] = $this->formatDecimal($key['AGO']);
+            $json['data'][$i]['SEP'] = $this->formatDecimal($key['SEP']);
+            $json['data'][$i]['OCT'] = $this->formatDecimal($key['OCT']);
+            $json['data'][$i]['NOV'] = $this->formatDecimal($key['NOV']);
+            $json['data'][$i]['DIC'] = $this->formatDecimal($key['DIC']);            
+            $i++;
+        }
+            $json['columns'][0]['data'] = "CODIGO";
+            $json['columns'][0]['name'] = "CODIGO";
+            $json['columns'][1]['data'] = "NOMBRE";
+            $json['columns'][1]['name'] = "NOMBRE";
+            $json['columns'][2]['data'] = "ENE";
+            $json['columns'][2]['name'] = "ENE";
+            $json['columns'][3]['data'] = "FEB";
+            $json['columns'][3]['name'] = "FEB";
+            $json['columns'][4]['data'] = "MAR";
+            $json['columns'][4]['name'] = "MAR";
+            $json['columns'][5]['data'] = "ABR";
+            $json['columns'][5]['name'] = "ABR";
+            $json['columns'][6]['data'] = "MAY";
+            $json['columns'][6]['name'] = "MAY";
+            $json['columns'][7]['data'] = "JUN";
+            $json['columns'][7]['name'] = "JUN";
+            $json['columns'][8]['data'] = "JUL";
+            $json['columns'][8]['name'] = "JUL";
+            $json['columns'][9]['data'] = "AGO";
+            $json['columns'][9]['name'] = "AGO";
+            $json['columns'][10]['data'] = "SEP";
+            $json['columns'][10]['name'] = "SEP";
+            $json['columns'][11]['data'] = "OCT";
+            $json['columns'][11]['name'] = "OCT";
+            $json['columns'][12]['data'] = "NOV";
+            $json['columns'][12]['name'] = "NOV";
+            $json['columns'][13]['data'] = "DIC";
+            $json['columns'][13]['name'] = "DIC";
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function canjes($fecha1,$fecha2)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->db->query("SELECT 
+                                            COUNT(CASE WHEN MONTH(t1.Fecha)=1 THEN t1.IdFRP END) AS ENE,
+                                            COUNT(CASE WHEN MONTH(t1.Fecha)=2 THEN t1.IdFRP END) AS FEB,
+                                            COUNT(CASE WHEN MONTH(t1.Fecha)=3 THEN t1.IdFRP END) AS MAR,
+                                            COUNT(CASE WHEN MONTH(t1.Fecha)=4 THEN t1.IdFRP END) AS ABR,
+                                            COUNT(CASE WHEN MONTH(t1.Fecha)=5 THEN t1.IdFRP END) AS MAY,
+                                            COUNT(CASE WHEN MONTH(t1.Fecha)=6 THEN t1.IdFRP END) AS JUN,
+                                            COUNT(CASE WHEN MONTH(t1.Fecha)=7 THEN t1.IdFRP END) AS JUL,
+                                            COUNT(CASE WHEN MONTH(t1.Fecha)=8 THEN t1.IdFRP END) AS AGO,
+                                            COUNT(CASE WHEN MONTH(t1.Fecha)=9 THEN t1.IdFRP END) AS SEP,
+                                            COUNT(CASE WHEN MONTH(t1.Fecha)=10 THEN t1.IdFRP END) AS OCT,
+                                            COUNT(CASE WHEN MONTH(t1.Fecha)=11 THEN t1.IdFRP END) AS NOV,
+                                            COUNT(CASE WHEN MONTH(t1.Fecha)=12 THEN t1.IdFRP END) AS DIC
+                                            FROM frp t1 WHERE Anulado='N' AND  t1.FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND t1.FECHA >= '".$this->CONDICION."'
+                                            ");
+
+        $query2 = $this->db->query("SELECT
+                                    IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=1 THEN detallefrp.Puntos END ),0) AS ENE,
+                                    IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=2 THEN detallefrp.Puntos END ),0) AS FEB,
+                                    IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=3 THEN detallefrp.Puntos END ),0) AS MAR,
+                                    IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=4 THEN detallefrp.Puntos END ),0) AS ABR,
+                                    IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=5 THEN detallefrp.Puntos END ),0) AS MAY,
+                                    IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=6 THEN detallefrp.Puntos END ),0) AS JUN,
+                                    IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=7 THEN detallefrp.Puntos END ),0) AS JUL,
+                                    IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=8 THEN detallefrp.Puntos END ),0) AS AGO,
+                                    IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=9 THEN detallefrp.Puntos END ),0) AS SEP,
+                                    IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=10 THEN detallefrp.Puntos END ),0) AS OCT,
+                                    IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=11 THEN detallefrp.Puntos END ),0) AS NOV,
+                                    IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=12 THEN detallefrp.Puntos END ),0) AS DIC
+                                    FROM
+                                    detallefrp
+                                    INNER JOIN frp ON frp.IdFRP = detallefrp.IdFRP
+                                    WHERE frp.Fecha BETWEEN '".$fecha1."' AND '".$fecha2."' AND t1.FECHA >= '".$this->CONDICION."'");
+        
+        if ($query->num_rows()>0) {
+            foreach($query->result_array() as $key){
+                $json['data'][$i]['ENE'] = $this->formatDecimal($key['ENE']);
+                $json['data'][$i]['ENE2'] = $this->formatDecimal($query2->result_array()[0]['ENE']);
+                $json['data'][$i]['FEB'] = $this->formatDecimal($key['FEB']);
+                $json['data'][$i]['FEB2'] = $this->formatDecimal($query2->result_array()[0]['FEB']);
+                $json['data'][$i]['MAR'] = $this->formatDecimal($key['MAR']);
+                $json['data'][$i]['MAR2'] = $this->formatDecimal($query2->result_array()[0]['MAR']);
+                $json['data'][$i]['ABR'] = $this->formatDecimal($key['ABR']);
+                $json['data'][$i]['ABR2'] = $this->formatDecimal($query2->result_array()[0]['ABR']);
+                $json['data'][$i]['MAY'] = $this->formatDecimal($key['MAY']);
+                $json['data'][$i]['MAY2'] = $this->formatDecimal($query2->result_array()[0]['MAY']);
+                $json['data'][$i]['JUN'] = $this->formatDecimal($key['JUN']);
+                $json['data'][$i]['JUN2'] = $this->formatDecimal($query2->result_array()[0]['JUN']);
+                $json['data'][$i]['JUL'] = $this->formatDecimal($key['JUL']);
+                $json['data'][$i]['JUL2'] = $this->formatDecimal($query2->result_array()[0]['JUL']);
+                $json['data'][$i]['AGO'] = $this->formatDecimal($key['AGO']);
+                $json['data'][$i]['AGO2'] = $this->formatDecimal($query2->result_array()[0]['AGO']);
+                $json['data'][$i]['SEP'] = $this->formatDecimal($key['SEP']);
+                $json['data'][$i]['SEP2'] = $this->formatDecimal($query2->result_array()[0]['SEP']);
+                $json['data'][$i]['OCT'] = $this->formatDecimal($key['OCT']);
+                $json['data'][$i]['OCT2'] = $this->formatDecimal($query2->result_array()[0]['OCT']);
+                $json['data'][$i]['NOV'] = $this->formatDecimal($key['NOV']);
+                $json['data'][$i]['NOV2'] = $this->formatDecimal($query2->result_array()[0]['NOV']);
+                $json['data'][$i]['DIC'] = $this->formatDecimal($key['DIC']);
+                $json['data'][$i]['DIC2'] = $this->formatDecimal($query2->result_array()[0]['DIC']);         
+                $i++;
+            }    
+        }
+        
+            $json['columns'][0]['data'] = "ENE";
+            $json['columns'][0]['name'] = "ENE";
+            $json['columns'][1]['data'] = "ENE2";
+            $json['columns'][1]['name'] = "PTS";
+
+            $json['columns'][2]['data'] = "FEB";
+            $json['columns'][2]['name'] = "FEB";
+            $json['columns'][3]['data'] = "FEB2";
+            $json['columns'][3]['name'] = "PTS";
+
+            $json['columns'][4]['data'] = "MAR";
+            $json['columns'][4]['name'] = "MAR";
+            $json['columns'][5]['data'] = "MAR2";
+            $json['columns'][5]['name'] = "PTS";
+
+            $json['columns'][6]['data'] = "ABR";
+            $json['columns'][6]['name'] = "ABR";
+            $json['columns'][7]['data'] = "ABR2";
+            $json['columns'][7]['name'] = "PTS";
+
+            $json['columns'][8]['data'] = "MAY";
+            $json['columns'][8]['name'] = "MAY";
+            $json['columns'][9]['data'] = "MAY2";
+            $json['columns'][9]['name'] = "PTS";
+
+            $json['columns'][10]['data'] = "JUN";
+            $json['columns'][10]['name'] = "JUN";
+            $json['columns'][11]['data'] = "JUN2";
+            $json['columns'][11]['name'] = "PTS";
+
+            $json['columns'][12]['data'] = "JUL";
+            $json['columns'][12]['name'] = "JUL";
+            $json['columns'][13]['data'] = "JUL2";
+            $json['columns'][13]['name'] = "PTS";
+
+            $json['columns'][14]['data'] = "AGO";
+            $json['columns'][14]['name'] = "AGO";
+            $json['columns'][15]['data'] = "AGO2";
+            $json['columns'][15]['name'] = "PTS";
+
+
+            $json['columns'][16]['data'] = "SEP";
+            $json['columns'][16]['name'] = "SEP";
+            $json['columns'][17]['data'] = "SEP2";
+            $json['columns'][17]['name'] = "PTS";
+
+            $json['columns'][18]['data'] = "OCT";
+            $json['columns'][18]['name'] = "OCT";
+            $json['columns'][19]['data'] = "OCT2";
+            $json['columns'][19]['name'] = "PTS";
+
+            $json['columns'][20]['data'] = "NOV";
+            $json['columns'][20]['name'] = "NOV";
+            $json['columns'][21]['data'] = "NOV2";
+            $json['columns'][21]['name'] = "PTS";
+
+            $json['columns'][22]['data'] = "DIC";
+            $json['columns'][22]['name'] = "DIC";
+            $json['columns'][23]['data'] = "DIC2";
+            $json['columns'][23]['name'] = "PTS";
+
+        echo json_encode($json);
+        $this->sqlsrv->close();
     }
 }

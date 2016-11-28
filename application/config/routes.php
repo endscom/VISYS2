@@ -69,6 +69,12 @@ $route['masterCompras/(:any)/(:any)'] = 'reportes_controller/masterCompras/$1/$2
 $route['canjePremios/(:any)/(:any)'] = 'reportes_controller/canjePremios/$1/$2';
 $route['masterFacturas/(:any)/(:any)'] = 'reportes_controller/masterFacturas/$1/$2';
 $route['reporteXfecha/(:any)/(:any)'] = 'reportes_controller/reporteXfecha/$1/$2';
+$route['movimientoProductos/(:any)/(:any)'] = 'reportes_controller/movimientoProductos/$1/$2';
+$route['clientes_nuevos/(:any)/(:any)'] = 'reportes_controller/clientes_nuevos/$1/$2';
+$route['mas_vendidos/(:any)/(:any)'] = 'reportes_controller/mas_vendidos/$1/$2';
+$route['menos_vendidos/(:any)/(:any)'] = 'reportes_controller/menos_vendidos/$1/$2';
+$route['puntosXcliente/(:any)/(:any)'] = 'reportes_controller/puntosXcliente/$1/$2';
+$route['canjes/(:any)/(:any)'] = 'reportes_controller/canjes/$1/$2';
 
 /*RUTAS DE CATALOGO*/
 $route['NuevoCatalogo'] = 'catalogo_controller/NuevoCatalogo';

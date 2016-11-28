@@ -66,8 +66,8 @@
 .regular{
   font-family: 'robotoregular'!important;
 }
-.medium{
-  /*font-family: 'robotomedium'!important;*/
+.mediana{
+  font-family: 'robotomedium'!important;
 }
 .bold{
   font-family: 'robotobold'!important;
@@ -773,7 +773,7 @@ table th {
     font-size: 20px;
 }
 #contenedor{
-    margin-top: 15%;
+    margin-top: 5%;
 }
 #ModalFeet{
     font-size: 12px;

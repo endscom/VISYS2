@@ -37,13 +37,17 @@
                     "emptyTable": "No hay datos disponibles en la tabla",
                     "lengthMenu": '_MENU_ ',
                     "search": '<i class=" material-icons">search</i>',
-                    "loadingRecords": "",
+                    "loadingRecords": "Cargando...",
                     "paginate": {
                         "first": "Primera",
                         "last": "Última ",
                         "next":       "Siguiente",
                         "previous":   "Anterior"
                     }
+                },
+                "dom": 'T<"clear">lfrtip',
+                "tableTools": {
+                    "sSwfPath": "http://192.168.1.64:8448/visys/ReportesVisys/assets/data/swf/copy_csv_xls_pdf.swf"
                 },
                columns: [
                     { "data": "FACTURA" },
@@ -86,7 +90,7 @@
                 idTabla.clear();
                 idTabla.draw();
         }
-	});
+});
         function PrintPDF(targetURL){
             var a = document.createElement('a');
             //a.href = targetURL + "/" + $("#" + id ).text();
@@ -119,7 +123,10 @@
         $("#generarDetalleReporte").click(function(){
             var f1 = $('#fecha1').val()
             var f2 = $('#fecha2').val()
-            if(f1!=""){
+            $("#Total2").hide();
+            if(f1!="" || f2!=""){
+            $("#f1Detail").text(f1);
+            $("#f2Detail").text(f2);
             document.getElementById('miTablaReportes').innerHTML='';
             document.getElementById('miTablaReportes').innerHTML='<table id="tblDetalleReportes" class="TblDatos center"><thead><tr></tr></thead></table>';
             var data,
@@ -129,29 +136,48 @@
                 jqxhr = $.ajax(rutaGlobal+"/"+f1+"/"+f2)
                         .done(function () {
                             data = JSON.parse(jqxhr.responseText);
-
-                // Iterate each column and print table headers for Datatables
                 $.each(data.columns, function (k, colObj) {
                     str = '<th>' + colObj.name + '</th>';
                     $(str).appendTo(tableName+'>thead>tr');
                 });
-                // Add some Render transformations to Columns
-                // Not a good practice to add any of this in API/ Json side
                 data.columns[3].render = function (data, type, row) {
-                     return data.replace(".000000","");
+                     return data;
                 }
                 $(tableName).dataTable({
+                    "dom": 'T<"clear">lfrtip',
+                    "tableTools": {
+                        "sSwfPath": "http://192.168.1.64:8448/visys/ReportesVisys/assets/data/swf/copy_csv_xls_pdf.swf",
+                    },                    
                     "data": data.data,
                     "columns": data.columns,
+                    "info":false,
+                    "pagingType": "full_numbers",
+                    "lengthMenu": [[10, -1], [10, "Todo"]],
+                    "language": {
+                        "emptyTable": "No hay datos disponibles en la tabla",
+                        "lengthMenu": '_MENU_ ',
+                        "search": '<i class=" material-icons">search</i>',
+                        "loadingRecords": "Cargado...",
+                        "paginate": {
+                            "first": "Primera",
+                            "last": "Última ",
+                            "next":       "Siguiente",
+                            "previous":   "Anterior"
+                        }
+                    },                    
                     "fnInitComplete": function () {
                     $('#tblDetalleReportes').on( 'init.dt', function () {
                         var totalAcumulado = 0;
                         obj = $('#tblDetalleReportes').DataTable();
                         obj.rows().data().each( function (index,value) {
-                            totalAcumulado += parseInt(obj.row(value).data().PUNTOS.replace(".000000",""));
-
+                            if (rutaGlobal=="masterClientes") {
+                               totalAcumulado += parseInt(obj.row(value).data().PUNTOS.replace(".000000",""));
+                            }
                         });
-                        $('#spanTotal').text(totalAcumulado);
+                        if (rutaGlobal=="masterClientes") {
+                            $("#Total2").show();
+                            $('#spanTotal').text(totalAcumulado);
+                        };                        
                     }).dataTable();
                     }
                 });
@@ -177,6 +203,6 @@
                 mensaje(msg,"error");
             });
         $('#SPdet').openModal();
-        }else{mensaje("SELECCIONE ALGUNA FECHA","error");}
+        }else{mensaje("SELECCIONE UN RANGO DE FECHAS","error");}
         });
 </script>

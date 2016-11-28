@@ -33,6 +33,10 @@ class Reportes_controller extends CI_Controller
         }
         $this->reportes_model->cuentaXcliente($_GET['codigo'],$fecha1,$fecha2);
     }
+    public function format($fecha)
+    {
+        return $fecha = date("Y-m-d", strtotime($fecha));
+    }
     public function datosCliente($codigo)
     {
         $this->reportes_model->datosCliente($codigo);
@@ -47,7 +51,7 @@ class Reportes_controller extends CI_Controller
     {
         $fecha1 = ($fecha1=="") ? '2014-01-01' : $fecha1;
         $fecha2 = ($fecha1=="") ? date('Y-m-d') : $fecha2;
-        $this->reportes_model->masterCompras($fecha1,$fecha2);   
+        $this->reportes_model->masterCompras($fecha1,$fecha2);
     }
     public function canjePremios($fecha1,$fecha2)
     {
@@ -65,6 +69,42 @@ class Reportes_controller extends CI_Controller
     {
         $fecha1 = ($fecha1=="") ? '2014-01-01' : $fecha1;
         $fecha2 = ($fecha1=="") ? date('Y-m-d') : $fecha2;
-        $this->reportes_model->reporteXfecha($fecha1,$fecha2);   
+        $this->reportes_model->reporteXfecha($fecha1,$fecha2);
+    }
+    public function movimientoProductos($fecha1,$fecha2)
+    {
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $fecha1;
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : $fecha2;
+        $this->reportes_model->movimientoProductos($fecha1,$fecha2);
+    }
+    public function clientes_nuevos($fecha1,$fecha2)
+    {
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $fecha1;
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : $fecha2;
+        $this->reportes_model->clientes_nuevos($fecha1,$fecha2);
+    }
+    public function mas_vendidos($fecha1,$fecha2)
+    {
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $this->format($fecha1);
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : $this->format($fecha2);
+        $this->reportes_model->mas_vendidos($fecha1,$fecha2);
+    }
+    public function menos_vendidos($fecha1,$fecha2)
+    {
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $this->format($fecha1);
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : $this->format($fecha2);
+        $this->reportes_model->menos_vendidos($fecha1,$fecha2);
+    }
+    public function puntosXcliente($fecha1,$fecha2)
+    {
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $this->format($fecha1);
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : $this->format($fecha2);
+        $this->reportes_model->puntosXcliente($fecha1,$fecha2);
+    }
+    public function canjes($fecha1,$fecha2)
+    {
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $this->format($fecha1);
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : $this->format($fecha2);
+        $this->reportes_model->canjes($fecha1,$fecha2);
     }
 }
