@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2016-11-22 08:46:22
+Date: 2016-11-29 14:36:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -232,8 +232,6 @@ CREATE TABLE `detallefre` (
 -- ----------------------------
 -- Records of detallefre
 -- ----------------------------
-INSERT INTO `detallefre` VALUES ('121212', '00082874', '2016-10-03 00:00:00', '2449', '1224');
-INSERT INTO `detallefre` VALUES ('121212', '00082874', '2016-10-03 00:00:00', '2449', '1224');
 
 -- ----------------------------
 -- Table structure for detallefrp
@@ -253,7 +251,6 @@ CREATE TABLE `detallefrp` (
 -- ----------------------------
 -- Records of detallefrp
 -- ----------------------------
-INSERT INTO `detallefrp` VALUES ('1234', '00082874', '2016-10-03', '3500', '125106', 'PLANCHA OSTER GCSTBS5803 VAPOR', '1051', '1');
 
 -- ----------------------------
 -- Table structure for fre
@@ -272,8 +269,6 @@ CREATE TABLE `fre` (
 -- ----------------------------
 -- Records of fre
 -- ----------------------------
-INSERT INTO `fre` VALUES ('121212', '2016-11-19 00:00:00', '02355', 'FARMACIA PICON', '220', 'S', '$data[\'fre\']');
-INSERT INTO `fre` VALUES ('121212', '2016-11-19 00:00:00', '02355', 'FARMACIA PICON', '220', 'N', '121212');
 
 -- ----------------------------
 -- Table structure for frp
@@ -285,13 +280,13 @@ CREATE TABLE `frp` (
   `IdCliente` varchar(10) NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `IdUsuario` int(11) NOT NULL,
-  `Anulado` varchar(1) NOT NULL
+  `Anulado` varchar(1) NOT NULL,
+  `IdCT` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of frp
 -- ----------------------------
-INSERT INTO `frp` VALUES ('1234', '2016-11-19 00:00:00', '02355', 'FARMACIA PICON', '220', 'N');
 
 -- ----------------------------
 -- Table structure for logcatalogo
@@ -324,7 +319,6 @@ CREATE TABLE `rfactura` (
 -- ----------------------------
 -- Records of rfactura
 -- ----------------------------
-INSERT INTO `rfactura` VALUES ('02355', '00082874', '3500', '0', '2016-11-19 05:48:49');
 
 -- ----------------------------
 -- Table structure for roles
@@ -495,6 +489,30 @@ UNION ALL
 SELECT DISTINCT FACTURA,1 FROM view_fre_factura ;
 
 -- ----------------------------
+-- View structure for myqueryprueba
+-- ----------------------------
+DROP VIEW IF EXISTS `myqueryprueba`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `myqueryprueba` AS SELECT
+frp.IdFRP,
+--frp.Fecha,
+frp.IdCliente,
+detallefrp.Descripcion,
+
+(SELECT CASE WHEN detallect.Puntos = detallefrp.Puntos THEN count(detallefrp.Cantidad)  
+WHEN detallect.Puntos > detallefrp.Puntos THEN COUNT(DISTINCT detallefrp.IdArticulo) END) AS Cantidad
+
+FROM
+frp
+INNER JOIN detallefrp ON frp.IdFRP = detallefrp.IdFRP
+INNER JOIN detallect ON detallect.IdIMG = detallefrp.IdArticulo
+GROUP BY
+frp.IdFRP,
+detallect.IdIMG,
+frp.Fecha,
+frp.IdCliente,
+detallefrp.Descripcion ;
+
+-- ----------------------------
 -- View structure for view_all_fre
 -- ----------------------------
 DROP VIEW IF EXISTS `view_all_fre`;
@@ -508,8 +526,28 @@ Sum(detallefre.Efectivo) AS Efectivo,
 fre.Anulado
 FROM
 fre
-INNER JOIN detallefre ON fre.IdFRE = detallefre.IdFRE
+INNER JOIN detallefre ON fre.IdFRE = detallefre.IdFRE 
 GROUP BY fre.IdFRE,fre.Anulado ;
+
+-- ----------------------------
+-- View structure for view_canje_premios
+-- ----------------------------
+DROP VIEW IF EXISTS `view_canje_premios`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_canje_premios` AS SELECT
+frp.IdFRP,
+frp.Fecha,
+frp.IdCliente,
+frp.Nombre,
+detallefrp.Descripcion,
+detallect.Puntos,
+(SELECT CASE WHEN detallect.Puntos = detallefrp.Puntos THEN count(detallefrp.Cantidad)  
+WHEN detallect.Puntos > detallefrp.Puntos THEN COUNT(DISTINCT detallefrp.IdArticulo) END) AS Cantidad
+FROM
+frp
+INNER JOIN detallefrp ON frp.IdFRP = detallefrp.IdFRP
+INNER JOIN detallect ON detallefrp.IdArticulo = detallect.IdIMG AND detallect.IdCT = frp.IdCT
+WHERE frp.Anulado='N'
+GROUP BY frp.IdFRP ;
 
 -- ----------------------------
 -- View structure for view_catalogo_activo

@@ -75,6 +75,7 @@ $route['mas_vendidos/(:any)/(:any)'] = 'reportes_controller/mas_vendidos/$1/$2';
 $route['menos_vendidos/(:any)/(:any)'] = 'reportes_controller/menos_vendidos/$1/$2';
 $route['puntosXcliente/(:any)/(:any)'] = 'reportes_controller/puntosXcliente/$1/$2';
 $route['canjes/(:any)/(:any)'] = 'reportes_controller/canjes/$1/$2';
+$route['canje_premios/(:any)/(:any)'] = 'reportes_controller/canje_premios/$1/$2';
 
 /*RUTAS DE CATALOGO*/
 $route['NuevoCatalogo'] = 'catalogo_controller/NuevoCatalogo';

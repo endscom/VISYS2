@@ -23,7 +23,7 @@
                <a href="BajaClientes"><li href="BajaClientes"><img src="<?PHP echo base_url()?>assets/img/bajacliente.png" width="30px"> baja clientes</li></a>
                <a href="Frp"><li href="Frp"><i class="material-icons">payment</i> canje puntos (frp)</li></a>
                <a href="FRE"><li href="FRE"><i class="material-icons">attach_money</i> canje efectivo (fre)</li></a>
-               <a href="EliminarVineta"><li href="EliminarVineta"><i class="material-icons">remove_circle</i> eliminar boucher</li></a>
+               <!--<a href="EliminarVineta"><li href="EliminarVineta"><i class="material-icons">remove_circle</i> eliminar boucher</li></a>-->
                <a href="Usuarios"><li href="Usuarios"><i class="material-icons">account_box</i> usuarios</li></a>
                <a href="Reportes"><li href="Reportes"><i class="material-icons">description</i> reportes</li></a>
                <a href="salir"> <li href="salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a> 

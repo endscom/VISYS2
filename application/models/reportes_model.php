@@ -540,9 +540,9 @@ class Reportes_model extends CI_Model
                                             COUNT(CASE WHEN MONTH(t1.Fecha)=10 THEN t1.IdFRP END) AS OCT,
                                             COUNT(CASE WHEN MONTH(t1.Fecha)=11 THEN t1.IdFRP END) AS NOV,
                                             COUNT(CASE WHEN MONTH(t1.Fecha)=12 THEN t1.IdFRP END) AS DIC
-                                            FROM frp t1 WHERE Anulado='N' AND  t1.FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND t1.FECHA >= '".$this->CONDICION."'
+                                            FROM frp t1 WHERE Anulado='N' AND  t1.FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
                                             ");
-
+    
         $query2 = $this->db->query("SELECT
                                     IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=1 THEN detallefrp.Puntos END ),0) AS ENE,
                                     IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=2 THEN detallefrp.Puntos END ),0) AS FEB,
@@ -558,8 +558,7 @@ class Reportes_model extends CI_Model
                                     IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=12 THEN detallefrp.Puntos END ),0) AS DIC
                                     FROM
                                     detallefrp
-                                    INNER JOIN frp ON frp.IdFRP = detallefrp.IdFRP
-                                    WHERE frp.Fecha BETWEEN '".$fecha1."' AND '".$fecha2."' AND t1.FECHA >= '".$this->CONDICION."'");
+                                    INNER JOIN frp ON frp.IdFRP = detallefrp.IdFRP WHERE frp.Fecha BETWEEN '".$fecha1."' AND '".$fecha2."'");
         
         if ($query->num_rows()>0) {
             foreach($query->result_array() as $key){
@@ -652,6 +651,39 @@ class Reportes_model extends CI_Model
             $json['columns'][23]['data'] = "DIC2";
             $json['columns'][23]['name'] = "PTS";
 
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function canje_premios($fecha1,$fecha2)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->db->query("SELECT * FROM view_canje_premios WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'");
+        
+        foreach($query->result_array() as $key){
+            $json['data'][$i]['FRP'] = '<p class="negra noMargen">'.$key['IdFRP']."</p>";
+            $json['data'][$i]['FECHA'] = $key['Fecha'];
+            $json['data'][$i]['CODIGO'] = $key['IdCliente'];
+            $json['data'][$i]['NOMBRE'] = '<p class="bold noMargen">'.$key['Nombre']."</p>";
+            $json['data'][$i]['ARTICULO'] = $this->formatDecimal($key['Descripcion']);
+            $json['data'][$i]['PUNTOS'] = $this->formatDecimal($key['Puntos']);
+            $json['data'][$i]['CANTIDAD'] = $this->formatDecimal($key['Cantidad']);       
+            $i++;
+        }
+            $json['columns'][0]['data'] = "FRP";
+            $json['columns'][0]['name'] = "FRP";
+            $json['columns'][1]['data'] = "FECHA";
+            $json['columns'][1]['name'] = "FECHA";
+            $json['columns'][2]['data'] = "CODIGO";
+            $json['columns'][2]['name'] = "CODIGO";
+            $json['columns'][3]['data'] = "NOMBRE";
+            $json['columns'][3]['name'] = "NOMBRE";
+            $json['columns'][4]['data'] = "ARTICULO";
+            $json['columns'][4]['name'] = "ARTICULO";
+            $json['columns'][5]['data'] = "PUNTOS";
+            $json['columns'][5]['name'] = "PUNTOS";
+            $json['columns'][6]['data'] = "CANTIDAD";
+            $json['columns'][6]['name'] = "CANTIDAD";
         echo json_encode($json);
         $this->sqlsrv->close();
     }

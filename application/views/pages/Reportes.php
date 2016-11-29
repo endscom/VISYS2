@@ -57,7 +57,7 @@
                     </a>                    
                 </div>
                 <div class="col s3 m3 l3 offset-l1">
-                    <a href="#" onclick="FiltrarReporte('CANJE DE PREMIOS','asda')" class=" IconBlue">
+                    <a href="#" onclick="FiltrarReporte('CANJE DE PREMIOS','canje_premios')" class=" IconBlue">
                         <i class="medium material-icons iconoCenter">add_shopping_cart</i>
                         <p class="TextIconos">CANJE DE PREMIOS</p>
                     </a>
