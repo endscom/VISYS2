@@ -42,10 +42,12 @@ class Vista_controller extends CI_Controller
         $query['Luser'] = $this->usuario_model->LoadUser();
         $query['Lrol'] = $this->usuario_model->LoadRol();
         $query['Lven'] = $this->usuario_model->LoadVendedor();
+        $query2 = $this->cliente_model->ListarClientes();
+        //print_r($query['user']);
 
         $this->load->view('header/header');
         $this->load->view('pages/menu');
-        $this->load->view('pages/Users',$query);
+        $this->load->view('pages/Users',array_merge($query,$query2));
         $this->load->view('footer/footer');
         $this->load->view('jsview/js_usuarios');
     }

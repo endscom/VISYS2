@@ -40,7 +40,7 @@ class Canje_model extends CI_Model
         $q_rows = $this->db->query("call pc_Clientes_Facturas ('".$idCliente."')");
         if ($q_rows->num_rows() > 0) {
             $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
-                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].")";
+                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].") AND FECHA >= '".$this->CONDICION."' GROUP BY FACTURA,FECHA";
         }
         $q_rows->next_result();
         $q_rows->free_result();
@@ -49,12 +49,11 @@ class Canje_model extends CI_Model
         if ($q_rows->num_rows() > 0) {
             if ($query=="") {
                 $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
-                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
+                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") and FECHA >= '".$this->CONDICION."' GROUP BY FACTURA, FECHA";
             }else{
                 $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
             }
         }
-        
         if ($query==""){
             $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
                     WHERE CLIENTE = '".$idCliente."' AND FECHA >= '".$this->CONDICION."' GROUP BY FACTURA, FECHA ";
@@ -132,7 +131,7 @@ class Canje_model extends CI_Model
             );
 
             $q = $this->db->insert('frp', $top);
-
+            //print_r($fact);
             for ($f=0; $f < count($fact); $f++) {
                 $Facturas = explode(",",$fact[$f]);
                 $InsertArticulos = array(
@@ -143,8 +142,10 @@ class Canje_model extends CI_Model
                     'Descripcion'   => $Facturas[4],
                     'Puntos'        => $Facturas[5],
                     'Cantidad'      => $Facturas[6],
-                    'Fecha'         => $Facturas[7]
+                    'Fecha'         => $Facturas[7],
+                    'IdCT'   => $query->result_array()[0]['IdCT']
                 );
+                //echo $Facturas[3]."<br>";
                 $q = $this->db->insert('detallefrp', $InsertArticulos);
             }
 
@@ -156,7 +157,7 @@ class Canje_model extends CI_Model
             if ($q) { return 1;
             }
         }
-         else { return 0;
+        else { return 0;
         }
     }
     public function getPtsItem($codigo){

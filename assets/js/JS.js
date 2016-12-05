@@ -1,6 +1,6 @@
 var activo = false;
 $(document).ready(function() {
-
+$('#AUsuario').openModal();
 $('.datepicker').pickadate({ 
         selectMonths: true,selectYears: 15,format: 'dd-mm-yyyy',
         monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
@@ -156,8 +156,16 @@ $('#tblCatalogoActualModal').DataTable( {
 } );//Fin Document ready
 
 /* FUNCIONES */
-//ENVIO DE DATOS DEL FORMULARIO
+$( "#rol" ).change(function() {
+    if (this.value=="Cliente") {
+        $('#divOculto').show();
+    }else{
+        $('#divOculto').hide();
+    }  
+});
+
 function EnviodeDatos(){
+    
     $('#labelCodigo').hide();
     $('#labelDescripcion').hide();
     $('#labelPuntos').hide();
@@ -165,24 +173,45 @@ function EnviodeDatos(){
     if ($('#NombreUser').val()=="") {$('#labelNombre').show(); return false;}
     if ($('#Contra').val()=="") {$('#labelPass').show();return false;}
     if ($('#rol').val()==null) {$('#labelRol').show();return false;}
-    //if ($('#vendedorid').val()==null) {$('#labelVendedor').show();return false;}
+    if (($('#rol').val()=="Cliente") && ($('#vendedorid').val()==null)) {$('#labelVendedor').show();return false;}
+    if (($('#rol').val()=="Cliente") && ($( "#ListCliente option:selected" ).val()=="")) {$('#labelCliente').show();return false;}
     else{
-        var user = $('#NombreUser').val();/*LA INGRID TENIA VALUE Y getelementById DE JAVASCRIPT INGRID POR DIOS!!*/
-        var clave = $('#Contra').val();/*LA INGRID TENIA VALUE Y getelementById DE JAVASCRIPT INGRID POR DIOS!!*/
-        var rol = $('#rol').val();/*LA INGRID TENIA VALUE Y getelementById DE JAVASCRIPT INGRID POR DIOS!!*/
-        var vendedores = $("#vendedorid option:selected").text();/*LA INGRID TENIA VALUE Y getelementById DE JAVASCRIPT INGRID POR DIOS!!*/
+        var user = $('#NombreUser').val();
+        var clave = $('#Contra').val();
+        var rol = $('#rol').val();
+        var vendedores = $("#vendedorid option:selected").text();
+        var cliente = $( "#ListCliente option:selected" ).val();
         if(vendedores=='SELECCIONE VENDEDOR'){
             vendedores = '0';
-        }$('#Adduser').hide();$('.progress').show();
+        }
+        //$('#Adduser').hide();$('.progress').show();
+        var form_data = {
+            user: user,
+            clave: clave,
+            rol: rol,
+            vendedor: vendedores,
+            cliente: cliente
+        };
         $.ajax({
-            url: "NuevoUsuario/"+user+"/"+clave+"/"+rol+"/"+vendedores,
+            url: "NuevoUsuario",
+            data: form_data,
             type: "post",
             async:true,
             success:
                 function(json){
-                    Materialize.toast('EL USUARIO SE AGREGÓ CORRECTAMENTE', 3000);
-                    var myVar = setInterval(myTimer, 2000);
-                }
+                    if (json==1) {
+                        Materialize.toast('EL USUARIO SE AGREGÓ CORRECTAMENTE', 3000);
+                        var myVar = setInterval(myTimer, 2000);
+                    }else{
+                        Materialize.toast(json, 3000);
+                        $('#Adduser').show();$('.progress').hide();
+                    }
+                },
+            error:
+            function(XMLHttpRequest, textStatus, errorThrow){
+                Materialize.toast(textStatus+", -->: "+errorThrow, 3000);
+                $('#Adduser').show();$('.progress').hide();
+            },  
             });
         }
     }
@@ -231,7 +260,22 @@ function myTimer3() {
     });
 }*/
 
-
+$('#cambiarPass').click(function(){
+    if ($('#pass1').val()=="") {
+        mensaje("DIGITE UNA CONTRASEÑA","error");$('#pass1').focus();return false;
+    }if ($('#pass2').val()=="") {
+        mensaje("CONFIRME LA CONTRASEÑA","error");$('#pass2').focus();return false;
+    }if ($('#pass2').val()=="") {
+        mensaje("CONFIRME LA CONTRASEÑA","error");$('#pass2').focus();return false;
+    }if ($('#pass2').val().length<8) {
+        mensaje("LA CONTRASEÑA DEBE CONTENER AL MENOS 8 CARACTERES","error");$('#pass1').focus();return false;
+    }if ($('#pass1').val()!=$('#pass2').val()) {
+        mensaje("LAS CONTRASEÑAS NO COINCIDEN","error");$('#pass1').focus();return false;
+    }else{
+        $('#loadCambiarPass').show();
+        document.getElementById("formNuevaPass").submit();
+    }
+});
     /*RECORRER LAS FILAS CHEKEADAS Y AGREGARLAS A LA TABLA DE CATALOGO ACTUAL EKISDE*/
     $('#addCatalogoAntiguo').click(function(){
          $("#tblCatalogoPasado input:checkbox:checked").each(function(index) {

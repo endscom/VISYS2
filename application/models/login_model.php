@@ -15,7 +15,7 @@ class Login_model extends CI_Model
     public function login($name, $pass ){
         if($name != FALSE && $pass != FALSE){
             $this->db->where('Nombre', $name);
-            $this->db->where('Clave',$pass);
+            $this->db->where('Clave',MD5($pass));
             $this->db->where('Estado',0);
 
             $query = $this->db->get('usuario');
@@ -25,6 +25,15 @@ class Login_model extends CI_Model
             }
             return 0;
         }
+    }
+    public function cambiarPass($pass,$id)
+    {
+        $datos = array('Clave' => MD5($pass));
+        $this->db->where('IdUsuario',$id);
+        $query = $this->db->update('usuario',$datos);
+        if ($query) {
+            return 1;
+        }return 0;
     }
 
 

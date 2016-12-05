@@ -47,16 +47,16 @@
                 <a  class="redondo dropdown-button waves-effect waves-light btn BtnBlue" data-activates='dropdown2'><i class="material-icons right">build</i>OPCIONES</a>
 
                 <!-- Dropdown Structure OPCIONES -->
-                  <ul id='dropdown2' class='dropdown-content'>
-                    <li class="valign-wrapper noPading" onclick=" $('#listaArticulosCatalogoActual').openModal()"><a  href="#!" class="noHover"><i class="material-icons right purple-text">format_indent_decrease</i>REUTILIZACIÓN DE CATALOGO</a></li>
-                    <li class="valign-wrapper noPading" onclick="articulosInactivos()"><a href="#!" class="noHover"><i class="material-icons right purple-text">thumb_up</i>REACTIVACIóN DE ARTÍCULOS</a></li>
+                   <ul id='dropdown2' class='dropdown-content '>
+                    <li class="valign-wrapper noPading" onclick=" $('#listaArticulosCatalogoActual').openModal()"><a  href="#!" class="noHover">REUTILIZACIÓN DE CATALOGO<i class="material-icons right blue-text text-darken-4">format_indent_decrease</i></a></li>
+                    <li class="valign-wrapper noPading" onclick="articulosInactivos()"><a href="#!" class="noHover">REACTIVACIóN DE ARTÍCULOS<i class="material-icons right blue-text text-darken-4">thumb_up</i></a></li>
                   </ul>
                 <a class='redondo dropdown-button btn BtnBlue' href='#' data-activates='dropdown1'><i class="material-icons right">file_upload</i>SUBIR</a>
 
                   <!-- Dropdown Structure SUBIR-->
                   <ul id='dropdown1' class='dropdown-content'>
-                    <li class="valign-wrapper noPading" id="subir"><a  href="#!" class="noHover"><i class="material-icons right purple-text">filter_1</i>INDIVIDUAL</a></li>
-                    <li class="valign-wrapper noPading" onclick=" $('#nuevoArticuloArchivo').openModal()"><a href="#!" class="noHover"><i style="margin-left:27px;" class="material-icons right purple-text">filter_9_plus</i>ARCHIVO</a></li>
+                    <li class="valign-wrapper noPading" id="subir"><a  href="#!" class="noHover">INDIVIDUAL<i class="material-icons right blue-text text-darken-4">filter_1</i></a></li>
+                    <li class="valign-wrapper noPading" onclick=" $('#nuevoArticuloArchivo').openModal()"><a href="#!" class="noHover">ARCHIVO<i style="margin-left:27px;" class="material-icons right blue-text text-darken-4">filter_9_plus</i></a></li>
                   </ul>
             </div>
           

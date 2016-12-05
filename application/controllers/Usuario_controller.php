@@ -5,20 +5,26 @@ class Usuario_controller extends CI_Controller
 {
 
     // AGREGAR USUARIO
-    public function addUser($user, $clave, $rol, $vendedor)
+    public function addUser()
     {
-        echo $rol;
+        $user = $this->input->post('user');
+        $clave = $this->input->post('clave');
+        $rol = $this->input->post('rol');
+        $vendedor = $this->input->post('vendedor');
+        $cliente = $this->input->post('cliente');
         $fecha = date('Y-m-d H:i:s');
+
+        if ($rol == 'SuperAdministrador' || $rol == 'Administrador') {
+            $this->usuario_model->addUser($user, $clave, $rol, $fecha);
+        }
         if ($rol == 'Vendedor') {
-            echo "entro a vendedor";
-            $this->usuario_model->BuscarVdor($user, $clave, $rol, $fecha, $vendedor);
+            $this->usuario_model->AddVdor($user, $clave, $rol, $fecha, $vendedor);
         } else if ($rol == 'Cliente') {
-            echo "entro a cliente";
             $this->usuario_model->BuscarCl($user, $clave, $rol, $fecha, $vendedor);
-        } else {
+        } /*else {
             echo "entro al ultimo";
             $this->usuario_model->addUser($user, $clave, $rol, $fecha, $vendedor);
-        }
+        }*/
 
     }
 

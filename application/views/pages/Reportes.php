@@ -51,7 +51,7 @@
                     </a>
                 </div>
                 <div class="col s3 m3 l2 offset-l1">
-                    <a href="#" onclick="FiltrarReporte('DETALLES DE CANJE','asdf')" class=" IconBlue ">
+                    <a href="#" onclick="FiltrarReporte('DETALLES DE CANJES','detalles_canje')" class=" IconBlue ">
                         <i class="medium material-icons iconoCenter">view_list</i>
                         <p class="TextIconos">DETALLES DE CANJE</p>
                     </a>                    
@@ -84,7 +84,7 @@
                     </a>
                 </div>
                 <div class="col s3 m3 l3 offset-l1">
-                    <a href="#" onclick="FiltrarReporte('CANJE DE PREMIOS','reporteXfecha')" class=" IconBlue ">
+                    <a href="#" onclick="FiltrarReporte('REPORTE POR FECHA','reporteXfecha')" class=" IconBlue ">
                         <i class="medium material-icons iconoCenter">event_note</i>
                         <p class="TextIconos">REPORTE POR FECHA</p>
                     </a>
@@ -140,9 +140,7 @@
                         if(!$data){}
                         else{
                                 foreach($data as $cliente){
-                                if ($cliente['CLIENTE']=="02355") {
                                     echo '<option value="'.$cliente['CLIENTE'].'">'.$cliente['CLIENTE'].' | '.$cliente['NOMBRE'].'</option>';
-                                }
                             }
                         }
                     ?>
@@ -225,7 +223,7 @@
             </table>
 
         <div id="Iconos" class="row center">
-            <div class="col l1 offset-l5">
+            <div class="col l1 offset-s5 offset-m5 offset-l5">
                 <a href="#" onclick="generarExcel('CXCexcel')" ><img src="<?PHP echo base_url();?>assets/img/icono_excel.png" width="38px" ></a>
             </div>
             <div class="col l1">
@@ -286,11 +284,11 @@
         <h6 id="tituloFiltrado2" class="center Mcolor AdUser">MASTER CLIENTES SP</h6>
 
         <div class="row noMargen">
-            <div class="col s3 m4 l3 offset-l3 offset-m3 offset-s3">
+            <div class="col s5 m4 l3 offset-l3 offset-m3 offset-s1">
                 <p id="f1Detail" class="fecha"></p>
                 <p class="rango">Desde</p>
             </div>
-            <div class="col s3 m4 l3">
+            <div class="col s5 m4 l3">
                 <p id="f2Detail" class="fecha"></p>
                 <p class="rango">Hasta</p>
             </div>
@@ -300,7 +298,7 @@
                 <i class="material-icons ColorS">search</i>
             </div>
 
-            <div class="input-field col s5 m4 l4">
+            <div class="input-field col s9 m7 l4">
                 <input  id="searchReporte" type="text" placeholder="Buscar" class="validate">
                 <label for="searchReporte"></label>
             </div>

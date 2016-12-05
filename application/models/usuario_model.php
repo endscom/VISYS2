@@ -81,66 +81,61 @@ class Usuario_model extends CI_Model
     public function BuscarCl($user,$clave,$rol,$fecha,$cond){
         $consulta = str_replace('%20', ' ', $cond);
         $buscar = $this->sqlsrv->fetchArray("SELECT * from vtVS2_Clientes where NOMBRE ='".$consulta."'",SQLSRV_FETCH_ASSOC);
-
-        $id=$buscar[0]['CLIENTE'];
-        $cliente=$buscar[0]['NOMBRE'];
-        $zona=$buscar[0]['VENDEDOR'];
+        $id="";
+        $cliente="";
+        $zona="";
+        foreach($buscar as $key){
+            $id = $key['CLIENTE'];
+            $cliente = $key['NOMBRE'];
+        }
 
         $this->sqlsrv->close();
 
         $user = array(
             'Usuario'=> $user,
-            'Clave' => $clave,
+            'Clave' => MD5($clave),
             'Rol' => $rol,
             'Estado'=>0,
             'FechaCreacion' => $fecha,
             'IdCL' =>$id,
             'Cliente' => $cliente,
-            'Zona' => $zona,
-            'Nombre' => $consulta
+            'Zona' => $cond,
+            'Nombre' => $user
         );
-        $query = $this->db->insert('usuario', $user);
-        if ($query) {
+        
+        if ($id!="") {
+            $query = $this->db->insert('usuario', $user);
             return 1;
         } else {
+            echo "string";
             return 0;
         }
     }
 
-    public function BuscarVdor($user,$clave,$rol,$fecha,$cond){
-        $consulta = str_replace('%20', ' ', $cond);
-        $buscar = $this->sqlsrv->fetchArray("SELECT * from vtVS2_Vendedor where NOMBRE ='".$consulta."'",SQLSRV_FETCH_ASSOC);
-
-        $ids= $buscar [0]['VENDEDOR'];
-        $vendedores=$buscar [0]['NOMBRE'];
-
-        $this->sqlsrv->close();
+    public function AddVdor($user,$clave,$rol,$fecha,$zona){
 
         $user = array(
-            'Usuario'=> $user,
-            'Clave' => $clave,
+            'Usuario'=> $zona,
+            'Clave' => md5($clave),
             'Rol' => $rol,
             'FechaCreacion' => $fecha,
             'Estado'=>0,
-            'Zona' => $ids,
-            'Nombre' => $consulta
+            'Zona' => $zona,
+            'Nombre' => $user
         );
-
         $query = $this->db->insert('usuario', $user);
-
-        if ($query) {
-            return 1;
+        if ($query) {            
+            return  1;
         } else {
             return 0;
         }
     }
 
-    public function addUser($user, $clave, $rol, $fecha, $vendedor) {/*CREACIÓN DE USUARIOS*/
-        $consulta = str_replace('%20', ' ', $vendedor);
+    public function addUser($user, $clave, $rol, $fecha) {
 
         $Usuario = array(
             'Usuario' => $user,
-            'Clave' => $clave,
+            'Clave' => MD5($clave),
             'Rol' => $rol,
             'Estado' =>0,
             'FechaCreacion' => $fecha,

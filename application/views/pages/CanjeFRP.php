@@ -103,21 +103,14 @@
             </div>
         </div>
 
-        <!--<div class="center row text noMargen">
-            <div class="col s5 m5 l5">
-                <p class="Datos">PUNTOS CANJE: <span class="datos1">0 Pts.</span></p>
-            </div>
-            <div class="col s7 m7 l6 offset-l1">
-                <p class="Datos">PUNTOS APLICADOS: <span id="ptsAplicados" class="datos1">0</span> Pts.</p>
-            </div>
-        </div>-->
+        
 
         <div class="row">
-            <div class=" DatoFrp line input-field col s3 m3 l3">
+            <div class=" DatoFrp line input-field col s12 m3 l3">
                COD. CLIENTE:<input id="txtCodCliente" readonly="readonly" style="color:#1F0A71!important;" class="frp" type="text" class="validate">
             </div>
 
-            <div class="input-field col s6 m6 l6"  >
+            <div class="input-field col s12 m6 l6"  >
                 <select class="chosen-select browser-default" name="cliente" id="ListCliente">
                     <option value="" disabled selected>CLIENTE</option>
                     <?php
@@ -131,7 +124,8 @@
                 </select>
             </div>
 
-            <div class="input-field col s3 m3 l3">
+            <div class="input-field col s12 m3 l3 DatoFrp valign-wrapper">
+                PUNTOS:
                 <input  id="PtosDisponibles" class="frp" type="text" class="validate">
             </div>
         </div>
@@ -139,13 +133,13 @@
 
         <!-- datos de los premios a canjear  -->
         <div class="row ">
-                <div class=" DatoFrp line input-field col s2 m2 l2">
+                <div class=" DatoFrp line input-field col s12 m3 l2">
                     COD. PREMIO:<input id="CodPremioFRP" class="frp" readonly="readonly" style="color:#1F0A71!important;" type="text" class="validate">
                 </div>
-                <div class="DatoFrp line input-field col s2 m2 l2">
+                <div class="DatoFrp line input-field col s12 m3 l2">
                     VALOR PREMIO:<input id="ValorPtsPremioFRP" readonly="readonly" style="color:#1F0A71!important;" class="frp" type="text" class="validate">
                 </div>
-                <div class="input-field col s2 m2 l4">
+                <div class="input-field col s12 m6 l4">
                     <select class="chosen-select browser-default" name="PREMIO" id="ListCatalogo">
                         <option value="" disabled selected>SELECCIONE PREMIO</option>
                         <?php
@@ -158,10 +152,10 @@
                          ?>
                     </select>
                 </div>
-                <div class="DatoFrp line input-field col s2 m2 l2 valign-wrapper">
+                <div class="DatoFrp line input-field col s6 m4 l2 valign-wrapper">
                     CANTIDAD:<input  onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" id="CantPremioFRP" class="frp" type="text" class="validate">
                 </div>
-                <div id="Btnadd"class="center col s2 m2 l2">
+                <div id="Btnadd"class="center col s2 m2 l2 offset-s1">
                     <div class="row noMargen center"><div id="loadIMG" style="display:none" class="preloader-wrapper big active">
                         <div class="spinner-layer spinner-blue-only">
                             <div class="circle-clipper left">
@@ -180,54 +174,49 @@
                     <a href="#" id="AddPremioTbl" class="BtnBlue waves-effect  btn ">agregar</a>
                 </div>
         </div>
-
-        <div class="right row">
-                <a href="#" id="btnProcesar" class="Procesar waves-effect btn">procesar</a>
+        <div class="row">
+            <table id="tblpRODUCTOS" class=" TblDatos">
+                <thead>
+                <tr>
+                    <th>CANT.</th>
+                    <th>COD. PREMIO</th>
+                    <th>DESCRIPCIÓN</th>
+                    <th>Pts. </th>
+                    <th>TOTAL Pts.</th>
+                    <th>CANCELAR</th>
+                </tr>
+                </thead>
+                <tbody class="center">
+                </tbody>
+            </table>
         </div>
-    <div class="row">
-                <table id="tblFacturaFRP" class=" TblDatos">
-                    <thead>
-                    <tr>
-                        <th>FECHA</th>
-                        <th>FACTURA</th>
-                        <th>PUNTOS</th>
-                        <th>Pts. APLI.</th>
-                        <th>Pts. DISP.</th>
-                        <th> <i class="material-icons">done</i> </th>
-                        <th>ESTADO</th>
-                    </tr>
-                    </thead>
-                    <tbody class="center">
-                    </tbody>
-                </table>
-    </div>
-        <div id="Total" class="right row">
-            <div class="col s12"><p class="Dato">PENDIENTES A APLICAR: <span class="dato" id="idttPtsCLsFRP">0</span> Pts.</p></div>
+        <div id="Total" class="right row text">
+            <p class="Dato">A APLICAR: <span class="dato" id="idttPtsFRP">0</span> Pts.</p>
+        </div>       
+        <div class="row">
+            <table id="tblFacturaFRP" class=" TblDatos">
+                <thead>
+                <tr>
+                    <th>FECHA</th>
+                    <th>FACTURA</th>
+                    <th>PUNTOS</th>
+                    <th>Pts. APLI.</th>
+                    <th>Pts. DISP.</th>
+                    <th> <i class="material-icons">done</i> </th>
+                    <th>ESTADO</th>
+                </tr>
+                </thead>
+                <tbody class="center"></tbody>
+            </table>
         </div>
-    <div class="row">
-        <table id="tblpRODUCTOS" class=" TblDatos">
-            <thead>
-            <tr>
-                <th>CANT.</th>
-                <th>COD. PREMIO</th>
-                <th>DESCRIPCIÓN</th>
-                <th>Pts. </th>
-                <th>TOTAL Pts.</th>
-                <th>CANCELAR</th>
-            </tr>
-            </thead>
-            <tbody class="center">
-            </tbody>
-        </table>
-    </div>
-    <div id="Total" class="right row text">
-        <div class="col s12 m12 l12"><p class="Dato">A APLICAR: <span class="dato" id="idttPtsFRP">0</span> Pts.</p></div>
+    <div id="Total" class="right row">
+        <p class="Dato">PENDIENTES A APLICAR: <span class="dato" id="idttPtsCLsFRP">0</span> Pts.</p>
+    </div>    
+    <div class="center row">
+        <a href="#" id="btnProcesar" class="Procesar waves-effect btn">procesar</a>
     </div>
 
-    </div>
-
-
-
+</div>
 </div>
 <!-- Fin de Modal#1-->
 
@@ -398,7 +387,7 @@
                         </tr>
                    </thead>
                    
-                   <tbody></tbody>
+                   <tbody class="center"></tbody>
                </table>
                <h6 class="center Mcolor">PREMIO A CANJEAR</h6>
 
@@ -413,7 +402,7 @@
                         </tr>
                    </thead>
                    
-                   <tbody></tbody>
+                   <tbody class="center"></tbody>
                </table>
                <h6 class="center Mcolor dat">TOTAL FRP <span class="dato"><span id="spnttFRP"></span> Pts.</span> </h6>
                <div style = "display:none;" id = "iconoPrint" class="row center">

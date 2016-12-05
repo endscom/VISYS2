@@ -5107,7 +5107,7 @@ button.btn-floating {
 }
 
 .dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected {
-  background-color: #eee;
+  background-color: #e7e1fe;
 }
 
 .dropdown-content li.active.selected {
@@ -5120,11 +5120,14 @@ button.btn-floating {
 }
 
 .dropdown-content li > a, .dropdown-content li > span {
-  font-size: 16px;
+  font-size: 13px;
   color: #022a43;
   display: block;
   line-height: 22px;
   padding: 14px 16px;
+  font-family: 'robotomedium';
+  padding: 0px;
+  text-transform: uppercase;
 }
 
 .dropdown-content li > span > label {

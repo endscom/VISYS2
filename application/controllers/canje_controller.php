@@ -49,7 +49,7 @@ class Canje_controller extends CI_Controller
         $data['top'] = $this->canje_model->getFRP($id,'frp');
         $data['DFactura'] = $this->canje_model->getFRP($id,"view_frp_factura");
         $data['DArticulo'] = $this->canje_model->getFRP($id,"view_frp_articulo");
-        echo json_encode($data );
+        echo json_encode($data);
     }
     public function inactivar(){
         echo $this->canje_model->inactivar($this->input->post('frp'));

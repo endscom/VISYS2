@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2016-11-29 14:36:22
+Date: 2016-12-05 08:42:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -245,12 +245,35 @@ CREATE TABLE `detallefrp` (
   `IdArticulo` int(10) NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `Puntos` int(20) NOT NULL,
-  `Cantidad` int(10) NOT NULL
+  `Cantidad` int(10) NOT NULL,
+  `IdCT` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Detalles del FRP';
 
 -- ----------------------------
 -- Records of detallefrp
 -- ----------------------------
+INSERT INTO `detallefrp` VALUES ('23432432', '00083218', '2016-10-12', '7000', '125106', 'PLANCHA OSTER GCSTBS5803 VAPOR', '1051', '1', '8');
+INSERT INTO `detallefrp` VALUES ('23432432', '00083218', '2016-10-12', '7000', '151325', 'OLLA ARROC B&amp;D RC5200M INOX 20TZ', '2329', '1', '8');
+INSERT INTO `detallefrp` VALUES ('23432432', '00083218', '2016-10-12', '7000', '125106', 'PLANCHA OSTER GCSTBS5803 VAPOR', '1051', '1', '8');
+INSERT INTO `detallefrp` VALUES ('1234', '00083218', '2016-10-12', '2569', '125106', 'PLANCHA OSTER GCSTBS5803 VAPOR', '1051', '1', '8');
+INSERT INTO `detallefrp` VALUES ('1234', '00083218', '2016-10-12', '2569', '149866', 'MINICOMP LG CM5760 13200W', '1518', '1', '8');
+INSERT INTO `detallefrp` VALUES ('1234', '00083246', '2016-10-12', '1720', '149866', 'MINICOMP LG CM5760 13200W', '1720', '1', '8');
+INSERT INTO `detallefrp` VALUES ('1234', '00083508', '2016-10-19', '3700', '149866', 'MINICOMP LG CM5760 13200W', '3700', '1', '8');
+INSERT INTO `detallefrp` VALUES ('1234', '00083823', '2016-10-26', '20000', '149866', 'MINICOMP LG CM5760 13200W', '10933', '1', '8');
+INSERT INTO `detallefrp` VALUES ('1234', '00083823', '2016-10-26', '20000', '125106', 'PLANCHA OSTER GCSTBS5803 VAPOR', '1051', '1', '8');
+INSERT INTO `detallefrp` VALUES ('1222', '00083823', '2016-10-26', '8016', '125106', 'PLANCHA OSTER GCSTBS5803 VAPOR', '1051', '1', '8');
+INSERT INTO `detallefrp` VALUES ('1222', '00083823', '2016-10-26', '8016', '149866', 'MINICOMP LG CM5760 13200W', '6965', '1', '8');
+INSERT INTO `detallefrp` VALUES ('1222', '00083992', '2016-10-29', '1540', '149866', 'MINICOMP LG CM5760 13200W', '1540', '1', '8');
+INSERT INTO `detallefrp` VALUES ('1222', '00084030', '2016-10-31', '1460', '149866', 'MINICOMP LG CM5760 13200W', '1460', '1', '8');
+INSERT INTO `detallefrp` VALUES ('1222', '00084537', '2016-11-11', '2360', '149866', 'MINICOMP LG CM5760 13200W', '2360', '1', '8');
+INSERT INTO `detallefrp` VALUES ('1222', '00084715', '2016-11-15', '12000', '149866', 'MINICOMP LG CM5760 13200W', '5546', '1', '8');
+INSERT INTO `detallefrp` VALUES ('2222', '00083823', '2016-10-26', '8016', '125106', 'PLANCHA OSTER GCSTBS5803 VAPOR', '1051', '1', '8');
+INSERT INTO `detallefrp` VALUES ('2222', '00083823', '2016-10-26', '8016', '149866', 'MINICOMP LG CM5760 13200W', '6965', '1', '8');
+INSERT INTO `detallefrp` VALUES ('2222', '00083992', '2016-10-29', '1540', '149866', 'MINICOMP LG CM5760 13200W', '1540', '1', '8');
+INSERT INTO `detallefrp` VALUES ('2222', '00084030', '2016-10-31', '1460', '149866', 'MINICOMP LG CM5760 13200W', '1460', '1', '8');
+INSERT INTO `detallefrp` VALUES ('2222', '00084537', '2016-11-11', '2360', '149866', 'MINICOMP LG CM5760 13200W', '2360', '1', '8');
+INSERT INTO `detallefrp` VALUES ('2222', '00084715', '2016-11-15', '12000', '149866', 'MINICOMP LG CM5760 13200W', '5546', '1', '8');
+INSERT INTO `detallefrp` VALUES ('2222', '00084715', '2016-11-15', '12000', '125106', 'PLANCHA OSTER GCSTBS5803 VAPOR', '1051', '1', '8');
 
 -- ----------------------------
 -- Table structure for fre
@@ -287,6 +310,10 @@ CREATE TABLE `frp` (
 -- ----------------------------
 -- Records of frp
 -- ----------------------------
+INSERT INTO `frp` VALUES ('23432432', '2016-12-02 00:00:00', '01378', 'FARMACIA IMPROMED', '220', 'N', '8');
+INSERT INTO `frp` VALUES ('1234', '2016-12-02 00:00:00', '01378', 'FARMACIA IMPROMED', '220', 'N', '8');
+INSERT INTO `frp` VALUES ('1222', '2016-12-02 00:00:00', '01378', 'FARMACIA IMPROMED', '220', 'S', '8');
+INSERT INTO `frp` VALUES ('2222', '2016-12-02 00:00:00', '01378', 'FARMACIA IMPROMED', '220', 'N', '8');
 
 -- ----------------------------
 -- Table structure for logcatalogo
@@ -319,6 +346,14 @@ CREATE TABLE `rfactura` (
 -- ----------------------------
 -- Records of rfactura
 -- ----------------------------
+INSERT INTO `rfactura` VALUES ('01378', '00083218', '7000', '0', '2016-12-02 04:55:52');
+INSERT INTO `rfactura` VALUES ('01378', '00083246', '1720', '0', '2016-12-02 04:55:52');
+INSERT INTO `rfactura` VALUES ('01378', '00083508', '3700', '0', '2016-12-02 04:55:52');
+INSERT INTO `rfactura` VALUES ('01378', '00083823', '20000', '0', '2016-12-02 05:23:42');
+INSERT INTO `rfactura` VALUES ('01378', '00083992', '1540', '0', '2016-12-02 05:23:42');
+INSERT INTO `rfactura` VALUES ('01378', '00084030', '1460', '0', '2016-12-02 05:23:42');
+INSERT INTO `rfactura` VALUES ('01378', '00084537', '2360', '0', '2016-12-02 05:23:42');
+INSERT INTO `rfactura` VALUES ('01378', '00084715', '12000', '5403', '2016-12-02 05:23:42');
 
 -- ----------------------------
 -- Table structure for roles
@@ -337,10 +372,8 @@ INSERT INTO `roles` VALUES ('1', 'SuperAdministrador');
 INSERT INTO `roles` VALUES ('2', 'Administrador');
 INSERT INTO `roles` VALUES ('3', 'Vendedor');
 INSERT INTO `roles` VALUES ('4', 'SAC');
-INSERT INTO `roles` VALUES ('5', 'CxC');
-INSERT INTO `roles` VALUES ('6', 'Mercadeo');
+INSERT INTO `roles` VALUES ('8', 'Cartera');
 INSERT INTO `roles` VALUES ('7', 'Cliente');
-INSERT INTO `roles` VALUES ('8', 'Corp.');
 
 -- ----------------------------
 -- Table structure for tmp_catalogo
@@ -432,16 +465,16 @@ CREATE TABLE `usuario` (
   `FechaCreacion` datetime NOT NULL COMMENT 'Fecha de Creación del Usuario',
   `FechaBaja` datetime DEFAULT NULL COMMENT 'Fecha de Baja del Usuario',
   PRIMARY KEY (`IdUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=246 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=279 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of usuario
 -- ----------------------------
-INSERT INTO `usuario` VALUES ('1', 'admin', 'admin', '123', 'Administrador', '', null, '', '\0', '2016-06-27 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `usuario` VALUES ('242', 'FDAVID', 'FARMACIA DAVID', 'b98d198ef05bac61e274736f64721e6e', 'Vendedor', '00001', 'FARMACIA DAVID', 'F09', '\0', '2016-11-03 03:31:27', '2016-11-04 11:42:19');
-INSERT INTO `usuario` VALUES ('244', 'FLAPROVIDENCIA', 'FARMACIA LA PROVIDENCIA', 'FL8621', 'Vendedor', '00003', 'FARMACIA LA PROVIDENCIA', 'F06', '\0', '2016-11-04 10:57:18', '2016-11-04 11:42:38');
-INSERT INTO `usuario` VALUES ('245', 'FLAPRINCIPAL', 'FARMACIA LA PRINCIPAL', 'FL6977', 'Vendedor', '00002', 'FARMACIA LA PRINCIPAL', 'F06', '\0', '2016-11-04 10:57:18', '2016-11-04 11:42:35');
-INSERT INTO `usuario` VALUES ('220', 'alder', 'alder', '123', 'SuperAdministrador', '', null, null, '\0', '2016-09-22 13:31:24', null);
+INSERT INTO `usuario` VALUES ('1', 'admin', 'admin', '202cb962ac59075b964b07152d234b70', 'Administrador', '', null, '', '\0', '2016-06-27 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `usuario` VALUES ('242', 'FDAVID', 'FARMACIA DAVID', '202cb962ac59075b964b07152d234b70', 'Vendedor', '00001', 'FARMACIA DAVID', 'F09', '\0', '2016-11-03 03:31:27', '2016-12-03 16:54:37');
+INSERT INTO `usuario` VALUES ('244', 'FLAPROVIDENCIA', 'FARMACIA LA PROVIDENCIA', '202cb962ac59075b964b07152d234b70', 'Vendedor', '00003', 'FARMACIA LA PROVIDENCIA', 'F06', '\0', '2016-11-04 10:57:18', '2016-11-04 11:42:38');
+INSERT INTO `usuario` VALUES ('245', 'FLAPRINCIPAL', 'FARMACIA LA PRINCIPAL', '202cb962ac59075b964b07152d234b70', 'Vendedor', '00002', 'FARMACIA LA PRINCIPAL', 'F06', '\0', '2016-11-04 10:57:18', '2016-11-04 11:42:35');
+INSERT INTO `usuario` VALUES ('220', 'alder', 'alder', '202cb962ac59075b964b07152d234b70', 'SuperAdministrador', '', null, null, '\0', '2016-09-22 13:31:24', null);
 
 -- ----------------------------
 -- Table structure for vendedor
@@ -489,30 +522,6 @@ UNION ALL
 SELECT DISTINCT FACTURA,1 FROM view_fre_factura ;
 
 -- ----------------------------
--- View structure for myqueryprueba
--- ----------------------------
-DROP VIEW IF EXISTS `myqueryprueba`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `myqueryprueba` AS SELECT
-frp.IdFRP,
---frp.Fecha,
-frp.IdCliente,
-detallefrp.Descripcion,
-
-(SELECT CASE WHEN detallect.Puntos = detallefrp.Puntos THEN count(detallefrp.Cantidad)  
-WHEN detallect.Puntos > detallefrp.Puntos THEN COUNT(DISTINCT detallefrp.IdArticulo) END) AS Cantidad
-
-FROM
-frp
-INNER JOIN detallefrp ON frp.IdFRP = detallefrp.IdFRP
-INNER JOIN detallect ON detallect.IdIMG = detallefrp.IdArticulo
-GROUP BY
-frp.IdFRP,
-detallect.IdIMG,
-frp.Fecha,
-frp.IdCliente,
-detallefrp.Descripcion ;
-
--- ----------------------------
 -- View structure for view_all_fre
 -- ----------------------------
 DROP VIEW IF EXISTS `view_all_fre`;
@@ -533,21 +542,14 @@ GROUP BY fre.IdFRE,fre.Anulado ;
 -- View structure for view_canje_premios
 -- ----------------------------
 DROP VIEW IF EXISTS `view_canje_premios`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_canje_premios` AS SELECT
-frp.IdFRP,
-frp.Fecha,
-frp.IdCliente,
-frp.Nombre,
-detallefrp.Descripcion,
-detallect.Puntos,
-(SELECT CASE WHEN detallect.Puntos = detallefrp.Puntos THEN count(detallefrp.Cantidad)  
-WHEN detallect.Puntos > detallefrp.Puntos THEN COUNT(DISTINCT detallefrp.IdArticulo) END) AS Cantidad
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_canje_premios` AS SELECT T0.IdFRP, T1.Fecha, T1.IdCliente,T1.Nombre, T0.IdArticulo, T0.Descripcion, 
+(SELECT SUM(T0.Puntos)/T2.Puntos FROM detallect T2 WHERE T0.IdCT=T2.IdCT AND T0.IdArticulo=T2.IdIMG) as CANTIDAD, 
+( SUM(T0.Puntos)/ T0.Cantidad ) AS PUNTO
 FROM
-frp
-INNER JOIN detallefrp ON frp.IdFRP = detallefrp.IdFRP
-INNER JOIN detallect ON detallefrp.IdArticulo = detallect.IdIMG AND detallect.IdCT = frp.IdCT
-WHERE frp.Anulado='N'
-GROUP BY frp.IdFRP ;
+detallefrp AS T0
+INNER JOIN frp AS T1 ON T1.IdFRP = T0.IdFRP
+WHERE T1.Anulado = 'N'
+GROUP BY T0.IdFRP, T0.IdArticulo ;
 
 -- ----------------------------
 -- View structure for view_catalogo_activo
@@ -605,44 +607,14 @@ INNER JOIN detallefre ON fre.IdFRE = detallefre.IdFRE ;
 -- View structure for view_frp_articulo
 -- ----------------------------
 DROP VIEW IF EXISTS `view_frp_articulo`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_frp_articulo` AS SELECT
-	`t0`.`IdFRP` AS `IdFRP`,
-	`t0`.`Cantidad` AS `Cantidad`,
-	`t0`.`IdArticulo` AS `IdArticulo`,
-	`t0`.`Descripcion` AS `Descripcion`,
-	(
-		(
-			SELECT
-				sum(`t1`.`Puntos`)
-			FROM
-				`detallefrp` `t1`
-			WHERE
-				(
-					(`t1`.`IdFRP` = `t0`.`IdFRP`)
-					AND (
-						`t1`.`IdArticulo` = `t0`.`IdArticulo`
-					)
-				)
-		) / `t0`.`Cantidad`
-	) AS `Puntos`,
-	(
-		SELECT
-			sum(`t1`.`Puntos`)
-		FROM
-			`detallefrp` `t1`
-		WHERE
-			(
-				(`t1`.`IdFRP` = `t0`.`IdFRP`)
-				AND (
-					`t1`.`IdArticulo` = `t0`.`IdArticulo`
-				)
-			)
-	) AS `Total`
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_frp_articulo` AS SELECT T0.IdFRP, T1.Fecha, T1.IdCliente,T1.Nombre, T0.IdArticulo, T0.Descripcion, 
+(SELECT SUM(T0.Puntos)/T2.Puntos FROM detallect T2 WHERE T0.IdCT=T2.IdCT AND T0.IdArticulo=T2.IdIMG) as CANTIDAD, 
+( SUM(T0.Puntos)/ T0.Cantidad ) AS PUNTO
 FROM
-	`detallefrp` `t0`
-GROUP BY
-	`t0`.`IdFRP`,
-	`t0`.`IdArticulo` ;
+detallefrp AS T0
+INNER JOIN frp AS T1 ON T1.IdFRP = T0.IdFRP
+WHERE T1.Anulado = 'N'
+GROUP BY T0.IdFRP, T0.IdArticulo ;
 
 -- ----------------------------
 -- View structure for view_frp_factura
@@ -718,7 +690,7 @@ BEGIN
 		
 		DECLARE cont, conse INT DEFAULT 1;
 		
-		DECLARE CSQL VARCHAR(20000) DEFAULT "(";
+		DECLARE CSQL TEXT DEFAULT "(";
 		DECLARE RELLENO, errores INT DEFAULT 0;
 		
 		DECLARE data_cursor CURSOR FOR 

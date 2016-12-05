@@ -53,6 +53,13 @@ class Login_controller extends CI_Controller
 
             }
         }
-    }//fin de la funcion Acreditar
+    }
+    public function cambiarPass()
+    {
+       $query = $this->login_model->cambiarPass($this->input->get_post('pass'),$this->session->userdata('id'));
+       if ($query==1) {
+           $this->Salir();
+       }redirect('Main');
+    }
 
 }

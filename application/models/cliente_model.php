@@ -5,7 +5,7 @@ class Cliente_model extends CI_Model
         parent::__construct();
         $this->load->database();
     }
-
+    public $CONDICION = '2016-10-01';
     public function LoadClients(){
         $i=0;
         $json = array();
@@ -25,7 +25,9 @@ class Cliente_model extends CI_Model
     public function LoadClientsPuntos(){
         $i=0;
         $json = array();
-        $query = $this->sqlsrv->fetchArray("SELECT CLIENTE, NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS, (SELECT RUC FROM vtVS2_Clientes WHERE vtVS2_Clientes.CLIENTE= vtVS2_Facturas_CL.CLIENTE) AS RUC FROM vtVS2_Facturas_CL GROUP BY CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
+        $query = $this->sqlsrv->fetchArray("SELECT CLIENTE, NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS, (SELECT RUC FROM vtVS2_Clientes WHERE vtVS2_Clientes.CLIENTE= vtVS2_Facturas_CL.CLIENTE) AS RUC 
+            FROM vtVS2_Facturas_CL WHERE FECHA >= '".$this->CONDICION."'
+            GROUP BY CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
         $json['query'][$i]['CLIENTE'] = "";  $json['query'][$i]['NOMBRE'] = "";
         $json['query'][$i]['PUNTOS'] = "";    $json['query'][$i]['RUC'] = "";
 

@@ -9,6 +9,7 @@ $route['translate_uri_dashes'] = FALSE;
 // LOGIN
 $route['login'] = 'login_controller/Acreditar';
 $route['salir'] = 'login_controller/Salir';
+$route['cambiarPass'] = 'login_controller/cambiarPass';
 // FIN LOGIN
 
 // RUTAS MENU
@@ -50,7 +51,7 @@ $route['delFRE'] = 'canje_efectivo_controller/inactivar';
 
 /*USUARIOS*/
 $route['Usuarios'] = 'vista_controller/Usuarios'; //cargar usuarios
-$route['NuevoUsuario/(:any)/(:any)/(:any)/(:any)'] = 'Usuario_controller/addUser/$1/$2/$3/$4'; //agregar usuario
+$route['NuevoUsuario'] = 'Usuario_controller/addUser'; //agregar usuario
 $route['ActUser/(:any)/(:any)'] = 'Usuario_controller/ActUser/$1/$2'; //cambiar estado de usuario
 $route['LoadVendedores'] = 'Usuario_controller/LoadVendedor';
 $route['LoadCliente'] = 'Usuario_controller/LoadClient';// cargar los clientes
@@ -76,6 +77,7 @@ $route['menos_vendidos/(:any)/(:any)'] = 'reportes_controller/menos_vendidos/$1/
 $route['puntosXcliente/(:any)/(:any)'] = 'reportes_controller/puntosXcliente/$1/$2';
 $route['canjes/(:any)/(:any)'] = 'reportes_controller/canjes/$1/$2';
 $route['canje_premios/(:any)/(:any)'] = 'reportes_controller/canje_premios/$1/$2';
+$route['detalles_canje/(:any)/(:any)'] = 'reportes_controller/detalles_canje/$1/$2';
 
 /*RUTAS DE CATALOGO*/
 $route['NuevoCatalogo'] = 'catalogo_controller/NuevoCatalogo';
@@ -95,9 +97,6 @@ $route['activarArticulos/(:any)'] = 'catalogo_controller/activarArticulos/$1';
 // RUTA IMPRESION
 $route['DetalleFRP'] = 'impresion_controller/DetalleFRP';
 $route['DetalleFRE/(:any)'] = 'impresion_controller/DetalleFRE/$1';
-
-
-
 // FIN IMPRESION
 
 // RUTA EXPORTACIÓN

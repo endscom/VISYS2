@@ -7,10 +7,13 @@ class Reportes_model extends CI_Model
         $this->load->model('canje_efectivo_model');
     }
 	public $CONDICION = '2016-10-01';
-    public function formatDecimal($valor)
+    public function formatDecimal($valor,$bandera=null)
     {
         if ($valor == ".000000") {
             return 0;
+        }
+        if ($bandera!=null) {// se puede utilizar un arreglo para str_replace pero x algn motivo no funcionaba
+            return $valor = str_replace(".00000000","",$valor);
         }else{
             return $valor = str_replace(".000000","",$valor);
         }
@@ -21,15 +24,18 @@ class Reportes_model extends CI_Model
         $q_rows = $this->db->query("call pc_Clientes_Facturas ('".$codigo."')");
         if ($q_rows->num_rows() > 0) {
             $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
-					AND FECHA BETWEEN '".$f1."' AND '".$f2."' AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].")";
+					AND FECHA BETWEEN '".date('Y-m-d',strtotime($f1))."' AND '".date('Y-m-d',strtotime($f2))."'AND FECHA >= '".$this->CONDICION."' 
+                    AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
         }
         $q_rows->next_result();
         $q_rows->free_result();
+
         $q_rows = $this->db->query("call pc_Clientes_Facturas_Fre ('".$codigo."')");
         if ($q_rows->num_rows() > 0) {
             if ($query=="") {
                 $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
-					AND FECHA BETWEEN '".$f1."' AND '".$f2."' AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
+					AND FECHA BETWEEN '".date('Y-m-d',strtotime($f1))."' AND '".date('Y-m-d',strtotime($f2))."'AND FECHA >= '".$this->CONDICION."'
+                    AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
             }else{
                 $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
             }
@@ -37,7 +43,7 @@ class Reportes_model extends CI_Model
         
         if ($query==""){
             $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
-					AND FECHA BETWEEN '".$f1."' AND '".$f2."' AND FECHA >= '".$this->CONDICION."' GROUP BY FACTURA, FECHA ";
+					  AND FECHA BETWEEN '".$f1."' AND '".$f2."' AND FECHA >= '".$this->CONDICION."' GROUP BY FACTURA, FECHA ";
         }
         $q_rows->next_result();
         $q_rows->free_result();
@@ -51,7 +57,7 @@ class Reportes_model extends CI_Model
             $json['data'][$i]['FECHA'] = $key['FECHA']->format('d-m-Y');
             $json['data'][$i]['PUNTOS'] = number_format($key['PUNTOS'],0);
             $json['data'][$i]['APLICADOS'] = $this->getAplicado($key['FACTURA']);
-            $json['data'][$i]['DISPONIBLE'] = $this->canje_model->getSaldoParcial($key['FACTURA'],$key['PUNTOS']);
+            $json['data'][$i]['DISPONIBLE'] = $this->formatDecimal($this->canje_model->getSaldoParcial($key['FACTURA'],$key['PUNTOS']));
             $i++;
         }
         echo json_encode($json);
@@ -131,7 +137,7 @@ class Reportes_model extends CI_Model
             $json['data'][$i]['FACTURA'] = $key['FACTURA'];
             $json['data'][$i]['CODIGO'] = $key['CLIENTE'];
             $json['data'][$i]['CLIENTE'] = $key['NOMBRE_CLIENTE'];
-            $json['data'][$i]['PUNTOS'] = $this->canje_model->getSaldoParcial($key['FACTURA'],$key['PUNTOS']);
+            $json['data'][$i]['PUNTOS'] = number_format($this->formatDecimal($this->canje_model->getSaldoParcial($key['FACTURA'],$key['PUNTOS'])),0);
             $json['data'][$i]['ESTADO'] = ($json['data'][$i]['PUNTOS']==0) ? "APLICADO" : "ACTIVO";
             $i++;
         }
@@ -160,7 +166,7 @@ class Reportes_model extends CI_Model
         foreach($query as $key){
             $json['data'][$i]['NUMERO'] = $i+1;
             $json['data'][$i]['DESCRIPCION'] = $key['DESCRIPCION'];
-            $json['data'][$i]['CANTIDAD'] = $key['CANTIDAD'];
+            $json['data'][$i]['CANTIDAD'] = $this->formatDecimal($key['CANTIDAD'],1);
             $json['data'][$i]['CLIENTE'] = $key['CLIENTE'];
             $json['data'][$i]['NOMBRE'] = $key['NOMBRE_CLIENTE'];
             $json['data'][$i]['RUTA'] = $key['RUTA'];
@@ -233,7 +239,7 @@ class Reportes_model extends CI_Model
             $json['data'][$i]['NUMERO'] = $i+1;
             $json['data'][$i]['ARTICULO'] = $key['ARTICULO'];
             $json['data'][$i]['DESCRIPCION'] = $key['DESCRIPCION'];
-            $json['data'][$i]['CANTIDAD'] = number_format($key['CANTIDAD'],2);
+            $json['data'][$i]['CANTIDAD'] = number_format($key['CANTIDAD'],0);
             $json['data'][$i]['PUNTOS'] = number_format($key['PUNTOS'],0);
             $i++;
         }
@@ -528,20 +534,20 @@ class Reportes_model extends CI_Model
         $i=0;
         $json = array();
         $query = $this->db->query("SELECT 
-                                            COUNT(CASE WHEN MONTH(t1.Fecha)=1 THEN t1.IdFRP END) AS ENE,
-                                            COUNT(CASE WHEN MONTH(t1.Fecha)=2 THEN t1.IdFRP END) AS FEB,
-                                            COUNT(CASE WHEN MONTH(t1.Fecha)=3 THEN t1.IdFRP END) AS MAR,
-                                            COUNT(CASE WHEN MONTH(t1.Fecha)=4 THEN t1.IdFRP END) AS ABR,
-                                            COUNT(CASE WHEN MONTH(t1.Fecha)=5 THEN t1.IdFRP END) AS MAY,
-                                            COUNT(CASE WHEN MONTH(t1.Fecha)=6 THEN t1.IdFRP END) AS JUN,
-                                            COUNT(CASE WHEN MONTH(t1.Fecha)=7 THEN t1.IdFRP END) AS JUL,
-                                            COUNT(CASE WHEN MONTH(t1.Fecha)=8 THEN t1.IdFRP END) AS AGO,
-                                            COUNT(CASE WHEN MONTH(t1.Fecha)=9 THEN t1.IdFRP END) AS SEP,
-                                            COUNT(CASE WHEN MONTH(t1.Fecha)=10 THEN t1.IdFRP END) AS OCT,
-                                            COUNT(CASE WHEN MONTH(t1.Fecha)=11 THEN t1.IdFRP END) AS NOV,
-                                            COUNT(CASE WHEN MONTH(t1.Fecha)=12 THEN t1.IdFRP END) AS DIC
-                                            FROM frp t1 WHERE Anulado='N' AND  t1.FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
-                                            ");
+                                    COUNT(CASE WHEN MONTH(t1.Fecha)=1 THEN t1.IdFRP END) AS ENE,
+                                    COUNT(CASE WHEN MONTH(t1.Fecha)=2 THEN t1.IdFRP END) AS FEB,
+                                    COUNT(CASE WHEN MONTH(t1.Fecha)=3 THEN t1.IdFRP END) AS MAR,
+                                    COUNT(CASE WHEN MONTH(t1.Fecha)=4 THEN t1.IdFRP END) AS ABR,
+                                    COUNT(CASE WHEN MONTH(t1.Fecha)=5 THEN t1.IdFRP END) AS MAY,
+                                    COUNT(CASE WHEN MONTH(t1.Fecha)=6 THEN t1.IdFRP END) AS JUN,
+                                    COUNT(CASE WHEN MONTH(t1.Fecha)=7 THEN t1.IdFRP END) AS JUL,
+                                    COUNT(CASE WHEN MONTH(t1.Fecha)=8 THEN t1.IdFRP END) AS AGO,
+                                    COUNT(CASE WHEN MONTH(t1.Fecha)=9 THEN t1.IdFRP END) AS SEP,
+                                    COUNT(CASE WHEN MONTH(t1.Fecha)=10 THEN t1.IdFRP END) AS OCT,
+                                    COUNT(CASE WHEN MONTH(t1.Fecha)=11 THEN t1.IdFRP END) AS NOV,
+                                    COUNT(CASE WHEN MONTH(t1.Fecha)=12 THEN t1.IdFRP END) AS DIC
+                                    FROM frp t1 WHERE Anulado='N' AND  t1.FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
+                                    ");
     
         $query2 = $this->db->query("SELECT
                                     IFNULL(SUM(CASE WHEN MONTH(frp.Fecha)=1 THEN detallefrp.Puntos END ),0) AS ENE,
@@ -662,12 +668,12 @@ class Reportes_model extends CI_Model
         
         foreach($query->result_array() as $key){
             $json['data'][$i]['FRP'] = '<p class="negra noMargen">'.$key['IdFRP']."</p>";
-            $json['data'][$i]['FECHA'] = $key['Fecha'];
+            $json['data'][$i]['FECHA'] = date('d-m-Y',strtotime($key['Fecha']));
             $json['data'][$i]['CODIGO'] = $key['IdCliente'];
             $json['data'][$i]['NOMBRE'] = '<p class="bold noMargen">'.$key['Nombre']."</p>";
-            $json['data'][$i]['ARTICULO'] = $this->formatDecimal($key['Descripcion']);
-            $json['data'][$i]['PUNTOS'] = $this->formatDecimal($key['Puntos']);
-            $json['data'][$i]['CANTIDAD'] = $this->formatDecimal($key['Cantidad']);       
+            $json['data'][$i]['ARTICULO'] = '<p class="bold noMargen">'.$this->formatDecimal($key['Descripcion'])."</p>";
+            $json['data'][$i]['PUNTOS'] = number_format($this->formatDecimal(str_replace(".0000","",$key['PUNTO'])),0);
+            $json['data'][$i]['CANTIDAD'] = $this->formatDecimal(str_replace(".0000","",$key['CANTIDAD']));       
             $i++;
         }
             $json['columns'][0]['data'] = "FRP";
@@ -684,6 +690,35 @@ class Reportes_model extends CI_Model
             $json['columns'][5]['name'] = "PUNTOS";
             $json['columns'][6]['data'] = "CANTIDAD";
             $json['columns'][6]['name'] = "CANTIDAD";
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function detalles_canje($fecha1,$fecha2)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->db->query("SELECT * FROM view_canje_premios
+                                    WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'");
+        
+        foreach($query->result_array() as $key){
+            $numero=$i+1;
+            $json['data'][$i]['NUMERO'] = '<p class="bold noMargen">'.$numero."</p>";
+            $json['data'][$i]['FECHA'] = date('d-m-Y',strtotime($key['Fecha']));
+            $json['data'][$i]['CODIGO'] = $key['IdFRP'];
+            $json['data'][$i]['NOMBRE'] = '<p class="bold noMargen">'.$key['Descripcion']."</p>";
+            $json['data'][$i]['CANTIDAD'] = str_replace(".0000", "", $key['CANTIDAD']);
+            $i++;
+        }
+            $json['columns'][0]['data'] = "NUMERO";
+            $json['columns'][0]['name'] = "NUMERO";
+            $json['columns'][1]['data'] = "FECHA";
+            $json['columns'][1]['name'] = "FECHA";
+            $json['columns'][2]['data'] = "CODIGO";
+            $json['columns'][2]['name'] = "COD FRP";
+            $json['columns'][3]['data'] = "NOMBRE";
+            $json['columns'][3]['name'] = "NOMBRE";
+            $json['columns'][4]['data'] = "CANTIDAD";
+            $json['columns'][4]['name'] = "CANTIDAD";
         echo json_encode($json);
         $this->sqlsrv->close();
     }

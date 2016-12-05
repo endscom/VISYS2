@@ -9,14 +9,12 @@
 ///////////////////////////////////////////////////////////-->
 <main class="mdl-layout__content mdl-color--grey-100">
     <div class="contenedor">
-        <div class=" row TextColor">
-            <div class="col s5 m5 l12">
+        <div class="center row TextColor">
                usuarios sistema de puntos
-            </div>
         </div>
         <div class="container">
             <div class="Buscar row column">
-                <div class="col s1 m1 l1 offset-l3">
+                <div class="col s1 m1 l1 offset-s3 offset-l3">
                     <i class="material-icons ColorS">search</i>
                 </div>
                 <div class="input-field col s6 m6 l4">
@@ -62,7 +60,7 @@
                                  <tr>
                                     <td>".date('d/m/Y',strtotime(substr($user['FechaCreacion'], 0,10)))."</td>
                                     <td>".$user['IdUsuario']."</td>
-                                    <td class='negra'> <a href='#Duser' class='modal-trigger'>".$user['Nombre']."</td></a>
+                                    <td class='negra'><a href='#' class=''>".$user['Nombre']."</td></a>
                                     <td id='activo' style='color:".$MColor."'>".$activo."</td>
                                     <td><a data-tooltip='$Mmensaje' class='btn-flat tooltipped' onclick='DellUsers(".'"'.$user['IdUsuario'].'",'.'"'.$user['Estado'].'"'.")'><i style='color:".$mIcono."' class=' material-icons'>$Micono</i></td></a>
                                  </tr>
@@ -81,7 +79,10 @@
 <div id="AUsuario" class="modal">
     <div class="modal-content">
         <div class="btnCerrar right"><i style='color:red;' class="material-icons modal-action modal-close">highlight_off</i></div>
-        <h6 class="center Mcolor AdUser">AGREGAR USUARIO VISYS </h6>
+
+        <div class="row TextColor center">
+            AGREGAR USUARIO VISYS
+        </div>
         <div class="row">
             <form class="col s12"  method="post" name="formAddUser">
                 <div class="row">
@@ -124,13 +125,27 @@
                         <label id="labelVendedor" class="labelValidacion">SELECCIONE UN VENDEDOR</label>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="divOculto" style="display:none;">
+                    <div class="input-field col s6">
+                        <select id="ListCliente" name="ListCliente" class="chosen-select browser-default">
+                        <option value="" disabled selected>SELECCIONE CLIENTE</option>
+                        <?php
+                            if(!$data){
+                            } else {
+                                foreach($data as $premio){
+                                    echo '<option value="'.$premio['CLIENTE'].'">'.$premio['NOMBRE'].'</option>';
+                                }
+                            }
+                         ?>
+                    </select>
+                    <label id="labelCliente" class="labelValidacion">SELECCIONE EL CLIENTE</label>
+                    </div>
+                </div>
+                <div class="row center">
                     <div class="progress" style="display:none">
                           <div class="indeterminate violet"></div>
                     </div>
-                    <div class="col s6">
                         <a  class="Btnadd btn" id="Adduser"  onclick="EnviodeDatos()">GENERAR</a>
-                    </div>
                 </div>
             </form>
         </div>
@@ -147,13 +162,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s1 m1 l1 offset-l4">
+            <div class="col s1 m1 l1 offset-s1 offset-m4 offset-l4">
                 <a href="#" id="DellUsers" class=" modal-action modal-close ">
                     <i class="material-icons">done_all</i>
                 </a>
             </div>
 
-            <div class="col s1 m1 l1 offset-l2">
+            <div class="col s1 m1 l1 offset-s1 offset-m1 offset-l4">
                 <a href="#!" class=" BtnClose modal-action modal-close ">
                     <i class="material-icons">highlight_off</i>
                 </a>

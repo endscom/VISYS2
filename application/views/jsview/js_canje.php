@@ -254,10 +254,12 @@
         total  = parseInt($("#idttPtsFRP").text());
         FPunto = 0;
         Posi=0;
+        var contador = ofact.rows().count();
         obj.rows().data().each( function (ip) {
             remanente = parseInt(ip[4]);
             
             ofact.rows().data().each( function (index,value) {
+                if (linea<contador) {
                 var FAC = ofact.row(linea).data().FACTURA;
                 var FCH = ofact.row(linea).data().FECHA;
                 var FLPunto = ofact.row(linea).data().DISPONIBLE;
@@ -265,7 +267,7 @@
                 apl = parseInt($("#AP1" + FAC).text());
                 dis = parseInt($("#DIS" + FAC).text());
                 est = ($("#EST" + FAC).text());
-                
+                if (FPunto>0) {apl=FPunto;}
                 if (FPunto == 0){FPunto = ofact.row(linea).data().DISPONIBLE;}
                 
                 if (remanente > apl){
@@ -297,6 +299,7 @@
                     }
                 }
                 linea++;
+            }
             });
             linea--
         });
@@ -502,21 +505,21 @@ function getview(id){
                         if( dataJson.DFactura[f].SALDO > 0) {ESTAD ="PARCIAL"}else {ESTAD ="APLICADO"}
                         DF +=   "<tr>" +
                                     "<td>" +dataJson.DFactura[f].Fecha + "</td>" +
-                                    "<td>" +dataJson.DFactura[f].Factura+ "</td>" +
+                                    "<td class='negra'>" +dataJson.DFactura[f].Factura+ "</td>" +
                                     "<td>" +formatNumber(dataJson.DFactura[f].Puntos)+ "</td>" +
                                     "<td>" +formatNumber(dataJson.DFactura[f].Faplicado)+ "</td>" +
                                     "<td>" +formatNumber(dataJson.DFactura[f].SALDO)+ "</td>" +
                                     "<td>" +ESTAD+ "</td>" +
-                                    "</tr>"
+                                "</tr>"
                     }
                     var ttff=0;
                     for (p=0;p<dataJson.DArticulo.length;p++){
                         DP +=   "<tr>" +
-                                    "<td>" +dataJson.DArticulo[p].Cantidad + "</td>" +
+                                    "<td class='negra'>" +dataJson.DArticulo[p].CANTIDAD.replace(".0000","") + "</td>" +
                                     "<td>" +dataJson.DArticulo[p].IdArticulo+ "</td>" +
-                                    "<td>" +dataJson.DArticulo[p].Descripcion+ "</td>" +
-                                    "<td>" +formatNumber(dataJson.DArticulo[p].Puntos)+ "</td>" +
-                                    "<td>" +formatNumber(dataJson.DArticulo[p].Total)+ "</td>" +
+                                    "<td class='mediana'>" +dataJson.DArticulo[p].Descripcion+ "</td>" +
+                                    "<td>" +formatNumber(dataJson.DArticulo[p].PUNTO.replace(".0000",""))+ "</td>" +
+                                    "<td>" +formatNumber(dataJson.DArticulo[p].CANTIDAD.replace(".0000","")* dataJson.DArticulo[p].PUNTO).replace(".0000","")+ "</td>" +
                                 "</tr>"
 
                         ttff += parseInt(dataJson.DArticulo[p].Total);

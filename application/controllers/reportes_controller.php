@@ -113,4 +113,10 @@ class Reportes_controller extends CI_Controller
         $fecha2 = ($fecha1=="") ? date('Y-m-d') : $this->format($fecha2);
         $this->reportes_model->canje_premios($fecha1,$fecha2);
     }
+    public function detalles_canje($fecha1,$fecha2)
+    {
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $this->format($fecha1);
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : $this->format($fecha2);
+        $this->reportes_model->detalles_canje($fecha1,$fecha2);
+    }
 }
