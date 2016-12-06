@@ -10,8 +10,18 @@ class Clientes_controller extends CI_Controller
         if($this->session->userdata('logged')==0){ //No aceptar a usuarios sin loguearse
             redirect(base_url().'index.php/login','refresh');
         }
+        $this->load->model('facturas_model');
+        $this->load->model('reportes_model');
     }
-
+    public function estadoCuenta()
+    {
+        
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/EstadoCuenta');
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/js_facturas');
+    }
     public function FindClient($cond){
          $this->cliente_model($cond);
     }
@@ -41,6 +51,16 @@ class Clientes_controller extends CI_Controller
         $this->load->view('pages/PuntosClientes',$query);
         $this->load->view('footer/footer');
         $this->load->view('jsview/js_clientes');
+    }
+    public function buscarEstadoCuenta()
+    {
+        $fecha1 = $_GET['fecha1'];
+        $fecha2 = $_GET['fecha2'];
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : date('Y-d-m',strtotime($fecha1));
+        $fecha2 = ($fecha2=="") ? date('Y-d-m') : date('Y-d-m',strtotime($fecha2));
+        $codigo = $this->session->userdata('IdCL');
+        
+        $this->reportes_model->cuentaXcliente($codigo,$fecha1,$fecha2);
     }
     public function generarUsuarios()
     {

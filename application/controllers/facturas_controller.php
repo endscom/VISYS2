@@ -15,6 +15,7 @@ class Facturas_controller extends CI_Controller
 
     public function index()
     {
+        
     	$data = $this->facturas_model->traerFacturas();
         $this->load->view('header/header');
         $this->load->view('pages/menu');

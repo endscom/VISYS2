@@ -24,7 +24,8 @@ $route['generarUsuarios'] = 'clientes_controller/generarUsuarios';
 $route['traerUsuario/(:any)'] = 'clientes_controller/traerUsuario/$1';
 $route['darBajaCliente'] = 'clientes_controller/darBajaCliente';
 $route['DetalleFact'] = 'vista_controller/DetalleFact';
-
+$route['estadoCuenta'] = 'clientes_controller/estadoCuenta';
+$route['buscarEstadoCuenta'] = 'clientes_controller/buscarEstadoCuenta';
 /*BOUCHER*/
 $route['EliminarVineta'] = 'boucher_controller';
 
@@ -106,4 +107,5 @@ $route['ExpPDF_PuntosClientes'] = 'exportacion_controller/ExpPDF_PuntosClientes'
 $route['ExpEXCEL_PuntosClientes'] = 'exportacion_controller/ExpEXCEL_PuntosClientes';
 $route['pdfCTAxCLIENTE/(:any)/(:any)/(:any)'] = 'exportacion_controller/pdfCTAxCLIENTE/$1/$2/$3';
 $route['excelCTAxCLIENTE'] = 'exportacion_controller/excelCTAxCLIENTE';
+$route['ExpPDFEstadoCuenta'] ='exportacion_controller/ExpPDFEstadoCuenta';
 // FIN EXPORTACIÓN

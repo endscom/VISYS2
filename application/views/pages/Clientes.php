@@ -34,11 +34,11 @@
                 </div>
             </div>
         </div>
-
+        <!--
         <div class="right row">
                 <a href="#modal1" id="btngenerar"  class="BtnBlue waves-effect  btn modal-trigger ">AGREGAR</a>
         </div>
-
+        -->
      <form action="" name="FrmClientes" id="FrmClientes" method="post"> <!--Exportar datos a EXCEL -->
         <table id="ClienteAdd" class="table TblDatos">
 

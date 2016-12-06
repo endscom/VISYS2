@@ -98,8 +98,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <select name="rol" id="rol">
-                            <option value="" disabled selected>SELECCIONE USUARIO</option>
+                        <select name="rol" id="rol" class="chosen-select browser-default">
+                            <option value="" disabled selected>SELECCIONE PERMISOS</option>
                             <?PHP
                                 if(!($Lrol)){
                                 } else {
@@ -111,7 +111,7 @@
                         </select><label id="labelRol" class="labelValidacion">SELECCIONE UN ROL</label>
                     </div>
                     <div class="input-field col s6">
-                        <select name="vendedor" id="vendedorid">
+                        <select name="vendedor" id="vendedorid" class="chosen-select browser-default">
                             <option value="" disabled selected>SELECCIONE VENDEDOR</option>
                             <?PHP
                                 if(!($Lven)){
@@ -126,7 +126,7 @@
                     </div>
                 </div>
                 <div class="row" id="divOculto" style="display:none;">
-                    <div class="input-field col s6">
+                    <div class="input-field col s12 m6 l6">
                         <select id="ListCliente" name="ListCliente" class="chosen-select browser-default">
                         <option value="" disabled selected>SELECCIONE CLIENTE</option>
                         <?php

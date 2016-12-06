@@ -46,6 +46,17 @@
     font-weight: normal;
     font-style: normal;
 }
+.footer{
+   position: fixed;
+    bottom: 0;
+    z-index: 100;
+    left: 0;
+}
+.login-logo {
+    margin-top: 40px;
+    width: 172px !important;
+    height: 170px;
+}
 #listaArticulosCatalogoActual{
   width: 75%;
   max-height: 85%;

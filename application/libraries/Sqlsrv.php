@@ -7,7 +7,7 @@ class Sqlsrv
 {
 
     public $serverName = "192.168.1.112";
-    public $dbname = "Softland";
+    public $dbname = "PRODUCCION";
     public $user = "sa";
     public $password = "Server2012!";
     public $characterSet = "UTF-8";

@@ -29,6 +29,7 @@
                         <th>VER</th>
                     </tr>
                 </thead>
+                <tbody>
                     <?php 
                         if(!($query)){
                             echo "error al cargar los datos";
@@ -49,7 +50,7 @@
                             }
                         }
                     ?>
-                <tbody>
+                
                 </tbody>
             </table>
           </div>

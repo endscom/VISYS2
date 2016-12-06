@@ -1,6 +1,6 @@
 var activo = false;
 $(document).ready(function() {
-$('#AUsuario').openModal();
+//$('#AUsuario').openModal();
 $('.datepicker').pickadate({ 
         selectMonths: true,selectYears: 15,format: 'dd-mm-yyyy',
         monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
@@ -174,6 +174,7 @@ function EnviodeDatos(){
     if ($('#Contra').val()=="") {$('#labelPass').show();return false;}
     if ($('#rol').val()==null) {$('#labelRol').show();return false;}
     if (($('#rol').val()=="Cliente") && ($('#vendedorid').val()==null)) {$('#labelVendedor').show();return false;}
+    if (($('#rol').val()=="Vendedor") && ($('#vendedorid').val()==null)) {$('#labelVendedor').show();return false;}
     if (($('#rol').val()=="Cliente") && ($( "#ListCliente option:selected" ).val()=="")) {$('#labelCliente').show();return false;}
     else{
         var user = $('#NombreUser').val();
@@ -181,16 +182,18 @@ function EnviodeDatos(){
         var rol = $('#rol').val();
         var vendedores = $("#vendedorid option:selected").text();
         var cliente = $( "#ListCliente option:selected" ).val();
+        var nomCliente = $( "#ListCliente option:selected" ).text();
         if(vendedores=='SELECCIONE VENDEDOR'){
             vendedores = '0';
         }
-        //$('#Adduser').hide();$('.progress').show();
+        $('#Adduser').hide();$('.progress').show();
         var form_data = {
             user: user,
             clave: clave,
             rol: rol,
             vendedor: vendedores,
-            cliente: cliente
+            cliente: cliente,
+            nomCliente: nomCliente
         };
         $.ajax({
             url: "NuevoUsuario",
@@ -200,10 +203,10 @@ function EnviodeDatos(){
             success:
                 function(json){
                     if (json==1) {
-                        Materialize.toast('EL USUARIO SE AGREGÓ CORRECTAMENTE', 3000);
+                        mensaje('EL USUARIO SE AGREGÓ CORRECTAMENTE', "");
                         var myVar = setInterval(myTimer, 2000);
                     }else{
-                        Materialize.toast(json, 3000);
+                        mensaje(json,"error");
                         $('#Adduser').show();$('.progress').hide();
                     }
                 },
@@ -211,7 +214,7 @@ function EnviodeDatos(){
             function(XMLHttpRequest, textStatus, errorThrow){
                 Materialize.toast(textStatus+", -->: "+errorThrow, 3000);
                 $('#Adduser').show();$('.progress').hide();
-            },  
+            },
             });
         }
     }

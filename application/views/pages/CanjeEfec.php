@@ -118,9 +118,7 @@
                         if(!$data){}
                         else{
                                 foreach($data as $cliente){
-                                if ($cliente['CLIENTE']=="02355") {
                                     echo '<option value="'.$cliente['CLIENTE'].'">'.$cliente['NOMBRE'].'</option>';
-                                }
                                 //echo '<option value="'.$cliente['CLIENTE'].'">'.$cliente['NOMBRE'].'</option>';
                             }
                         }

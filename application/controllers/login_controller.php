@@ -42,6 +42,8 @@ class Login_controller extends CI_Controller
                     'id' => $data['user'][0]['IdUsuario'],
                     'UserN' => $data['user'][0]['Nombre'],
                     'RolUser'=>$data['user'][0]['Rol'],
+                    'IdCL'=>$data['user'][0]['IdCL'],
+                    'Zona'=>$data['user'][0]['Zona'],
                     'logged' => 1
                 );
                 $this->session->set_userdata($sessiondata);

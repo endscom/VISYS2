@@ -12,21 +12,23 @@ class Usuario_controller extends CI_Controller
         $rol = $this->input->post('rol');
         $vendedor = $this->input->post('vendedor');
         $cliente = $this->input->post('cliente');
+        $nomCliente = $this->input->post('nomCliente');
         $fecha = date('Y-m-d H:i:s');
+        
 
-        if ($rol == 'SuperAdministrador' || $rol == 'Administrador') {
+        if ($rol == 'SuperAdministrador' || $rol == 'Administrador' || $rol == 'SAC' || $rol == 'Cartera') {
             $this->usuario_model->addUser($user, $clave, $rol, $fecha);
         }
         if ($rol == 'Vendedor') {
             $this->usuario_model->AddVdor($user, $clave, $rol, $fecha, $vendedor);
-        } else if ($rol == 'Cliente') {
-            $this->usuario_model->BuscarCl($user, $clave, $rol, $fecha, $vendedor);
-        } /*else {
-            echo "entro al ultimo";
-            $this->usuario_model->addUser($user, $clave, $rol, $fecha, $vendedor);
-        }*/
-
+        }
+        if ($rol == 'Cliente') {
+            $this->usuario_model->AddCl($user, $clave, $rol, $fecha, $vendedor,$cliente,$nomCliente);
+        }else if($rol==""){
+           echo 0;
+        }
     }
+    
 
     public function ActUser($IdUser, $Estado)
     {/*CAMBIAR ESTADO DE USUARIO*/
@@ -42,6 +44,4 @@ class Usuario_controller extends CI_Controller
     {//cargar los vendedores
         $this->usuario_model->LoadVendedores();
     }
-
-    /*Funionalidad de Usuario*/
 }

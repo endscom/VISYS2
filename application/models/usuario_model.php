@@ -78,62 +78,62 @@ class Usuario_model extends CI_Model
         $this->sqlsrv->close();
     }
 
-    public function BuscarCl($user,$clave,$rol,$fecha,$cond){
-        $consulta = str_replace('%20', ' ', $cond);
-        $buscar = $this->sqlsrv->fetchArray("SELECT * from vtVS2_Clientes where NOMBRE ='".$consulta."'",SQLSRV_FETCH_ASSOC);
-        $id="";
-        $cliente="";
-        $zona="";
-        foreach($buscar as $key){
-            $id = $key['CLIENTE'];
-            $cliente = $key['NOMBRE'];
+    public function AddCl($user,$clave,$rol,$fecha,$vendedor,$cliente,$nomCliente){
+
+        $q = $this->verificarUser($user,$clave);
+        if ($q == 1) {
+            $user = array(
+                'Usuario'=> $user,
+                'Clave' => MD5($clave),
+                'Rol' => $rol,
+                'Estado'=>0,
+                'FechaCreacion' => $fecha,
+                'IdCL' =>$cliente,
+                'Cliente' => $nomCliente,
+                'Zona' => $vendedor,
+                'Nombre' => $user
+            );    
+            if ($user !="" && $q == 1) {
+                $query = $this->db->insert('usuario', $user);
+                echo  "1";
+            } 
         }
-
-        $this->sqlsrv->close();
-
-        $user = array(
-            'Usuario'=> $user,
-            'Clave' => MD5($clave),
-            'Rol' => $rol,
-            'Estado'=>0,
-            'FechaCreacion' => $fecha,
-            'IdCL' =>$id,
-            'Cliente' => $cliente,
-            'Zona' => $cond,
-            'Nombre' => $user
-        );
-        
-        if ($id!="") {
-            $query = $this->db->insert('usuario', $user);
-            return 1;
-        } else {
-            echo "string";
-            return 0;
+        else if ($q == 0){
+            echo "ESTE USUARIO YA ESTA REGISTRADO";
+        }else{
+            echo "ERROR AL CREAR EL USUARIO";
         }
     }
 
     public function AddVdor($user,$clave,$rol,$fecha,$zona){
 
-        $user = array(
-            'Usuario'=> $zona,
-            'Clave' => md5($clave),
-            'Rol' => $rol,
-            'FechaCreacion' => $fecha,
-            'Estado'=>0,
-            'Zona' => $zona,
-            'Nombre' => $user
-        );
-        $query = $this->db->insert('usuario', $user);
-        if ($query) {            
-            return  1;
-        } else {
-            return 0;
+        $q = $this->verificarUser($user,$clave);
+        if ($q == 1) {
+            $user = array(
+                'Usuario'=> $zona,
+                'Clave' => md5($clave),
+                'Rol' => $rol,
+                'FechaCreacion' => $fecha,
+                'Estado'=>0,
+                'Zona' => $zona,
+                'Nombre' => $user
+            );
+            $query = $this->db->insert('usuario', $user);
+            if ($query) {            
+                echo  "1";
+            } 
+        }
+        else if ($q == 0){
+            echo "ESTE USUARIO YA ESTA REGISTRADO";
+        }else{
+            echo "ERROR AL CREAR EL USUARIO";
         }
     }
 
     public function addUser($user, $clave, $rol, $fecha) {
-
-        $Usuario = array(
+        $q = $this->verificarUser($user,$clave);//echo $q;
+        if ($q == 1) {
+            $Usuario = array(
             'Usuario' => $user,
             'Clave' => MD5($clave),
             'Rol' => $rol,
@@ -141,15 +141,29 @@ class Usuario_model extends CI_Model
             'FechaCreacion' => $fecha,
             'Nombre' => $user);
 
-        $query = $this->db->insert('usuario', $Usuario);
-
-        if ($query) {
-            return 1;
-        } else {
-            return 0;
+            $query = $this->db->insert('usuario', $Usuario);
+            if ($query) {
+                echo  "1";
+            }
+        }
+        else if ($q == 0){
+            echo "ESTE USUARIO YA ESTA REGISTRADO";
+        }else{
+            echo "ERROR AL CREAR EL USUARIO";
         }
     }
 
+    public function verificarUser($user,$pass)
+    {
+        $this->db->where('Nombre',$user);
+        $this->db->where('Clave',MD5($pass));
+        $query = $this->db->get('usuario');
+        if ($query->num_rows()>0) {
+            return 0;
+        }else{
+            return 1;
+        }
+    }
     public function ActUser($cod,$estado){ /* CAMBIAR ESTADO DEL USUARIO*/
 
         $data = array(

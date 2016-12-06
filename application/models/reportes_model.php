@@ -5,6 +5,7 @@ class Reportes_model extends CI_Model
         parent::__construct();
         $this->load->database();
         $this->load->model('canje_efectivo_model');
+        $this->load->model('canje_model');
     }
 	public $CONDICION = '2016-10-01';
     public function formatDecimal($valor,$bandera=null)
@@ -20,13 +21,16 @@ class Reportes_model extends CI_Model
     }
     public function cuentaXcliente($codigo,$f1,$f2)
     {
+
+        //echo date('Y-d-m',strtotime($f2))."<br>";
     	$query="";
         $q_rows = $this->db->query("call pc_Clientes_Facturas ('".$codigo."')");
         if ($q_rows->num_rows() > 0) {
             $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
-					AND FECHA BETWEEN '".date('Y-m-d',strtotime($f1))."' AND '".date('Y-m-d',strtotime($f2))."'AND FECHA >= '".$this->CONDICION."' 
+					AND FECHA BETWEEN '".date('Y-d-m',strtotime($f1))."' AND '".date('Y-d-m',strtotime($f2))."'AND FECHA >= '".$this->CONDICION."' 
                     AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
         }
+
         $q_rows->next_result();
         $q_rows->free_result();
 
@@ -34,7 +38,7 @@ class Reportes_model extends CI_Model
         if ($q_rows->num_rows() > 0) {
             if ($query=="") {
                 $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
-					AND FECHA BETWEEN '".date('Y-m-d',strtotime($f1))."' AND '".date('Y-m-d',strtotime($f2))."'AND FECHA >= '".$this->CONDICION."'
+					AND FECHA BETWEEN '".date('Y-d-m',strtotime($f1))."' AND '".date('Y-d-m',strtotime($f2))."'AND FECHA >= '".$this->CONDICION."'
                     AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
             }else{
                 $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
@@ -45,6 +49,7 @@ class Reportes_model extends CI_Model
             $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
 					  AND FECHA BETWEEN '".$f1."' AND '".$f2."' AND FECHA >= '".$this->CONDICION."' GROUP BY FACTURA, FECHA ";
         }
+        //echo $query."<br>";
         $q_rows->next_result();
         $q_rows->free_result();
 
@@ -53,6 +58,7 @@ class Reportes_model extends CI_Model
         $query = $this->sqlsrv->fetchArray($query,SQLSRV_FETCH_ASSOC);
 
         foreach($query as $key){
+
             $json['data'][$i]['FACTURA'] = "<p class='negra noMargen'>".$key['FACTURA']."</p>";
             $json['data'][$i]['FECHA'] = $key['FECHA']->format('d-m-Y');
             $json['data'][$i]['PUNTOS'] = number_format($key['PUNTOS'],0);
@@ -60,6 +66,7 @@ class Reportes_model extends CI_Model
             $json['data'][$i]['DISPONIBLE'] = $this->formatDecimal($this->canje_model->getSaldoParcial($key['FACTURA'],$key['PUNTOS']));
             $i++;
         }
+
         echo json_encode($json);
         return $json;
         $this->sqlsrv->close();

@@ -37,6 +37,57 @@
 			table.search(this.value).draw();
 		});
 	});
+    
+    $('#estadoCuenta').click(function(){//funcion para filtrar el estado de cuenta del cliente
+        
+        var Fecha1 = $('#CXCfecha1').val();
+        var Fecha2 = $('#CXCfecha2').val();
+        limpiarTabla(TbCatalogo);
+        $('#loadCuenta').show();
+        $('#TbCatalogo').DataTable({
+                "order": [[ 1, "desc" ]],
+                "ajax":{
+                "url": "buscarEstadoCuenta",
+                "data": function ( d ) {
+                        d.fecha1 = Fecha1;
+                        d.fecha2 = Fecha2;
+                    }
+                },
+                "info":    false,
+                "bPaginate": false,
+                "paging": false,
+                "pagingType": "full_numbers",
+                "lengthMenu": [[10, -1], [10, "Todo"]],
+                "language": {
+                    "emptyTable": "No hay datos disponibles en la tabla",
+                    "lengthMenu": '_MENU_ ',
+                    "search": '<i class=" material-icons">search</i>',
+                    "loadingRecords": "cargando...",
+                    "paginate": {
+                        "first": "Primera",
+                        "last": "Última ",
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"
+                    }
+                },
+               columns: [
+                    { "data": "FACTURA" },
+                    { "data": "FECHA" },
+                    { "data": "PUNTOS" },
+                    { "data": "APLICADOS" },
+                    { "data": "DISPONIBLE" }
+              ]
+            });
+            $('#TbCatalogo').on( 'init.dt', function () {
+                $('#loadCuenta').hide();
+                var totalAcumulado=0;
+                    obj = $('#TbCatalogo').DataTable();
+                    obj.rows().data().each( function (index,value) {
+                        totalAcumulado += parseInt(obj.row(value).data().DISPONIBLE);
+                    });
+                $('#TotalEstado').text(totalAcumulado);
+            }).dataTable();
+    });
 
 	function detalleFactura(factura) {
 		$('#modalDetalleFact').openModal();
@@ -77,6 +128,9 @@
             }).dataTable();
 		
 	}
+    function generar_reporte_pdf () {
+        $('#frmEstadoCuenta').submit();
+    }
 	function limpiarTabla (idTabla) {
         idTabla = $(idTabla).DataTable();
         idTabla.destroy();

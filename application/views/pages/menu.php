@@ -31,38 +31,63 @@
                            <a href="Reportes"><li href="Reportes"><i class="material-icons">description</i> reportes</li></a>
                            <a href="#modalOpciones" class="modal-trigger"><li href="#"><i class="material-icons">settings</i> opciones</li></a>
                            <a href="salir"> <li href="salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a>';
-                  break;
-                case 'SuperAdministrador':
-
+                break;
+                case 'Administrador':
+                  $menu = '<a href="Main"><li href="Main"><i class="material-icons">home</i> inicio</li></a>
+                           <a href="Catalogo"><li href="Catalogo"><i class="material-icons">dashboard</i> catálogo</li></a>
+                           <a href="facturas"><li href="facturas"><i class="material-icons">assignment</i> facturas</li></a>
+                           <a href="Clientes"><li href="Clientes"><i class="material-icons">supervisor_account</i> clientes</li></a>
+                           <a href="PuntosClientes"><li href="PuntosClientes"><i class="material-icons">content_copy</i> puntos clientes</li></a>
+                           <a href="Reportes"><li href="Reportes"><i class="material-icons">description</i> reportes</li></a>
+                           <a href="#modalOpciones" class="modal-trigger"><li href="#"><i class="material-icons">settings</i> opciones</li></a>
+                           <a href="salir"> <li href="salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a>';
+                break;
+                case 'Cartera':
+                  $menu = '<a href="Main"><li href="Main"><i class="material-icons">home</i> inicio</li></a>
+                           <a href="facturas"><li href="facturas"><i class="material-icons">assignment</i> facturas</li></a>
+                           <a href="Clientes"><li href="Clientes"><i class="material-icons">supervisor_account</i> clientes</li></a>
+                           <a href="PuntosClientes"><li href="PuntosClientes"><i class="material-icons">content_copy</i> puntos clientes</li></a>
+                           <a href="Frp"><li href="Frp"><i class="material-icons">payment</i> canje puntos (frp)</li></a>
+                           <a href="FRE"><li href="FRE"><i class="material-icons">attach_money</i> canje efectivo (fre)</li></a>
+                           <a href="Reportes"><li href="Reportes"><i class="material-icons">description</i> reportes</li></a>
+                           <a href="#modalOpciones" class="modal-trigger"><li href="#"><i class="material-icons">settings</i> opciones</li></a>
+                           <a href="salir"> <li href="salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a>';
+                break;
+                case 'SAC':
+                  $menu = '<a href="Main"><li href="Main"><i class="material-icons">home</i> inicio</li></a>
+                           <a href="facturas"><li href="facturas"><i class="material-icons">assignment</i> facturas</li></a>
+                           <a href="#modalOpciones" class="modal-trigger"><li href="#"><i class="material-icons">settings</i> opciones</li></a>
+                           <a href="salir"> <li href="salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a>';
+                break;
+                case 'Vendedor':
+                  $menu = '<a href="Main"><li href="Main"><i class="material-icons">home</i> inicio</li></a>
+                           <a href="facturas"><li href="facturas"><i class="material-icons">assignment</i> facturas</li></a>
+                           <a href="PuntosClientes"><li href="PuntosClientes"><i class="material-icons">content_copy</i> puntos clientes</li></a>
+                           <a href="#modalOpciones" class="modal-trigger"><li href="#"><i class="material-icons">settings</i> opciones</li></a>
+                           <a href="salir"> <li href="salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a>';
+                break;
+                case 'Cliente':
+                  $menu = '<a href="Main"><li href="Main"><i class="material-icons">home</i> inicio</li></a>
+                           <a href="facturas"><li href="facturas"><i class="material-icons">assignment</i> facturas</li></a>
+                           <a href="estadoCuenta"><li href="estadoCuenta"><i class="material-icons">content_copy</i> estado de cuenta</li></a>
+                           <a href="#modalOpciones" class="modal-trigger"><li href="#"><i class="material-icons">settings</i> opciones</li></a>
+                           <a href="salir"> <li href="salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a>';
                 break;
                 default:
-                  # code...
+                  $menu = '<a href="salir"> <li href="salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a>';
                   break;
               }
-
               echo $menu;
-            ?>
-               
+            ?>               
           </ul>
        </div>
     </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
                     <!--***************MODAL CAMBIO DE CONTRASEÑA***********-->
 <div id="modalOpciones" class="modal">
-    <div class="btnCerrar right"><i style='color:red;' class="material-icons modal-action modal-close">highlight_off</i></div>
-  
+    <div class="btnCerrar right"><i style='color:red;' class="material-icons modal-action modal-close">highlight_off</i></div>  
     <div class="modal-content">
         <div class="row TextColor center">
           <div class="col s8 m6 l6 offset-s2 offset-m3 offset-l3">CAMBIO DE CONTRASEÑA</div>

@@ -25,9 +25,18 @@ class Cliente_model extends CI_Model
     public function LoadClientsPuntos(){
         $i=0;
         $json = array();
-        $query = $this->sqlsrv->fetchArray("SELECT CLIENTE, NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS, (SELECT RUC FROM vtVS2_Clientes WHERE vtVS2_Clientes.CLIENTE= vtVS2_Facturas_CL.CLIENTE) AS RUC 
-            FROM vtVS2_Facturas_CL WHERE FECHA >= '".$this->CONDICION."'
-            GROUP BY CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
+        if ($this->session->userdata('RolUser')=="Vendedor" && $this->session->userdata('Zona')!=""){
+            $consulta = "SELECT CLIENTE, NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS, (SELECT RUC FROM vtVS2_Clientes WHERE vtVS2_Clientes.CLIENTE= vtVS2_Facturas_CL.CLIENTE) AS RUC 
+                        FROM vtVS2_Facturas_CL WHERE RUTA = '".$this->session->userdata('Zona')."'
+                        GROUP BY CLIENTE,NOMBRE_CLIENTE";
+        }else{
+            $consulta = "SELECT CLIENTE, NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS, (SELECT RUC FROM vtVS2_Clientes WHERE vtVS2_Clientes.CLIENTE= vtVS2_Facturas_CL.CLIENTE) AS RUC 
+                        FROM vtVS2_Facturas_CL
+                        GROUP BY CLIENTE,NOMBRE_CLIENTE";
+        }
+
+        $query = $this->sqlsrv->fetchArray($consulta
+            ,SQLSRV_FETCH_ASSOC);
         $json['query'][$i]['CLIENTE'] = "";  $json['query'][$i]['NOMBRE'] = "";
         $json['query'][$i]['PUNTOS'] = "";    $json['query'][$i]['RUC'] = "";
 

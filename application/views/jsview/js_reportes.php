@@ -7,7 +7,7 @@
             table.search(this.value).draw();
         });
 
-		$('#generarCtaXcte').click(function(){			
+		$('#generarCtaXcte').click(function(){		
 			var idCliente = $('#ListCliente').val();
             var Fecha1 = $('#CXCfecha1').val();
             var Fecha2 = $('#CXCfecha2').val();
