@@ -47,7 +47,7 @@
                 },
                 "dom": 'T<"clear">lfrtip',
                 "tableTools": {
-                    "sSwfPath": "http://192.168.1.64:8448/visys/ReportesVisys/assets/data/swf/copy_csv_xls_pdf.swf"
+                    "sSwfPath": "<?php echo base_url(); ?>assets/data/swf/copy_csv_xls_pdf.swf",
                 },
                columns: [
                     { "data": "FACTURA" },
@@ -102,11 +102,8 @@
                 Fecha2 = ($('#CXCfecha2').val()=="") ? "null" : $('#CXCfecha2').val()
                     a.href = "pdfCTAxCLIENTE/"+idCliente+"/"+Fecha1+"/"+Fecha2;
                     break;
-                case hola:
-                    
-                    break;
                 default:
-                    alert("entro al otro");
+                    mensaje("ERROR...","error");
             }
             window.open(a);
         }
@@ -127,8 +124,10 @@
             if(f1!="" || f2!=""){
             $("#f1Detail").text(f1);
             $("#f2Detail").text(f2);
-            document.getElementById('miTablaReportes').innerHTML='';
-            document.getElementById('miTablaReportes').innerHTML='<table id="tblDetalleReportes" class="TblDatos center"><thead><tr></tr></thead></table>';
+            $('#loadIMG').show();
+            $('#miTablaReportes').html('');
+            $('#miTablaReportes').html('<table id="tblDetalleReportes" class="TblDatos center"><thead><tr></tr></thead></table>');
+
             var data,
                 tableName= '#tblDetalleReportes',
                 columns,
@@ -141,16 +140,17 @@
                     $(str).appendTo(tableName+'>thead>tr');
                 });
                 data.columns[3].render = function (data, type, row) {
-                     return data;
+                    return data;
                 }
                 $(tableName).dataTable({
                     "dom": 'T<"clear">lfrtip',
                     "tableTools": {
-                        "sSwfPath": "http://192.168.1.64:8448/visys/ReportesVisys/assets/data/swf/copy_csv_xls_pdf.swf",
-                    },                    
+                        "sSwfPath": "<?php echo base_url(); ?>assets/data/swf/copy_csv_xls_pdf.swf",
+                    },
                     "data": data.data,
                     "columns": data.columns,
                     "info":false,
+                    "order": [[ 1, "desc" ]],
                     "pagingType": "full_numbers",
                     "lengthMenu": [[10, -1], [10, "Todo"]],
                     "language": {
@@ -167,6 +167,7 @@
                     },                    
                     "fnInitComplete": function () {
                     $('#tblDetalleReportes').on( 'init.dt', function () {
+                        $('#loadIMG').hide();
                         var totalAcumulado = 0;
                         obj = $('#tblDetalleReportes').DataTable();
                         obj.rows().data().each( function (index,value) {

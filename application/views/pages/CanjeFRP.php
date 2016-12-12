@@ -264,16 +264,15 @@
 <!-- Modal #4 Modal Structure -->
 <div id="Dfrp" class="modal">
     <div class="modal-content">
+            <div class="right row noMargen">
+                <a href="#!" class=" BtnClose modal-action modal-close noHover">
+                    <i class="material-icons">highlight_off</i>
+                </a>
+            </div>
             <div class="container center">
                 <div class="col s1" >
                     <div class="row">
                         <div class="col s11"><span id="titulM" class="Mcolor"> DETALLE FRP</span></div>
-                        
-                        <div class="col s1 m1 l1" >
-                            <a href="#!" class=" BtnClose modal-action modal-close noHover">
-                                <i class="material-icons">highlight_off</i>
-                            </a>
-                        </div>
                     </div>
                 </div>
 

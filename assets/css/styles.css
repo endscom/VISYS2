@@ -71,6 +71,9 @@
 #nuevoArticulo{
   width: 83%;
 }
+#modalNuevoCatalogo{
+  height: 80%!important;
+}
 .negra{
   font-family: 'robotoblack'!important;
 }

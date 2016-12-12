@@ -1,3 +1,21 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 12-12-2016 a las 17:09:41
+-- Versión del servidor: 10.1.13-MariaDB
+-- Versión de PHP: 5.6.23
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
 -- Base de datos: `visys`
 --
@@ -340,7 +358,7 @@ INSERT INTO `detallect` (`IdCT`, `IdIMG`, `Nombre`, `IMG`, `Puntos`, `Estado`) V
 --
 
 CREATE TABLE `detallefre` (
-  `IdFRE` int(11) DEFAULT NULL,
+  `IdFRE` varchar(11) DEFAULT NULL,
   `Factura` varchar(255) DEFAULT NULL,
   `Fecha` datetime DEFAULT NULL,
   `Puntos` int(11) DEFAULT NULL,
@@ -365,34 +383,6 @@ CREATE TABLE `detallefrp` (
   `IdCT` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Detalles del FRP';
 
---
--- Volcado de datos para la tabla `detallefrp`
---
-
-INSERT INTO `detallefrp` (`IdFRP`, `Factura`, `Fecha`, `Faplicado`, `IdArticulo`, `Descripcion`, `Puntos`, `Cantidad`, `IdCT`) VALUES
-(23432432, '00083218', '2016-10-12', 7000, 125106, 'PLANCHA OSTER GCSTBS5803 VAPOR', 1051, 1, 8),
-(23432432, '00083218', '2016-10-12', 7000, 151325, 'OLLA ARROC B&amp;D RC5200M INOX 20TZ', 2329, 1, 8),
-(23432432, '00083218', '2016-10-12', 7000, 125106, 'PLANCHA OSTER GCSTBS5803 VAPOR', 1051, 1, 8),
-(1234, '00083218', '2016-10-12', 2569, 125106, 'PLANCHA OSTER GCSTBS5803 VAPOR', 1051, 1, 8),
-(1234, '00083218', '2016-10-12', 2569, 149866, 'MINICOMP LG CM5760 13200W', 1518, 1, 8),
-(1234, '00083246', '2016-10-12', 1720, 149866, 'MINICOMP LG CM5760 13200W', 1720, 1, 8),
-(1234, '00083508', '2016-10-19', 3700, 149866, 'MINICOMP LG CM5760 13200W', 3700, 1, 8),
-(1234, '00083823', '2016-10-26', 20000, 149866, 'MINICOMP LG CM5760 13200W', 10933, 1, 8),
-(1234, '00083823', '2016-10-26', 20000, 125106, 'PLANCHA OSTER GCSTBS5803 VAPOR', 1051, 1, 8),
-(1222, '00083823', '2016-10-26', 8016, 125106, 'PLANCHA OSTER GCSTBS5803 VAPOR', 1051, 1, 8),
-(1222, '00083823', '2016-10-26', 8016, 149866, 'MINICOMP LG CM5760 13200W', 6965, 1, 8),
-(1222, '00083992', '2016-10-29', 1540, 149866, 'MINICOMP LG CM5760 13200W', 1540, 1, 8),
-(1222, '00084030', '2016-10-31', 1460, 149866, 'MINICOMP LG CM5760 13200W', 1460, 1, 8),
-(1222, '00084537', '2016-11-11', 2360, 149866, 'MINICOMP LG CM5760 13200W', 2360, 1, 8),
-(1222, '00084715', '2016-11-15', 12000, 149866, 'MINICOMP LG CM5760 13200W', 5546, 1, 8),
-(2222, '00083823', '2016-10-26', 8016, 125106, 'PLANCHA OSTER GCSTBS5803 VAPOR', 1051, 1, 8),
-(2222, '00083823', '2016-10-26', 8016, 149866, 'MINICOMP LG CM5760 13200W', 6965, 1, 8),
-(2222, '00083992', '2016-10-29', 1540, 149866, 'MINICOMP LG CM5760 13200W', 1540, 1, 8),
-(2222, '00084030', '2016-10-31', 1460, 149866, 'MINICOMP LG CM5760 13200W', 1460, 1, 8),
-(2222, '00084537', '2016-11-11', 2360, 149866, 'MINICOMP LG CM5760 13200W', 2360, 1, 8),
-(2222, '00084715', '2016-11-15', 12000, 149866, 'MINICOMP LG CM5760 13200W', 5546, 1, 8),
-(2222, '00084715', '2016-11-15', 12000, 125106, 'PLANCHA OSTER GCSTBS5803 VAPOR', 1051, 1, 8);
-
 -- --------------------------------------------------------
 
 --
@@ -400,7 +390,7 @@ INSERT INTO `detallefrp` (`IdFRP`, `Factura`, `Fecha`, `Faplicado`, `IdArticulo`
 --
 
 CREATE TABLE `fre` (
-  `IdFRE` int(11) NOT NULL,
+  `IdFRE` varchar(11) NOT NULL,
   `Fecha` datetime DEFAULT NULL,
   `IdCliente` varchar(255) DEFAULT NULL,
   `Nombre` varchar(255) DEFAULT NULL,
@@ -424,16 +414,6 @@ CREATE TABLE `frp` (
   `Anulado` varchar(1) NOT NULL,
   `IdCT` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `frp`
---
-
-INSERT INTO `frp` (`IdFRP`, `Fecha`, `IdCliente`, `Nombre`, `IdUsuario`, `Anulado`, `IdCT`) VALUES
-(23432432, '2016-12-02 00:00:00', '01378', 'FARMACIA IMPROMED', 220, 'N', 8),
-(1234, '2016-12-02 00:00:00', '01378', 'FARMACIA IMPROMED', 220, 'N', 8),
-(1222, '2016-12-02 00:00:00', '01378', 'FARMACIA IMPROMED', 220, 'S', 8),
-(2222, '2016-12-02 00:00:00', '01378', 'FARMACIA IMPROMED', 220, 'N', 8);
 
 -- --------------------------------------------------------
 
@@ -472,20 +452,6 @@ CREATE TABLE `rfactura` (
   `Puntos` int(20) NOT NULL,
   `FechaActualizacion` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `rfactura`
---
-
-INSERT INTO `rfactura` (`IdCliente`, `Factura`, `ttPuntos`, `Puntos`, `FechaActualizacion`) VALUES
-('01378', '00083218', 7000, 0, '2016-12-02 04:55:52'),
-('01378', '00083246', 1720, 0, '2016-12-02 04:55:52'),
-('01378', '00083508', 3700, 0, '2016-12-02 04:55:52'),
-('01378', '00083823', 20000, 0, '2016-12-02 05:23:42'),
-('01378', '00083992', 1540, 0, '2016-12-02 05:23:42'),
-('01378', '00084030', 1460, 0, '2016-12-02 05:23:42'),
-('01378', '00084537', 2360, 0, '2016-12-02 05:23:42'),
-('01378', '00084715', 12000, 5403, '2016-12-02 05:23:42');
 
 -- --------------------------------------------------------
 
@@ -613,10 +579,12 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`IdUsuario`, `Usuario`, `Nombre`, `Clave`, `Rol`, `IdCL`, `Cliente`, `Zona`, `Estado`, `FechaCreacion`, `FechaBaja`) VALUES
 (1, 'admin', 'admin', '202cb962ac59075b964b07152d234b70', 'Administrador', '', NULL, '', b'0', '2016-06-27 00:00:00', '0000-00-00 00:00:00'),
-(242, 'FDAVID', 'FARMACIA DAVID', '202cb962ac59075b964b07152d234b70', 'Vendedor', '00001', 'FARMACIA DAVID', 'F09', b'0', '2016-11-03 03:31:27', '2016-12-03 16:54:37'),
-(244, 'FLAPROVIDENCIA', 'FARMACIA LA PROVIDENCIA', '202cb962ac59075b964b07152d234b70', 'Vendedor', '00003', 'FARMACIA LA PROVIDENCIA', 'F06', b'0', '2016-11-04 10:57:18', '2016-11-04 11:42:38'),
-(245, 'FLAPRINCIPAL', 'FARMACIA LA PRINCIPAL', '202cb962ac59075b964b07152d234b70', 'Vendedor', '00002', 'FARMACIA LA PRINCIPAL', 'F06', b'0', '2016-11-04 10:57:18', '2016-11-04 11:42:35'),
-(220, 'alder', 'alder', '202cb962ac59075b964b07152d234b70', 'SuperAdministrador', '', NULL, NULL, b'0', '2016-09-22 13:31:24', NULL);
+(220, 'alder', 'alder', '202cb962ac59075b964b07152d234b70', 'SuperAdministrador', '', NULL, NULL, b'0', '2016-09-22 13:31:24', NULL),
+(329, 'ana.bello', 'ana.bello', '202cb962ac59075b964b07152d234b70', 'Cliente', '03000', 'FARMACIA MERIDIONAL', 'F05', b'0', '2016-12-05 18:51:42', NULL),
+(334, 'sac', 'sac', '202cb962ac59075b964b07152d234b70', 'SAC', '', NULL, NULL, b'0', '2016-12-06 15:40:44', NULL),
+(335, 'F03', 'vendedor', '202cb962ac59075b964b07152d234b70', 'Vendedor', '', NULL, 'F03', b'0', '2016-12-06 15:48:14', NULL),
+(336, 'cartera', 'cartera', '202cb962ac59075b964b07152d234b70', 'Cartera', '', NULL, NULL, b'0', '2016-12-06 16:15:28', NULL),
+(337, 'meridional', 'meridional', '202cb962ac59075b964b07152d234b70', 'Cliente', '03000', 'FARMACIA MERIDIONAL', 'F03', b'0', '2016-12-06 16:22:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -665,7 +633,7 @@ INSERT INTO `vendedor` (`IdVendedor`, `Nombre`, `Zona`, `Estado`) VALUES
 --
 CREATE TABLE `view_all_fre` (
 `Fecha` datetime
-,`IdFRE` int(11)
+,`IdFRE` varchar(11)
 ,`IdCliente` varchar(255)
 ,`Nombre` varchar(255)
 ,`Puntos` decimal(32,0)
@@ -718,7 +686,7 @@ CREATE TABLE `view_clientesactivos` (
 -- Estructura Stand-in para la vista `view_fre_factura`
 --
 CREATE TABLE `view_fre_factura` (
-`IdFRE` int(11)
+`IdFRE` varchar(11)
 ,`Factura` varchar(255)
 ,`IdCliente` varchar(255)
 ,`Puntos` int(11)
@@ -885,12 +853,12 @@ ALTER TABLE `vendedor`
 -- AUTO_INCREMENT de la tabla `catalogo`
 --
 ALTER TABLE `catalogo`
-  MODIFY `IdCT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IdCT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `IdUsuario` int(50) NOT NULL AUTO_INCREMENT COMMENT 'Id de usuario', AUTO_INCREMENT=279;
+  MODIFY `IdUsuario` int(50) NOT NULL AUTO_INCREMENT COMMENT 'Id de usuario', AUTO_INCREMENT=338;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

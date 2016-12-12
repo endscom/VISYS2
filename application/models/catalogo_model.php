@@ -161,12 +161,12 @@ class Catalogo_model extends CI_Model
                 $i++;
             }
         }   else {   
-                    $json['data'][$i]['CodigoImg']  = "";
-                    $json['data'][$i]['Nombre']     = "";
-                    $json['data'][$i]['Imagen']     = "";
-                    $json['data'][$i]['Puntos']     = "";
-                    $json['data'][$i]['check']      = "";
-                    $json['data'][$i]['idCT']       = "";
+                    $json['data'][$i]['CodigoImg']  = "...";
+                    $json['data'][$i]['Nombre']     = "...";
+                    $json['data'][$i]['Imagen']     = "NO HAY ARTÍCULOS INACTIVOS";
+                    $json['data'][$i]['Puntos']     = "...";
+                    $json['data'][$i]['check']      = "...";
+                    $json['data'][$i]['idCT']       = "...";
             }
             echo json_encode($json);
         }

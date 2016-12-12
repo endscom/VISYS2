@@ -255,53 +255,67 @@
         FPunto = 0;
         Posi=0;
         var contador = ofact.rows().count();
+        var bandera = 0;
         obj.rows().data().each( function (ip) {
             remanente = parseInt(ip[4]);
             
             ofact.rows().data().each( function (index,value) {
-                if (linea<contador) {
-                var FAC = ofact.row(linea).data().FACTURA;
-                var FCH = ofact.row(linea).data().FECHA;
-                var FLPunto = ofact.row(linea).data().DISPONIBLE;
-                valor = 0;
-                apl = parseInt($("#AP1" + FAC).text());
-                dis = parseInt($("#DIS" + FAC).text());
-                est = ($("#EST" + FAC).text());
-                if (FPunto>0) {apl=FPunto;}
-                if (FPunto == 0){FPunto = ofact.row(linea).data().DISPONIBLE;}
                 
-                if (remanente > apl){
-                    valor = apl;
-                    FPunto = FPunto - apl;
-                }else{
-                    valor = remanente;
-                    FPunto = FPunto - remanente;
+                    //bandera=1;
+                    if (linea<contador) {
+                        if($('#CHK'+ofact.row(linea).data().FACTURA).is(':checked') ) {
+                        //alert('#CHK'+ofact.row(linea).data().FACTURA+"---"+linea);
+                        var FAC = ofact.row(linea).data().FACTURA;
+                        var FCH = ofact.row(linea).data().FECHA;
+                        var FLPunto = ofact.row(linea).data().DISPONIBLE;
+                        valor = 0;
+                        apl = parseInt($("#AP1" + FAC).text());
+                        dis = parseInt($("#DIS" + FAC).text());
+                        est = ($("#EST" + FAC).text());
+                        if (FPunto>0) {apl=FPunto;}
+                        if (FPunto == 0){FPunto = ofact.row(linea).data().DISPONIBLE;}
+                        
+                        if (remanente > apl){
+                            valor = apl;
+                            FPunto = FPunto - apl;
+                        }else{
+                            valor = remanente;
+                            FPunto = FPunto - remanente;
 
-                    if (remanente != 0){apl = Math.abs(FPunto);}
-                }
+                            if (remanente != 0){apl = Math.abs(FPunto);}
+                        }
 
-                if (remanente == 0) {
-                    return false;
-                } else {
-                    console.log(FAC + "," + "Puntos:" + FLPunto +", Aplica: " + valor + ", Pendiente: " + apl);
-                    detallesFactura[Posi] = idFrp+","+FAC+","+FLPunto+","+ip[1]+","+ip[2]+","+valor+","+ip[0]+","+FCH;
-                    Posi++;
-                }
+                        if (remanente == 0) {
+                            return false;
+                        } else {
+                            console.log(FAC + "," + "Puntos:" + FLPunto +", Aplica: " + valor + ", Pendiente: " + apl);
+                            detallesFactura[Posi] = idFrp+","+FAC+","+FLPunto+","+ip[1]+","+ip[2]+","+valor+","+ip[0]+","+FCH;
+                            Posi++;
+                            
+                            //if (valor<FLPunto) {linea--}
+                        }
 
-                if (remanente > valor) {
-                    remanente = remanente - apl;
-                } else {
-                    if (FPunto < 0) {
-                        remanente = Math.abs(FPunto);
-                        FPunto = 0;
-                    } else {
-                        remanente = 0;
+                        if (remanente > valor) {
+                            remanente = remanente - apl;
+                        } else {
+                            if (FPunto < 0) {
+                                remanente = Math.abs(FPunto);
+                                FPunto = 0;
+                            } else {
+                                remanente = 0;
+                            }
+                        }
+                        linea++;
                     }
+                    else{linea++;}
                 }
-                linea++;
-            }
             });
-            linea--
+            /*if (bandera==1) {
+                bandera=0;*/
+                //alert("---->"+linea);
+                linea--
+            //}
+            
         });
 
         totalFinalFRP =0;
@@ -326,16 +340,17 @@
         var viewFacturas     = new Array();
 
         obj.rows().data().each( function (index,value) {
-            var FAC = obj.row(value).data().FACTURA;
-            var FCH = obj.row(value).data().FECHA;
-            var FLPunto = obj.row(value).data().DISPONIBLE;
-            var apl = $("#AP1" + FAC).text();
-            dis = parseInt($("#DIS" + FAC).text());
-            est = ($("#EST" + FAC).text());
+            if($("#CHK"+obj.row(value).data().FACTURA).is(':checked') ) {
+                var FAC = obj.row(value).data().FACTURA;
+                var FCH = obj.row(value).data().FECHA;
+                var FLPunto = obj.row(value).data().DISPONIBLE;
+                var apl = $("#AP1" + FAC).text();
+                dis = parseInt($("#DIS" + FAC).text());
+                est = ($("#EST" + FAC).text());
             
-            if($("#CHK"+FAC).is(':checked') ) {
-                logFactura[i]      = IdCliente + "," + FAC + "," + apl+ "," + FLPunto;
-                viewFacturas[i]=new Array(6);
+            
+                logFactura[i]   =   IdCliente + "," + FAC + "," + apl+ "," + FLPunto;
+                viewFacturas[i] =   new Array(6);
                 viewFacturas[i][0] = FCH;
                 viewFacturas[i][1] = FAC;
                 viewFacturas[i][2] = FLPunto;
@@ -428,7 +443,6 @@
                         $("#spnTotalFRP").text(totalFinalFRP);
 
 
-
                         $("#frpProgress").hide();
                         $("#divTop,#divTbl").show();
                     } else {
@@ -437,7 +451,7 @@
                 }
         });
     }
-    $("#tblpRODUCTOS").delegate("a", "click", function(){console.log("entro");
+    $("#tblpRODUCTOS").delegate("a", "click", function(){
             $('#tblpRODUCTOS').DataTable().row('.selected').remove().draw( false );
 
             ttPts = 0;

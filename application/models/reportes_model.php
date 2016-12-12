@@ -27,7 +27,7 @@ class Reportes_model extends CI_Model
         $q_rows = $this->db->query("call pc_Clientes_Facturas ('".$codigo."')");
         if ($q_rows->num_rows() > 0) {
             $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
-					AND FECHA BETWEEN '".date('Y-d-m',strtotime($f1))."' AND '".date('Y-d-m',strtotime($f2))."'AND FECHA >= '".$this->CONDICION."' 
+					AND FECHA BETWEEN '".date('Y-d-m',strtotime($f1))."' AND '".date('Y-d-m',strtotime($f2))."'
                     AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
         }
 
@@ -38,7 +38,7 @@ class Reportes_model extends CI_Model
         if ($q_rows->num_rows() > 0) {
             if ($query=="") {
                 $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
-					AND FECHA BETWEEN '".date('Y-d-m',strtotime($f1))."' AND '".date('Y-d-m',strtotime($f2))."'AND FECHA >= '".$this->CONDICION."'
+					AND FECHA BETWEEN '".date('Y-d-m',strtotime($f1))."' AND '".date('Y-d-m',strtotime($f2))."'
                     AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
             }else{
                 $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
@@ -47,7 +47,7 @@ class Reportes_model extends CI_Model
         
         if ($query==""){
             $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
-					  AND FECHA BETWEEN '".$f1."' AND '".$f2."' AND FECHA >= '".$this->CONDICION."' GROUP BY FACTURA, FECHA ";
+					  AND FECHA BETWEEN '".$f1."' AND '".$f2."' GROUP BY FACTURA, FECHA ";
         }
         //echo $query."<br>";
         $q_rows->next_result();
@@ -56,6 +56,11 @@ class Reportes_model extends CI_Model
     	$i=0;
         $json = array();
         $query = $this->sqlsrv->fetchArray($query,SQLSRV_FETCH_ASSOC);
+            $json['data'][$i]['FACTURA'] = "-";
+            $json['data'][$i]['FECHA'] = "-";
+            $json['data'][$i]['PUNTOS'] = "NO HAY DATOS";
+            $json['data'][$i]['APLICADOS'] = "-";
+            $json['data'][$i]['DISPONIBLE'] = "-";
 
         foreach($query as $key){
 
@@ -106,14 +111,14 @@ class Reportes_model extends CI_Model
         $i=0;
         $json = array();
         $query = $this->sqlsrv->fetchArray("SELECT CLIENTE,NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL
-                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
                                             GROUP BY CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
                                             
         foreach($query as $key){
             $json['data'][$i]['NUMERO'] = $i+1;
             $json['data'][$i]['CODIGO'] = $key['CLIENTE'];
             $json['data'][$i]['CLIENTE'] = $key['NOMBRE_CLIENTE'];
-            $json['data'][$i]['PUNTOS'] = $key['PUNTOS'];
+            $json['data'][$i]['PUNTOS'] = $this->formatDecimal($key['PUNTOS']);
             $i++;
         }
             $json['columns'][0]['data'] = "NUMERO";
@@ -137,13 +142,13 @@ class Reportes_model extends CI_Model
         $i=0;
         $json = array();
         $query = $this->sqlsrv->fetchArray("SELECT FECHA,FACTURA,CLIENTE,NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS  FROM vtVS2_Facturas_CL
-                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
                                             GROUP BY FACTURA,FECHA,CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
                                             
         foreach($query as $key){
-            $json['data'][$i]['FACTURA'] = $key['FACTURA'];
+            $json['data'][$i]['FACTURA'] = "<p class='negra noMargen'>".$key['FACTURA']."</p>";
             $json['data'][$i]['CODIGO'] = $key['CLIENTE'];
-            $json['data'][$i]['CLIENTE'] = $key['NOMBRE_CLIENTE'];
+            $json['data'][$i]['CLIENTE'] = "<p class='mediana noMargen'>".$key['NOMBRE_CLIENTE']."</p>";
             $json['data'][$i]['PUNTOS'] = number_format($this->formatDecimal($this->canje_model->getSaldoParcial($key['FACTURA'],$key['PUNTOS'])),0);
             $json['data'][$i]['ESTADO'] = ($json['data'][$i]['PUNTOS']==0) ? "APLICADO" : "ACTIVO";
             $i++;
@@ -167,15 +172,14 @@ class Reportes_model extends CI_Model
         $i=0;
         $json = array();
         $query = $this->sqlsrv->fetchArray("SELECT DESCRIPCION,CANTIDAD,CLIENTE,NOMBRE_CLIENTE,RUTA,FACTURA,FECHA FROM vtVS2_MASTER_COMPRAS 
-                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'"
-                                            ,SQLSRV_FETCH_ASSOC);
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'",SQLSRV_FETCH_ASSOC);
                                             
         foreach($query as $key){
             $json['data'][$i]['NUMERO'] = $i+1;
-            $json['data'][$i]['DESCRIPCION'] = $key['DESCRIPCION'];
+            $json['data'][$i]['DESCRIPCION'] = "<p class='negra noMargen'>".$key['DESCRIPCION']."</p>";
             $json['data'][$i]['CANTIDAD'] = $this->formatDecimal($key['CANTIDAD'],1);
             $json['data'][$i]['CLIENTE'] = $key['CLIENTE'];
-            $json['data'][$i]['NOMBRE'] = $key['NOMBRE_CLIENTE'];
+            $json['data'][$i]['NOMBRE'] = "<p class='negra noMargen'>".$key['NOMBRE_CLIENTE']."</p>";
             $json['data'][$i]['RUTA'] = $key['RUTA'];
             $json['data'][$i]['FACTURA'] = $key['FACTURA'];
             $json['data'][$i]['FECHA'] = $key['FECHA']->format('d-m-Y');
@@ -206,14 +210,14 @@ class Reportes_model extends CI_Model
         $i=0;
         $json = array();
         $query = $this->sqlsrv->fetchArray("SELECT FECHA,RUTA,SUM(TT_PUNTOS) AS PUNTOS, FACTURA,CLIENTE, NOMBRE_CLIENTE from vtVS2_Facturas_CL
-                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
                                             GROUP BY FACTURA,FECHA,RUTA,CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
                                             
         foreach($query as $key){
-            $json['data'][$i]['FECHA'] = $key['FECHA']->format('d-m-Y');
+            $json['data'][$i]['FECHA'] = "<p class='negra noMargen'>".$key['FECHA']->format('d-m-Y')."</p>";
             $json['data'][$i]['RUTA'] = $key['RUTA'];
-            $json['data'][$i]['PUNTOS'] = $key['PUNTOS'];
-            $json['data'][$i]['FACTURA'] = $key['FACTURA'];
+            $json['data'][$i]['PUNTOS'] = $this->formatDecimal($key['PUNTOS']);
+            $json['data'][$i]['FACTURA'] = "<p class='negra noMargen'>".$key['FACTURA']."</p>";
             $json['data'][$i]['CLIENTE'] = $key['CLIENTE'];
             $json['data'][$i]['NOMBRE'] = $key['NOMBRE_CLIENTE'];
             $i++;
@@ -239,15 +243,15 @@ class Reportes_model extends CI_Model
         $i=0;
         $json = array();
         $query = $this->sqlsrv->fetchArray("SELECT TOP 10 ARTICULO,DESCRIPCION,SUM(CANTIDAD) AS CANTIDAD,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL
-                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
                                             GROUP BY ARTICULO,DESCRIPCION ORDER BY PUNTOS DESC",SQLSRV_FETCH_ASSOC);
 
         foreach($query as $key){
             $json['data'][$i]['NUMERO'] = $i+1;
             $json['data'][$i]['ARTICULO'] = $key['ARTICULO'];
-            $json['data'][$i]['DESCRIPCION'] = $key['DESCRIPCION'];
+            $json['data'][$i]['DESCRIPCION'] = "<p class='negra noMargen'>".$key['DESCRIPCION']."</p>";
             $json['data'][$i]['CANTIDAD'] = number_format($key['CANTIDAD'],0);
-            $json['data'][$i]['PUNTOS'] = number_format($key['PUNTOS'],0);
+            $json['data'][$i]['PUNTOS'] = "<p class='mediana'>".number_format($key['PUNTOS'],0)."</p>";
             $i++;
         }
             $json['columns'][0]['data'] = "NUMERO";
@@ -281,9 +285,8 @@ class Reportes_model extends CI_Model
                                             COUNT(CASE WHEN MONTH(FECHA_INGRESO)=10 THEN FECHA_INGRESO END) AS OCT,
                                             COUNT(CASE WHEN MONTH(FECHA_INGRESO)=11 THEN FECHA_INGRESO END) AS NOV,
                                             COUNT(CASE WHEN MONTH(FECHA_INGRESO)=12 THEN FECHA_INGRESO END) AS DIC
-                                            FROM umk.CLIENTE
-                                            WHERE FECHA_INGRESO BETWEEN '".$fecha1."' AND '".$fecha2."'
-                                            AND FECHA_INGRESO >= '".$this->CONDICION."'",SQLSRV_FETCH_ASSOC);
+                                            FROM Softland.umk.CLIENTE
+                                            WHERE FECHA_INGRESO BETWEEN '".$fecha1."' AND '".$fecha2."'",SQLSRV_FETCH_ASSOC);
 
         foreach($query as $key){
             $json['data'][$i]['ENE'] =$key['ENE'];
@@ -345,7 +348,7 @@ class Reportes_model extends CI_Model
                                             ISNULL(SUM(CASE WHEN MONTH(FECHA)=11 THEN TT_PUNTOS END),0) AS NOV,
                                             ISNULL(SUM(CASE WHEN MONTH(FECHA)=12 THEN TT_PUNTOS END),0) AS DIC
                                             FROM vtVS2_Facturas_CL 
-                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
                                             GROUP BY DESCRIPCION
                                             ORDER BY TOTAL DESC;",SQLSRV_FETCH_ASSOC);
         
@@ -415,7 +418,7 @@ class Reportes_model extends CI_Model
                                             ISNULL(SUM(CASE WHEN MONTH(FECHA)=11 THEN TT_PUNTOS END),0) AS NOV,
                                             ISNULL(SUM(CASE WHEN MONTH(FECHA)=12 THEN TT_PUNTOS END),0) AS DIC
                                             FROM vtVS2_Facturas_CL 
-                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
                                             GROUP BY DESCRIPCION
                                             ORDER BY TOTAL",SQLSRV_FETCH_ASSOC);
         
@@ -485,7 +488,7 @@ class Reportes_model extends CI_Model
                                             ISNULL(SUM(CASE WHEN MONTH(FECHA)=11 THEN TT_PUNTOS END),0) AS NOV,
                                             ISNULL(SUM(CASE WHEN MONTH(FECHA)=12 THEN TT_PUNTOS END),0) AS DIC
                                             FROM vtVS2_Facturas_CL
-                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' AND FECHA >= '".$this->CONDICION."'
+                                            WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
                                             GROUP BY CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
         
         foreach($query as $key){

@@ -308,14 +308,11 @@
                 <p class="Dato">TOTAL DE PUNTOS: <span id="spanTotal" class="dato"></span></p>
             </div>
         </div>
+        <div id="loadIMG" style="display:none" class="progress">
+            <div class="indeterminate"></div>
+        </div>
         <div class="row" id="miTablaReportes">
-            <div id="loadIMG" style="display:none" class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue-only">
-                    <div class="circle-clipper left"><div class="circle"></div></div>
-                        <div class="gap-patch"><div class="circle"></div></div>
-                    <div class="circle-clipper right"><div class="circle"></div></div>
-                </div>
-            </div>
+            
             <table id="tblDetalleReportes" class="TblDatos">
                <thead><tr></tr></thead>
             </table>
