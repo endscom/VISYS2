@@ -5270,10 +5270,9 @@ a.waves-effect .waves-ripple {
   border-radius: 2px;
   will-change: top, opacity;
 }
- #MFrp.modal
-{
-  width: 80% !important;
-   max-height: 90% !important;
+#MFrp.modal{
+  width: 90% !important;
+  max-height: 90% !important;
 }
  #Dfre, #SPdet, #cxpdet,#MxPdet, #CanjeSPDdet, #RepFechadet, #MaVinetadet{
    width: 72% !important;
