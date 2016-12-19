@@ -8,6 +8,7 @@
         idTabla.clear();
         idTabla.draw();
     }
+
     $('#searchFRP').on( 'keyup', function () {
         var table = $('#tblFRP').DataTable();
         table.search( this.value ).draw();
@@ -52,6 +53,7 @@
                 "info":    false,
                 "bPaginate": false,
                 "paging": false,
+                "ordering": false,
                 "pagingType": "full_numbers",
                 columns: [
                     { "data": "FECHA" },
@@ -141,7 +143,33 @@
         }
         $('#float-select-producto > option[value="0"]').attr('selected', 'selected');
     });
-    
+
+    $("#tblpRODUCTOS").delegate("a", "click", function(){
+            $('#tblpRODUCTOS').DataTable().row('.selected').remove().draw( false );
+            
+            ttPts = 0;
+            
+            $('#tblpRODUCTOS').DataTable().column(4).data().each( function ( value, index ) {
+                ttPts += parseInt(value);
+            });
+            //var total = $('#idttPtsCLsFRP').val();
+            if (ttPts==0) {
+                $('#idttPtsCLsFRP').html(ttPts);
+            }
+            $("#idttPtsFRP").text(ttPts);
+            apliAutomatic(ttPts);
+    });
+    var table = $('#tblpRODUCTOS').DataTable();
+    $('#tblpRODUCTOS tbody').on( 'click', 'a', function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        var total = $("#idttPtsCLsFRP").text();
+        //alert (data[4]);
+        if (parseInt(data[4])> parseInt(total)) {
+            //alert("es mayor");
+            $("#idttPtsCLsFRP").text("0");
+        }
+        apliAutomatic(total-data[4]);
+    } );
 
     function apliAutomatic(pts){
         var obj = $('#tblFacturaFRP').DataTable();
@@ -154,7 +182,7 @@
             $("#EST" + FACTURA).html("");
             $("#CHK"+FACTURA).prop('checked', false);
         });
-        console.log(pts);
+
         if (pts > 0 ){
             obj.rows().data().each( function (index,value) {
                 var FACTURA   =  obj.row(value).data().FACTURA;
@@ -183,8 +211,8 @@
                     $("#CHK"+FACTURA).prop('checked', true);
                 }
             });
-        }//console.log("entro al apliautomatic");
-    };
+        }
+    }
     
     $("#btnProcesar").click(function(){
         numFRP = $("#frp").val();
@@ -238,7 +266,6 @@
 
    function SaveFRP(idFrp,Fecha){
         var linea = 0;
-        var menos = 0;
         var remanente =0;
         var detallesFactura  = new Array();
         var logFactura       = new Array();
@@ -254,17 +281,21 @@
         total  = parseInt($("#idttPtsFRP").text());
         FPunto = 0;
         Posi=0;
+        var ultima = -1;
         var global=0;
         var contador = ofact.rows().count();
         
         obj.rows().data().each( function (ip) {
             remanente = parseInt(ip[4]);
-            
-            ofact.rows().data().each( function (index,value) {                
+            if (ultima!=-1) {
+                        linea = ultima;
+                        ultima = -1;
+                    };
+            ofact.rows().data().each( function (index,value) {
                     
                     if (linea<contador) {
                         if($('#CHK'+ofact.row(linea).data().FACTURA).is(':checked') ) {                        
-
+                        //value = value;
                         var FAC = ofact.row(linea).data().FACTURA;
                         var FCH = ofact.row(linea).data().FECHA;
                         var FLPunto = ofact.row(linea).data().DISPONIBLE;
@@ -300,21 +331,20 @@
                                 remanente = Math.abs(FPunto);
                                 FPunto = 0;
                             } else {
-                                remanente = 0;
+                                remanente = 0;                                
                             }
                         }
                         linea++;
-
                     }
                     else{
-                        if (apl>0) {
-                            value--;
-                            linea--;
-                        };
                         linea++;
                     }
+                    if (remanente==0 && (FLPunto-valor)>0) {
+                        ultima = linea-1;
+                    }
                 }
-            });            
+            });
+
             linea--;
         });
 
@@ -369,98 +399,101 @@
             fac: detallesFactura,
             log: logFactura
         };
-
-        $.ajax({
-            url: "saveFRP",
-            type: "post",
-            async:true,
-            data: form_data,
-            success:
-                function(data){
-                    if (data==1){
-                        $("#spnFRP").text(idFrp);
-                        $("#spnFecha").text(Fecha);
-                        $("#spnCodCls").text(IdCliente);
-                        $("#spnNombreCliente").text(Nombre);
-
-                        $('#tblModal1').DataTable( {
-                            data: viewFacturas,
-                            "info":    false,
-                            //"order": [[ 2, "asc" ]],
-                            //"searching": false,
-                            "bLengthChange": true,
-                            "bPaginate": false,
-                            "lengthMenu": [[10,15,32,100,-1], [10,15,32,100,"Todo"]],
-                            "language": {
-                                "paginate": {
-                                    "first":      "Primera",
-                                    "last":       "Última ",
-                                    "next":       "Siguiente",
-                                    "previous":   "Anterior"
-                                },
-                                "lengthMenu":"Mostrar _MENU_",
-                                "emptyTable": "No hay datos disponibles en la tabla",
-                                "search":     ""},
-                                columns: [
-                                { title: "FECHA" },
-                                { title: "BOUCHER" },
-                                { title: "Pts." },
-                                { title: "Pts. APLI." },
-                                { title: "Pts. DISP." },
-                                { title: "ESTADO" }
-                            ]
-                        } );
-
-                        $('#tblModal2').DataTable( {
-                            data: viewProductos,
-                            "info":    false,
-                            //"order": [[ 2, "asc" ]],
-                            //"searching": false,
-                            "bLengthChange": true,
-                            "bPaginate": false,
-                            "lengthMenu": [[10,15,32,100,-1], [10,15,32,100,"Todo"]],
-                            "language": {
-                                "paginate": {
-                                    "first":      "Primera",
-                                    "last":       "Última ",
-                                    "next":       "Siguiente",
-                                    "previous":   "Anterior"
-                                },
-                                "lengthMenu":"Mostrar _MENU_",
-
-                                "emptyTable": "No hay datos disponibles en la tabla",
-                                "search":     ""
-                            },
-                            columns: [
-                                { title: "CANT." },
-                                { title: "COD. PREMIO" },
-                                { title: "DESCRIPCIÓN" },
-                                { title: "Pts." },
-                                { title: "TOTAL Pts." }
-                            ]
-                        } );
-
-                        $("#spnTotalFRP").text(totalFinalFRP);
-
-
-                        $("#frpProgress").hide();
-                        $("#divTop,#divTbl").show();
-                    } else {
-                        mensaje("ERROR AL CREAR EL FRP","error");
-                    }
-                }
+        ofact = $('#tblFacturaFRP').DataTable();
+        var linea2 = 0;
+        var banderaSave =0;
+        ofact.rows().data().each( function (index,value) {
+            var FAC = ofact.row(linea2).data().FACTURA;
+                    var FCH = ofact.row(linea2).data().FECHA;
+                    dis = parseInt($("#DIS" + FAC).text());
+            if ($("#DIS" + FAC).text()!=0 || $("#DIS" + FAC).text()!="") {
+                banderaSave++;
+            }
+            linea2++;
         });
-    }
-    $("#tblpRODUCTOS").delegate("a", "click", function(){
-            $('#tblpRODUCTOS').DataTable().row('.selected').remove().draw( false );
+        if (banderaSave > 1) {
+            //mensaje("NO PUEDEN EXISTIR 2 FACTURAS CON REMANENTE, POR FAVOR APLIQUE LAS FACTURAS EN FORMA DESCENDENTE","error");
+            $('#Dfrp').closeModal();
+            banderaSave = 0;
+        }
+        if(banderaSave<2){
+            $.ajax({
+                url: "saveFRP",
+                type: "post",
+                async:true,
+                data: form_data,
+                success:
+                    function(data){
+                        if (data==1){
+                            $("#spnFRP").text(idFrp);
+                            $("#spnFecha").text(Fecha);
+                            $("#spnCodCls").text(IdCliente);
+                            $("#spnNombreCliente").text(Nombre);
 
-            ttPts = 0;
-            $('#tblpRODUCTOS').DataTable().column(4).data().each( function ( value, index ) {
-                ttPts += parseInt(value);
-            } );
-            $("#idttPtsFRP").text(ttPts);
-            apliAutomatic(ttPts);
-    });
+                            $('#tblModal1').DataTable( {
+                                data: viewFacturas,
+                                "info":    false,
+                                "bLengthChange": true,
+                                "bPaginate": false,
+                                "lengthMenu": [[10,15,32,100,-1], [10,15,32,100,"Todo"]],
+                                "language": {
+                                    "paginate": {
+                                        "first":      "Primera",
+                                        "last":       "Última ",
+                                        "next":       "Siguiente",
+                                        "previous":   "Anterior"
+                                    },
+                                    "lengthMenu":"Mostrar _MENU_",
+                                    "emptyTable": "No hay datos disponibles en la tabla",
+                                    "search":     ""},
+                                    columns: [
+                                    { title: "FECHA" },
+                                    { title: "BOUCHER" },
+                                    { title: "Pts." },
+                                    { title: "Pts. APLI." },
+                                    { title: "Pts. DISP." },
+                                    { title: "ESTADO" }
+                                ]
+                            } );
+
+                            $('#tblModal2').DataTable( {
+                                data: viewProductos,
+                                "info":    false,
+                                "bLengthChange": true,
+                                "bPaginate": false,
+                                "lengthMenu": [[10,15,32,100,-1], [10,15,32,100,"Todo"]],
+                                "language": {
+                                    "paginate": {
+                                        "first":      "Primera",
+                                        "last":       "Última ",
+                                        "next":       "Siguiente",
+                                        "previous":   "Anterior"
+                                    },
+                                    "lengthMenu":"Mostrar _MENU_",
+
+                                    "emptyTable": "No hay datos disponibles en la tabla",
+                                    "search":     ""
+                                },
+                                columns: [
+                                    { title: "CANT." },
+                                    { title: "COD. PREMIO" },
+                                    { title: "DESCRIPCIÓN" },
+                                    { title: "Pts." },
+                                    { title: "TOTAL Pts." }
+                                ]
+                            } );
+
+                            $("#spnTotalFRP").text(totalFinalFRP);
+                            $("#frpProgress").hide();
+                            $("#divTop,#divTbl").show();
+                        } else {
+                            mensaje("ERROR AL CREAR EL FRP","error");
+                        }
+                    }
+            });
+        }
+    }
+    
 
     $('#tblpRODUCTOS tbody').on( 'click', 'tr', function () {
         $(this).toggleClass('selected');
@@ -580,42 +613,71 @@ function getview(id){
         a.target = '_blank';
         window.open(a);
     }
+    var posiciones = new Array();
     function isVerificar(posicion,fact){
-    // alert(posicion+" y "+fact);
+        
         ttFRP = parseInt($("#idttPtsCLsFRP").text());
         ptsFRP = parseInt($("#idttPtsFRP").text());
         var FACTURA   = $('#tblFacturaFRP').DataTable().row(posicion).data().DISPONIBLE;
-        
-        if($("#CHK"+fact).is(':checked') ) {
-            if (ttFRP == 0){
+        var contador = posiciones.length;
+        bandera = 0;
+        if ($("#CHK"+fact).is(':checked') ) {
+            console.log("no esta cheked");
+            if (posicion<posiciones[contador-1]) {
+                mensaje("APLIQUE LAS FACTURAS EN ORDEN DESCENDENTE","error");
                 $("#CHK"+fact).prop('checked', false);
-                mensaje("TODOS LOS PUNTOS FUERON APLICADOS","error");
-            } else {
-                if( ptsFRP == 0){
-                    ttFRP = 0;
+            }else{           
+                if (ttFRP==0) {
+                    mensaje("TODOS LOS PUNTOS FUERON APLICADOS","error");
                     $("#CHK"+fact).prop('checked', false);
-                    mensaje("Error: SELECCIONE UN ARTICULO","error");
-                } else {
-                    if (FACTURA > ttFRP){
-                        $("#AP1" + fact).html(ttFRP);
-                        $("#EST" + fact).html("PARCIAL");
-                        sfactura = FACTURA - ttFRP;
-                        $("#DIS" + fact).html(sfactura);
-                        ttFRP=0;
-                    } else {
-                        $("#AP1" + fact).html(FACTURA);
-                        ttFRP = ttFRP - FACTURA;
-                        $("#DIS" + fact).html("0");
-                        $("#EST" + fact).html("APLICADO");
-                    }
+                }else{
+                    $("#CHK"+fact).prop('checked', true);
+                    posiciones[contador] = posicion;
+                    bandera = 1;
                 }
             }
-        } else {
-            ttFRP = ttFRP + parseInt($("#AP1" + fact).text());
-            $("#AP1" + fact).html("");
-            $("#DIS" + fact).html("");
-            $("#EST" + fact).html("");
+        }else{
+            $.each(posiciones,function(index,contenido){
+                if (contenido == posicion) {
+                    posiciones.splice(index,1);
+                }
+            });
+            bandera = 1;
         }
-        $("#idttPtsCLsFRP").html(ttFRP);
+        if (bandera==1 || posiciones.length == 0){
+            if($("#CHK"+fact).is(':checked') ) {
+                if (ttFRP == 0){
+                    $("#CHK"+fact).prop('checked', false);
+                    mensaje("TODOS LOS PUNTOS FUERON APLICADOS","error");
+                } else {
+                    if( ptsFRP == 0){
+                        ttFRP = 0;
+                        $("#CHK"+fact).prop('checked', false);
+                        mensaje("Error: SELECCIONE UN ARTICULO","error");
+                    } else {
+                        if (FACTURA > ttFRP){
+                            $("#AP1" + fact).html(ttFRP);
+                            $("#EST" + fact).html("PARCIAL");
+                            sfactura = FACTURA - ttFRP;
+                            $("#DIS" + fact).html(sfactura);
+                            ttFRP=0;
+                        } else {
+                            $("#AP1" + fact).html(FACTURA);
+                            ttFRP = ttFRP - FACTURA;
+                            $("#DIS" + fact).html("0");
+                            $("#EST" + fact).html("APLICADO");
+                        }
+                    }
+                }
+            }else {
+                ttFRP = ttFRP + parseInt($("#AP1" + fact).text());
+                $("#AP1" + fact).html("");
+                $("#DIS" + fact).html("");
+                $("#EST" + fact).html("");
+            }
+            if (!isNaN(ttFRP)) {
+                $("#idttPtsCLsFRP").html(ttFRP);
+            }            
+        }
     }
 </script>

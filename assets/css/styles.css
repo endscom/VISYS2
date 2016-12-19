@@ -328,7 +328,10 @@ _:-ms-input-placeholder, :root .demo-graph {
     box-shadow: 0 1px 0 0 #ffffff;
     width: 100%;
     text-align: center;
-
+}
+#idviewFRP{
+  width: 75%!important;
+  height: 85%!important;
 }
 #recordar{
     font-family: 'robotoblack';
@@ -339,7 +342,6 @@ _:-ms-input-placeholder, :root .demo-graph {
 #remember-me[type="checkbox"]:checked + label:before{
     border-right: 2px solid #fff;
     border-bottom: 2px solid #fff;
-
 }
 #NombreU{
     width: 100%;
