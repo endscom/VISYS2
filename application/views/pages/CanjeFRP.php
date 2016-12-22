@@ -117,9 +117,9 @@
                         if(!$data){}
                         else{
                                 foreach($data as $asd){
-                                if ($asd['CLIENTE']=='03000') {
-                                    echo '<option value="'.$asd['CLIENTE'].'">'.$asd['NOMBRE'].'</option>';
-                                }
+                                //if ($asd['CLIENTE']=='03000') {
+                                    echo '<option value="'.$asd['CLIENTE'].'">'.$asd['NOMBRE'].' | '.$asd['CLIENTE'].'</option>';
+                                //}
                                 
                             }
                         }

@@ -1,7 +1,7 @@
 
 <script>
-	$( document ).ready(function(){
-	//$('#MFrp').openModal();
+    $( document ).ready(function(){
+    //$('#MFrp').openModal();
     function limpiarTabla (idTabla) {
         idTabla = $(idTabla).DataTable();
         idTabla.destroy();
@@ -13,7 +13,7 @@
         var table = $('#tblFRP').DataTable();
         table.search( this.value ).draw();
     } );
-	$('#tblFacturaFRP,#tblFRP,#tblpRODUCTOS').DataTable(
+    $('#tblFacturaFRP,#tblpRODUCTOS').DataTable(
     {
             "info":    false,
             //"searching": false,
@@ -32,7 +32,26 @@
             }
         }
     );
-
+    $('#tblFRP').DataTable(
+    {
+            "info":    false,
+            //"searching": false,
+            "order": [[ 0, "desc" ]],
+            "bLengthChange": false,
+            "lengthMenu": [[5,16,32,100,-1], [5,16,32,100,"Todo"]],
+            "language": {
+                "paginate": {
+                    "first":      "Primera",
+                    "last":       "Última ",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+                "lengthMenu":"MOSTRAR _MENU_",
+                "emptyTable": "No hay datos disponibles en la tabla",
+                "search":     "<i class='material-icons'>search</i>" 
+            }
+        }
+    );
     $( "#ListCliente").change(function() {
         var Cls = $(this).val();
 
@@ -294,7 +313,7 @@
             ofact.rows().data().each( function (index,value) {
                     
                     if (linea<contador) {
-                        if($('#CHK'+ofact.row(linea).data().FACTURA).is(':checked') ) {                        
+                        if($('#CHK'+ofact.row(linea).data().FACTURA).is(':checked')) { 
                         //value = value;
                         var FAC = ofact.row(linea).data().FACTURA;
                         var FCH = ofact.row(linea).data().FECHA;
@@ -344,8 +363,10 @@
                     }
                 }
             });
-
-            linea--;
+            if (remanente!=0) {
+                linea--;    
+            }
+            
         });
 
         totalFinalFRP =0;
@@ -413,10 +434,11 @@
         });
         if (banderaSave > 1) {
             //mensaje("NO PUEDEN EXISTIR 2 FACTURAS CON REMANENTE, POR FAVOR APLIQUE LAS FACTURAS EN FORMA DESCENDENTE","error");
-            $('#Dfrp').closeModal();
+            //$('#Dfrp').closeModal();
             banderaSave = 0;
         }
-        if(banderaSave<2){
+        //if(banderaSave<2){
+            mensaje("FRP CREADO.... REVISALO!","");
             $.ajax({
                 url: "saveFRP",
                 type: "post",
@@ -491,7 +513,7 @@
                         }
                     }
             });
-        }
+        //}
     }
     
 
@@ -569,7 +591,7 @@ function getview(id){
                                     "<td>" +formatNumber(dataJson.DArticulo[p].CANTIDAD.replace(".0000","")* dataJson.DArticulo[p].PUNTO).replace(".0000","")+ "</td>" +
                                 "</tr>"
 
-                        ttff += parseInt(dataJson.DArticulo[p].PUNTO);
+                        ttff += parseInt(dataJson.DArticulo[p].CANTIDAD*dataJson.DArticulo[p].PUNTO);
                     }
 
                     $("#tblviewDFacturaFRP > tbody").html(DF);
@@ -595,9 +617,9 @@ function getview(id){
                 function(data){
                     console.log(data)
                     if (data != 1){
-                        mensaje("SELECCIONE UN CLIENTE PRIMERO","error");
+                        mensaje("SELECCIONE UN FRP PRIMERO","error");
                     } else {
-                        window.setTimeout($(location).attr('href',"Frp"), 3000);
+                        window.setTimeout($(location).attr('href',"Frp"), 3500);
                         $("#dellCorrectoFRP").text(id);
                     }
                 }
@@ -621,7 +643,7 @@ function getview(id){
         var FACTURA   = $('#tblFacturaFRP').DataTable().row(posicion).data().DISPONIBLE;
         var contador = posiciones.length;
         bandera = 0;
-        if ($("#CHK"+fact).is(':checked') ) {
+        /*if ($("#CHK"+fact).is(':checked') ) {
             console.log("no esta cheked");
             if (posicion<posiciones[contador-1]) {
                 mensaje("APLIQUE LAS FACTURAS EN ORDEN DESCENDENTE","error");
@@ -644,7 +666,7 @@ function getview(id){
             });
             bandera = 1;
         }
-        if (bandera==1 || posiciones.length == 0){
+        if (bandera==1 || posiciones.length == 0){*/
             if($("#CHK"+fact).is(':checked') ) {
                 if (ttFRP == 0){
                     $("#CHK"+fact).prop('checked', false);
@@ -678,6 +700,6 @@ function getview(id){
             if (!isNaN(ttFRP)) {
                 $("#idttPtsCLsFRP").html(ttFRP);
             }            
-        }
+        //}
     }
 </script>
