@@ -12,21 +12,20 @@
 <main class="mdl-layout__content mdl-color--grey-100">
 
     <div class="contenedor">
-
+    <div class="row center TextColor">canje de puntos</div>
+    
          <div class="container">
-            <div class=" Buscar row column">
+            <div class="noMargen Buscar row column">
                 <div class="col s1 m1 l1 offset-l3 offset-s1 offset-m2">
                     <i class="material-icons ColorS">search</i>
                 </div>
 
-                <div class="input-field col s5 m4 l4">
+                <div class="input-field col s5 m4 l5">
                     <input  id="searchFRP" type="text" placeholder="Buscar" class="validate">
                     <label for="searchFRP"></label>
                 </div>
             </div>
-        </div>
-
-        <div class="row center TextColor">canje de puntos</div>
+        </div>        
 
         <div class="right row">           
                 <a href="#MFrp" class="BtnBlue waves-effect  btn modal-trigger">canje</a>
@@ -55,7 +54,7 @@
                         $delete="";
                     } else {
                         $clase="";
-                        $delete = "<a  onclick='dellFrp(".$frp['IdFRP'].")' href='#' class='Icono noHover'><i class='material-icons'>highlight_off</i></a>";
+                        $delete = "<a  onclick='dellFrp(".'"'.$frp['IdFRP'].'"'.")' href='#' class='Icono noHover'><i class='material-icons'>highlight_off</i></a>";
                     }
                     echo "<tr>
                                 <td class='".$clase."'>".$frp['Fecha']."</td>
@@ -95,7 +94,7 @@
 
         <div class="row noMargen valign-wrapper">
             <div class="DatoFrp input-field line col s3 m3 l2">
-                 N° FRP:<input id="frp" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="frp" type="text" class="validate">
+                 N° FRP:<input maxlength="5" id="frp" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="frp" type="text" class="validate">
             </div>
 
             <div class="DatoFrp line col s3 m3 l3 offset-l7 offset-s4 offset-m4">
@@ -117,9 +116,9 @@
                         if(!$data){}
                         else{
                                 foreach($data as $asd){
-                                if ($asd['CLIENTE']=='03000') {
-                                    echo '<option value="'.$asd['CLIENTE'].'">'.$asd['NOMBRE'].'</option>';
-                                }
+                                //if ($asd['CLIENTE']=='03000') {
+                                    echo '<option value="'.$asd['CLIENTE'].'">'.$asd['NOMBRE'].'| '.$asd['CLIENTE'].'</option>';
+                                //}
                                 
                             }
                         }
@@ -129,7 +128,7 @@
 
             <div class="input-field col s12 m3 l3 DatoFrp valign-wrapper">
                 PUNTOS:
-                <input  id="PtosDisponibles" class="frp" type="text" class="validate">
+                <input  id="PtosDisponibles" class="frp" type="text" readonly class="validate">
             </div>
         </div>
                 <h6 class="center Mcolor">PREMIO A CANJEAR</h6>
@@ -156,7 +155,7 @@
                     </select>
                 </div>
                 <div class="DatoFrp line input-field col s6 m4 l2 valign-wrapper">
-                    CANTIDAD:<input  onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" id="CantPremioFRP" class="frp" type="text" class="validate">
+                    CANTIDAD:<input onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" id="CantPremioFRP" class="frp" type="text" class="validate">
                 </div>
                 <div id="Btnadd"class="center col s2 m2 l2 offset-s1">
                     <div class="row noMargen center"><div id="loadIMG" style="display:none" class="preloader-wrapper big active">
@@ -194,8 +193,14 @@
             </table>
         </div>
         <div id="Total" class="right row text">
-            <p class="Dato">A APLICAR: <span class="dato" id="idttPtsFRP">0</span> Pts.</p>
-        </div>       
+            <div class="col s2 offset-s8">
+                <input type="checkbox" id="checkAll" checked/>
+                <label for="checkAll">AUTO APLICADO</label>
+            </div>
+            <div class="col s2">
+                <p class="Dato">A APLICAR: <span class="dato" id="idttPtsFRP">0</span> Pts.</p>
+            </div>
+        </div>
         <div class="row">
             <table id="tblFacturaFRP" class=" TblDatos">
                 <thead>
@@ -250,11 +255,9 @@
 <div id="DellRes" class="modal">
     <div class="modal-content">
         <div class="right row">
-            <div class="col s1 m1 l1">
-                <a href="#!" class=" BtnClose modal-action modal-close ">
-                    <i class="material-icons">highlight_off</i>
-                </a>
-            </div>
+            <a href="#!" class=" BtnClose modal-action modal-close ">
+                <i class="material-icons">highlight_off</i>
+            </a>
         </div>
         <h6 class="center Mcolor1">ELIMINADO CORRECTAMENTE FRP <span class="redT1">#00351</span></h6>
     </div>
@@ -272,13 +275,10 @@
                     <i class="material-icons">highlight_off</i>
                 </a>
             </div>
+            <div class="row center">
+                <span id="titulM" class="Mcolor"> DETALLE FRP</span>
+            </div>
             <div class="container center">
-                <div class="col s1" >
-                    <div class="row">
-                        <div class="col s11"><span id="titulM" class="Mcolor"> DETALLE FRP</span></div>
-                    </div>
-                </div>
-
                 <div class="row center " id="frpProgress">
                     <div class="preloader-wrapper big active">
                         <div class="spinner-layer spinner-blue-only">
@@ -316,7 +316,7 @@
 
                    <tbody></tbody>
                </table>
-               <h6 class="center Mcolor">PREMIO A CANJEAR</h6>
+               <h6 class="center Mcolor">PREMIOS A CANJEAR</h6>
 
                <table id="tblModal2" class="TblDatos">
                    <thead>
@@ -329,9 +329,9 @@
                     </tr>
                    </thead>
 
-                   <tbody></tbody>
+                   <tbody class="center"></tbody>
                </table>
-               <h6 class="center Mcolor dat">TOTAL FRP <span class="dato"><span id="spnTotalFRP"></span></span> </h6>
+               <h6 class="center Mcolor dat">TOTAL FRP <span class="dato"><span id="spnTotalFRP"></span></span> Pts.</h6>
                <div class="row center" style="">
                    <a class="noHover" href="#" onclick="callUrlPrint('ExpFRP','spnFRP')"  target=""><img src="<?PHP echo base_url();?>assets/img/ico_imprimir.png " width="45px" ></a>
                </div>

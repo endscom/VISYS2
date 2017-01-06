@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/faviconazul.png" />
     <meta charset="UTF-8">
         <style>
         tbody td, thead th{ padding: 8px 10px;}

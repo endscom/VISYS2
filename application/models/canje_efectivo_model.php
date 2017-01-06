@@ -5,7 +5,7 @@ class Canje_efectivo_model extends CI_Model
         parent::__construct();
         $this->load->database();
     }
-	public $CONDICION = '2016-10-01';
+	public $CONDICION = '2015-06-01';
     public function getFacturaFRE($idCliente)
     {   
         $query="";
@@ -30,10 +30,11 @@ class Canje_efectivo_model extends CI_Model
 
             }
         }
-
-        if ($query==""){
+        else if ($query==""){
             $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
                     WHERE CLIENTE = '".$idCliente."' AND FECHA >= '".$this->CONDICION."' GROUP BY FACTURA, FECHA ";
+        }else{
+            $query .=" GROUP BY FACTURA, FECHA";
         }
         //echo "query----->".$query."<br>";
 		$q_rows->next_result();

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/faviconazul.png" />
     <meta charset="UTF-8">
         <style>
         tbody td, thead th{ padding: 8px 10px;}
@@ -98,7 +99,7 @@
                         echo "<tr>
                                    <td class='center'>".$query[$i]['CLIENTE']."</td>
                                    <td id='NomCliente'>".$query[$i]['NOMBRE']."</td>
-                                   <td class='center'>".$query[$i]['RUC']."</td>
+                                   <td class='center'>".$query[$i]['DIRECCION']."</td>
                                    <td class='center'>".number_format($query[$i]['PUNTOS'],2)."</td>
                               </tr>";
                         $i++;

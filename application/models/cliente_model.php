@@ -5,10 +5,12 @@ class Cliente_model extends CI_Model
         parent::__construct();
         $this->load->database();
     }
-    public $CONDICION = '2016-10-01';
+    public $CONDICION = '2015-06-01';
     public function LoadClients(){
         $i=0;
         $json = array();
+        //echo $this->LoadAllClients();
+        //echo "SELECT CLIENTE,NOMBRE, RUC, DIRECCION,VENDEDOR FROM vtVS2_Clientes WHERE CLIENTE NOT IN(".$this->LoadAllClients().")"."<br>";
         $query = $this->sqlsrv->fetchArray("SELECT CLIENTE,NOMBRE, RUC, DIRECCION,VENDEDOR FROM vtVS2_Clientes WHERE CLIENTE NOT IN(".$this->LoadAllClients().")",SQLSRV_FETCH_ASSOC);
 
         foreach($query as $key){
@@ -26,17 +28,20 @@ class Cliente_model extends CI_Model
         $i=0;
         $json = array();
         if ($this->session->userdata('RolUser')=="Vendedor" && $this->session->userdata('Zona')!=""){
-            $consulta = "SELECT CLIENTE, NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS, (SELECT RUC FROM vtVS2_Clientes WHERE vtVS2_Clientes.CLIENTE= vtVS2_Facturas_CL.CLIENTE) AS RUC 
+            $consulta = "SELECT CLIENTE, NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS,
+                        (SELECT DIRECCION FROM vtVS2_Clientes WHERE vtVS2_Clientes.CLIENTE = vtVS2_Facturas_CL.CLIENTE) AS DIRECCION,
+                        (SELECT RUC FROM vtVS2_Clientes WHERE vtVS2_Clientes.CLIENTE= vtVS2_Facturas_CL.CLIENTE) AS RUC 
                         FROM vtVS2_Facturas_CL WHERE RUTA = '".$this->session->userdata('Zona')."'
-                        GROUP BY CLIENTE,NOMBRE_CLIENTE";
+                        GROUP BY CLIENTE, NOMBRE_CLIENTE";
         }else{
-            $consulta = "SELECT CLIENTE, NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS, (SELECT RUC FROM vtVS2_Clientes WHERE vtVS2_Clientes.CLIENTE= vtVS2_Facturas_CL.CLIENTE) AS RUC 
+            $consulta = "SELECT CLIENTE, NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS,
+                        (SELECT DIRECCION FROM vtVS2_Clientes WHERE vtVS2_Clientes.CLIENTE = vtVS2_Facturas_CL.CLIENTE) AS DIRECCION, 
+                        (SELECT RUC FROM vtVS2_Clientes WHERE vtVS2_Clientes.CLIENTE= vtVS2_Facturas_CL.CLIENTE) AS RUC 
                         FROM vtVS2_Facturas_CL
-                        GROUP BY CLIENTE,NOMBRE_CLIENTE";
+                        GROUP BY CLIENTE, NOMBRE_CLIENTE";
         }
-
-        $query = $this->sqlsrv->fetchArray($consulta
-            ,SQLSRV_FETCH_ASSOC);
+        
+        $query = $this->sqlsrv->fetchArray($consulta,SQLSRV_FETCH_ASSOC);
         $json['query'][$i]['CLIENTE'] = "";  $json['query'][$i]['NOMBRE'] = "";
         $json['query'][$i]['PUNTOS'] = "";    $json['query'][$i]['RUC'] = "";
 
@@ -45,6 +50,7 @@ class Cliente_model extends CI_Model
             $json['query'][$i]['NOMBRE']=$key['NOMBRE_CLIENTE'];
             $json['query'][$i]['PUNTOS']=$key['PUNTOS'];
             $json['query'][$i]['RUC']=$key['RUC'];
+            $json['query'][$i]['DIRECCION']=$key['DIRECCION'];
             $i++;
         }
         return $json;
@@ -70,20 +76,26 @@ class Cliente_model extends CI_Model
         $this->sqlsrv->close();
     }
     public function LoadAllClients(){
-        $query = $this->db->get('vt_ClientesUser');
-        if ($query->row('CLIENTES')=="") {
-            $query="''";
-            return $query;
+        $query = $this->db->get("vt_ClientesUser");
+        $clientes="";
+        if($query->num_rows() <> 0){
+            foreach ($query->result_array() as $row){                   
+                $clientes .= "'".$row['CLIENTES']."',";
+            }
+            $clientes = substr($clientes, 0, -1);         
         }
-        return $query->row('CLIENTES');
+        return $clientes;
     }
     public function LoadAllClientsActivos(){
         $query = $this->db->get('view_ClientesActivos');
-        if ($query->row('CLIENTES')=="") {
-            $query="''";
-            return $query;
+        $clientes="";
+        if($query->num_rows() <> 0){
+            foreach ($query->result_array() as $row){                   
+                $clientes .= "'".$row['CLIENTES']."',";
+            }
+            $clientes = substr($clientes, 0, -1);         
         }
-        return $query->row('CLIENTES');
+        return $clientes;
     }
     
     public function traerUsuario($codigo)

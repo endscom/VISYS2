@@ -5,7 +5,7 @@ $(document).ready(function() {
         var table = $('#tblFRE').DataTable();
         table.search( this.value ).draw();
     } );
-	$('#tblFRE,#tblFacturaFRE').DataTable(
+	$('#tblFRE').DataTable(
     {
             "info":    false,
             //"searching": false,
@@ -24,7 +24,25 @@ $(document).ready(function() {
             }
         }
     );
-
+    $('#tblFacturaFRE').DataTable(
+    {
+            "info":    false,
+            "bPaginate": false,
+            "bLengthChange": false,
+            "lengthMenu": [[5,16,32,100,-1], [5,16,32,100,"Todo"]],
+            "language": {
+                "paginate": {
+                    "first":      "Primera",
+                    "last":       "Última ",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+                "lengthMenu":"MOSTRAR _MENU_",
+                "emptyTable": "No hay datos disponibles en la tabla",
+                "search":     "<i class='material-icons'>search</i>" 
+            }
+        }
+    );
     $( "#ListCliente").change(function() {
         var Cls = $(this).val();
         $('#txtCodCliente').val(Cls);
@@ -233,7 +251,8 @@ $(document).ready(function() {
                     //$("#vfrpTop,#vfrpTop").show();
 
                     var dataJson = JSON.parse(data);
-                    console.log(dataJson);
+                    var canje = 0;
+                    var efectivo = 0;
 
                     var DF = "";
                     if (dataJson.DFactura[0].Anulado == "N"){
@@ -244,10 +263,11 @@ $(document).ready(function() {
                     $("#spnCodCls").text(dataJson.top[0].IdCliente);
                     $("#spnNombreCliente").text(dataJson.top[0].Nombre);
                     $("#obser").text(dataJson.top[0].Comentario);
-                    $("#totalCanje").text(formatNumber(dataJson.DFactura[0].Puntos));
-                    $("#totalEfectivo2").text(formatNumber(dataJson.DFactura[0].Efectivo));
+                    
                     for (f=0;f<dataJson.DFactura.length;f++){
-
+                        console.log(canje);
+                        canje = parseInt(canje + parseInt(dataJson.DFactura[f].Puntos));
+                        efectivo = parseInt(efectivo + parseInt(dataJson.DFactura[f].Efectivo));
                         if( dataJson.DFactura[f].SALDO > 0) {ESTAD ="PARCIAL"}else {ESTAD ="APLICADO"}
                         DF +=   "<tr>" +
                                     "<td>" +dataJson.DFactura[f].Fecha + "</td>" +
@@ -258,6 +278,8 @@ $(document).ready(function() {
                                 "</tr>"
                     }
                     $("#tblModal1 > tbody").html(DF);
+                    $("#totalCanje").text(canje);
+                    $("#totalEfectivo2").text(efectivo);
                     //$("#spnttFRP").text(ttff);
             }
         });

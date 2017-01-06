@@ -39,7 +39,7 @@
 	});
     
     $('#estadoCuenta').click(function(){//funcion para filtrar el estado de cuenta del cliente
-        
+        $('#TotalEstado').text(0+" Pts");
         var Fecha1 = $('#CXCfecha1').val();
         var Fecha2 = $('#CXCfecha2').val();
         limpiarTabla(TbCatalogo);
@@ -62,7 +62,7 @@
                     "emptyTable": "No hay datos disponibles en la tabla",
                     "lengthMenu": '_MENU_ ',
                     "search": '<i class=" material-icons">search</i>',
-                    "loadingRecords": "cargando...",
+                    "loadingRecords": "Cargando...",
                     "paginate": {
                         "first": "Primera",
                         "last": "Última ",
@@ -85,7 +85,7 @@
                     obj.rows().data().each( function (index,value) {
                         totalAcumulado += parseInt(obj.row(value).data().DISPONIBLE);
                     });
-                $('#TotalEstado').text(totalAcumulado);
+                $('#TotalEstado').text(totalAcumulado+" Pts.");
             }).dataTable();
     });
 

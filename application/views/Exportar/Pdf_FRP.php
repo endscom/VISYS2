@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/faviconazul.png" />
     <meta charset="UTF-8">
     <style>
         #ClienteAdd{border-collapse: separate;border-spacing: 1px;color: white; font-family: 'robotoblack';}
@@ -57,7 +58,7 @@
                 echo '
                 <div class="col s1">
                     <span class="center datos1 frpT"> N° FRP '.$tops['IdFRP'].'</span><br>
-                    <span class="center datos1 lineas">'.date_format(date_create($tops['Fecha']), 'd-m-Y').'</span>
+                    <span class="center datos1 lineas">FECHA: '.date_format(date_create($tops['Fecha']), 'd-m-Y').'</span>
                 </div>
                 <div class="col s1">
                     <span id="Nfarmacia" class="Mcolor" >COD# '.$tops['IdCliente'].' NOMBRE: '.$tops['Nombre'].'</span>
@@ -116,7 +117,7 @@
             <th>CANT.</th>
             <th>COD. PREMIO</th>
             <th>DESCRIPCIÓN</th>
-            <th>Pts. </th>
+            <th>PUNTOS</th>
             <th>TOTAL Pts.</th>
         </tr>
         </thead>
@@ -128,14 +129,14 @@
         } else {
             foreach($DArticulo as $dp){
                 echo ' <tr>
-                                <td>'.$dp['Cantidad'].'</td>
+                                <td>'.number_format($dp['CANTIDAD'],0).'</td>
                                 <td id="black">'.$dp['IdArticulo'].'</td>
                                 <td id="black">'.$dp['Descripcion'].'</td>
-                                <td>'.number_format($dp['Puntos'],0).' Pts.</td>
-                                <td>'.$dp['Total'].' Pts.</td>
+                                <td>'.number_format($dp['PUNTO'],0).' Pts.</td>
+                                <td>'.number_format($dp['CANTIDAD']*$dp['PUNTO'],0).' Pts.</td>
                             </tr>
                     ';
-                $count += $dp['Total'];
+                $count += $dp['CANTIDAD']*$dp['PUNTO'];
             }
         }
 
@@ -146,18 +147,13 @@
     </table>
 
     <div class="row center">
-        <h6 class="center Mcolor dat"><span class="alert">PUNTOS APLICADOS POR EL CANJE: <?php echo $count?> Pts.</span> </h6>
+        <h6 class="center Mcolor dat"><span class="alert">PUNTOS APLICADOS POR EL CANJE: <?php echo number_format($count,0) ?> Pts.</span> </h6>
 
     </div>
-
-
-
-</div>
-
-
+        <h6 class="center RegImp  RobotoB">GENERADO EL: <?php echo date('d-m-Y H:i:s'); ?></h6>
 
 </div>
-
+</div>
 </div>
 </body>
 </html>

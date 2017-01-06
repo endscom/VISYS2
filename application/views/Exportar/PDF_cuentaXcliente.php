@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/faviconazul.png" />
     <meta charset="UTF-8">
         <style>
         tbody td, thead th{ padding: 8px 10px;}
@@ -62,6 +63,7 @@
             color: #6a4ad5;
             font-size: 19px;
             font-family: 'robotoblack';
+            font-weight:bold;
 
         }.cod{font-size: 14px;}
         .ruc{font-size: 12px;}
@@ -72,28 +74,27 @@
         }.linea{ margin-top: -20px;}
     </style>
 </head>
-<body>
-    
+<body>    
 
     <div class="row" style="margin-bottom:0">
-
         <div class="col l2" style="margin-left:35%;" >
             <img id="logo" src="<?PHP echo base_url();?>assets/img/Logo-Visys-color.png" width="30%" style="opacity: 0.5; ">
         </div>
-
+        <div style="margin-top:0px!important;" >
+            <h3 style="font-family: 'robotoregular';font-size: 12px; color: #1F0A71; font-weight:bold;" >FECHA: <?php echo date('d-m-Y H:i:m'); ?></h3>
+        </div>
     </div>
     <br>
     <div class="row center">
-        <h3 style="font-family: 'robotoblack';font-size: 18px; color: #1F0A71; font-weight:bold;" >ESTADO DE CUENTA</h3>
+        <h3 style="font-family: 'robotoblack';font-size: 18px; color: #1F0A71; font-weight:bold;">ESTADO DE CUENTA</h3>
     </div>
     <div class="row" style="border: 2px solid #1F0A71; padding:4px;">
         <h3 style="font-family: 'robotoblack';font-size: 15px; color: #1F0A71; font-weight:bold;" >DATOS DEL CLIENTE</h3>
-                <p id="CXCdetalleCodigo" class="Mcolor cod"><?php echo $query2['data']['CODIGO']; ?> | <?php echo $query2['data']['NOMBRE']; ?></p>
-                <p id="CXCdetalleRUC" class="detalles linea"><?php echo $query2['data']['RUC']; ?></p>
-                <p id="CXCdetalleDIR" class="detalles linea"><?php echo $query2['data']['DIRECCION']; ?></p>
+                <p id="CXCdetalleCodigo" class="Mcolor cod"><?php echo $query2['data2']['CODIGO']; ?> | <?php echo $query2['data2']['NOMBRE']; ?></p>
+                <p id="CXCdetalleRUC" class="Mcolor detalles linea"><?php echo $query2['data2']['RUC']; ?></p>
+                <p id="CXCdetalleDIR" class="Mcolor detalles linea"><?php echo $query2['data2']['DIRECCION']; ?></p>
     </div><br>
-        <table id="ClienteAdd">
-
+    <table id="ClienteAdd">
         <thead>
             <tr>
                 <th>FACTURA</th>
@@ -107,30 +108,28 @@
         <tbody>
         <?PHP
         $TOTAL=0;
-        if(!($data)){
+        if(!($query1)){
             echo "fallo";
         }
         else{
-            $i=0;
-             foreach($data AS $cliente)
-                    {
-                        $TOTAL +=$data[$i]['DISPONIBLE'];
-                        echo "<tr>
-                                   <td class='center'>".$data[$i]['FACTURA']."</td>
-                                   <td id='NomCliente'>".$data[$i]['FECHA']."</td>
-                                   <td class='center'>".$data[$i]['PUNTOS']."</td>
-                                   <td class='center'>".$data[$i]['APLICADOS']."</td>
-                                   <td class='center'>".$data[$i]['DISPONIBLE']."</td>
-                              </tr>";
-                        $i++;
-                    }
+             for ($i=0; $i <= count($query1) ; $i++) { 
+                    
+                $TOTAL +=$query1['data'][$i]['DISPONIBLE'];
+                    echo "<tr>
+                            <td class='center'>".$query1['data'][$i]['FACTURA']."</td>
+                            <td id='NomCliente'>".$query1['data'][$i]['FECHA']."</td>
+                            <td class='center'>".$query1['data'][$i]['PUNTOS']."</td>
+                            <td class='center'>".$query1['data'][$i]['APLICADOS']."</td>
+                            <td class='center'>".$query1['data'][$i]['DISPONIBLE']."</td>
+                        </tr>";
+            }
         }
         ?>
         </tbody>
     </table>
     <br>
     <div  style="margin-left:60%;border: 1px solid #1F0A71; padding:4px;">
-        <h3 style="font-family: 'ROBOTOMEDIUM';font-size: 15px; color: #1F0A71; font-weight:bold;" >TOTAL DE PUNTOS==> <?php echo $TOTAL; ?></h3>
+        <h3 style="font-family: 'ROBOTOMEDIUM';font-size: 15px; color: #1F0A71; font-weight:bold;" >TOTAL DE PUNTOS ==> <?php echo $TOTAL; ?></h3>
     </div>
 </body>
 </html>

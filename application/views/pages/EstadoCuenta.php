@@ -7,7 +7,7 @@
         <div class="row TextColor center">facturas</div>
     <div class="row">
         <form action="<?php echo base_url('index.php/ExpPDFEstadoCuenta');?>" id="frmEstadoCuenta" name="frmEstadoCuenta" target="_blank" method="post">
-        <div class="offset-m2 offset-l2 col s12 m3 l3 input-field">
+        <div class="offset-m2 offset-l3 col s12 m3 l3 input-field">
             <input name="fecha1" placeholder="Desde" id="CXCfecha1" type="text" class="datepicker1">
         </div>
         <div class="col s12 m3 l3 input-field">
@@ -40,6 +40,27 @@
                     </tr>
                 </thead>                    
                 <tbody>
+                    <?PHP
+                        $TOTAL = 0;
+                        if(!($data)){
+                            echo "NO HAY DATOS";
+                        }
+                        else{
+                            $i=0;
+                             foreach($data AS $cliente)
+                                    {
+                                        echo "<tr>
+                                                   <td class='center'>".$data[$i]['FACTURA']."</td>
+                                                   <td id='NomCliente'>".$data[$i]['FECHA']."</td>
+                                                   <td class='center'>".$data[$i]['PUNTOS']."</td>
+                                                   <td class='center'>".$data[$i]['APLICADOS']."</td>
+                                                   <td class='center'>".@number_format($data[$i]['DISPONIBLE'],0)."</td>
+                                              </tr>";
+                                        $TOTAL = $TOTAL+$data[$i]['DISPONIBLE'];
+                                        $i++;
+                                    }
+                        }
+                        ?>
                 </tbody>
             </table>
           </div>
@@ -50,7 +71,7 @@
             <h5 class="negra">TOTAL:</h5>
         </div>
         <div class="col s2 Mcolor">
-            <h5 id="TotalEstado" class="negra">0</h5>
+            <h5 id="TotalEstado" class="negra"><?php echo $TOTAL; ?> Pts.</h5>
         </div>
     </div>
 </div>

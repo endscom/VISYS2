@@ -37,6 +37,10 @@ class Reportes_controller extends CI_Controller
     {
         return $fecha = date("Y-d-m", strtotime($fecha));
     }
+    public function formatMYSQL($fecha)
+    {
+        return $fecha = date("Y-m-d", strtotime($fecha));
+    }
     public function datosCliente($codigo)
     {
         $this->reportes_model->datosCliente($codigo);
@@ -103,8 +107,8 @@ class Reportes_controller extends CI_Controller
     }
     public function canjes($fecha1,$fecha2)
     {
-        $fecha1 = ($fecha1=="") ? '2014-01-01' : $this->format($fecha1);
-        $fecha2 = ($fecha1=="") ? date('Y-d-m') : $this->format($fecha2);
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $this->formatMYSQL($fecha1);
+        $fecha2 = ($fecha1=="") ? date('Y-d-m') : $this->formatMYSQL($fecha2);
         $this->reportes_model->canjes($fecha1,$fecha2);
     }
     public function canje_premios($fecha1,$fecha2)
@@ -115,8 +119,8 @@ class Reportes_controller extends CI_Controller
     }
     public function detalles_canje($fecha1,$fecha2)
     {
-        $fecha1 = ($fecha1=="") ? '2014-01-01' : $this->format($fecha1);
-        $fecha2 = ($fecha1=="") ? date('Y-d-m') : $this->format($fecha2);
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : $this->formatMYSQL($fecha1);
+        $fecha2 = ($fecha1=="") ? date('Y-d-m') : $this->formatMYSQL($fecha2);
         $this->reportes_model->detalles_canje($fecha1,$fecha2);
     }
 }

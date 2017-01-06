@@ -14,11 +14,14 @@ class Clientes_controller extends CI_Controller
         $this->load->model('reportes_model');
     }
     public function estadoCuenta()
-    {
-        
+    {       
+        $f1 = '2015-06-01';
+        $f2 = date('d-m-Y');
+        $data = $this->reportes_model->cuentaXcliente($this->session->userdata('IdCL'),$f1,$f2,1);
+
         $this->load->view('header/header');
         $this->load->view('pages/menu');
-        $this->load->view('pages/EstadoCuenta');
+        $this->load->view('pages/EstadoCuenta',$data);
         $this->load->view('footer/footer');
         $this->load->view('jsview/js_facturas');
     }

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/faviconazul.png" />
     <title>VISYS 2.0.2</title>
-
+    
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <!--<link rel="icon" sizes="192x192" href="images/android-desktop.png">-->

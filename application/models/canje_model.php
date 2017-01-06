@@ -5,7 +5,7 @@ class Canje_model extends CI_Model
         parent::__construct();
         $this->load->database();
     }
-    public $CONDICION = '2016-10-01';
+    public $CONDICION = '2015-06-01';
     public function getAplicadoP($idCliente)
     {
         

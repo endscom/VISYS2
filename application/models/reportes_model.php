@@ -7,53 +7,41 @@ class Reportes_model extends CI_Model
         $this->load->model('canje_efectivo_model');
         $this->load->model('canje_model');
     }
-	public $CONDICION = '2016-10-01';
+    public $CONDICION = '2016-10-01';
     public function formatDecimal($valor,$bandera=null)
     {
+        $arr = array(".00000000" => "", ".000000" => "", ".0000000" => "", ".0000" => "");
         if ($valor == ".000000") {
             return 0;
+        }else{
+            return strtr($valor,$arr);
         }
-        if ($bandera!=null) {// se puede utilizar un arreglo para str_replace pero x algn motivo no funcionaba
+        /*if ($bandera!=null) {
             return $valor = str_replace(".00000000","",$valor);
         }else{
             return $valor = str_replace(".000000","",$valor);
-        }
+        }*/
     }
-    public function cuentaXcliente($codigo,$f1,$f2)
+    public function cuentaXcliente($codigo,$f1,$f2,$bandera=null)
     {
-
-        //echo date('Y-d-m',strtotime($f2))."<br>";
-    	$query="";
+        $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
+                    AND FECHA BETWEEN '".date('d-m-Y',strtotime($f1))."' AND '".$f2."'";
         $q_rows = $this->db->query("call pc_Clientes_Facturas ('".$codigo."')");
         if ($q_rows->num_rows() > 0) {
-            $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
-					AND FECHA BETWEEN '".date('Y-d-m',strtotime($f1))."' AND '".date('Y-d-m',strtotime($f2))."'
-                    AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
+            $query .= "AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].")";
         }
-
         $q_rows->next_result();
         $q_rows->free_result();
 
         $q_rows = $this->db->query("call pc_Clientes_Facturas_Fre ('".$codigo."')");
         if ($q_rows->num_rows() > 0) {
-            if ($query=="") {
-                $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
-					AND FECHA BETWEEN '".date('Y-d-m',strtotime($f1))."' AND '".date('Y-d-m',strtotime($f2))."'
-                    AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
-            }else{
                 $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
-            }
-        }
-        
-        if ($query==""){
-            $query = "SELECT FACTURA,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE CLIENTE='".$codigo."'
-					  AND FECHA BETWEEN '".$f1."' AND '".$f2."' GROUP BY FACTURA, FECHA ";
-        }
-        //echo $query."<br>";
+        }        
+        $query .= " GROUP BY FACTURA, FECHA ";
         $q_rows->next_result();
         $q_rows->free_result();
-
-    	$i=0;
+        //echo $query."<br>";
+        $i=0;
         $json = array();
         $query = $this->sqlsrv->fetchArray($query,SQLSRV_FETCH_ASSOC);
             $json['data'][$i]['FACTURA'] = "-";
@@ -72,34 +60,39 @@ class Reportes_model extends CI_Model
             $i++;
         }
 
-        echo json_encode($json);
-        return $json;
-        $this->sqlsrv->close();
+        if ($bandera!=null) {
+            //$this->sqlsrv->close();
+            return $json;
+        }else{
+            echo json_encode($json);    
+        }
+        //$this->sqlsrv->close();
     }
 
     public function getAplicado($FACTURA)
     {
-    	$this->db->where('Factura',$FACTURA);
-    	$query = $this->db->get('rfactura');
-    	if ($query->num_rows()>0) {
-    		if ($query->result_array()[0]['Puntos']>0) {
-    			return $query->result_array()[0]['ttPuntos']-$query->result_array()[0]['Puntos'];
-    		}
-    		return $query->result_array()[0]['ttPuntos'];
-    	}
-    	return 0;
+        $this->db->where('Factura',$FACTURA);
+        $query = $this->db->get('rfactura');
+        if ($query->num_rows()>0) {
+            if ($query->result_array()[0]['Puntos']>0) {
+                return $query->result_array()[0]['ttPuntos']-$query->result_array()[0]['Puntos'];
+            }
+            return $query->result_array()[0]['ttPuntos'];
+        }
+        return 0;
     }
     public function datosCliente($codigo)
     {
-    	$i=0;
+        $query ="SELECT DIRECCION,RUC,CLIENTE,NOMBRE FROM vtVS2_Clientes WHERE CLIENTE = '".$codigo."' ";
+        $i=0;
         $json = array();
-        $query = $this->sqlsrv->fetchArray("SELECT DIRECCION,RUC,CLIENTE,NOMBRE FROM vtVS2_Clientes WHERE CLIENTE = '".$codigo."' ",SQLSRV_FETCH_ASSOC);
+        $query = $this->sqlsrv->fetchArray($query,SQLSRV_FETCH_ASSOC);
 
         foreach($query as $key){
-            $json['data']['DIRECCION'] = $key['DIRECCION'];
-            $json['data']['RUC'] = $key['RUC'];
-            $json['data']['CODIGO'] = $key['CLIENTE'];
-            $json['data']['NOMBRE'] = $key['NOMBRE'];
+            $json['data2']['DIRECCION'] = $key['DIRECCION'];
+            $json['data2']['RUC'] = $key['RUC'];
+            $json['data2']['CODIGO'] = $key['CLIENTE'];
+            $json['data2']['NOMBRE'] = $key['NOMBRE'];
             $i++;
         }
         echo json_encode($json);
@@ -715,6 +708,8 @@ class Reportes_model extends CI_Model
             $json['data'][$i]['NUMERO'] = '<p class="bold noMargen">'.$numero."</p>";
             $json['data'][$i]['FECHA'] = date('d-m-Y',strtotime($key['Fecha']));
             $json['data'][$i]['CODIGO'] = $key['IdFRP'];
+            $json['data'][$i]['CLIENTE'] = $key['IdCliente'];
+            $json['data'][$i]['PUNTOS'] = $key['CANTIDAD']*$key['PUNTO'];
             $json['data'][$i]['NOMBRE'] = '<p class="bold noMargen">'.$key['Descripcion']."</p>";
             $json['data'][$i]['CANTIDAD'] = str_replace(".0000", "", $key['CANTIDAD']);
             $i++;
@@ -725,10 +720,14 @@ class Reportes_model extends CI_Model
             $json['columns'][1]['name'] = "FECHA";
             $json['columns'][2]['data'] = "CODIGO";
             $json['columns'][2]['name'] = "COD FRP";
-            $json['columns'][3]['data'] = "NOMBRE";
-            $json['columns'][3]['name'] = "NOMBRE";
-            $json['columns'][4]['data'] = "CANTIDAD";
-            $json['columns'][4]['name'] = "CANTIDAD";
+            $json['columns'][3]['data'] = "CLIENTE";
+            $json['columns'][3]['name'] = "CLIENTE";
+            $json['columns'][4]['data'] = "NOMBRE";
+            $json['columns'][4]['name'] = "NOMBRE";
+            $json['columns'][5]['data'] = "CANTIDAD";
+            $json['columns'][5]['name'] = "CANTIDAD";
+            $json['columns'][6]['data'] = "PUNTOS";
+            $json['columns'][6]['name'] = "PUNTOS";
         echo json_encode($json);
         $this->sqlsrv->close();
     }

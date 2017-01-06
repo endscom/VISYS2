@@ -1,3 +1,4 @@
+<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/faviconazul.png" />
 <body onload="window.print();"><!-- Impresion de la Página al cargar... -->
 <main class="mdl-layout__contents">
     <div class="">
@@ -29,10 +30,12 @@
 
             <div class="row">
                 <div class="col s4 m4 l3">
-                    <p class="canjePts RobotoB">CANJE:  <?php echo $detalles[0]['Puntos']; ?> PTS.</p>
+                    <?php $puntos=0; foreach ($detalles as $key) {$puntos = $puntos +$key['Puntos'];} ?>
+                    <p class="canjePts RobotoB">CANJE:  <?php echo number_format($puntos,0); ?> PTS.</p>
                 </div>
                 <div class="col s4 m4 l3 offset-l6 offset-s4 offset-m4 right">
-                    <p class="canjePts RobotoB">EFECTIVO: C$  <?php echo $detalles[0]['Efectivo']; ?></p>
+                    <?php $efectivo=0; foreach ($detalles as $key) {$efectivo = $efectivo +$key['Puntos'];} ?>
+                    <p class="canjePts RobotoB">EFECTIVO: C$  <?php echo number_format($efectivo,0); ?></p>
                 </div>
             </div>
 

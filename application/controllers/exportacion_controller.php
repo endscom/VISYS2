@@ -39,7 +39,6 @@ class Exportacion_controller extends CI_Controller
         $data['top'] = $this->canje_model->getFRP($id,'frp');
         $data['DFactura'] = $this->canje_model->getFRP($id,"view_frp_factura");
         $data['DArticulo'] = $this->canje_model->getFRP($id,"view_frp_articulo");
-
         $this->load->view('Exportar/Pdf_FRP',$data);
     }
     public function pdfCTAxCLIENTE($codigo,$fecha1,$fecha2)
@@ -69,14 +68,13 @@ class Exportacion_controller extends CI_Controller
     }
     public function ExpPDFEstadoCuenta()
     {
-        $fecha1 = ($_POST['fecha1']=="") ? '2014-01-01' : $_POST['fecha1'];
-        $fecha2 = ($_POST['fecha2']=="") ? date('Y-d-m') : $_POST['fecha2'];
+        $fecha1 = ($_POST['fecha1']=="") ? '01-01-2014' : $_POST['fecha1'];
+        $fecha2 = ($_POST['fecha2']=="") ? date('d-m-Y') : $_POST['fecha2'];
         
         $codigo = $this->session->userdata('IdCL');
-        
-        $query = $this->reportes_model->cuentaXcliente($codigo,$fecha1,$fecha2);
+        $query['query1'] = $this->reportes_model->cuentaXcliente($codigo,$fecha1,$fecha2,1);
         $query['query2'] = $this->reportes_model->datosCliente($codigo);
-        
+
         $PdfCliente = new mPDF('utf-8','A4');
         $PdfCliente -> writeHTML($this->load->view('Exportar/PDF_cuentaXcliente',$query,true));
         $PdfCliente->Output();

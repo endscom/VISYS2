@@ -1,3 +1,4 @@
+<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/faviconazul.png" />
 <body onload="window.print();"><!-- Impresion de la Página al cargar... -->
 <main class="mdl-layout__contents" >
 
@@ -101,7 +102,7 @@
 
 
               <h6 class="center RegImp  RobotoB">imp0001/frp</h6>
-
+              <h6 class="center RegImp  RobotoB">GENERADO EL: <?php echo date('d-m-Y H:i:s'); ?></h6>
           </div>
 
         </div>

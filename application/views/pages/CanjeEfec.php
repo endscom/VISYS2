@@ -98,7 +98,7 @@
 
         <div class="row noMargen valign-wrapper">
             <div class="DatoFrp input-field line col s3 m3 l2">
-                 N° FRE:<input id="frp" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="frp" type="text" class="validate">
+                 N° FRE:<input id="frp" class="frp" type="text" class="validate">
             </div>
 
             <div class="DatoFrp line col s3 m3 l3 offset-l7 offset-s4 offset-m4">
@@ -118,7 +118,7 @@
                         if(!$data){}
                         else{
                                 foreach($data as $cliente){
-                                    echo '<option value="'.$cliente['CLIENTE'].'">'.$cliente['NOMBRE'].'</option>';
+                                    echo '<option value="'.$cliente['CLIENTE'].'">'.$cliente['NOMBRE'].'| '.$cliente['CLIENTE'].'</option>';
                                 //echo '<option value="'.$cliente['CLIENTE'].'">'.$cliente['NOMBRE'].'</option>';
                             }
                         }
@@ -126,14 +126,11 @@
                 </select>
             </div>
 
-            <div class="input-field col s2 m2 l2">
+            <div class="input-field col s12 m2 l2 DatoFrp valign-wrapper">
+                PUNTOS:
                 <input  id="PtosDisponibles" type="text" class="validate frp">
             </div>
-        </div>
-
-        <div class="right row">
-            <a href="#btnProcesar" onclick="procesar()" class="Procesar waves-effect btn">procesar</a>
-        </div>
+        </div>        
     
         <table id="tblFacturaFRE" class=" TblDatos">
             <thead>
@@ -166,7 +163,9 @@
                 </div>
             </form>
         </div>
-
+        <div class="center row">
+            <a href="#btnProcesar" onclick="procesar()" class="Procesar waves-effect btn">procesar</a>
+        </div>
     </div>
 
 </div>

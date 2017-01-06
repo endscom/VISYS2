@@ -27,7 +27,7 @@ class Facturas_model extends CI_Model
 
         foreach($query as $key){
             $json['query'][$i]['FECHA'] = $key['FECHA']->format('d-m-Y');
-            $json['query'][$i]['FACTURA'] = $key['FACTURA'];
+            $json['query'][$i]['FACTURA'] = "<p class='negra noMargen'>".$key['FACTURA']."</p>";
             $json['query'][$i]['CLIENTE'] = $key['CLIENTE'];
             $json['query'][$i]['NOMBRE_CLIENTE'] = $key['NOMBRE_CLIENTE'];
             $json['query'][$i]['PUNTOS'] = number_format($key['PUNTOS'],2);

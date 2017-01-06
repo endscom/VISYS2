@@ -7819,7 +7819,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .picker__table th, .picker__table td {
   text-align: center;
-  color: #1F0A71;
+  color: white!important;
   font-family: 'robotoblack';
 }
 
@@ -7827,7 +7827,12 @@ input[type=range]:focus::-ms-fill-upper {
   margin: 0;
   padding: 0;
 }
-
+#Dfrp{
+  width: 80%!important;
+  max-width: 80%!important;
+  max-height: 80%!important;
+  height: 80%!important;
+}
 /**
  * The weekday labels
  */
