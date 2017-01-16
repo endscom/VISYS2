@@ -46,30 +46,46 @@ $(document).ready(function() {
     $( "#ListCliente").change(function() {
         var Cls = $(this).val();
         $('#txtCodCliente').val(Cls);
+        
         if(Cls !=0){
             $.ajax({
-                url: "getAplicadoP/"+ Cls,
+                url: "getBCMora/"+ Cls,
                 type: "post",
                 async:true,
                 success:
                     function(clsAplicados){
-                        $("#PtosDisponibles").val(parseInt(clsAplicados));
+                        if (clsAplicados == 'S'){
+                            $('#moroso').html('');
+                            $('#moroso').html('<table id="tblFacturaFRE" class=" TblDatos"><thead><tr><th>FECHA</th><th># FATURA</th><th>PUNTOS</th><th>PUNTOS A EFECTIVO</th><th><i class="material-icons">check</i></th></tr></thead><tbody class="center mayuscula"></tbody></table>');
+                            mensaje("CLIENTE EN ESTADO MOROSO", "error");
+                        }else{
+                            $.ajax({
+                                url: "getAplicadoP/"+ Cls,
+                                type: "post",
+                                async:true,
+                                success:
+                                    function(clsAplicados){
+                                        $("#PtosDisponibles").val(parseInt(clsAplicados));
+                                    }
+                            });
+                            limpiarTabla(tblFacturaFRE);
+                            $('#tblFacturaFRE').DataTable({
+                                ajax: "getFacturaFRE/"+ Cls,
+                                "info":    false,
+                                "bPaginate": false,
+                                "paging": false,
+                                "pagingType": "full_numbers",
+                                "emptyTable": "No hay datos disponibles en la tabla",
+                                columns: [
+                                    { "data": "FECHA" },
+                                    { "data": "FACTURA" },
+                                    { "data": "DISPONIBLE" },
+                                    { "data": "EFECTIVO" },
+                                    { "data": "OPCION" }
+                                ]
+                            });
+                        }
                     }
-            });
-            limpiarTabla(tblFacturaFRE);
-            $('#tblFacturaFRE').DataTable({
-                ajax: "getFacturaFRE/"+ Cls,
-                "info":    false,
-                "bPaginate": false,
-                "paging": false,
-                "pagingType": "full_numbers",
-                columns: [
-                    { "data": "FECHA" },
-                    { "data": "FACTURA" },
-                    { "data": "DISPONIBLE" },
-                    { "data": "EFECTIVO" },
-                    { "data": "OPCION" }
-                ]
             });
         }else{
             alert("No Selecciono ningun cliente");
@@ -287,7 +303,7 @@ $(document).ready(function() {
     function formatNumber(x) {//solo funciona con exteros
         return isNaN(x)?"":x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-     function callUrlPrint(targetURL,id){
+    function callUrlPrint(targetURL,id){
         var a = document.createElement('a');
         a.href = targetURL + "/" + $("#" + id ).text();
         a.target = '_blank';

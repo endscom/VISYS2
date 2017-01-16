@@ -81,5 +81,9 @@ class Clientes_controller extends CI_Controller
     {
         $this->cliente_model->ListarClientes();
     }
+    public function ajaxFacturasXcliente($IdCL)
+    {
+        $this->cliente_model->ajaxFacturasXcliente($IdCL);
+    }
 }
 ?>

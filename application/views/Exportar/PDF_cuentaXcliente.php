@@ -90,9 +90,9 @@
     </div>
     <div class="row" style="border: 2px solid #1F0A71; padding:4px;">
         <h3 style="font-family: 'robotoblack';font-size: 15px; color: #1F0A71; font-weight:bold;" >DATOS DEL CLIENTE</h3>
-                <p id="CXCdetalleCodigo" class="Mcolor cod"><?php echo $query2['data2']['CODIGO']; ?> | <?php echo $query2['data2']['NOMBRE']; ?></p>
-                <p id="CXCdetalleRUC" class="Mcolor detalles linea"><?php echo $query2['data2']['RUC']; ?></p>
-                <p id="CXCdetalleDIR" class="Mcolor detalles linea"><?php echo $query2['data2']['DIRECCION']; ?></p>
+                <p id="CXCdetalleCodigo" class="Mcolor cod"><?php echo $data['data2'][0]['CODIGO']; ?> | <?php echo $data['data2'][0]['NOMBRE']; ?></p>
+                <p id="CXCdetalleRUC" class="Mcolor detalles linea"><?php echo $data['data2'][0]['RUC']; ?></p>
+                <p id="CXCdetalleDIR" class="Mcolor detalles linea"><?php echo $data['data2'][0]['DIRECCION']; ?></p>
     </div><br>
     <table id="ClienteAdd">
         <thead>
@@ -108,19 +108,19 @@
         <tbody>
         <?PHP
         $TOTAL=0;
-        if(!($query1)){
-            echo "fallo";
+        if(!($data)){
+            echo "Error al cargar los datos";
         }
-        else{
-             for ($i=0; $i <= count($query1) ; $i++) { 
-                    
-                $TOTAL +=$query1['data'][$i]['DISPONIBLE'];
+        else{            
+            $i=0;
+            for ($i=0; $i < count($data2['data']); $i++) { 
+                $TOTAL += $data2['data'][$i]['DISPONIBLE'];
                     echo "<tr>
-                            <td class='center'>".$query1['data'][$i]['FACTURA']."</td>
-                            <td id='NomCliente'>".$query1['data'][$i]['FECHA']."</td>
-                            <td class='center'>".$query1['data'][$i]['PUNTOS']."</td>
-                            <td class='center'>".$query1['data'][$i]['APLICADOS']."</td>
-                            <td class='center'>".$query1['data'][$i]['DISPONIBLE']."</td>
+                            <td class='center'>".$data2['data'][$i]['FACTURA']."</td>
+                            <td id='NomCliente'>".$data2['data'][$i]['FECHA']."</td>
+                            <td class='center'>".$data2['data'][$i]['PUNTOS']."</td>
+                            <td class='center'>".$data2['data'][$i]['APLICADOS']."</td>
+                            <td class='center'>".$data2['data'][$i]['DISPONIBLE']."</td>
                         </tr>";
             }
         }

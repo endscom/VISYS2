@@ -116,10 +116,7 @@
                         if(!$data){}
                         else{
                                 foreach($data as $asd){
-                                //if ($asd['CLIENTE']=='03000') {
-                                    echo '<option value="'.$asd['CLIENTE'].'">'.$asd['NOMBRE'].'| '.$asd['CLIENTE'].'</option>';
-                                //}
-                                
+                                    echo '<option value="'.$asd['CLIENTE'].'">'.$asd['NOMBRE'].'| '.$asd['CLIENTE'].'</option>';                                
                             }
                         }
                     ?>
@@ -148,7 +145,7 @@
                             if(!$premios){
                             } else {
                                 foreach($premios as $premio){
-                                    echo '<option value="'.$premio['IdIMG'].'">'.$premio['Nombre'].'</option>';
+                                    echo '<option value="'.$premio['IdIMG'].'">'.$premio['Nombre']." | ".$premio['IdIMG'].'</option>';
                                 }
                             }
                          ?>
@@ -201,7 +198,7 @@
                 <p class="Dato">A APLICAR: <span class="dato" id="idttPtsFRP">0</span> Pts.</p>
             </div>
         </div>
-        <div class="row">
+        <div id= "moroso" class="row">
             <table id="tblFacturaFRP" class=" TblDatos">
                 <thead>
                 <tr>

@@ -40,7 +40,7 @@ class Canje_model extends CI_Model
         $q_rows = $this->db->query("call pc_Clientes_Facturas ('".$idCliente."')");
         if ($q_rows->num_rows() > 0) {
             $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
-                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].") AND FECHA >= '".$this->CONDICION."' GROUP BY FACTURA,FECHA";
+                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].") AND FECHA >= '".$this->CONDICION."'";
         }
         $q_rows->next_result();
         $q_rows->free_result();
@@ -49,15 +49,17 @@ class Canje_model extends CI_Model
         if ($q_rows->num_rows() > 0) {
             if ($query=="") {
                 $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
-                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") and FECHA >= '".$this->CONDICION."' GROUP BY FACTURA, FECHA";
+                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") and FECHA >= '".$this->CONDICION."'";
             }else{
-                $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
+                $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].")";
             }
         }
         if ($query==""){
             $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
-                    WHERE CLIENTE = '".$idCliente."' AND FECHA >= '".$this->CONDICION."' GROUP BY FACTURA, FECHA ";
+                    WHERE CLIENTE = '".$idCliente."' AND FECHA >= '".$this->CONDICION."'";
         }
+        $query .= "GROUP BY FACTURA,FECHA";
+        //echo $query."<br>";
         $q_rows->next_result();
         $q_rows->free_result();
         $query = $this->sqlsrv->fetchArray($query,SQLSRV_FETCH_ASSOC);
@@ -94,6 +96,18 @@ class Canje_model extends CI_Model
     }
     public function getSaldoParcial($id,$pts){
         $this->db->where('Puntos <>',0);
+        $this->db->where('Factura',$id);
+        $this->db->select('Puntos');
+        $query = $this->db->get('rfactura');
+        if($query->num_rows() > 0){
+            $parcial = $query->result_array()[0]['Puntos'];
+        } else {
+            $parcial = $pts;
+        }
+        return $parcial;
+    }
+    public function getSaldo($id,$pts){
+        //$this->db->where('Puntos <>',0);
         $this->db->where('Factura',$id);
         $this->db->select('Puntos');
         $query = $this->db->get('rfactura');
@@ -159,6 +173,14 @@ class Canje_model extends CI_Model
         }
         else { return 0;
         }
+    }
+    public function getBCMora($idCliente) {
+       $MORA = '';
+
+       $query = $this->sqlsrv->fetchArray("SELECT MOROSO FROM PRODUCCION.dbo.vtVS2_Clientes
+                                           WHERE CLIENTE = '".$idCliente."'",SQLSRV_FETCH_ASSOC);
+        echo $query[0]['MOROSO'];
+        $this->sqlsrv->close();
     }
     public function getPtsItem($codigo){
         $valor = 0;

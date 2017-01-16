@@ -12,7 +12,6 @@ class Login_controller extends CI_Controller
     }
 
     public function index(){
-        echo "ekisde";
         $this->load->view('header/header_login');
         $this->load->view('login/login');
         $this->load->view('footer/footer_login');

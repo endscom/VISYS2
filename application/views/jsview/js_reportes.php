@@ -93,15 +93,17 @@
 });
         function PrintPDF(targetURL){
             var a = document.createElement('a');
-            //a.href = targetURL + "/" + $("#" + id ).text();
             a.target = '_blank';
-            switch(targetURL) {
-                case cuentaXcliente:
-                var idCliente = $('#ListCliente').val();
+            var idCliente = $('#ListCliente').val();
                 Fecha1 = ($('#CXCfecha1').val()=="") ? "null" : $('#CXCfecha1').val()
                 Fecha2 = ($('#CXCfecha2').val()=="") ? "null" : $('#CXCfecha2').val()
+            switch(targetURL) {
+                case cuentaXcliente:
                     a.href = "pdfCTAxCLIENTE/"+idCliente+"/"+Fecha1+"/"+Fecha2;
-                    break;
+                break;
+                case 'CXCprint':
+                    a.href = "CXCprint/"+idCliente+"/"+Fecha1+"/"+Fecha2;
+                break;
                 default:
                     mensaje("ERROR...","error");
             }

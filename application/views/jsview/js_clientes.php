@@ -26,7 +26,67 @@
 		var table = $('#PtosCliente').DataTable();
 		table.search(this.value).draw();
 	});
+    // agrego evento para abrir y cerrar los detalles
+    $('#PtosCliente').on('click', 'tbody .detallesFactura', function () {
+        var table = $('#PtosCliente').DataTable();
+        var tr = $(this).closest('tr'); $(this).addClass("detallesFacturOrange");
+        var row = table.row(tr);
+        var data = table.row( $(this).parents('tr') ).data();//obtengo todos los datos de la fila que di click
+        //alert (data[1]); //este es el dato de la segunda columna
 
+        if (row.child.isShown()) {// esta fila ya se encuentra visible - cierrala
+            row.child.hide();
+            tr.removeClass('shown');
+            $(this).removeClass("detallesFacturOrange");            
+        } else {// muestra la fila
+            $('#loader'+data[1]).show();
+            $('#detail'+data[1]).hide();
+            //$('.loadFlotante').show("slow");
+            format(row.child,data[1],data[1]);
+            tr.addClass('shown');
+        }           
+    });
+    function format(callback,noPedido,div) {//funcion para traer llos datos y tabla de detalles
+      var ia=0;
+            $.ajax({
+            url:'ajaxFacturasXcliente/'+noPedido,
+            dataType: "json",
+            complete: function (response) {
+                var data = JSON.parse(response.responseText);
+                console.log(data);
+                    var thead = '',  tbody = '';
+                    for (var key in data) {
+                        thead += '<th class="negra center">FECHA</th>';
+                        thead += '<th class="negra center">FACTURA</th>';
+                        thead += '<th class="negra center">VENDEDOR</th>';
+                        thead += '<th class="negra center">ACUMULADO</th>';
+                        thead += '<th class="negra center">DISPONIBLE</th>';
+                    }
+                    $.each(data, function (i, d) {
+                      $.each(d, function (a, b) {
+                         ia++;
+                      });
+                        for (var x=0; x<ia; x++) {
+                        tbody += '<tr class="center">' +
+                                      '<td>' + d[x]["FECHA"] + '</td>'+
+                                      '<td class="negra">' + d[x]["FACTURA"] + '</td>'+
+                                      '<td>' + d[x]["VENDEDOR"] + '</td>'+
+                                      '<td>' + d[x]["ACUMULADO"] + '</td>'+
+                                      '<td>' + d[x]["DISPONIBLE"] + '</td>'+
+                                  '</tr>';
+                          }                   
+                    });
+                //console.log('<table>' + thead + tbody + '</table>');
+                callback($('<table id="tblReportDetalles">' + thead + tbody + '</table>')).show();
+                 $('#loader'+div).hide();
+                 $('#detail'+div).show();
+            },
+            error: function () {
+                $('#output').html('Hubo un error al cargar los detalles!');
+            }
+        });
+      }
+    
     /*RECORRER LAS FILAS SELECCIONADAS Y AGREGARLAS A LA TABLA DEL MODAL EKISDE*/
     $('#btngenerar').click(function(){
          $("#ClienteAdd tr.selected td").each(function(index) {

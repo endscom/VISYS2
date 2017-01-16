@@ -112,7 +112,7 @@
             </div>
 
             <div class="input-field col s7 m7 l7"  >
-                <select name="cliente" id="ListCliente" class="chosen-select browser-default">
+                <select class="center chosen-select browser-default" name="cliente" id="ListCliente">
                     <option value="" disabled selected>CLIENTE</option>
                     <?php
                         if(!$data){}
@@ -131,7 +131,7 @@
                 <input  id="PtosDisponibles" type="text" class="validate frp">
             </div>
         </div>        
-    
+    <div id= "moroso" class="row">
         <table id="tblFacturaFRE" class=" TblDatos">
             <thead>
             <tr>
@@ -146,7 +146,7 @@
             <tbody class="center mayuscula">            
             </tbody>
         </table>
-    
+    </div>
         <div id="Total" class="right row text">
             <div class="col s11 m12 l12">
                 <p class="Dato">TOTAL EFECTIVO: <span class="dato">C$ </span><span id="totalEfectivo" class="dato">0</span></p>

@@ -91,15 +91,22 @@
                 </div>
                 <div class="col s3 m3 l3">
                     <a href="#" class=" IconBlue">
-                        <a href="#" onclick="FiltrarReporte('10 MÁS VENDIDOS','mas_vendidos')" class=" IconBlue ">
-                        <i class="medium material-icons iconoCenter">thumb_up</i>
-                        <p class="TextIconos">TOP 10 MÁS VENDIDOS</p>
+                        <a href="#informeFactura" class=" IconBlue modal-action modal-close modal-trigger">
+                        <i class="medium material-icons iconoCenter">receipt</i>
+                        <p class="TextIconos">INFORME DE FACTURAS</p>
                     </a>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col s3 m3 l3 offset-l4">
+                <div class="col s3 m3 l2">
+                    <a href="#" class=" IconBlue">
+                        <a href="#" onclick="FiltrarReporte('10 MÁS VENDIDOS','mas_vendidos')" class=" IconBlue ">
+                        <i class="medium material-icons iconoCenter">thumb_up</i>
+                        <p class="TextIconos">TOP 10 MÁS VENDIDOS</p>
+                    </a>
+                </div>
+                <div class="col s3 m3 l2 offset-l1">
                     <a href="#" class=" IconBlue">
                         <a href="#" onclick="FiltrarReporte('10 MENOS VENDIDOS','menos_vendidos')" class=" IconBlue ">
                         <i class="medium material-icons iconoCenter">thumb_down</i>
@@ -129,6 +136,52 @@
         </div>
 
         <h6 class="center Mcolor AdUser">CUENTA POR CLIENTE</h6>
+
+        <div class="row">
+            <form class="col s12" action=""method="post" name="formnuevo">
+
+                <div class="row">
+                    <select name="cliente" id="ListCliente" class="chosen-select browser-default">
+                    <option value="" disabled selected>CLIENTE</option>
+                    <?php
+                        if(!$data){}
+                        else{
+                                foreach($data as $cliente){
+                                    echo '<option value="'.$cliente['CLIENTE'].'">'.$cliente['CLIENTE'].' | '.$cliente['NOMBRE'].'</option>';
+                            }
+                        }
+                    ?>
+                </select>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input name="fecha1" placeholder="Desde" id="CXCfecha1" type="text" class="datepicker1">
+                    </div>
+                    <div class="input-field col s6">
+                        <input name="fecha2" placeholder="Hasta" id="CXCfecha2" type="text" class="datepicker1">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row center">
+                <a id="generarCtaXcte" href="#" class="Btnadd btn">GENERAR</a>
+        </div>
+    </div><!-- fin del contenido modal -->
+</div>
+<!-- FIN DE MODAL CUENTA POR CLIENTE -->
+
+<!-- Modal Cuenta por Cliente -->
+<div id="informeFactura" class="modal">
+    <div class="modal-content">
+        <div class="right row">
+                <a href="#!" class=" BtnClose modal-action modal-close ">
+                    <i class="material-icons">highlight_off</i>
+                </a>
+        </div>
+
+        <h6 class="center Mcolor AdUser">INFORME DE FACTURA</h6>
 
         <div class="row">
             <form class="col s12" action=""method="post" name="formnuevo">
@@ -223,8 +276,11 @@
             </table>
 
         <div id="Iconos" class="row center">
-            <div class="col l1 offset-s5 offset-m5 offset-l5">
+            <div class="col l1 offset-s4 offset-m4 offset-l4">
                 <a href="#" onclick="generarExcel('CXCexcel')" ><img src="<?PHP echo base_url();?>assets/img/icono_excel.png" width="38px" ></a>
+            </div>
+            <div class="col l1">
+                <a class="noHover" href="#" onclick="PrintPDF('CXCprint')"><img src="<?PHP echo base_url();?>assets/img/ico_imprimir.png " width="45px" ></a>
             </div>
             <div class="col l1">
                 <a href="#" onclick="PrintPDF(cuentaXcliente)"><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png" width="38px" ></a>
@@ -317,14 +373,6 @@
                <thead><tr></tr></thead>
             </table>
         </div>
-       <!-- <div id="Iconos" class="row center">
-            <div class="col l1 offset-l5">
-                <a href="#"  ><img src="<?PHP echo base_url();?>assets/img/icono_excel.png" width="38px" ></a>
-            </div>
-            <div class="col l1">
-                <a href="#"  ><img src="<?PHP echo base_url();?>assets/img/icono-pdf.png" width="38px" ></a>
-            </div>
-        </div>-->
     </div><!-- Fin Contenido Modal -->
 </div>
 

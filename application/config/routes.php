@@ -26,12 +26,14 @@ $route['darBajaCliente'] = 'clientes_controller/darBajaCliente';
 $route['DetalleFact'] = 'vista_controller/DetalleFact';
 $route['estadoCuenta'] = 'clientes_controller/estadoCuenta';
 $route['buscarEstadoCuenta'] = 'clientes_controller/buscarEstadoCuenta';
+$route['ajaxFacturasXcliente/(:any)'] = 'clientes_controller/ajaxFacturasXcliente/$1';
 /*BOUCHER*/
 $route['EliminarVineta'] = 'boucher_controller';
 
 
 /*CANNJES FRP*/
 $route['Frp'] = 'canje_controller';
+$route['getBCMora/(:any)'] = 'canje_controller/getBCMora/$1';
 $route['ListarClientes'] = 'clientes_controller/ListarClientes';
 $route['getAplicadoP/(:any)'] = 'canje_controller/getAplicadoP/$1';
 $route['getFacturaFRP/(:any)'] = 'canje_controller/getFacturaFRP/$1';
@@ -79,6 +81,7 @@ $route['puntosXcliente/(:any)/(:any)'] = 'reportes_controller/puntosXcliente/$1/
 $route['canjes/(:any)/(:any)'] = 'reportes_controller/canjes/$1/$2';
 $route['canje_premios/(:any)/(:any)'] = 'reportes_controller/canje_premios/$1/$2';
 $route['detalles_canje/(:any)/(:any)'] = 'reportes_controller/detalles_canje/$1/$2';
+$route['CXCprint/(:any)/(:any)/(:any)'] = 'reportes_controller/CXCprint/$1/$2/$3';
 
 /*RUTAS DE CATALOGO*/
 $route['NuevoCatalogo'] = 'catalogo_controller/NuevoCatalogo';

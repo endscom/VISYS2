@@ -16,9 +16,10 @@ class Reportes_controller extends CI_Controller
     public function index()
     {
     	$data = $this->cliente_model->ListarClientes();
+        $data2 = $this->cliente_model->listarFacturas();
     	$this->load->view('header/header');
         $this->load->view('pages/menu');
-        $this->load->view('pages/Reportes',$data);
+        $this->load->view('pages/Reportes',array_merge($data,$data2));
         $this->load->view('footer/footer');
         $this->load->view('jsview/js_reportes');
     }
@@ -122,5 +123,19 @@ class Reportes_controller extends CI_Controller
         $fecha1 = ($fecha1=="") ? '2014-01-01' : $this->formatMYSQL($fecha1);
         $fecha2 = ($fecha1=="") ? date('Y-d-m') : $this->formatMYSQL($fecha2);
         $this->reportes_model->detalles_canje($fecha1,$fecha2);
+    }
+    public function CXCprint($codigo,$fecha1,$fecha2)
+    {
+
+        $fecha1 = ($fecha1==null) ? $this->formatMYSQL($fecha1) : '2014-01-01';
+        $fecha2 = ($fecha1==null) ? $this->formatMYSQL($fecha2) : date('Y-d-m');
+
+        $query = array();
+        $query['fecha1'] = $fecha1;
+        $query['fecha2'] = $fecha2;
+        $query['data'] = $this->reportes_model->datosCliente($codigo,1);
+        $query['data2'] = $this->reportes_model->cuentaXcliente($codigo,$fecha1,$fecha2,1);
+        
+        $this->load->view('Exportar/cuentaXcliente',$query);
     }
 }

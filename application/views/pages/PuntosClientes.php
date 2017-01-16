@@ -40,10 +40,11 @@
         <table id="PtosCliente" class=" TblDatos">
             <thead>
             <tr>
+                <th>DETALLES</th>
                 <th>CÓDIGO</th>
                 <th>CLIENTE</th>
                 <th>RUC</th>
-                <th>PUNTOS</th>
+                <th>PTS DISPONIBLES</th>
             </tr>
             </thead>
             <tbody>
@@ -55,11 +56,28 @@
                     $i=0;
                     foreach($query AS $cliente)
                     {
+                        $clase="";
+                        if ($query[$i]['MOROSO'] == "S"){
+                            $clase="red-text";
+                        }
                         echo "<tr>
-                                   <td class='center'>".$query[$i]['CLIENTE']."</td>
-                                   <td id='NomCliente'>".$query[$i]['NOMBRE']."</td>
-                                   <td class='center'>".$query[$i]['RUC']."</td>
-                                   <td class='center'>".number_format($query[$i]['PUNTOS'],2)."</td>
+                                    <td class='center green-text detallesFactura'><i id='detail".$query[$i]['CLIENTE']."' class='material-icons'>details</i>
+                                        <div id='loader".$query[$i]['CLIENTE']."' style='display:none;' class='preloader-wrapper small active' >
+                                            <div class='spinner-layer spinner-blue-only'>
+                                            <div style='overflow: visible!important;' class='circle-clipper left'>
+                                                <div class='circle'></div>
+                                            </div><div class='gap-patch'>
+                                                <div class='circle'></div>
+                                            </div><div style='overflow: visible!important;' class='circle-clipper right'>
+                                                <div class='circle'></div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                   <td class='".$clase." center'>".$query[$i]['CLIENTE']."</td>
+                                   <td class='".$clase." id='NomCliente'>".$query[$i]['NOMBRE']."</td>
+                                   <td class='".$clase." center'>".$query[$i]['RUC']."</td>
+                                   <td class='".$clase." center'>".number_format($query[$i]['PUNTOS'],2)."</td>
                               </tr>";
                         $i++;
                     }

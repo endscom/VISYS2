@@ -58,37 +58,54 @@
 
         if(Cls !=0){
             $.ajax({
-                url: "getAplicadoP/"+ Cls,
+                url: "getBCMora/"+ Cls,
                 type: "post",
                 async:true,
                 success:
                     function(clsAplicados){
-                        $("#PtosDisponibles").val(parseInt(clsAplicados));
+                        if (clsAplicados == 'S'){
+                            $('#moroso').html('');
+                            $('#moroso').html('<table id="tblFacturaFRP" class=" TblDatos"><thead><tr><th>FECHA</th><th>FACTURA</th><th>PUNTOS</th><th>Pts. APLI.</th><th>Pts. DISP.</th><th> <i class="material-icons">done</i> </th><th>ESTADO</th></tr></thead><tbody class="center"></tbody></table>');
+                            mensaje("CLIENTE EN ESTADO MOROSO", "error");
+                        }else{
+                           $.ajax({
+                                url: "getAplicadoP/"+ Cls,
+                                type: "post",
+                                async:true,
+                                success:
+                                    function(clsAplicados){
+                                        $("#PtosDisponibles").val(parseInt(clsAplicados));
+                                    }
+                            });
+
+                            $("#txtCodCliente,#ClienteFRPPremio").val(Cls);
+                            limpiarTabla(tblFacturaFRP);
+                            $('#tblFacturaFRP').DataTable({
+                                ajax: "getFacturaFRP/"+ Cls,
+                                "info":    false,
+                                "bPaginate": false,
+                                "paging": false,
+                                "ordering": false,
+                                "pagingType": "full_numbers",
+                                "emptyTable": "No hay datos disponibles en la tabla",
+                                columns: [
+                                    { "data": "FECHA" },
+                                    { "data": "FACTURA" },
+                                    { "data": "DISPONIBLE" },
+                                    { "data": "CAM1" },
+                                    { "data": "CAM2" },
+                                    { "data": "CAM3" },
+                                    { "data": "CAM4" },
+                                ]
+                            });
+                        }
                     }
-            });
-            $("#txtCodCliente,#ClienteFRPPremio").val(Cls);
-            limpiarTabla(tblFacturaFRP);
-            $('#tblFacturaFRP').DataTable({
-                ajax: "getFacturaFRP/"+ Cls,
-                "info":    false,
-                "bPaginate": false,
-                "paging": false,
-                "ordering": false,
-                "pagingType": "full_numbers",
-                columns: [
-                    { "data": "FECHA" },
-                    { "data": "FACTURA" },
-                    { "data": "DISPONIBLE" },
-                    { "data": "CAM1" },
-                    { "data": "CAM2" },
-                    { "data": "CAM3" },
-                    { "data": "CAM4" },
-                ]
             });
         }else{
             alert("No Selecciono ningun cliente");
         }
     });
+
 
     $( "#ListCatalogo").change(function() {
         if ($("#ListCliente").val()!=0){
@@ -322,7 +339,7 @@
         FPunto = 0;
         Posi=0;
         var ultima = -1;
-        var global=0;
+        var global = 0;
         var contador = ofact.rows().count();
         
         obj.rows().data().each( function (ip) {

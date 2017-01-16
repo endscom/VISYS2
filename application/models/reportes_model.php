@@ -18,9 +18,7 @@ class Reportes_model extends CI_Model
         }
         /*if ($bandera!=null) {
             return $valor = str_replace(".00000000","",$valor);
-        }else{
-            return $valor = str_replace(".000000","",$valor);
-        }*/
+        }else{return $valor = str_replace(".000000","",$valor);}*/
     }
     public function cuentaXcliente($codigo,$f1,$f2,$bandera=null)
     {
@@ -35,9 +33,9 @@ class Reportes_model extends CI_Model
 
         $q_rows = $this->db->query("call pc_Clientes_Facturas_Fre ('".$codigo."')");
         if ($q_rows->num_rows() > 0) {
-                $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") GROUP BY FACTURA, FECHA";
+                $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].")";
         }        
-        $query .= " GROUP BY FACTURA, FECHA ";
+        $query .= " GROUP BY FACTURA, FECHA";
         $q_rows->next_result();
         $q_rows->free_result();
         //echo $query."<br>";
@@ -61,12 +59,10 @@ class Reportes_model extends CI_Model
         }
 
         if ($bandera!=null) {
-            //$this->sqlsrv->close();
             return $json;
         }else{
             echo json_encode($json);    
         }
-        //$this->sqlsrv->close();
     }
 
     public function getAplicado($FACTURA)
@@ -81,21 +77,22 @@ class Reportes_model extends CI_Model
         }
         return 0;
     }
-    public function datosCliente($codigo)
-    {
+    public function datosCliente($codigo,$bandera=null){
         $query ="SELECT DIRECCION,RUC,CLIENTE,NOMBRE FROM vtVS2_Clientes WHERE CLIENTE = '".$codigo."' ";
         $i=0;
         $json = array();
         $query = $this->sqlsrv->fetchArray($query,SQLSRV_FETCH_ASSOC);
 
         foreach($query as $key){
-            $json['data2']['DIRECCION'] = $key['DIRECCION'];
-            $json['data2']['RUC'] = $key['RUC'];
-            $json['data2']['CODIGO'] = $key['CLIENTE'];
-            $json['data2']['NOMBRE'] = $key['NOMBRE'];
+            $json['data2'][0]['DIRECCION'] = $key['DIRECCION'];
+            $json['data2'][0]['RUC'] = $key['RUC'];
+            $json['data2'][0]['CODIGO'] = $key['CLIENTE'];
+            $json['data2'][0]['NOMBRE'] = $key['NOMBRE'];
             $i++;
         }
-        echo json_encode($json);
+        if ($bandera==null) {
+            echo json_encode($json);
+        }        
         return $json;
         $this->sqlsrv->close();
     }
@@ -467,7 +464,7 @@ class Reportes_model extends CI_Model
     {
         $i=0;
         $json = array();
-        $query = $this->sqlsrv->fetchArray("SELECT CLIENTE,NOMBRE_CLIENTE,
+        $query = $this->sqlsrv->fetchArray("SELECT CLIENTE,NOMBRE_CLIENTE,RUTA,
                                             ISNULL(SUM(CASE WHEN MONTH(FECHA)=1 THEN TT_PUNTOS END),0) AS ENE,
                                             ISNULL(SUM(CASE WHEN MONTH(FECHA)=2 THEN TT_PUNTOS END),0) AS FEB,
                                             ISNULL(SUM(CASE WHEN MONTH(FECHA)=3 THEN TT_PUNTOS END),0) AS MAR,
@@ -482,11 +479,12 @@ class Reportes_model extends CI_Model
                                             ISNULL(SUM(CASE WHEN MONTH(FECHA)=12 THEN TT_PUNTOS END),0) AS DIC
                                             FROM vtVS2_Facturas_CL
                                             WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
-                                            GROUP BY CLIENTE,NOMBRE_CLIENTE",SQLSRV_FETCH_ASSOC);
+                                            GROUP BY CLIENTE,NOMBRE_CLIENTE,RUTA",SQLSRV_FETCH_ASSOC);
         
         foreach($query as $key){
             $json['data'][$i]['CODIGO'] = '<p class="negra noMargen">'.$key['CLIENTE']."</p>";
             $json['data'][$i]['NOMBRE'] = '<p class="bold noMargen">'.$key['NOMBRE_CLIENTE']."</p>";
+            $json['data'][$i]['RUTA'] = '<p class="bold noMargen">'.$key['RUTA']."</p>";
             $json['data'][$i]['ENE'] = $this->formatDecimal($key['ENE']);
             $json['data'][$i]['FEB'] = $this->formatDecimal($key['FEB']);
             $json['data'][$i]['MAR'] = $this->formatDecimal($key['MAR']);
@@ -498,37 +496,39 @@ class Reportes_model extends CI_Model
             $json['data'][$i]['SEP'] = $this->formatDecimal($key['SEP']);
             $json['data'][$i]['OCT'] = $this->formatDecimal($key['OCT']);
             $json['data'][$i]['NOV'] = $this->formatDecimal($key['NOV']);
-            $json['data'][$i]['DIC'] = $this->formatDecimal($key['DIC']);            
+            $json['data'][$i]['DIC'] = $this->formatDecimal($key['DIC']);
             $i++;
         }
             $json['columns'][0]['data'] = "CODIGO";
             $json['columns'][0]['name'] = "CODIGO";
             $json['columns'][1]['data'] = "NOMBRE";
             $json['columns'][1]['name'] = "NOMBRE";
-            $json['columns'][2]['data'] = "ENE";
-            $json['columns'][2]['name'] = "ENE";
-            $json['columns'][3]['data'] = "FEB";
-            $json['columns'][3]['name'] = "FEB";
-            $json['columns'][4]['data'] = "MAR";
-            $json['columns'][4]['name'] = "MAR";
-            $json['columns'][5]['data'] = "ABR";
-            $json['columns'][5]['name'] = "ABR";
-            $json['columns'][6]['data'] = "MAY";
-            $json['columns'][6]['name'] = "MAY";
-            $json['columns'][7]['data'] = "JUN";
-            $json['columns'][7]['name'] = "JUN";
-            $json['columns'][8]['data'] = "JUL";
-            $json['columns'][8]['name'] = "JUL";
-            $json['columns'][9]['data'] = "AGO";
-            $json['columns'][9]['name'] = "AGO";
-            $json['columns'][10]['data'] = "SEP";
-            $json['columns'][10]['name'] = "SEP";
-            $json['columns'][11]['data'] = "OCT";
-            $json['columns'][11]['name'] = "OCT";
-            $json['columns'][12]['data'] = "NOV";
-            $json['columns'][12]['name'] = "NOV";
-            $json['columns'][13]['data'] = "DIC";
-            $json['columns'][13]['name'] = "DIC";
+            $json['columns'][2]['data'] = "RUTA";
+            $json['columns'][2]['name'] = "RUTA";
+            $json['columns'][3]['data'] = "ENE";
+            $json['columns'][3]['name'] = "ENE";
+            $json['columns'][4]['data'] = "FEB";
+            $json['columns'][4]['name'] = "FEB";
+            $json['columns'][5]['data'] = "MAR";
+            $json['columns'][5]['name'] = "MAR";
+            $json['columns'][6]['data'] = "ABR";
+            $json['columns'][6]['name'] = "ABR";
+            $json['columns'][7]['data'] = "MAY";
+            $json['columns'][7]['name'] = "MAY";
+            $json['columns'][8]['data'] = "JUN";
+            $json['columns'][8]['name'] = "JUN";
+            $json['columns'][9]['data'] = "JUL";
+            $json['columns'][9]['name'] = "JUL";
+            $json['columns'][10]['data'] = "AGO";
+            $json['columns'][10]['name'] = "AGO";
+            $json['columns'][11]['data'] = "SEP";
+            $json['columns'][11]['name'] = "SEP";
+            $json['columns'][12]['data'] = "OCT";
+            $json['columns'][12]['name'] = "OCT";
+            $json['columns'][13]['data'] = "NOV";
+            $json['columns'][13]['name'] = "NOV";
+            $json['columns'][14]['data'] = "DIC";
+            $json['columns'][14]['name'] = "DIC";
         echo json_encode($json);
         $this->sqlsrv->close();
     }

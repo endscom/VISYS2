@@ -26,6 +26,10 @@ class Canje_controller extends CI_Controller
     {
         $this->canje_model->getAplicadoP($idCliente);
     }
+    public function getBCMora($idCliente)
+    {
+        $this->canje_model->getBCMora($idCliente);
+    }
     public function getFacturaFRP($idCliente)
     {
         $this->canje_model->getFacturaFRP($idCliente);
