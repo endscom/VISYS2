@@ -2,7 +2,7 @@
     <div class="centrado  ColorHeader">
 
         <span class=" title">reportes</span>
-        <?php echo md5("MA476958") ?>
+        
     </div>
 </header>
 <!--//////////////////////////////////////////////////////////

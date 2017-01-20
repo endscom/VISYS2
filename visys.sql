@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-01-05 11:14:31
+Date: 2017-01-20 16:07:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -467,6 +467,12 @@ INSERT INTO `detallefre` VALUES ('F89FAA82291', '00071838', '2015-11-02 00:00:00
 INSERT INTO `detallefre` VALUES ('F89FAA82291', '00071928', '2015-11-04 00:00:00', '200', '100');
 INSERT INTO `detallefre` VALUES ('F89FAA82291', '00072105', '2015-11-10 00:00:00', '700', '350');
 INSERT INTO `detallefre` VALUES ('F89FAA82291', '00072486', '2015-11-19 00:00:00', '800', '400');
+INSERT INTO `detallefre` VALUES ('77777', '00066436', '2015-05-14 00:00:00', '750', '375');
+INSERT INTO `detallefre` VALUES ('77777', '00082741', '2016-09-28 00:00:00', '1000', '500');
+INSERT INTO `detallefre` VALUES ('77777', 'FC001228', '2016-01-29 00:00:00', '200', '100');
+INSERT INTO `detallefre` VALUES ('77777', 'FC001454', '2016-03-03 00:00:00', '300', '150');
+INSERT INTO `detallefre` VALUES ('77777', 'FC001550', '2016-03-10 00:00:00', '400', '200');
+INSERT INTO `detallefre` VALUES ('77777', 'FC002703', '2016-06-01 00:00:00', '150', '75');
 
 -- ----------------------------
 -- Table structure for detallefrp
@@ -4133,6 +4139,30 @@ INSERT INTO `detallefrp` VALUES ('00899', '00084613', '2016-11-14', '600', '30',
 INSERT INTO `detallefrp` VALUES ('00899', 'FC002357', '2016-05-09', '150', '30', 'GIFT CARD WALMART C$500 Cod. PPUMK-0002', '150', '2', '0');
 INSERT INTO `detallefrp` VALUES ('00899', 'FC002455', '2016-05-17', '250', '30', 'GIFT CARD WALMART C$500 Cod. PPUMK-0002', '250', '2', '0');
 INSERT INTO `detallefrp` VALUES ('00899', 'FC003103', '2016-06-13', '102', '30', 'GIFT CARD WALMART C$500 Cod. PPUMK-0002', '102', '2', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00067456', '2015-06-18', '550', '576', 'TV LED 32\" SANKEY CLED32FSP1', '550', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00068579', '2015-07-15', '1000', '576', 'TV LED 32\" SANKEY CLED32FSP1', '1000', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00068585', '2015-07-15', '1000', '576', 'TV LED 32\" SANKEY CLED32FSP1', '1000', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00068772', '2015-07-22', '300', '576', 'TV LED 32\" SANKEY CLED32FSP1', '300', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00069314', '2015-08-12', '250', '576', 'TV LED 32\" SANKEY CLED32FSP1', '250', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00070534', '2015-09-25', '500', '576', 'TV LED 32\" SANKEY CLED32FSP1', '500', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00070820', '2015-10-06', '350', '576', 'TV LED 32\" SANKEY CLED32FSP1', '350', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00071727', '2015-10-29', '2000', '576', 'TV LED 32\" SANKEY CLED32FSP1', '2000', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00072740', '2015-11-25', '2950', '576', 'TV LED 32\" SANKEY CLED32FSP1', '2950', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00073826', '2015-12-29', '600', '576', 'TV LED 32\" SANKEY CLED32FSP1', '600', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00073827', '2015-12-29', '600', '576', 'TV LED 32\" SANKEY CLED32FSP1', '600', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00075089', '2016-02-09', '300', '576', 'TV LED 32\" SANKEY CLED32FSP1', '300', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00075205', '2016-02-12', '700', '576', 'TV LED 32\" SANKEY CLED32FSP1', '700', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00075208', '2016-02-12', '30', '576', 'TV LED 32\" SANKEY CLED32FSP1', '30', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00075229', '2016-02-15', '400', '576', 'TV LED 32\" SANKEY CLED32FSP1', '400', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00075433', '2016-02-22', '500', '576', 'TV LED 32\" SANKEY CLED32FSP1', '500', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00075544', '2016-02-26', '350', '576', 'TV LED 32\" SANKEY CLED32FSP1', '350', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00075823', '2016-03-08', '120', '576', 'TV LED 32\" SANKEY CLED32FSP1', '120', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00075888', '2016-03-09', '150', '576', 'TV LED 32\" SANKEY CLED32FSP1', '150', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00075925', '2016-03-10', '1360', '576', 'TV LED 32\" SANKEY CLED32FSP1', '1360', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00076020', '2016-03-14', '750', '576', 'TV LED 32\" SANKEY CLED32FSP1', '750', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00076276', '2016-03-28', '450', '576', 'TV LED 32\" SANKEY CLED32FSP1', '450', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00076459', '2016-04-01', '350', '576', 'TV LED 32\" SANKEY CLED32FSP1', '350', '1', '0');
+INSERT INTO `detallefrp` VALUES ('77777', '00076607', '2016-04-06', '1000', '576', 'TV LED 32\" SANKEY CLED32FSP1', '238', '1', '0');
 
 -- ----------------------------
 -- Table structure for fre
@@ -4177,6 +4207,7 @@ INSERT INTO `fre` VALUES ('FDDB53A2291', '2016-01-21 00:00:00', '02291', 'FARMAC
 INSERT INTO `fre` VALUES ('FD6FB612291', '2016-01-21 00:00:00', '02291', 'FARMACIA OZIRIS #3| 02291', '220', 'N', '');
 INSERT INTO `fre` VALUES ('FD26C33519', '2016-01-22 00:00:00', '00519', 'FARMACIA SAN BENITO| 00519', '220', 'N', '');
 INSERT INTO `fre` VALUES ('F89FAA82291', '2016-12-19 00:00:00', '02291', 'FARMACIA OZIRIS #3| 02291', '280', 'N', '');
+INSERT INTO `fre` VALUES ('77777', '2017-01-12 00:00:00', '00235', 'FARMACIA JANY| 00235', '220', 'N', '');
 
 -- ----------------------------
 -- Table structure for frp
@@ -4622,6 +4653,7 @@ INSERT INTO `frp` VALUES ('00892', '2016-12-22 00:00:00', '03140', 'FARMACIA NOR
 INSERT INTO `frp` VALUES ('01111', '2016-12-22 00:00:00', '01006', 'FARMACIA SAN MARTIN| 01006', '220', 'N', '0');
 INSERT INTO `frp` VALUES ('01115', '2016-12-22 00:00:00', '00773', 'FARMACIA MOLPI| 00773', '220', 'N', '0');
 INSERT INTO `frp` VALUES ('00899', '2016-12-22 00:00:00', '01489', 'FARMACIA SANTA TERESA| 01489', '220', 'N', '0');
+INSERT INTO `frp` VALUES ('77777', '2017-01-12 00:00:00', '00235', 'FARMACIA JANY| 00235', '220', 'N', '0');
 
 -- ----------------------------
 -- Table structure for logcatalogo
@@ -8209,7 +8241,7 @@ INSERT INTO `rfactura` VALUES ('01978', '00068306', '1200', '0', '2016-12-30 09:
 INSERT INTO `rfactura` VALUES ('01978', '00071550', '380', '0', '2016-12-30 09:14:26');
 INSERT INTO `rfactura` VALUES ('01978', '00079227', '60', '0', '2016-12-30 09:14:26');
 INSERT INTO `rfactura` VALUES ('01978', 'FC000156', '1000', '0', '2016-12-30 09:14:26');
-INSERT INTO `rfactura` VALUES ('01011', '00068455', '5000', '0', '2016-12-30 09:18:02');
+INSERT INTO `rfactura` VALUES ('01011', '00068455', '5700', '5700', '2016-12-30 09:18:02');
 INSERT INTO `rfactura` VALUES ('00519', '00068548', '1500', '0', '2016-12-30 09:22:42');
 INSERT INTO `rfactura` VALUES ('00449', '00068326', '200', '0', '2016-12-30 09:24:27');
 INSERT INTO `rfactura` VALUES ('00449', '00068611', '700', '0', '2016-12-30 09:24:27');
@@ -8236,6 +8268,36 @@ INSERT INTO `rfactura` VALUES ('00077', '00083300', '40', '0', '2016-12-30 06:30
 INSERT INTO `rfactura` VALUES ('00077', '00083664', '90', '0', '2016-12-30 06:30:45');
 INSERT INTO `rfactura` VALUES ('00077', '00085072', '60', '0', '2016-12-30 06:30:45');
 INSERT INTO `rfactura` VALUES ('00077', '00086355', '40', '0', '2016-12-30 06:30:45');
+INSERT INTO `rfactura` VALUES ('00235', '00067456', '550', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00068579', '1000', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00068585', '1000', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00068772', '300', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00069314', '250', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00070534', '500', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00070820', '350', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00071727', '2000', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00072740', '2950', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00073826', '600', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00073827', '600', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00075089', '300', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00075205', '700', '0', '2017-01-12 10:31:05');
+INSERT INTO `rfactura` VALUES ('00235', '00075208', '30', '0', '2017-01-12 10:31:06');
+INSERT INTO `rfactura` VALUES ('00235', '00075229', '400', '0', '2017-01-12 10:31:06');
+INSERT INTO `rfactura` VALUES ('00235', '00075433', '500', '0', '2017-01-12 10:31:06');
+INSERT INTO `rfactura` VALUES ('00235', '00075544', '350', '0', '2017-01-12 10:31:06');
+INSERT INTO `rfactura` VALUES ('00235', '00075823', '120', '0', '2017-01-12 10:31:06');
+INSERT INTO `rfactura` VALUES ('00235', '00075888', '150', '0', '2017-01-12 10:31:06');
+INSERT INTO `rfactura` VALUES ('00235', '00075925', '1360', '0', '2017-01-12 10:31:06');
+INSERT INTO `rfactura` VALUES ('00235', '00076020', '750', '0', '2017-01-12 10:31:06');
+INSERT INTO `rfactura` VALUES ('00235', '00076276', '450', '0', '2017-01-12 10:31:06');
+INSERT INTO `rfactura` VALUES ('00235', '00076459', '350', '0', '2017-01-12 10:31:06');
+INSERT INTO `rfactura` VALUES ('00235', '00076607', '1000', '762', '2017-01-12 10:31:06');
+INSERT INTO `rfactura` VALUES ('00235', '00066436', '750', '0', '2017-01-12 10:31:53');
+INSERT INTO `rfactura` VALUES ('00235', '00082741', '1000', '0', '2017-01-12 10:31:54');
+INSERT INTO `rfactura` VALUES ('00235', 'FC001228', '200', '0', '2017-01-12 10:31:54');
+INSERT INTO `rfactura` VALUES ('00235', 'FC001454', '300', '0', '2017-01-12 10:31:54');
+INSERT INTO `rfactura` VALUES ('00235', 'FC001550', '400', '0', '2017-01-12 10:31:54');
+INSERT INTO `rfactura` VALUES ('00235', 'FC002703', '150', '0', '2017-01-12 10:31:54');
 
 -- ----------------------------
 -- Table structure for roles
@@ -8347,7 +8409,7 @@ CREATE TABLE `usuario` (
   `FechaCreacion` datetime NOT NULL COMMENT 'Fecha de Creación del Usuario',
   `FechaBaja` datetime DEFAULT NULL COMMENT 'Fecha de Baja del Usuario',
   PRIMARY KEY (`IdUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=3096 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3097 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of usuario
@@ -8356,7 +8418,7 @@ INSERT INTO `usuario` VALUES ('1', 'admin', 'admin', '202cb962ac59075b964b07152d
 INSERT INTO `usuario` VALUES ('242', 'FDAVID', 'FARMACIA DAVID', '202cb962ac59075b964b07152d234b70', 'Vendedor', '00001', 'FARMACIA DAVID', 'F09', '\0', '2016-11-03 03:31:27', '2016-12-03 16:54:37');
 INSERT INTO `usuario` VALUES ('244', 'FLAPROVIDENCIA', 'FARMACIA LA PROVIDENCIA', '202cb962ac59075b964b07152d234b70', 'Vendedor', '00003', 'FARMACIA LA PROVIDENCIA', 'F06', '\0', '2016-11-04 10:57:18', '2016-11-04 11:42:38');
 INSERT INTO `usuario` VALUES ('245', 'FLAPRINCIPAL', 'FARMACIA LA PRINCIPAL', '202cb962ac59075b964b07152d234b70', 'Vendedor', '00002', 'FARMACIA LA PRINCIPAL', 'F06', '\0', '2016-11-04 10:57:18', '2016-11-04 11:42:35');
-INSERT INTO `usuario` VALUES ('220', 'alder', 'alder', '202cb962ac59075b964b07152d234b70', 'SuperAdministrador', '', null, null, '\0', '2016-09-22 13:31:24', null);
+INSERT INTO `usuario` VALUES ('220', 'alder hernandez', 'alder', '202cb962ac59075b964b07152d234b70', 'SuperAdministrador', '', null, null, '\0', '2016-09-22 13:31:24', null);
 INSERT INTO `usuario` VALUES ('279', 'armando castillo', 'armando ', '202cb962ac59075b964b07152d234b70', 'SuperAdministrador', '', null, null, '\0', '2016-12-20 10:51:56', null);
 INSERT INTO `usuario` VALUES ('280', 'Sergio Azonipse', 'cerebro', '202cb962ac59075b964b07152d234b70', 'SuperAdministrador', '', null, null, '\0', '2016-12-20 10:54:07', null);
 INSERT INTO `usuario` VALUES ('281', 'Maryan Espinoza', 'mespinoza', '202cb962ac59075b964b07152d234b70', 'SuperAdministrador', '', null, null, '\0', '2016-12-21 09:33:10', null);
@@ -9729,6 +9791,7 @@ INSERT INTO `usuario` VALUES ('3092', 'FARMACIA SAN FRANCISCO DE ASIS', '01778',
 INSERT INTO `usuario` VALUES ('3093', 'FARMACIA TRUAL', '03439', '1a95eb6cc4c011615a402ca7bc56c614', 'Cliente', '03439', 'FARMACIA TRUAL', 'F06', '\0', '2016-12-24 00:00:00', null);
 INSERT INTO `usuario` VALUES ('3094', 'PUESTO DE VENTA LA SALUD', '03440', 'f421181e49c39cefa936cb1b678675c1', 'Cliente', '03440', 'PUESTO DE VENTA LA SALUD', 'F03', '\0', '2016-12-24 00:00:00', null);
 INSERT INTO `usuario` VALUES ('3095', 'FARMACIA LA ESPERANZA RUC 2461001930004F', '03441', '660043e9c9532277367221c77113b353', 'Cliente', '03441', 'FARMACIA LA ESPERANZA RUC 2461001930004F', 'F10', '\0', '2016-12-24 00:00:00', null);
+INSERT INTO `usuario` VALUES ('3096', 'MEYLING', 'MEYLING', '202cb962ac59075b964b07152d234b70', 'SAC', '', null, null, '\0', '2017-01-14 15:06:33', null);
 
 -- ----------------------------
 -- Table structure for vendedor
@@ -9783,7 +9846,43 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW
 -- View structure for view_canje_premios
 -- ----------------------------
 DROP VIEW IF EXISTS `view_canje_premios`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_canje_premios` AS select `t0`.`IdFRP` AS `IdFRP`,`t1`.`Fecha` AS `Fecha`,`t1`.`IdCliente` AS `IdCliente`,`t1`.`Nombre` AS `Nombre`,`t0`.`IdArticulo` AS `IdArticulo`,`t0`.`Descripcion` AS `Descripcion`,(select (sum(`t0`.`Puntos`) / `t2`.`Puntos`) AS `(sum(``t0``.``Puntos``) / ``t2``.``Puntos``)` from `detallect` `t2` where ((`t0`.`IdCT` = `t2`.`IdCT`) and (convert(`t0`.`IdArticulo` using utf8) = `t2`.`IdIMG`))) AS `CANTIDAD`,(sum(`t0`.`Puntos`) / `t0`.`Cantidad`) AS `PUNTO` from (`detallefrp` `t0` join `frp` `t1` on((`t1`.`IdFRP` = `t0`.`IdFRP`))) where (`t1`.`Anulado` = 'N') group by `t0`.`IdFRP`,`t0`.`IdArticulo` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_canje_premios` AS SELECT
+	`t0`.`IdFRP` AS `IdFRP`,
+	`t1`.`Fecha` AS `Fecha`,
+	`t1`.`IdCliente` AS `IdCliente`,
+	`t1`.`Nombre` AS `Nombre`,
+	`t0`.`IdArticulo` AS `IdArticulo`,
+	`t0`.`Descripcion` AS `Descripcion`,
+	(
+		SELECT
+			(
+				sum(`t0`.`Puntos`) / `t2`.`Puntos`
+			) AS `(sum(``t0``.``Puntos``) / ``t2``.``Puntos``)`
+		FROM
+			`detallect` `t2`
+		WHERE
+			(
+				(`t0`.`IdCT` = `t2`.`IdCT`)
+				AND (
+					CONVERT (`t0`.`IdArticulo` USING utf8) = `t2`.`IdIMG`
+				)
+			)
+	) AS `CANTIDAD`,
+	(
+		sum(`t0`.`Puntos`) / `t0`.`Cantidad`
+	) AS `PUNTO`
+FROM
+	(
+		`detallefrp` `t0`
+		JOIN `frp` `t1` ON (
+			(`t1`.`IdFRP` = `t0`.`IdFRP`)
+		)
+	)
+WHERE
+	(`t1`.`Anulado` = 'N')
+GROUP BY
+	`t0`.`IdFRP`,
+	`t0`.`IdArticulo` ;
 
 -- ----------------------------
 -- View structure for view_catalogo_activo
@@ -9796,6 +9895,21 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW
 -- ----------------------------
 DROP VIEW IF EXISTS `view_clientesactivos`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_clientesactivos` AS SELECT Usuario.IdCL AS CLIENTES FROM Usuario WHERE Usuario.IdCL <> '' AND Usuario.Estado <>1 ;
+
+-- ----------------------------
+-- View structure for view_disponiblecliente
+-- ----------------------------
+DROP VIEW IF EXISTS `view_disponiblecliente`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_disponiblecliente` AS SELECT
+rfactura.IdCliente,
+rfactura.Factura,
+rfactura.ttPuntos,
+rfactura.Puntos,
+CASE Puntos WHEN 0 THEN ttPuntos
+ELSE  ttPuntos-Puntos
+END AS DISPONIBLE
+FROM
+rfactura ;
 
 -- ----------------------------
 -- View structure for view_fre_factura
@@ -9814,6 +9928,24 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW
 -- ----------------------------
 DROP VIEW IF EXISTS `view_frp_factura`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_frp_factura` AS select `t0`.`IdFRP` AS `IdFRP`,(select `t1`.`IdCliente` AS `IdCliente` from `frp` `t1` where (`t1`.`IdFRP` = `t0`.`IdFRP`)) AS `IdCliente`,`t0`.`Faplicado` AS `Faplicado`,`t0`.`Factura` AS `Factura`,`t0`.`Fecha` AS `Fecha`,sum(`t0`.`Puntos`) AS `Puntos`,(`t0`.`Faplicado` - (select sum(`t1`.`Puntos`) AS `sum(``t1``.``Puntos``)` from `detallefrp` `t1` where ((`t1`.`IdFRP` = `t0`.`IdFRP`) and (`t1`.`Factura` = `t0`.`Factura`)))) AS `SALDO`,(select `t1`.`Anulado` AS `Anulado` from `frp` `t1` where (`t1`.`IdFRP` = `t0`.`IdFRP`)) AS `Anulado` from `detallefrp` `t0` group by `t0`.`Factura`,`t0`.`IdFRP`,`t0`.`Faplicado` ;
+
+-- ----------------------------
+-- View structure for view_informefacturas
+-- ----------------------------
+DROP VIEW IF EXISTS `view_informefacturas`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_informefacturas` AS SELECT
+frp.IdFRP,
+frp.Fecha,
+frp.IdCliente,
+frp.Nombre,
+detallefrp.Factura,
+detallefrp.Faplicado,
+SUM(detallefrp.Puntos) AS PUNTOS
+FROM
+frp
+INNER JOIN detallefrp ON frp.IdFRP = detallefrp.IdFRP
+GROUP BY frp.IdFRP,Factura
+order by Factura ;
 
 -- ----------------------------
 -- View structure for vt_clientesuser
@@ -9841,7 +9973,7 @@ BEGIN
 			SELECT detallect.IdCT, detallect.IdIMG, detallect.Nombre, detallect.IMG, detallect.Puntos
 			FROM detallect
 			WHERE detallect.IdCT = CATALOGO AND detallect.Estado <> 1
-			ORDER BY detallect.IdIMG;
+			ORDER BY detallect.Nombre;
 		DECLARE CONTINUE HANDLER FOR NOT FOUND SET errores = 1;
 
 		SELECT COUNT(IdCT) INTO RELLENO FROM detallect WHERE detallect.IdCT = CATALOGO AND detallect.Estado <> 1;
