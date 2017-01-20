@@ -124,6 +124,10 @@ class Reportes_controller extends CI_Controller
         $fecha2 = ($fecha1=="") ? date('Y-d-m') : $this->formatMYSQL($fecha2);
         $this->reportes_model->detalles_canje($fecha1,$fecha2);
     }
+    public function informeFactura($factura)
+    {
+        $this->reportes_model->informeFactura($factura);
+    }
     public function CXCprint($codigo,$fecha1,$fecha2)
     {
 

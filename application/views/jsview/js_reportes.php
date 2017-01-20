@@ -118,6 +118,36 @@
             $('#tituloFiltrado').text(titulo);
             $('#tituloFiltrado2').text(titulo);
         }
+        
+        $("#geninformeFactura").click(function(){                       
+            var f1 = $('#ListFact').val()
+            $('#informeDetalle').openModal();
+            idTabla = $('#tblInformeFactura').DataTable();
+                idTabla.destroy();
+                idTabla.clear();
+                idTabla.draw();
+                $('#tblInformeFactura').DataTable({
+                    ajax: "informeFactura/"+ f1,
+                    "info":    false,
+                    "bPaginate": false,
+                    "paging": false,
+                    "pagingType": "full_numbers",
+                    "emptyTable": "No hay datos disponibles en la tabla",
+                    "dom": 'T<"clear">lfrtip',
+                    "tableTools": {
+                        "sSwfPath": "<?php echo base_url(); ?>assets/data/swf/copy_csv_xls_pdf.swf",
+                    },
+                    columns: [
+                    { "data": "FACTURA" },
+                    { "data": "CLIENTE" },
+                    { "data": "FECHA" },
+                    { "data": "CODIGO" },
+                    { "data": "PUNTOS" },
+                    { "data": "APLICADO" },
+                    { "data": "VER" }
+                    ]
+                });
+        });
 
         $("#generarDetalleReporte").click(function(){
             var f1 = $('#fecha1').val()
@@ -159,7 +189,7 @@
                         "emptyTable": "No hay datos disponibles en la tabla",
                         "lengthMenu": '_MENU_ ',
                         "search": '<i class=" material-icons">search</i>',
-                        "loadingRecords": "Cargado...",
+                        "loadingRecords": "Cargando...",
                         "paginate": {
                             "first": "Primera",
                             "last": "Última ",

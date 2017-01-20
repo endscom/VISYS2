@@ -5,13 +5,14 @@ $('#checkTodos').change(function () {//funcion para seleccionar todos los checks
     var oTable = $('#tblCatalogoPasado').dataTable();
     $('input', oTable.fnGetNodes()).prop('checked',this.checked);// change .attr() to .prop()
 });
- $('#tblCatalogo2').DataTable({
+ $('#tblCatalogo1,#tblCatalogo2,#tblCatalogo3,#tblCatalogo4').DataTable({
             //"scrollY":        "280px",
             "scrollCollapse": true,
             "paging":         false,
-            "info":    false,
+            "info":    false,            
             "lengthMenu": [[5,10,50,100,-1], [5,10,50,100,"Todo"]],
             "language": {
+                "zeroRecords": "NO HAY RESULTADOS",
                 "paginate": {
                     "first":      "Primera",
                     "last":       "Última ",
@@ -24,7 +25,7 @@ $('#checkTodos').change(function () {//funcion para seleccionar todos los checks
             }
         });
 $('#searchCatalogo').on( 'keyup', function () {
-	var table = $('#tblCatalogo2').DataTable();
+	var table = $('#tblCatalogo1,#tblCatalogo2,#tblCatalogo3,#tblCatalogo4').DataTable();
 	table.search(this.value).draw();
 });
 $("#aceptarIMG").click(function(){
@@ -306,6 +307,13 @@ $('#txtimagen').change(function(){
         var codigo = file.split(".");$('#codigoArto').val(codigo[0]);
     }
 });
+function ekisde () {
+    var table = $('#tblCatalogo1').DataTable();
+
+    table.order.fixed( {
+        post: [ 0, 'asc' ]
+    } );
+}
 function editarArticulo(imagen,codigo,descripcion,puntos){
         $('#bandera').val(1);
         $('#codigoArto').val(codigo);

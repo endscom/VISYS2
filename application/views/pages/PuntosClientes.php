@@ -44,6 +44,7 @@
                 <th>CÓDIGO</th>
                 <th>CLIENTE</th>
                 <th>RUC</th>
+                <th>PTS ORIGINALES</th>
                 <th>PTS DISPONIBLES</th>
             </tr>
             </thead>
@@ -77,6 +78,7 @@
                                    <td class='".$clase." center'>".$query[$i]['CLIENTE']."</td>
                                    <td class='".$clase." id='NomCliente'>".$query[$i]['NOMBRE']."</td>
                                    <td class='".$clase." center'>".$query[$i]['RUC']."</td>
+                                   <td class='".$clase." center'>".number_format($query[$i]['ORIGINALES'],2)."</td>
                                    <td class='".$clase." center'>".number_format($query[$i]['PUNTOS'],2)."</td>
                               </tr>";
                         $i++;

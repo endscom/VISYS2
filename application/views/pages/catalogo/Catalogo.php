@@ -29,7 +29,7 @@
                             case '04':echo "ABRIL";break;case '05':echo "MAYO";break;case '06':echo "JUNIO";break;
                             case '07':echo "JULIO";break;case '08':echo "AGOSTO";break;case '09':echo "SEPTIEMBRE";break;
                             case '10':echo "OCTUBRE";break;case '11':echo "NOVIEMBRE";break;case '12':echo "DICIEMBRE";break;
-                            case '': echo "asasa";break;
+                            case '': echo "DESCONOCIDO";break;
                             default: echo "";
                         }
                     ?>
@@ -62,7 +62,7 @@
           
         </div>
 
-        <div class="row center scrollHorizontal">
+        <!--<div class="row center scrollHorizontal">
             <table id="tblCatalogo2" class="TableBlank transparente">
                 <thead>
                     <tr><th></th><th></th><th></th><th></th></tr>
@@ -103,7 +103,44 @@
                     ?>
                 </tbody>
             </table>
-       </div>
+       </div>-->
+       <div class="row center">
+            <?php 
+            $cont = 0;
+                for ($i=1; $i <=4 ; $i++) { 
+                   echo '<div class="col s3 noPading">
+                        <table id="tblCatalogo'.$i.'" class="TableBlank transparente">
+                            <thead>
+                                <tr><th></th></tr>
+                            </thead>                            
+                            <tbody>';
+                            $bar = "cat".$i;
+                                    foreach ($$bar as $key) {
+                                        echo "<tr>";
+                                            if ($key['v_Puntos'.$i]!="0" and $key['v_Nombre'.$i]!="") {
+                                                echo"<td>
+                                                        <div class='images_ca'>                              
+                                                            <img src=".base_url()."assets/img/catalogo/".$key['v_IMG'.$i]." alt=''>
+                                                            <div class='descripImg'>
+                                                            <p class='codP'>COD: ".$key['v_IdIMG'.$i]."</p>
+                                                            <p class='descript'>".str_replace(array("/A%", "/E%","/I%","/O%","/U%","/-%"),array("á", "é", "í","ó","ú","ñ"),  $key['v_Nombre'.$i])."</p>
+                                                            <p class='ptsdes'>".$key['v_Puntos'.$i]." puntos</p>
+
+                                                            <a href='#' onclick = 'editarArticulo(".'"'.$key['v_IMG'.$i].'","'.$key['v_IdIMG'.$i].'","'.str_replace(array("/A%", "/E%","/I%","/O%","/U%","/-%",'"'),array("á", "é", "í","ó","ú","ñ","pulg"),  $key['v_Nombre'.$i]).'","'.$key['v_Puntos'.$i].'"'.")' id='modificar' class='btn'>modificar</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>";
+                                                } else {
+                                                    echo"<td style ='display:none;'></td>";
+                                                }                          
+                                        echo "</tr>"; $cont++;
+                                    }                                
+                            echo '</tbody>
+                        </table>
+                      </div>';
+                }
+            ?>
+        </div>
     </div>
 </div>
 </main>

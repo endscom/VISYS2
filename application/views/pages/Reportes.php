@@ -2,7 +2,7 @@
     <div class="centrado  ColorHeader">
 
         <span class=" title">reportes</span>
-
+        <?php echo md5("MA476958") ?>
     </div>
 </header>
 <!--//////////////////////////////////////////////////////////
@@ -114,8 +114,6 @@
                     </a>
                 </div>
             </div>
-
-
     </div>
 </main>
 
@@ -187,32 +185,22 @@
             <form class="col s12" action=""method="post" name="formnuevo">
 
                 <div class="row">
-                    <select name="cliente" id="ListCliente" class="chosen-select browser-default">
-                    <option value="" disabled selected>CLIENTE</option>
+                    <select name="cliente" id="ListFact" class="chosen-select browser-default">
+                    <option value="" disabled selected>SELECCIONE FACTURA</option>
                     <?php
-                        if(!$data){}
+                        if(!$query){}
                         else{
-                                foreach($data as $cliente){
-                                    echo '<option value="'.$cliente['CLIENTE'].'">'.$cliente['CLIENTE'].' | '.$cliente['NOMBRE'].'</option>';
+                                for ($i=0; $i < count($query); $i++) { 
+                                    echo '<option value="'.$query[$i]['FACTURA'].'">'.$query[$i]['FACTURA'].'</option>';
                             }
                         }
                     ?>
                 </select>
                 </div>
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input name="fecha1" placeholder="Desde" id="CXCfecha1" type="text" class="datepicker1">
-                    </div>
-                    <div class="input-field col s6">
-                        <input name="fecha2" placeholder="Hasta" id="CXCfecha2" type="text" class="datepicker1">
-
-                    </div>
-                </div>
             </form>
         </div>
         <div class="row center">
-                <a id="generarCtaXcte" href="#" class="Btnadd btn">GENERAR</a>
+                <a id="geninformeFactura"  href="#" class="Btnadd btn">GENERAR</a>
         </div>
     </div><!-- fin del contenido modal -->
 </div>
@@ -379,3 +367,33 @@
 <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                         Fin Modal Master Cuenta SP
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="informeDetalle" class="modal">
+    <div class="modal-content">
+        <div class="right row">
+                <a href="#!" class=" BtnClose modal-action modal-close ">
+                    <i class="material-icons">highlight_off</i>
+                </a>
+        </div>
+        <!-- LOGO SISTEMA DE VISYS -->
+        <center><img src="<?PHP echo base_url(); ?>assets/img/logo_sp.png" width="30%"></center>
+
+        <h6 class="center Mcolor AdUser">INFORME DE FACTURA</h6>
+        <!-- TABLA DE DETALLES -->
+            <table id="tblInformeFactura" class=" TblDatos">
+                <thead>
+                <tr>
+                    <th>FACTURA</th>
+                    <th>COD. CLIENTE</th>
+                    <th>FECHA FRP</th>
+                    <th>CODIGO FRP</th>
+                    <th>ACUMULADO X FACTURA</th>
+                    <th>PUNTOS APLICADOS</th>
+                    <th>FRP</th>
+                </tr>
+                </thead>
+                <tbody class="center">
+                </tbody>
+            </table>
+    </div>
+</div>

@@ -34,7 +34,7 @@
                     <p class="canjePts RobotoB">CANJE:  <?php echo number_format($puntos,0); ?> PTS.</p>
                 </div>
                 <div class="col s4 m4 l3 offset-l6 offset-s4 offset-m4 right">
-                    <?php $efectivo=0; foreach ($detalles as $key) {$efectivo = $efectivo +$key['Puntos'];} ?>
+                    <?php $efectivo=0; foreach ($detalles as $key) {$efectivo = $efectivo +$key['Efectivo'];} ?>
                     <p class="canjePts RobotoB">EFECTIVO: C$  <?php echo number_format($efectivo,0); ?></p>
                 </div>
             </div>

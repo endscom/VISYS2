@@ -1,6 +1,6 @@
 <script>
 $(document).ready(function() {
-	//$('#Dfre').openModal();
+	//$('#modalEfec').openModal();
 	$('#searchFRE').on( 'keyup', function () {
         var table = $('#tblFRE').DataTable();
         table.search( this.value ).draw();
@@ -48,6 +48,7 @@ $(document).ready(function() {
         $('#txtCodCliente').val(Cls);
         
         if(Cls !=0){
+            gnCodigo();
             $.ajax({
                 url: "getBCMora/"+ Cls,
                 type: "post",
@@ -119,6 +120,13 @@ $(document).ready(function() {
             $('#totalEfectivo').html(total);
         }
     }
+    function gnCodigo() {
+            var randomNumber = Math.floor(Math.random()*(9999-1000+1)+1000);
+            $('#frp').val("FE"+randomNumber+$('#txtCodCliente').val());       
+    }
+        
+        
+    
     function procesar() {
         var fechaFRE = $("#date1").val();
         var numFRE = $("#frp").val();
@@ -130,9 +138,10 @@ $(document).ready(function() {
             success:
                 function(clsAplicados){
                     if (parseInt(clsAplicados) > 0) {
-                        mensaje('NUMERO YA EXISTE!!!, INGRESE OTRO NUMERO DE FRE',"error");
+                        mensaje('CODIGO YA EXISTE!, PRESIONE PROCESAR',"error");
                         $("#frp").empty();
                         $("#frp").focus();
+                        gnCodigo();
                     }
                 }
         });

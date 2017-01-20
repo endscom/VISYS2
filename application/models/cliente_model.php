@@ -44,7 +44,8 @@ class Cliente_model extends CI_Model
         foreach($query as $key){
             $json['query'][$i]['CLIENTE']=$key['CLIENTE'];
             $json['query'][$i]['NOMBRE']=$key['NOMBRE_CLIENTE'];
-            $json['query'][$i]['PUNTOS']= $key['PUNTOS'] - $this->getAplicado($key['CLIENTE']);
+            $json['query'][$i]['ORIGINALES']= $key['PUNTOS'];
+            $json['query'][$i]['PUNTOS']= (($key['PUNTOS'] - $this->getAplicado($key['CLIENTE']))<0) ? 0 : $key['PUNTOS'] - $this->getAplicado($key['CLIENTE']);
             $json['query'][$i]['RUC']=$key['RUC'];
             $json['query'][$i]['DIRECCION']=$key['DIRECCION'];
             $json['query'][$i]['MOROSO']=$key['MOROSO'];
@@ -53,12 +54,22 @@ class Cliente_model extends CI_Model
         return $json;
         $this->sqlsrv->close();
     }
-    public function listarFacturas($FACTURA)
+    public function listarFacturas()
     {
         $i=0;
         $json = array();
-        $consulta = "SELECT FACTURA,CLIENTE,NOMBRE_CLIENTE,FECHA,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL WHERE FACTURA = '".$FACTURA."'
-                    GROUP BY FACTURA,CLIENTE,FECHA";
+        $consulta = "SELECT DISTINCT FACTURA FROM vtVS2_Facturas_CL";
+        $query = $this->sqlsrv->fetchArray($consulta,SQLSRV_FETCH_ASSOC);
+        foreach($query as $key){
+            $json['query'][$i]['FACTURA']=$key['FACTURA'];
+            $i++;
+        }
+        return $json;
+        $this->sqlsrv->close();
+        /*$consulta = "SELECT T1.CLIENTE, T0.NOMBRE AS NOMBRE_CLIENTE, T0.DIRECCION, T0.RUC, SUM(T1.TT_PUNTOS) AS PUNTOS, T0.MOROSO 
+                        FROM dbo.vtVS2_Clientes T0 INNER JOIN vtVS2_Facturas_CL T1 ON T0.CLIENTE = T1.CLIENTE
+                        GROUP BY T1.CLIENTE,T0.NOMBRE,T0.DIRECCION,T0.RUC,T0.MOROSO";*/
+
     }
     public function getAplicado($cliente)
     {

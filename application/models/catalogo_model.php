@@ -63,6 +63,21 @@ class Catalogo_model extends CI_Model
     	}
     	return 0;
     }
+    public function traerCatalogoImg2($i)
+    {
+       $this->db->where('Estado',0);
+        $query = $this->db->get('catalogo');
+        if ($query->num_rows() >0){
+            $R = $query->row();
+            $this->db->query('call pc_Catalogo ('.$R->IdCT.')');
+        }
+        $this->db->select('v_IdCT'.$i.',v_IdIMG'.$i.',v_Nombre'.$i.',v_IMG'.$i.',v_Puntos'.$i.'');
+        $query = $this->db->get('tmp_catalogo');
+        if ($query->num_rows() >0) {
+            return $query->result_array();
+        }
+        return 0; 
+    }
     public function traerCatalogoImgActual()
     {
         $query = $this->db->get('view_catalogo_activo');

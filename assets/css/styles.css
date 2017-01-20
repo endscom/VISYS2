@@ -100,7 +100,9 @@
 .demo-layout .demo-header .mdl-textfield {
   padding: 0px;
   margin-top: 41px;
-
+}
+#informeFactura{
+  height:  50%!important;
 }
 .demo-layout .demo-header .mdl-textfield .mdl-textfield__expandable-holder {
   bottom: 19px;
@@ -686,6 +688,12 @@ table th {
 .transparente th{
   opacity: 0.0;
 }
+.TableBlank  tr:nth-child(odd) {
+      background-color: rgba(255, 255, 255, 0)!important;
+  }
+.TableBlank tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0)!important;
+}
 #tblCatalogo2 tr:nth-child(odd) {
       background-color: rgba(255, 255, 255, 0)!important;
   }
@@ -1061,14 +1069,15 @@ li img{
     text-align: center;
 }
 .images_ca{
-    display: inline-block;
-    padding: 10px 10px;
-    margin: 10px 10px;
-    border: 1px solid #1F0A71;
-    width: 200px;
+  display: inline-block;
+  /*padding: 10px 10px;*/
+  /*margin: 10px 10px;*/
+  border: 1px solid #1F0A71;
+  width: 100%;
 }
 .images_ca img {
-    max-width: 100%;
+  max-width: 100%;
+  max-height: 80%;
 }
 .images_ca i{
     color: red;
@@ -1133,26 +1142,38 @@ li img{
 }
 .descripImg{
     text-align: center;
-    }
+    width: 100%!important;
+    height: auto;
+}
 .codP{
     color: #1F0A71;
     font-family: 'robotobold';
-    font-size: 17px;
+    /*font-size: 17px;
+    font-size: 0.8em;
+    font-size: 100%;*/
+    font-size: 2vw;
+    
     margin: 0;
 }
 .descript{
     color: #1F0A71;
     font-family: 'robotoregular';
-    font-size: 11px;
+    font-size: 1.3vw;
     margin: 0;
     text-transform: uppercase;
+    height: 30px;
+    width: 100%;
 }
 .ptsdes{
     color: #1F0A71;
     font-family: 'robotoblack';
-    font-size: 14px;
+    font-size: 2vw;
     margin: 0;
     text-transform: uppercase;
+    margin-top: 5%;
+}
+.noPading{
+  padding: 0px!important;
 }
 #menu ul li:hover{
   background-color: #05539E;

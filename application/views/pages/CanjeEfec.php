@@ -12,6 +12,9 @@
 <main class="mdl-layout__content mdl-color--grey-100">
 
     <div class="contenedor">
+        <div class="row center TextColor">
+               canje por efectivo
+        </div>
 
         <div class="container">
             <div class=" Buscar row column">
@@ -24,11 +27,7 @@
                     <label for="searchFRE"></label>
                 </div>
             </div>
-        </div>
-
-        <div class="row center TextColor">
-               canje por efectivo
-        </div>
+        </div>        
 
         <div class="right row">
             <a href="#modalEfec" class="BtnBlue waves-effect  btn modal-trigger">efectivo</a>
@@ -97,8 +96,8 @@
         <h6 class="center Mcolor">FORMATO DE REMISIÓN DE EFECTIVO</h6>
 
         <div class="row noMargen valign-wrapper">
-            <div class="DatoFrp input-field line col s3 m3 l2">
-                 N° FRE:<input id="frp" class="frp" type="text" class="validate">
+            <div class="DatoFrp input-field line col s3 m3 l3">
+                 N° FRE:<input id="frp" class="frp" type="text" readonly class="validate">
             </div>
 
             <div class="DatoFrp line col s3 m3 l3 offset-l7 offset-s4 offset-m4">

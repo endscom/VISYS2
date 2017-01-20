@@ -731,4 +731,32 @@ class Reportes_model extends CI_Model
         echo json_encode($json);
         $this->sqlsrv->close();
     }
+    public function informeFactura($factura)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->db->query("SELECT * FROM view_informeFacturas
+                                    WHERE FACTURA = '".$factura."'");
+                $json['data'][$i]['FACTURA'] = "-";
+                $json['data'][$i]['FECHA'] = "-";
+                $json['data'][$i]['CLIENTE'] = "-";
+                $json['data'][$i]['CODIGO'] = "NO HAY DATOS";
+                $json['data'][$i]['PUNTOS'] = "-";
+                $json['data'][$i]['APLICADO'] = "-";
+                $json['data'][$i]['VER'] = "-";
+        if ($query->num_rows()>0) {
+            foreach($query->result_array() as $key){            
+                $json['data'][$i]['FACTURA'] = '<p class="negra noMargen">'.$key['Factura'].'</p>';
+                $json['data'][$i]['FECHA'] = date('d-m-Y',strtotime($key['Fecha']));
+                $json['data'][$i]['CLIENTE'] = $key['IdCliente'];
+                $json['data'][$i]['CODIGO'] = '<p class="negra noMargen">'.$key['IdFRP'].'</p>';
+                $json['data'][$i]['PUNTOS'] = $key['Faplicado'];
+                $json['data'][$i]['APLICADO'] = $key['PUNTOS'];
+                $json['data'][$i]['VER'] = "<a   href='".base_url()."index.php/ExpFRP/".$key['IdFRP']."' target='_blank' class='noHover'><i class='material-icons'>&#xE417;</i></a>";
+                $i++;
+            }
+        }
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
 }
