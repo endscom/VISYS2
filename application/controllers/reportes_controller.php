@@ -114,8 +114,9 @@ class Reportes_controller extends CI_Controller
     }
     public function canje_premios($fecha1,$fecha2)
     {
-        $fecha1 = ($fecha1=="") ? '2014-01-01' : $this->format($fecha1);
-        $fecha2 = ($fecha1=="") ? date('Y-d-m') : $this->format($fecha2);
+        $fecha1 = ($fecha1=="") ? '2014-01-01' : date('Y-m-d',strtotime($fecha1));
+        $fecha2 = ($fecha1=="") ? date('Y-m-d') : date('Y-m-d',strtotime($fecha2));
+        
         $this->reportes_model->canje_premios($fecha1,$fecha2);
     }
     public function detalles_canje($fecha1,$fecha2)

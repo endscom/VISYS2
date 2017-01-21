@@ -259,7 +259,7 @@ $(document).ready(function() {
     function getview(id){
         $('#Dfre').openModal();
         $("#frpProgress").show();
-        //$("#vfrpTop,#vfrpTop").hide();
+        $("#vfrpTop,#vfrpTop").hide();
         $('#iconoPrint').hide();
         var form_data = {
             fre: id
@@ -272,8 +272,8 @@ $(document).ready(function() {
             data: form_data,
             success:
             function(data){
-                    $("#frpProgress").hide();
-                    //$("#vfrpTop,#vfrpTop").show();
+                    $("#frpProgress,#cargando").hide();
+                    $("#vfrpTop,#vfrpTop").show();
 
                     var dataJson = JSON.parse(data);
                     var canje = 0;

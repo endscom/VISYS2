@@ -183,9 +183,6 @@
                     <i class="material-icons">highlight_off</i>
                 </a>
         </div>
-
-        <h6 class="center Mcolor">DETALLE FRE</h6>
-
          <div class="row center " id="frpProgress">
             <div class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-blue-only">
@@ -195,8 +192,16 @@
                 </div>
             </div>
         </div>
-                
-        <div class="row center">
+        <div id="cargando">
+            <div class="col s12 center">
+                <span class="datos1 lineas" id="cargandoLT">CARGANDO</span>
+            </div>
+        </div>
+
+        <div id="vfrpTop" class="row center">
+            <div class="center col s12 m12 l12">
+                <h6 class="Mcolor noMargen">DETALLE FRE</h6>
+            </div>
             <div class="col s12 center">
                 <span class="center datos1 frpT"> N° FRP <span id="spnFRP"> </span></span><br>
                 <span class="center datos1 lineas"> <span id="spnFecha"></span></span>
@@ -205,6 +210,7 @@
                 <span id="Nfarmacia" class="center Mcolor">COD# <span id="spnCodCls"></span> NOMBRE: <span id="spnNombreCliente"></span></span><br>
             </div>
         </div>
+        
     <div class="row">
         <div class="col s4 m4 l3 center">
             <p class="canjePts RobotoB">CANJE: <span id="totalCanje">100,000</span> PTS.</p>

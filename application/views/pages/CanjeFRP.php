@@ -54,7 +54,7 @@
                         $delete="";
                     } else {
                         $clase="";
-                        $delete = "<a  onclick='dellFrp(".'"'.$frp['IdFRP'].'"'.")' href='#' class='Icono noHover'><i class='material-icons'>highlight_off</i></a>";
+                        $delete = " <a  onclick='dellFrp(".'"'.$frp['IdFRP'].'"'.")' href='#' class='Icono noHover'><i class='material-icons'>highlight_off</i></a>";
                     }
                     echo "<tr>
                                 <td class='".$clase."'>".date('d-m-Y',strtotime($frp['Fecha']))."</td>
@@ -347,9 +347,7 @@
                             <i class="material-icons">highlight_off</i>
                         </a>                    
                 </div>
-                <div class="center col s12 m12 l12">
-                        <h6 class="Mcolor noMargen">DETALLE FRP</h6>
-                    </div>
+                
 
                 <div class="row center " id="vfrpProgress">
                     <div class="preloader-wrapper big active">
@@ -361,7 +359,16 @@
                     </div>
                 </div>
                 
-                <div id="vfrpTop row ">
+                <div id="cargando">
+                    <div class="col s12 center">
+                        <span class="datos1 lineas" id="cargandoLT">CARGANDO</span>
+                    </div>
+                </div>
+
+                <div id="vfrpTop">
+                    <div class="center col s12 m12 l12">
+                        <h6 class="Mcolor noMargen">DETALLE FRP</h6>
+                    </div>
                     <div class="col s12 center">
                         <span class="center datos1 frpT"> N° FRP <span id="spnviewFRP"> </span></span><br>
                         <span class="center datos1 lineas"> <span id="spnviewFecha"></span></span>

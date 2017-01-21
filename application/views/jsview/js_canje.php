@@ -584,6 +584,8 @@ function getview(id){
         $("#vfrpProgress").show();
         $("#vfrpTop,#vfrpTop").hide();
         $('#iconoPrint').hide();
+        $('#vfrpTop').hide();
+        
         var form_data = {
             frp: id
         };
@@ -595,7 +597,7 @@ function getview(id){
             data: form_data,
             success:
             function(data){
-                    $("#vfrpProgress").hide();
+                    $("#vfrpProgress,#cargando").hide();
                     $("#vfrpTop,#vfrpTop").show();
 
                     var dataJson = JSON.parse(data);
