@@ -29,7 +29,13 @@ INSERT INTO [dbo].[ARTIPUNTOS] VALUES
 ('15005031', 'Clindamicina 300 mg Cápsulas 100/Caja (J. Pengyao)', '000020', '70', '2015-22-08 00:00:00.000'),
 ('15005031', 'Clindamicina 300 mg Cápsulas 100/Caja (J. Pengyao)', '000020', '0', '2016-20-09 00:00:00.000'),
 ('15005031', 'Clindamicina 300 mg Cápsulas 100/Caja (J. Pengyao)', '000020', '70', '2016-07-10 00:00:00.000'),
+('15005031', 'Clindamicina 300 mg Cápsulas 100/Caja (J. Pengyao)', '000020', '0', '2016-09-11 00:00:00.000'),
 
+('10610012', 'Clopidogrel 75 mg Tableta Recubierta 20/Caja (Austin Pharma)', '000005', '20', '2015-26-06 00:00:00.000'),
+('10610012', 'Clopidogrel 75 mg Tableta Recubierta 20/Caja (Austin Pharma)', '000005', '0', '2015-01-07 00:00:00.000'),
+('10610012', 'Clopidogrel 75 mg Tableta Recubierta 20/Caja (Austin Pharma)', '000005', '20', '2015-23-10 00:00:00.000'),
+
+('13401013', 'Acido Acetilsalicilico 100 mg Tab BP 100/Caja  (VARDHMAN)', '000003', '10', '2015-09-06 00:00:00.000'),
 
 ('10505022', 'Amoxicilina/Ac. Clavulanico 875 mg/125 mg Tab Recub.14/Caja (Intermed)', '000004', '14', '2015-10-07 00:00:00.000'),
 ('10505022', 'Amoxicilina/Ac. Clavulanico 875 mg/125 mg Tab Recub.14/Caja (Intermed)', '000004', '0', '2015-17-07 00:00:00.000'),
@@ -71,8 +77,6 @@ INSERT INTO [dbo].[ARTIPUNTOS] VALUES
 ('10225011', 'Tadalafil 20 mg Tabletas Recubiertas 4/Caja (Hetero)', '000006', '40', '2015-08-07 00:00:00.000'),
 ('10225011', 'Tadalafil 20 mg Tabletas Recubiertas 4/Caja (Hetero)', '000005', '20', '2015-07-09 00:00:00.000'),
 
-('13401013', 'Acido Acetilsalicilico 100 mg Tab BP 100/Caja  (VARDHMAN)', '000003', '10', '2015-09-06 00:00:00.000'),
-('13401013', 'Acido Acetilsalicilico 100 mg Tab BP 100/Caja  (VARDHMAN)', '000003', '0', '2015-29-01 00:00:00.000'),
 
 ('10506032', 'Gabapentina 300 mg Tableta 30/Caja (Intermed)', '000011', '30', '2015-10-06 00:00:00.000'),
 ('10506032', 'Gabapentina 300 mg Tableta 30/Caja (Intermed)', '000011', '0', '2015-26-06 00:00:00.000'),
@@ -171,9 +175,6 @@ INSERT INTO [dbo].[ARTIPUNTOS] VALUES
 
 ('15010063', 'Valsartán 160 mg Tabletas 30/Caja (J. Pengyao)', '000005', '20', '2015-30-10 00:00:00.000'),
 
-('10610012', 'Clopidogrel 75 mg Tableta Recubierta 20/Caja (Austin Pharma)', '000005', '20', '2015-26-06 00:00:00.000'),
-('10610012', 'Clopidogrel 75 mg Tableta Recubierta 20/Caja (Austin Pharma)', '000005', '0', '2015-15-07 00:00:00.000'),
-('10610012', 'Clopidogrel 75 mg Tableta Recubierta 20/Caja (Austin Pharma)', '000005', '20', '2015-23-10 00:00:00.000'),
 
 ('13401093', 'Paradiclo (Paracetamol/Diclofenac K 500 mg/50 mg) Tab100/Caja (Vardhman)', '000005', '20', '2015-01-06 00:00:00.000'),
 ('13401093', 'Paradiclo (Paracetamol/Diclofenac K 500 mg/50 mg) Tab100/Caja (Vardhman)', '000005', '0', '2015-07-08 00:00:00.000'),
