@@ -124,8 +124,8 @@
       width: 5px;
 }
 ::-webkit-scrollbar-thumb {
-      /*background-color: rgba(0, 0, 0, 0.1);*/
-      background-color: red;
+      background-color: rgba(0, 0, 0, 0.2);
+      
 } 
 /* iOS Safari specific workaround */
 .demo-drawer .mdl-menu__container {
