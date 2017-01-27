@@ -54,6 +54,19 @@ class Canje_model extends CI_Model
                 $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].")";
             }
         }
+        $q_rows->next_result();
+        $q_rows->free_result();
+
+        $q_rows = $this->db->query("call pc_Clientes_rfactura ('".$idCliente."')");
+        if ($q_rows->num_rows() > 0) {
+            if ($query=="") {
+                $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
+                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].") and FECHA >= '".$this->CONDICION."'";
+            }else{
+                $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].")";
+            }
+        }
+        
         if ($query==""){
             $query = "SELECT FECHA,FACTURA,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
                     WHERE CLIENTE = '".$idCliente."' AND FECHA >= '".$this->CONDICION."'";
