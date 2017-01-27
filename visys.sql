@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-01-27 09:36:45
+Date: 2017-01-27 13:49:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -4179,7 +4179,7 @@ CREATE TABLE `devolucion` (
 -- ----------------------------
 -- Records of devolucion
 -- ----------------------------
-INSERT INTO `devolucion` VALUES ('00066254', '1160', '160', 'DEVOLUCION CEREBELO', '220');
+INSERT INTO `devolucion` VALUES ('00066254', '1160', '160', 'asdasdsa', '220');
 
 -- ----------------------------
 -- Table structure for fre
@@ -8315,7 +8315,8 @@ INSERT INTO `rfactura` VALUES ('00235', 'FC001228', '200', '0', '2017-01-12 10:3
 INSERT INTO `rfactura` VALUES ('00235', 'FC001454', '300', '0', '2017-01-12 10:31:54');
 INSERT INTO `rfactura` VALUES ('00235', 'FC001550', '400', '0', '2017-01-12 10:31:54');
 INSERT INTO `rfactura` VALUES ('00235', 'FC002703', '150', '0', '2017-01-12 10:31:54');
-INSERT INTO `rfactura` VALUES ('03000', '00066254', '1160', '1000', '2017-01-27 04:27:24');
+INSERT INTO `rfactura` VALUES ('03000', '00066720', '750', '0', '2017-01-27 05:17:03');
+INSERT INTO `rfactura` VALUES ('03000', '00066254', '1160', '1000', '2017-01-27 08:48:09');
 
 -- ----------------------------
 -- Table structure for roles
@@ -10118,9 +10119,24 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pc_Clientes_rfactura`(IN `cod` VARCHAR(20))
 BEGIN
 				SELECT GROUP_CONCAT(CONCAT("'",Factura,"'")) as Facturas  
-				FROM view_frp_factura
+				FROM rfactura
 				WHERE IdCliente = cod AND Puntos = '0'
 				GROUP BY IdCliente;					
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for pc_Devoluciones
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `pc_Devoluciones`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pc_Devoluciones`()
+BEGIN
+				SELECT GROUP_CONCAT(CONCAT("'",Factura,"'")) as Facturas  
+				FROM devolucion
+				WHERE ttPuntos = Puntos
+				GROUP BY Factura;					
 END
 ;;
 DELIMITER ;

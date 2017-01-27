@@ -7,20 +7,27 @@ class Facturas_model extends CI_Model
     }
     public function traerFacturas()
     {
+        $condicion = "";
+        $q_rows = $this->db->query("call pc_Devoluciones ()");        
+        if ($q_rows->num_rows()>0) {
+            $condicion .=" AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].")";
+        }
         if ($this->session->userdata('IdCL')!=""){
             $consulta = "SELECT FECHA,FACTURA,CLIENTE,NOMBRE_CLIENTE,ISNULL(SUM(TT_PUNTOS),0) AS PUNTOS FROM vtVS2_Facturas_CL
-                                        WHERE CLIENTE=".$this->session->userdata('IdCL')."
+                                        WHERE CLIENTE=".$this->session->userdata('IdCL') .$condicion." 
                                         GROUP BY FACTURA,CLIENTE,FECHA,NOMBRE_CLIENTE ORDER BY FECHA DESC";
         }
         else if ($this->session->userdata('RolUser')=="Vendedor" && $this->session->userdata('Zona')!=""){
             $consulta = "SELECT FECHA,FACTURA,CLIENTE,NOMBRE_CLIENTE,ISNULL(SUM(TT_PUNTOS),0) AS PUNTOS FROM vtVS2_Facturas_CL
-                                        WHERE RUTA = '".$this->session->userdata('Zona')."'
+                                        WHERE RUTA = '".$this->session->userdata('Zona') .$condicion."'
                                         GROUP BY FACTURA,CLIENTE,FECHA,NOMBRE_CLIENTE ORDER BY FECHA DESC";
         }
         else{
             $consulta = "SELECT FECHA,FACTURA,CLIENTE,NOMBRE_CLIENTE,ISNULL(SUM(TT_PUNTOS),0) AS PUNTOS FROM vtVS2_Facturas_CL
+                                        WHERE 0 = 0". $condicion."       
                                         GROUP BY FACTURA,CLIENTE,FECHA,NOMBRE_CLIENTE ORDER BY FECHA DESC";
         }
+        //echo $consulta."<br>";
     	$i=0;
         $json = array();
         $query = $this->sqlsrv->fetchArray($consulta,SQLSRV_FETCH_ASSOC);
