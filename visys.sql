@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-01-20 16:07:18
+Date: 2017-01-27 09:36:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -4165,6 +4165,23 @@ INSERT INTO `detallefrp` VALUES ('77777', '00076459', '2016-04-01', '350', '576'
 INSERT INTO `detallefrp` VALUES ('77777', '00076607', '2016-04-06', '1000', '576', 'TV LED 32\" SANKEY CLED32FSP1', '238', '1', '0');
 
 -- ----------------------------
+-- Table structure for devolucion
+-- ----------------------------
+DROP TABLE IF EXISTS `devolucion`;
+CREATE TABLE `devolucion` (
+  `Factura` varchar(50) DEFAULT NULL,
+  `ttPuntos` int(11) DEFAULT NULL,
+  `Puntos` int(11) DEFAULT NULL,
+  `Concepto` varchar(150) DEFAULT NULL,
+  `Usuario` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of devolucion
+-- ----------------------------
+INSERT INTO `devolucion` VALUES ('00066254', '1160', '160', 'DEVOLUCION CEREBELO', '220');
+
+-- ----------------------------
 -- Table structure for fre
 -- ----------------------------
 DROP TABLE IF EXISTS `fre`;
@@ -8298,6 +8315,7 @@ INSERT INTO `rfactura` VALUES ('00235', 'FC001228', '200', '0', '2017-01-12 10:3
 INSERT INTO `rfactura` VALUES ('00235', 'FC001454', '300', '0', '2017-01-12 10:31:54');
 INSERT INTO `rfactura` VALUES ('00235', 'FC001550', '400', '0', '2017-01-12 10:31:54');
 INSERT INTO `rfactura` VALUES ('00235', 'FC002703', '150', '0', '2017-01-12 10:31:54');
+INSERT INTO `rfactura` VALUES ('03000', '00066254', '1160', '1000', '2017-01-27 04:27:24');
 
 -- ----------------------------
 -- Table structure for roles
@@ -10088,6 +10106,21 @@ BEGIN
                 SELECT T0.IdCliente, SUM(T0.Puntos) AS Puntos FROM view_fre_factura T0
 								WHERE T0.Anulado = 'N' AND T0.IdCliente = cod
 								GROUP BY T0.IdCliente;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for pc_Clientes_rfactura
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `pc_Clientes_rfactura`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pc_Clientes_rfactura`(IN `cod` VARCHAR(20))
+BEGIN
+				SELECT GROUP_CONCAT(CONCAT("'",Factura,"'")) as Facturas  
+				FROM view_frp_factura
+				WHERE IdCliente = cod AND Puntos = '0'
+				GROUP BY IdCliente;					
 END
 ;;
 DELIMITER ;
