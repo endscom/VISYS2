@@ -65,6 +65,28 @@
         <div class="row center noMargen">            
             <h6  class="center Mcolor noMargen">PUNTOS: <span class="mediana" id="puntos">0.00</span></h6>            
         </div>
+        <div class="row noMargen">
+            <div id="loadIMG" style="display:none" class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left"><div class="circle"></div></div>
+                            <div class="gap-patch"><div class="circle"></div></div>
+                        <div class="circle-clipper right"><div class="circle"></div></div>
+                    </div>
+                </div>
+            <table id="TbDetalleFactura" class="TblDatos center">
+                    <thead>
+                        <tr>
+                            <th>ARTICULO.</th>
+                            <th>DESCRIPCIÓN</th>
+                            <th>CANTIDAD.</th>
+                            <th>PUNTOS</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+
+                    <tbody></tbody>
+                </table>
+        </div>
         <div class="row center noMargen">
             <div class="input-field col s12">
                 <h6  class="center Mcolor">CANTIDAD: <input maxlength="5" id="cantidad" onkeyup="if(/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="frp" type="text" class="validate"></h6>

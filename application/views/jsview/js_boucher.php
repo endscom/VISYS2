@@ -49,6 +49,39 @@ function anulacionParcial(factura) {
 	$("#modal1").openModal();
 	$("#puntos").html($('#ptos-'+factura).html());
 	$("#factura").html($('#factu-'+factura).html());
+    limpiarTabla(TbDetalleFactura);
+        $('#TbDetalleFactura').DataTable({
+                "order": [[ 1, "desc" ]],
+                ajax: "detallefacturas/"+ $('#factu-'+factura).html(),
+                "info":    false,
+                "bPaginate": false,
+                "paging": false,
+                "pagingType": "full_numbers",
+                "lengthMenu": [[10, -1], [10, "Todo"]],
+                "language": {
+                    "emptyTable": "No hay datos disponibles en la tabla",
+                    "lengthMenu": '_MENU_ ',
+                    "search": '<i class=" material-icons">search</i>',
+                    "loadingRecords": "cargando...",
+                    "paginate": {
+                        "first": "Primera",
+                        "last": "Última ",
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"
+                    }
+                },
+               columns: [
+                    { "data": "ARTICULO" },
+                    { "data": "DESCRIPCION" },
+                    { "data": "CANTIDAD" },
+                    { "data": "PUNTOS" },
+                    { "data": "TOTAL" }
+              ]
+            });
+            $('#TbDetalleFactura').on( 'init.dt', function () {
+                $('#TbDetalleFactura').show();
+                $('#loadIMG').hide();
+            }).dataTable();
 }
 $('#btnProcesar').click(function(){
     //alert($('#clie-'+$('#factura').html()).html());
@@ -89,4 +122,10 @@ function mensaje(mensaje,clase) {
 	    }
 	    return  Materialize.toast($toastContent, 3500,'rounded');    
 	}
+function limpiarTabla (idTabla) {
+    idTabla = $(idTabla).DataTable();
+    idTabla.destroy();
+    idTabla.clear();
+    idTabla.draw();
+}
 </script>
