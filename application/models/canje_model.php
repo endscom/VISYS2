@@ -94,6 +94,43 @@ class Canje_model extends CI_Model
         echo json_encode($json);
         return $json;
     }
+    public function getFacturaDevolucion($idCliente)
+    {   
+        $query="";
+        $q_rows = $this->db->query("call pc_Clientes_rfactura ('".$idCliente."')");
+
+        if ($q_rows->num_rows() > 0) {
+            $query = "SELECT FECHA,FACTURA,CLIENTE,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
+                    WHERE CLIENTE = '".$idCliente."' AND FACTURA NOT IN(".$q_rows->result_array()[0]['Facturas'].") AND FECHA >= '".$this->CONDICION."'";
+        }else{
+            $query = "SELECT FECHA,FACTURA,CLIENTE,SUM(TT_PUNTOS) AS DISPONIBLE FROM vtVS2_Facturas_CL
+                    WHERE CLIENTE = '".$idCliente."' AND FECHA >= '".$this->CONDICION."'";
+        }
+        $query .= "GROUP BY FACTURA,FECHA,CLIENTE";
+        //echo $query."<br>";
+        $q_rows->next_result();
+        $q_rows->free_result();
+        $query = $this->sqlsrv->fetchArray($query,SQLSRV_FETCH_ASSOC);
+        $json = array();
+        $i=0;
+
+        $json['data'][$i]['FECHA']      = "SIN DATOS";
+        $json['data'][$i]['FACTURA']    = "";
+        $json['data'][$i]['DISPONIBLE'] = "";
+        $json['data'][$i]['CAM1']       = "";
+                
+        foreach($query as $key){
+            
+            $json['data'][$i]['FECHA']      = $key['FECHA']->format('Y-m-d');
+            $json['data'][$i]['FACTURA']    = '<p class="noMargen" id="factu-'.$key['FACTURA'].'">'.$key['FACTURA'].'</p>';
+            $json['data'][$i]['CLIENTE']    = '<p class="noMargen" id="clie-'.$key['FACTURA'].'">'.$key['CLIENTE'].'</p>';
+            $json['data'][$i]['DISPONIBLE'] = '<p class="noMargen" id="ptos-'.$key['FACTURA'].'">'.intval($this->getSaldoParcial($key['FACTURA'],$key['DISPONIBLE'])).'</p>';
+            $json['data'][$i]['CAM1']       = "<a  onclick='anulacionParcial(".'"'.$key['FACTURA'].'"'.")' href='#!' class='modal-trigger noHover'><i class='material-icons'>remove_red_eye</i></a>";
+            $i++;
+        }
+        echo json_encode($json);
+        return $json;
+    }
     public function getSaldoParcial($id,$pts){
         $this->db->where('Puntos <>',0);
         $this->db->where('Factura',$id);
@@ -173,6 +210,20 @@ class Canje_model extends CI_Model
         }
         else { return 0;
         }
+    }
+    public function aplicarDevolucion($factura,$cantidad,$observacion,$ttPuntos,$cliente)
+    {
+        $datos = array('Factura' => $factura,
+                       'ttPuntos' => $ttPuntos,
+                       'Concepto' => $observacion,
+                       'Puntos' => $cantidad,
+                       'Usuario' => $this->session->userdata('id'),
+                       );
+        $this->db->insert('devolucion',$datos);
+        $query = $this->db->query("call pc_RFactura ('".$factura."','".$cantidad."','".$cliente."','".date('Y-m-d h:i:s')."','".$ttPuntos."')");
+        if (!$query) {
+            echo 0;
+        }else{echo 1;}
     }
     public function getBCMora($idCliente) {
        $MORA = '';
