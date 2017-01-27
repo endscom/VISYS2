@@ -52,9 +52,14 @@ function anulacionParcial(factura) {
 }
 $('#btnProcesar').click(function(){
     //alert($('#clie-'+$('#factura').html()).html());
+    var cantidad = parseInt($('#cantidad').val());
+    var total = parseInt($('#ptos-'+$('#factura').html()).html());
     if ($('#cantidad').val()=="" || $('#observaciones').val()=="") {
-        mensaje("INGRESE LOS CAMPOS REQUERIDOS","error");
-    }else{
+        mensaje("INGRESE LOS CAMPOS REQUERIDOS","error");return false;
+    }if (cantidad>total) {
+        mensaje("LA CANTIDAD SUPERO LOS PUNTOS DISPONIBLES","error");return false;
+    }
+    else{
         var form_data = {
             factura: $('#factura').html(),
             cantidad: $('#cantidad').val(),
