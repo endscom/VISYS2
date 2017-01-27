@@ -27,6 +27,13 @@ $route['DetalleFact'] = 'vista_controller/DetalleFact';
 $route['estadoCuenta'] = 'clientes_controller/estadoCuenta';
 $route['buscarEstadoCuenta'] = 'clientes_controller/buscarEstadoCuenta';
 $route['ajaxFacturasXcliente/(:any)'] = 'clientes_controller/ajaxFacturasXcliente/$1';
+
+/*DEVOLUCIONES*/
+$route['devoluciones'] = 'boucher_controller';
+$route['cargarDevoluciones/(:any)'] = 'boucher_controller/cargarDevoluciones/$1';
+$route['aplicarDevolucion'] = 'boucher_controller/aplicarDevolucion';
+
+
 /*BOUCHER*/
 $route['EliminarVineta'] = 'boucher_controller';
 

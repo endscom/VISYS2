@@ -1,119 +1,44 @@
 <header class="demo-header mdl-layout__header ">
     <div class="centrado  ColorHeader">
 
-        <span class=" title">ELIMINAR VIÑETA</span>
+        <span class=" title">DEVOLUCION DE FACTURA</span>
 
     </div>
 </header>
-
-<!--//////////////////////////////////////////////////////////
-                CONTENIDO
-///////////////////////////////////////////////////////////-->
 <main class="mdl-layout__content mdl-color--grey-100">
+    <div class="row center TextColor">DEVOLUCION DE FACTURA</div>
+    <div class="row">
+        <div class="input-field col s12 m6 l6 offset-l3">
+                <select class="chosen-select browser-default" name="cliente" id="ListCliente">
+                    <option value="" disabled selected>CLIENTE</option>
+                    <?php
+                        if(!$data){}
+                        else{
+                                foreach($data as $asd){
+                                    echo '<option value="'.$asd['CLIENTE'].'">'.$asd['NOMBRE'].'| '.$asd['CLIENTE'].'</option>';                                
+                            }
+                        }
+                    ?>
+                </select>
+            </div>
+    </div>
     <div class="contenedor ">
-
-       <div class="container">
-           <div id="buscar" class=" row column">
-               <div class="col s1 m1 l1 offset-s3  offset-l2">
-                   <i class="material-icons ColorS">search</i>
-               </div>
-               <div id="InputSearch" class="input-field col s6 m16 l5">
-                   <input  id="search" type="text" placeholder="Buscar Facturas o Viñetas" class="validate">
-                   <label for="search"></label>
-               </div>
-           </div>
-       </div>
-
-
-        <div class="datos">
-            <div class="row text">
-                <div class="col s4 m4 l4">
-                    <p>CÓDIGO: <span class="Datos">55555</span></p>
-                </div>
-                <div class="col s4 m4 l4">
-                    <p>FACTURA: <span class="Datos">55555</span></p>
-                </div>
-                <div class="col s4 m4 l4">
-                    <p>FECHA: <span class="Datos">55555</span></p>
-                </div>
-            </div>
-
-            <div class="row text">
-                <div class="col s8 m8 l8">
-                    <p>CLIENTE: <span class="Datos">55555 55555 555555 55555555555555</span></p>
-                </div>
-                <div class="col s4 m4 l4">
-                    <p>RUC: <span class="Datos">55555</span></p>
-                </div>
-            </div>
-
-            <div class="right row">
-                    <a href="#modal1" class="BtnEliminar waves-effect  btn modal-trigger">ELIMINAR</a>
-            </div>
-<!--//////////////////////////////////////////////////////////////////////////////////
-                                TABLA
-///////////////////////////////////////////////////////////////////////////////////-->
-                    <table id="tblEliminar" class="TblDatos">
-                        <thead>
-                        <tr>
-                            <th>CANT.</th>
-                            <th>DESCRIPCIÓN</th>
-                            <th>LABORATORIO</th>
-                            <th>PUNTOS</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr>
-                            <td>xxxx</td>
-                            <td>xxx xxxx xxxx</td>
-                            <td>xxx</td>
-                            <td>100000 pts</td>
-                        </tr>
-
-                        <tr>
-                            <td>xxxx</td>
-                            <td>xxx xxxx xxxx</td>
-                            <td>xxx</td>
-                            <td>100000 pts</td>
-                        </tr>
-
-                        <tr>
-                            <td>xxxx</td>
-                            <td>xxx xxxx xxxx</td>
-                            <td>xxx</td>
-                            <td>100000 pts</td>
-                        </tr>
-                        <tr>
-                            <td>xxxx</td>
-                            <td>xxx xxxx xxxx</td>
-                            <td>xxx</td>
-                            <td>100000 pts</td>
-                        </tr>
-                        <tr>
-                            <td>xxxx</td>
-                            <td>xxx xxxx xxxx</td>
-                            <td>xxx</td>
-                            <td>100000 pts</td>
-                        </tr>
-                        <tr>
-                            <td>xxxx</td>
-                            <td>xxx xxxx xxxx</td>
-                            <td>xxx</td>
-                            <td>100000 pts</td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-
+        <div class="datos" id="mitabla">
+            <table id="tblEliminar" class="TblDatos">
+                <thead>
+                    <tr>
+                        <th>FECHA</th>
+                        <th>FACTURA</th>
+                        <th>CLIENTE</th>
+                        <th>PUNTOS</th>
+                        <th>PUNTOS A RESTAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div><!-- div Datos-->
-        <div class="right row">
-            <div class="col s12 m12 l12">
-                <p class="TextTotal">Total Pts.Cliente: <span>325,766 Pts.</span> </p>
-            </div>
-        </div>
-
-        </div><!-- fin de Contenedor-->
+    </div><!-- fin de Contenedor-->
 
 
     </div>
@@ -133,72 +58,28 @@
                 </a>
             </div>
         </div>
-
-        <h6  class="center Mcolor">DESEA ELIMINAR LAS VIÑETAS:</h6>
-
-<!--///////////////////////////////////////////////////////////
-                        TABLA MODAL
-////////////////////////////////////////////////////////////-->
-
-        <div class="row">
-            <div class="col s12">
-
-                <table id="tblModal1" class="TheadColor">
-
-                    <thead>
-                    <tr>
-                        <th>CANT.</th>
-                        <th>DESCRIPCIÓN</th>
-                        <th>LAB.</th>
-                        <th>PUNTOS</th>
-                        <th>ELIMINAR</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <tr>
-                        <td>7</td>
-                        <td>xxxxxxxxxxxxxxxxxxxxxxx</td>
-                        <td>LUNAN</td>
-                        <td>70 pts</td>
-                        <td>
-                            <i class=" BtnClose material-icons">highlight_off</i>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+        <h6  class="center Mcolor">INGRESE LA CANTIDDAD A ANULAR</h6>
+        <div class="row center noMargen">            
+            <h6  class="center Mcolor noMargen">FACTURA: <span class="mediana" id="factura">0.00</span></h6>            
+        </div>
+        <div class="row center noMargen">            
+            <h6  class="center Mcolor noMargen">PUNTOS: <span class="mediana" id="puntos">0.00</span></h6>            
+        </div>
+        <div class="row center noMargen">
+            <div class="input-field col s12">
+                <h6  class="center Mcolor">CANTIDAD: <input maxlength="5" id="cantidad" onkeyup="if(/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="frp" type="text" class="validate"></h6>
+            </div>
+            <div class="noMargen input-field col s12">
+                <p class="Datos">OBSERVACIONES</p>
+                <textarea id="observaciones" class="mayuscula materialize-textarea observaciones"></textarea>
             </div>
         </div>
-
-
     </div>
-
-    <div class="row">
-        <div class="col s6">
-            <a href="#modal2" class="Btndell modal-action modal-close btn modal-trigger">ELIMINAR</a>
+    <div class="center row">
+        <div class="input-field col s5 m4 l2 offset-s3 offset-m3 offset-l5">
+            <a href="#" id="btnProcesar" class="Procesar waves-effect btn">procesar</a>
         </div>
     </div>
 
 </div>
 <!-- Fin de Modal#1-->
-
-<!--///////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////-->
-
-<!-- Modal #2-->
-<!-- Modal Structure -->
-<div id="modal2" class="modal">
-    <div class="modal-content">
-
-            <div class="right row">
-                <div class="col s1 m1 l1">
-                    <a href="#!" class=" BtnClose modal-action modal-close ">
-                        <i class="material-icons">highlight_off</i>
-                    </a>
-                </div>
-            </div>
-
-            <h6 class="center Mcolor1">LAS VIÑETAS FUERON ELIMINADAS</h6>
-
-        </div>
-</div>
