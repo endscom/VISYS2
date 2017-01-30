@@ -756,6 +756,58 @@ class Reportes_model extends CI_Model
                 $i++;
             }
         }
+            $json['columns'][0]['data'] = "FACTURA";
+            $json['columns'][0]['name'] = "FACTURA";
+            $json['columns'][1]['data'] = "FECHA";
+            $json['columns'][1]['name'] = "FECHA";
+            $json['columns'][2]['data'] = "CLIENTE";
+            $json['columns'][2]['name'] = "COD. CLIENTE";
+            $json['columns'][3]['data'] = "CODIGO";
+            $json['columns'][3]['name'] = "ID FRP";
+            $json['columns'][4]['data'] = "PUNTOS";
+            $json['columns'][4]['name'] = "PUNTOS";
+            $json['columns'][5]['data'] = "APLICADO";
+            $json['columns'][5]['name'] = "APLICADO";
+            $json['columns'][6]['data'] = "VER";
+            $json['columns'][6]['name'] = "VER";
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function informeFacturaAnu($factura)
+    {        
+        $i=0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray("SELECT FECHA,FACTURA,CLIENTE,NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS,OBSERVACION
+                                            FROM vtVS2_Facturas_AN
+                                            WHERE FACTURA = '".$factura."'
+                                            GROUP BY FACTURA,FECHA,CLIENTE,NOMBRE_CLIENTE,OBSERVACION",SQLSRV_FETCH_ASSOC);
+        $json['data'][$i]['FECHA'] = "-";
+            $json['data'][$i]['FACTURA'] = "-";
+            $json['data'][$i]['CLIENTE'] = "-";
+            $json['data'][$i]['NOMBRE'] = "-";
+            $json['data'][$i]['PUNTOS'] = "-";
+            $json['data'][$i]['OBSER'] = "-";
+        foreach($query as $key){
+            $json['data'][$i]['FECHA'] = '<p class="negra noMargen">'.$key['FECHA']->format('d-m-Y')."</p>";
+            $json['data'][$i]['FACTURA'] = '<p class="bold noMargen">'.$key['FACTURA']."</p>";
+            $json['data'][$i]['CLIENTE'] = '<p class="bold noMargen">'.$key['CLIENTE']."</p>";
+            $json['data'][$i]['NOMBRE'] = '<p class="bold noMargen">'.$key['NOMBRE_CLIENTE']."</p>";
+            $json['data'][$i]['PUNTOS'] = number_format($key['PUNTOS'],0);
+            $json['data'][$i]['OBSER'] = strtoupper($key['OBSERVACION']);
+            $i++;
+        }
+            $json['columns'][0]['data'] = "FECHA";
+            $json['columns'][0]['name'] = "FECHA";
+            $json['columns'][1]['data'] = "FACTURA";
+            $json['columns'][1]['name'] = "FACTURA";
+            $json['columns'][2]['data'] = "CLIENTE";
+            $json['columns'][2]['name'] = "COD. CLIENTE";
+            $json['columns'][3]['data'] = "NOMBRE";
+            $json['columns'][3]['name'] = "NOMBRE";
+            $json['columns'][4]['data'] = "PUNTOS";
+            $json['columns'][4]['name'] = "PUNTOS";
+            $json['columns'][5]['data'] = "OBSER";
+            $json['columns'][5]['name'] = "OBSERVACIONES";
         echo json_encode($json);
         $this->sqlsrv->close();
     }

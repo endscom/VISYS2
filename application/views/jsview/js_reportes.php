@@ -119,34 +119,78 @@
             $('#tituloFiltrado2').text(titulo);
         }
         
-        $("#geninformeFactura").click(function(){                       
-            var f1 = $('#ListFact').val()
-            $('#informeDetalle').openModal();
-            idTabla = $('#tblInformeFactura').DataTable();
-                idTabla.destroy();
-                idTabla.clear();
-                idTabla.draw();
-                $('#tblInformeFactura').DataTable({
-                    ajax: "informeFactura/"+ f1,
-                    "info":    false,
-                    "bPaginate": false,
-                    "paging": false,
-                    "pagingType": "full_numbers",
-                    "emptyTable": "No hay datos disponibles en la tabla",
+        $("#geninformeFactura").click(function(){
+        var f1 = $('#ListFact').val()
+        var ruta ="";
+        if (f1!="") {
+            $('#divInforme').html('');
+            $('#divInforme').html('<table id="tblInformeFacturas" class="TblDatos center"><thead><tr></tr></thead></table>');
+        
+        if ($("#chkAnulada").is(':checked')) {ruta = "informeFacturaAnu";}else{ruta = "informeFactura";}
+            var data,
+                tableName= '#tblInformeFacturas',
+                columns,
+                str,
+                jqxhr = $.ajax(ruta+"/"+f1)
+                        .done(function () {
+                            data = JSON.parse(jqxhr.responseText);
+                $.each(data.columns, function (k, colObj) {
+                    str = '<th>' + colObj.name + '</th>';
+                    $(str).appendTo(tableName+'>thead>tr');
+                });
+                data.columns[3].render = function (data, type, row) {
+                    return data;
+                }
+                $(tableName).dataTable({
                     "dom": 'T<"clear">lfrtip',
                     "tableTools": {
                         "sSwfPath": "<?php echo base_url(); ?>assets/data/swf/copy_csv_xls_pdf.swf",
                     },
-                    columns: [
-                    { "data": "FACTURA" },
-                    { "data": "CLIENTE" },
-                    { "data": "FECHA" },
-                    { "data": "CODIGO" },
-                    { "data": "PUNTOS" },
-                    { "data": "APLICADO" },
-                    { "data": "VER" }
-                    ]
+                    "data": data.data,
+                    "columns": data.columns,
+                    "info":false,
+                    "order": [[ 1, "desc" ]],
+                    "pagingType": "full_numbers",
+                    "lengthMenu": [[10, -1], [10, "Todo"]],
+                    "language": {
+                        "emptyTable": "No hay datos disponibles en la tabla",
+                        "lengthMenu": '_MENU_ ',
+                        "search": '<i class=" material-icons">search</i>',
+                        "loadingRecords": "Cargando...",
+                        "paginate": {
+                            "first": "Primera",
+                            "last": "Última ",
+                            "next":       "Siguiente",
+                            "previous":   "Anterior"
+                        }
+                    },                    
+                    "fnInitComplete": function () {
+                    $('#tblInformeFacturas').on( 'init.dt', function () {                                        
+                    }).dataTable();
+                    }
                 });
+            })
+            .fail(function (jqXHR, exception) {
+                            var msg = '';
+                            if (jqXHR.status === 0) {
+                                msg = 'Not connect.\n Verify Network.';
+                            } else if (jqXHR.status == 404) {
+                                msg = 'Requested page not found. [404]';
+                            } else if (jqXHR.status == 500) {
+                                msg = 'Internal Server Error [500].';
+                            } else if (exception === 'parsererror') {
+                                msg = 'Requested JSON parse failed.';
+                            } else if (exception === 'timeout') {
+                                msg = 'Time out error.';
+                            } else if (exception === 'abort') {
+                                msg = 'Ajax request aborted.';
+                            } else {
+                                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                            }
+                mensaje(msg,"error");
+            }); 
+            $('#informeDetalle').openModal();
+        }else{mensaje("SELECCIONE UNA FACTURA","error");}
         });
 
         $("#generarDetalleReporte").click(function(){

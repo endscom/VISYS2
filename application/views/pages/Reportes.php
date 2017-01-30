@@ -183,19 +183,24 @@
 
         <div class="row">
             <form class="col s12" action=""method="post" name="formnuevo">
-
                 <div class="row">
+                    <div class="col l10 m10 s12">
                     <select name="cliente" id="ListFact" class="chosen-select browser-default">
-                    <option value="" disabled selected>SELECCIONE FACTURA</option>
-                    <?php
-                        if(!$query){}
-                        else{
-                                for ($i=0; $i < count($query); $i++) { 
-                                    echo '<option value="'.$query[$i]['FACTURA'].'">'.$query[$i]['FACTURA'].'</option>';
+                        <option value="" disabled selected>SELECCIONE FACTURA</option>
+                        <?php
+                            if(!$query){}
+                            else{
+                                    for ($i=0; $i < count($query); $i++) { 
+                                        echo '<option value="'.$query[$i]['FACTURA'].'">'.$query[$i]['FACTURA'].'</option>';
+                                }
                             }
-                        }
-                    ?>
-                </select>
+                        ?>
+                    </select>
+                    </div>
+                    <div class="col l2 m2 s3">
+                        <input type="checkbox" id="chkAnulada" />
+                        <label for="chkAnulada">ANULADAS</label>
+                    </div>
                 </div>
             </form>
         </div>
@@ -380,20 +385,8 @@
 
         <h6 class="center Mcolor AdUser">INFORME DE FACTURA</h6>
         <!-- TABLA DE DETALLES -->
-            <table id="tblInformeFactura" class=" TblDatos">
-                <thead>
-                <tr>
-                    <th>FACTURA</th>
-                    <th>COD. CLIENTE</th>
-                    <th>FECHA FRP</th>
-                    <th>CODIGO FRP</th>
-                    <th>ACUMULADO X FACTURA</th>
-                    <th>PUNTOS APLICADOS</th>
-                    <th>FRP</th>
-                </tr>
-                </thead>
-                <tbody class="center">
-                </tbody>
-            </table>
+        <div id="divInforme">
+            
+        </div>
     </div>
 </div>
