@@ -129,6 +129,10 @@ class Reportes_controller extends CI_Controller
     {
         $this->reportes_model->informeFactura($factura);
     }
+    public function informeFacturaAnu($factura)
+    {
+        $this->reportes_model->informeFacturaAnu($factura);
+    }
     public function CXCprint($codigo,$fecha1,$fecha2)
     {
 

@@ -58,7 +58,9 @@ class Cliente_model extends CI_Model
     {
         $i=0;
         $json = array();
-        $consulta = "SELECT DISTINCT FACTURA FROM vtVS2_Facturas_CL";
+        $consulta = "SELECT FACTURA FROM vtVS2_Facturas_CL
+                    UNION ALL
+                    SELECT FACTURA FROM vtVS2_Facturas_AN";
         $query = $this->sqlsrv->fetchArray($consulta,SQLSRV_FETCH_ASSOC);
         foreach($query as $key){
             $json['query'][$i]['FACTURA']=$key['FACTURA'];

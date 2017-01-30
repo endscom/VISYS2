@@ -3,9 +3,9 @@ SELECT T0.ANULADA, T0.FECHA_FACTURA, T0.FACTURA, T0.ARTICULO, T1.DESCRIPCION, T0
 FROM   Softland.umk.FACTURA_LINEA T0 INNER JOIN Softland.umk.ARTICULO T1 ON T1.ARTICULO = T0.ARTICULO 
 WHERE T0.FACTURA = '00072105'
 
-SELECT * FROM  [dbo].[ARTIPUNTOS] WHERE articulo =   '15005031' 
+SELECT * FROM  [dbo].[ARTIPUNTOS] WHERE articulo =   '13614012' 
 
-DELETE FROM [dbo].[ARTIPUNTOS] WHERE ARTICULO = '15005031'  AND PUNTOS = '20' AND FECHAA = '2016-10-12 10:47:27.440'
+DELETE FROM [dbo].[ARTIPUNTOS] WHERE ARTICULO = '13614012'  AND PUNTOS = '20' AND FECHAA = '2016-10-12 10:47:27.440'
 UPDATE [dbo].[ARTIPUNTOS] SET PUNTOS = '40', CLASIFICACION = '000006' WHERE ARTICULO = '10225011' AND PUNTOS = '20'  AND FECHAA = '2015-07-07 00:00:00.000'
 
  
@@ -26,6 +26,13 @@ UPDATE [dbo].[ARTIPUNTOS] SET FECHAA = '2016-15-04 00:00:00.000' WHERE ARTICULO 
 
 --AÑO-DIA-MES
 INSERT INTO [dbo].[ARTIPUNTOS] VALUES
+('13614012', 'Levonorgestrel 0.15 mg/Etinilestradiol 0.03 mg Tab 21/Ciclo 1/Caja (Nanjing)', '000003', '0', '2015-06-05 00:00:00.000'),
+('13614012', 'Levonorgestrel 0.15 mg/Etinilestradiol 0.03 mg Tab 21/Ciclo 1/Caja (Nanjing)', '000003', '10', '2015-13-10 00:00:00.000'),
+
+('10305042', 'Cefixima 400 mg Cápsulas 20/Caja (Ramos)', '000013', '100', '2015-01-06 00:00:00.000'),
+('10305042', 'Cefixima 400 mg Cápsulas 20/Caja (Ramos)', '000010', '200', '2015-27-07 00:00:00.000'),
+('10305042', 'Cefixima 400 mg Cápsulas 20/Caja (Ramos)', '000013', '100', '2015-06-08 00:00:00.000'),
+
 ('15005031', 'Clindamicina 300 mg Cápsulas 100/Caja (J. Pengyao)', '000020', '70', '2015-22-08 00:00:00.000'),
 ('15005031', 'Clindamicina 300 mg Cápsulas 100/Caja (J. Pengyao)', '000020', '0', '2016-20-09 00:00:00.000'),
 ('15005031', 'Clindamicina 300 mg Cápsulas 100/Caja (J. Pengyao)', '000020', '70', '2016-07-10 00:00:00.000'),
@@ -98,10 +105,6 @@ INSERT INTO [dbo].[ARTIPUNTOS] VALUES
 ('10207022', 'Ketoconazol 200 mg Tableta 20/Caja (Hetero)', '000003', '10', '2015-09-06 00:00:00.000'),
 ('10207022', 'Ketoconazol 200 mg Tableta 20/Caja (Hetero)', '000003', '0', '2015-22-09 00:00:00.000'),
 ('10207022', 'Ketoconazol 200 mg Tableta 20/Caja (Hetero)', '000003', '10', '2015-19-10 00:00:00.000'),
-
-('10305042', 'Cefixima 400 mg Cápsulas 20/Caja (Ramos)', '000013', '100', '2015-01-06 00:00:00.000'),
-('10305042', 'Cefixima 400 mg Cápsulas 20/Caja (Ramos)', '000010', '200', '2015-27-07 00:00:00.000'),
-('10305042', 'Cefixima 400 mg Cápsulas 20/Caja (Ramos)', '000013', '100', '2015-24-08 00:00:00.000'),
 
 ('10523023', 'Calcio 600 mg Tabletas 100/Caja (Intermed)', '000011', '30', '2015-28-07 00:00:00.000'),
 ('10523023', 'Calcio 600 mg Tabletas 100/Caja (Intermed)', '000005', '20', '2015-19-08 00:00:00.000'),
@@ -190,7 +193,6 @@ INSERT INTO [dbo].[ARTIPUNTOS] VALUES
 ('15010021', 'Irbesartan 150 mg Tabletas 30/Caja (J. Pengyao)', '000011', '0', '2015-17-07 00:00:00.000'),
 ('15010021', 'Irbesartan 150 mg Tabletas 30/Caja (J. Pengyao)', '000011', '10', '2015-18-08 00:00:00.000'),
 
-('13614012', 'Levonorgestrel 0.15 mg/Etinilestradiol 0.03 mg Tab 21/Ciclo 1/Caja (Nanjing)', '000003', '10', '2015-13-10 00:00:00.000'),
 
 
 SELECT * FROM [dbo].[vtVS2_Clientes] WHERE CLIENTE = '00711'
