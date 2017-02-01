@@ -19,7 +19,7 @@ class Facturas_model extends CI_Model
         }
         else if ($this->session->userdata('RolUser')=="Vendedor" && $this->session->userdata('Zona')!=""){
             $consulta = "SELECT FECHA,FACTURA,CLIENTE,NOMBRE_CLIENTE,ISNULL(SUM(TT_PUNTOS),0) AS PUNTOS FROM vtVS2_Facturas_CL
-                                        WHERE RUTA = '".$this->session->userdata('Zona') .$condicion."'
+                                        WHERE RUTA = '".$this->session->userdata('Zona')."' ".$condicion."
                                         GROUP BY FACTURA,CLIENTE,FECHA,NOMBRE_CLIENTE ORDER BY FECHA DESC";
         }
         else{
@@ -27,7 +27,7 @@ class Facturas_model extends CI_Model
                                         WHERE 0 = 0". $condicion."       
                                         GROUP BY FACTURA,CLIENTE,FECHA,NOMBRE_CLIENTE ORDER BY FECHA DESC";
         }
-        //echo $consulta."<br>";
+        echo $consulta."<br>";
     	$i=0;
         $json = array();
         $query = $this->sqlsrv->fetchArray($consulta,SQLSRV_FETCH_ASSOC);
