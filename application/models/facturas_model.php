@@ -27,7 +27,7 @@ class Facturas_model extends CI_Model
                                         WHERE 0 = 0". $condicion."       
                                         GROUP BY FACTURA,CLIENTE,FECHA,NOMBRE_CLIENTE ORDER BY FECHA DESC";
         }
-        echo $consulta."<br>";
+        //echo $consulta."<br>";
     	$i=0;
         $json = array();
         $query = $this->sqlsrv->fetchArray($consulta,SQLSRV_FETCH_ASSOC);
