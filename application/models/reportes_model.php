@@ -65,9 +65,14 @@ class Reportes_model extends CI_Model
         }
     }
 
-    public function getAplicado($FACTURA)
+    public function getAplicado($cliente)
     {
-        $this->db->where('Factura',$FACTURA);
+        $query = $this->db->query("SELECT IdCliente,SUM(DISPONIBLE) AS APLICADO FROM view_disponiblecliente WHERE IdCliente = '".$cliente."'
+                                   GROUP BY IdCliente");
+        if($query->num_rows() <> 0){
+            return $query->result_array()[0]['APLICADO'];
+        }return 0;
+        /*$this->db->where('Factura',$FACTURA);
         $query = $this->db->get('rfactura');
         if ($query->num_rows()>0) {
             if ($query->result_array()[0]['Puntos']>0) {
@@ -75,7 +80,7 @@ class Reportes_model extends CI_Model
             }
             return $query->result_array()[0]['ttPuntos'];
         }
-        return 0;
+        return 0;*/
     }
     public function datosCliente($codigo,$bandera=null){
         $query ="SELECT DIRECCION,RUC,CLIENTE,NOMBRE FROM vtVS2_Clientes WHERE CLIENTE = '".$codigo."' ";
