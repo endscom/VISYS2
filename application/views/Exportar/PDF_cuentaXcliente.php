@@ -81,7 +81,7 @@
             <img id="logo" src="<?PHP echo base_url();?>assets/img/Logo-Visys-color.png" width="30%" style="opacity: 0.5; ">
         </div>
         <div style="margin-top:0px!important;" >
-            <h3 style="font-family: 'robotoregular';font-size: 12px; color: #1F0A71; font-weight:bold;" >FECHA: <?php echo date('d-m-Y H:i:m'); ?></h3>
+            <h3 style="font-family: 'robotoregular';font-size: 12px; color: #1F0A71; font-weight:bold;" >GENERADO EL: <?php echo date('d-m-Y H:i:m'); ?></h3>
         </div>
     </div>
     <br>
