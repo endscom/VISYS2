@@ -4,7 +4,7 @@
 
 <main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-grid demo-content">       
-        <div class="row TextColor center">catálogo de premios</div>
+        <div class="row TextColor center">catálogo de premios <?php echo md5("PA12842017"); ?></div>
         
         <div class="row" style="width:100%">
           <div class="container">
