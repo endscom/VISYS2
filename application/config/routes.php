@@ -91,6 +91,7 @@ $route['detalles_canje/(:any)/(:any)'] = 'reportes_controller/detalles_canje/$1/
 $route['CXCprint/(:any)/(:any)/(:any)'] = 'reportes_controller/CXCprint/$1/$2/$3';
 $route['informeFactura/(:any)'] = 'reportes_controller/informeFactura/$1';
 $route['informeFacturaAnu/(:any)'] = 'reportes_controller/informeFacturaAnu/$1';
+$route['puntosXclienteRuta/(:any)/(:any)'] = 'reportes_controller/puntosXclienteRuta/$1/$2';
 
 /*RUTAS DE CATALOGO*/
 $route['NuevoCatalogo'] = 'catalogo_controller/NuevoCatalogo';
