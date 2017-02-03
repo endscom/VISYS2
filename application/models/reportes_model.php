@@ -65,7 +65,7 @@ class Reportes_model extends CI_Model
         }
     }
 
-    public function getAplicadoFactura($factura)
+    public function getAplicadoFactura($FACTURA)
     {
         $this->db->where('Factura',$FACTURA);
         $query = $this->db->get('rfactura');
