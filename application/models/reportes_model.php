@@ -53,7 +53,7 @@ class Reportes_model extends CI_Model
             $json['data'][$i]['FACTURA'] = "<p class='negra noMargen'>".$key['FACTURA']."</p>";
             $json['data'][$i]['FECHA'] = $key['FECHA']->format('d-m-Y');
             $json['data'][$i]['PUNTOS'] = number_format($key['PUNTOS'],0);
-            $json['data'][$i]['APLICADOS'] = $this->getAplicado($key['FACTURA']);
+            $json['data'][$i]['APLICADOS'] = $this->getAplicadoFactura($key['FACTURA']);
             $json['data'][$i]['DISPONIBLE'] = $this->formatDecimal($this->canje_model->getSaldoParcial($key['FACTURA'],$key['PUNTOS']));
             $i++;
         }
@@ -65,14 +65,9 @@ class Reportes_model extends CI_Model
         }
     }
 
-    public function getAplicado($cliente)
+    public function getAplicadoFactura($factura)
     {
-        $query = $this->db->query("SELECT IdCliente,SUM(DISPONIBLE) AS APLICADO FROM view_disponiblecliente WHERE IdCliente = '".$cliente."'
-                                   GROUP BY IdCliente");
-        if($query->num_rows() <> 0){
-            return $query->result_array()[0]['APLICADO'];
-        }return 0;
-        /*$this->db->where('Factura',$FACTURA);
+        $this->db->where('Factura',$FACTURA);
         $query = $this->db->get('rfactura');
         if ($query->num_rows()>0) {
             if ($query->result_array()[0]['Puntos']>0) {
@@ -80,7 +75,15 @@ class Reportes_model extends CI_Model
             }
             return $query->result_array()[0]['ttPuntos'];
         }
-        return 0;*/
+        return 0;
+    }
+    public function getAplicado($cliente)
+    {
+        $query = $this->db->query("SELECT IdCliente,SUM(DISPONIBLE) AS APLICADO FROM view_disponiblecliente WHERE IdCliente = '".$cliente."'
+                                   GROUP BY IdCliente");
+        if($query->num_rows() <> 0){
+            return $query->result_array()[0]['APLICADO'];
+        }return 0;        
     }
     public function datosCliente($codigo,$bandera=null){
         $query ="SELECT DIRECCION,RUC,CLIENTE,NOMBRE FROM vtVS2_Clientes WHERE CLIENTE = '".$codigo."' ";
