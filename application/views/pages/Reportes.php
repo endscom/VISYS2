@@ -113,6 +113,13 @@
                         <p class="TextIconos">TOP 10 MENOS VENDIDOS</p>
                     </a>
                 </div>
+                <div class="col s3 m3 l3 offset-l1">
+                    <a href="#" class=" IconBlue">
+                        <a href="#" onclick="FiltrarReporte('PUNTOS CLIENTES X RUTA','puntosXclienteRuta')" class=" IconBlue ">
+                        <i class="medium material-icons iconoCenter">donut_small</i>
+                        <p class="TextIconos">PUNTOS CLIENTES X RUTA</p>
+                    </a>
+                </div>
             </div>
     </div>
 </main>

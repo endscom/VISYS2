@@ -811,4 +811,39 @@ class Reportes_model extends CI_Model
         echo json_encode($json);
         $this->sqlsrv->close();
     }
+    public function puntosXclienteRuta($f1,$f2)
+    {
+        $i=0;
+        $json = array();
+        $consulta = "SELECT T1.RUTA, T1.CLIENTE, T0.NOMBRE AS NOMBRE_CLIENTE, T0.DIRECCION, T0.RUC, SUM(T1.TT_PUNTOS) AS PUNTOS, T0.MOROSO
+                        FROM dbo.vtVS2_Clientes T0 INNER JOIN vtVS2_Facturas_CL T1 ON T0.CLIENTE = T1.CLIENTE
+                        WHERE T1.FECHA BETWEEN '".$f1."' AND '".$f2."'
+                        GROUP BY T1.CLIENTE,T0.NOMBRE,T0.DIRECCION,T0.RUC,T1.RUTA,T0.MOROSO";
+
+        $query = $this->sqlsrv->fetchArray($consulta,SQLSRV_FETCH_ASSOC);
+        $json['data'][$i]['CLIENTE'] = ""; $json['data'][$i]['NOMBRE'] = "";
+        $json['data'][$i]['PUNTOS'] = ""; $json['data'][$i]['RUTA'] = ""; $json['data'][$i]['DIRECCION'] = "";
+
+        foreach($query as $key){
+            $json['data'][$i]['CLIENTE'] = $key['CLIENTE'];
+            $json['data'][$i]['NOMBRE'] = $key['NOMBRE_CLIENTE'];
+            $json['data'][$i]['PUNTOS'] = (($key['PUNTOS'] - $this->getAplicado($key['CLIENTE']))<0) ? 0 : $key['PUNTOS'] - $this->getAplicado($key['CLIENTE']);
+            $json['data'][$i]['DIRECCION'] = $key['DIRECCION'];
+            $json['data'][$i]['RUTA'] = $key['RUTA'];
+            $i++;
+        }
+            $json['columns'][0]['data'] = "RUTA";
+            $json['columns'][0]['name'] = "RUTA";
+            $json['columns'][1]['data'] = "CLIENTE";
+            $json['columns'][1]['name'] = "CLIENTE";
+            $json['columns'][2]['data'] = "NOMBRE";
+            $json['columns'][2]['name'] = "NOMBRE";
+            $json['columns'][3]['data'] = "DIRECCION";
+            $json['columns'][3]['name'] = "DIRECCION";
+            $json['columns'][4]['data'] = "PUNTOS";
+            $json['columns'][4]['name'] = "PUNTOS";
+
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
 }

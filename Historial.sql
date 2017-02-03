@@ -27,7 +27,7 @@ UPDATE [dbo].[ARTIPUNTOS] SET FECHAA = '2016-15-04 00:00:00.000' WHERE ARTICULO 
 --AÑO-DIA-MES
 INSERT INTO [dbo].[ARTIPUNTOS] VALUES
 ('13614012', 'Levonorgestrel 0.15 mg/Etinilestradiol 0.03 mg Tab 21/Ciclo 1/Caja (Nanjing)', '000003', '0', '2015-06-05 00:00:00.000'),
-('13614012', 'Levonorgestrel 0.15 mg/Etinilestradiol 0.03 mg Tab 21/Ciclo 1/Caja (Nanjing)', '000003', '10', '2015-15-06 00:00:00.000'),
+('13614012', 'Levonorgestrel 0.15 mg/Etinilestradiol 0.03 mg Tab 21/Ciclo 1/Caja (Nanjing)', '000003', '10', '2015-09-06 00:00:00.000'),
 
 ('10305042', 'Cefixima 400 mg Cápsulas 20/Caja (Ramos)', '000013', '100', '2015-01-06 00:00:00.000'),
 ('10305042', 'Cefixima 400 mg Cápsulas 20/Caja (Ramos)', '000010', '200', '2015-27-07 00:00:00.000'),
