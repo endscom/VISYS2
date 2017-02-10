@@ -684,7 +684,8 @@ class Reportes_model extends CI_Model
             $json['data'][$i]['NOMBRE'] = '<p class="bold noMargen">'.$key['Nombre']."</p>";
             $json['data'][$i]['ARTICULO'] = '<p class="bold noMargen">'.$this->formatDecimal($key['Descripcion'])."</p>";
             $json['data'][$i]['PUNTOS'] = number_format($this->formatDecimal(str_replace(".0000","",$key['PUNTO'])),0);
-            $json['data'][$i]['CANTIDAD'] = $this->formatDecimal(str_replace(".0000","",$key['CANTIDAD']));       
+            $json['data'][$i]['CANTIDAD'] = $this->formatDecimal(str_replace(".0000","",$key['CANTIDAD']));
+            $json['data'][$i]['VER'] = "<a   href='".base_url()."index.php/ExpFRP/".$key['IdFRP']."' target='_blank' class='noHover'><i class='material-icons'>&#xE417;</i></a>";
             $i++;
         }
             $json['columns'][0]['data'] = "FRP";
@@ -701,6 +702,8 @@ class Reportes_model extends CI_Model
             $json['columns'][5]['name'] = "PUNTOS";
             $json['columns'][6]['data'] = "CANTIDAD";
             $json['columns'][6]['name'] = "CANTIDAD";
+            $json['columns'][7]['data'] = "VER";
+            $json['columns'][7]['name'] = "VER";
         echo json_encode($json);
         $this->sqlsrv->close();
     }
@@ -851,6 +854,46 @@ class Reportes_model extends CI_Model
             $json['columns'][4]['data'] = "PUNTOS";
             $json['columns'][4]['name'] = "PUNTOS";
 
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function informeFrpXcliente($id)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->db->query("SELECT IdCliente, Nombre,IdFRP,Fecha, SUM(PUNTOS) AS PUNTOS FROM view_informefacturas 
+                                    WHERE IdCliente ='".$id."'
+                                    GROUP BY IdFRP");
+
+                $json['data'][$i]['FECHA'] = "-";
+                $json['data'][$i]['CLIENTE'] = "-";
+                $json['data'][$i]['CODIGO'] = "NO HAY DATOS";
+                $json['data'][$i]['PUNTOS'] = "-";
+                $json['data'][$i]['APLICADO'] = "-";
+                $json['data'][$i]['VER'] = "-";
+        if ($query->num_rows()>0) {
+            foreach($query->result_array() as $key){            
+                $json['data'][$i]['FECHA'] = date('d-m-Y',strtotime($key['Fecha']));
+                $json['data'][$i]['CLIENTE'] = $key['IdCliente'];
+                $json['data'][$i]['NOMBRE'] = $key['Nombre'];
+                $json['data'][$i]['CODIGO'] = '<p class="negra noMargen">'.$key['IdFRP'].'</p>';
+                $json['data'][$i]['APLICADO'] = $key['PUNTOS'];
+                $json['data'][$i]['VER'] = "<a href='".base_url()."index.php/ExpFRP/".$key['IdFRP']."' target='_blank' class='noHover'><i class='material-icons'>&#xE417;</i></a>";
+                $i++;
+            }
+        }
+            $json['columns'][0]['data'] = "FECHA";
+            $json['columns'][0]['name'] = "FECHA";
+            $json['columns'][1]['data'] = "CLIENTE";
+            $json['columns'][1]['name'] = "COD. CLIENTE";
+            $json['columns'][2]['data'] = "NOMBRE";
+            $json['columns'][2]['name'] = "NOMBRE";
+            $json['columns'][3]['data'] = "CODIGO";
+            $json['columns'][3]['name'] = "ID FRP";
+            $json['columns'][4]['data'] = "APLICADO";
+            $json['columns'][4]['name'] = "APLICADO";
+            $json['columns'][5]['data'] = "VER";
+            $json['columns'][5]['name'] = "VER";
         echo json_encode($json);
         $this->sqlsrv->close();
     }
