@@ -31,15 +31,15 @@
             <div class="row">
                 <div class="col s4 m4 l3">
                     <?php $puntos=0; foreach ($detalles as $key) {$puntos = $puntos +$key['Puntos'];} ?>
-                    <p class="canjePts RobotoB">CANJE:  <?php echo number_format($puntos,0); ?> PTS.</p>
+                    <p class="canjePts RobotoB">CANJE:  <?php echo number_format($puntos,2); ?> PTS.</p>
                 </div>
                 <div class="col s4 m4 l3 offset-l6 offset-s4 offset-m4 right">
                     <?php $efectivo=0; foreach ($detalles as $key) {$efectivo = $efectivo +$key['Efectivo'];} ?>
-                    <p class="canjePts RobotoB">EFECTIVO: C$  <?php echo number_format($efectivo,0); ?></p>
+                    <p class="canjePts RobotoB">EFECTIVO: C$  <?php echo number_format($efectivo,2); ?></p>
                 </div>
             </div>
 
-            <table  id="tblFREimpre" class=" TblDatos">
+            <table  id="" class=" TblDatos">
                 <thead style="background: #1F0A71; color: #fff; font-size: 14px; font-family: 'robotobold';">
                 <tr>
                     <th>FECHA</th>

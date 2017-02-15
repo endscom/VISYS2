@@ -32,7 +32,7 @@ class Canje_model extends CI_Model
         if($query->num_rows() > 0){
             $Arestar += $query->result_array()[0]['Puntos'];
         }
-        echo  intval($PUNTOS) - intval($Arestar);
+        echo $PUNTOS - $Arestar;
         $this->sqlsrv->close();
     }
     public function getFacturaFRP($idCliente)
