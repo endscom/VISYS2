@@ -110,7 +110,7 @@ $(document).ready(function() {
 });
     function isVerificar(posicion,fact){
         var EFECTIVO   = $('#tblFacturaFRE').DataTable().row(posicion).data().EFECTIVO;
-        var total = parseInt($('#totalEfectivo').html());
+        var total = parseFloat($('#totalEfectivo').html());
         if($("#CHK"+fact).is(':checked') ) {
             total +=EFECTIVO;
             $('#totalEfectivo').html(total);
@@ -243,7 +243,7 @@ $(document).ready(function() {
                         } );
 
                         $("#totalCanje").text(totalFinalFRE);
-                        $("#totalEfectivo2").text(parseInt(totalFinalFRE/2));
+                        $("#totalEfectivo2").text(parseFloat(totalFinalFRE/2));
                         $('#Dfre').openModal();
 
                         $('#obser').text(Comentario);
@@ -291,14 +291,14 @@ $(document).ready(function() {
                     
                     for (f=0;f<dataJson.DFactura.length;f++){
                         console.log(canje);
-                        canje = parseInt(canje + parseInt(dataJson.DFactura[f].Puntos));
-                        efectivo = parseInt(efectivo + parseInt(dataJson.DFactura[f].Efectivo));
+                        canje = parseFloat(canje + parseFloat(dataJson.DFactura[f].Puntos));
+                        efectivo = parseFloat(efectivo + parseFloat(dataJson.DFactura[f].Efectivo));
                         if( dataJson.DFactura[f].SALDO > 0) {ESTAD ="PARCIAL"}else {ESTAD ="APLICADO"}
                         DF +=   "<tr>" +
                                     "<td>" +dataJson.DFactura[f].Fecha + "</td>" +
                                     "<td>" +dataJson.DFactura[f].Factura+ "</td>" +
                                     "<td>" +formatNumber(dataJson.DFactura[f].Puntos)+ "</td>" +
-                                    "<td>" +formatNumber(dataJson.DFactura[f].Efectivo)+ "</td>" +
+                                    "<td>" +dataJson.DFactura[f].Efectivo+ "</td>" +
                                     "<td>PAGADO</td>" +
                                 "</tr>"
                     }
