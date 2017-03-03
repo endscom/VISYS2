@@ -145,7 +145,7 @@ class Canje_model extends CI_Model
         return $json;
     }
     public function getSaldoParcial($id,$pts){
-        $this->db->where('Puntos <>',0);
+        //$this->db->where('Puntos <>',0);
         $this->db->where('Factura',$id);
         $this->db->select('Puntos');
         $query = $this->db->get('rfactura');
