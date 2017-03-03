@@ -30,11 +30,16 @@ class Reportes_model extends CI_Model
         }
         $q_rows->next_result();
         $q_rows->free_result();
-
         $q_rows = $this->db->query("call pc_Clientes_Facturas_Fre ('".$codigo."')");
         if ($q_rows->num_rows() > 0) {
                 $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].")";
-        }        
+        }
+        $q_rows->next_result();
+        $q_rows->free_result();
+        $q_rows = $this->db->query("call pc_Clientes_Facturas_dev ('".$codigo."')");
+        if ($q_rows->num_rows() > 0) {
+                $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].")";
+        }
         $query .= " GROUP BY FACTURA, FECHA";
         $q_rows->next_result();
         $q_rows->free_result();
