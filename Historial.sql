@@ -1,11 +1,11 @@
 --AÑO-MES-DIA
 SELECT T0.ANULADA, T0.FECHA_FACTURA, T0.FACTURA, T0.ARTICULO, T1.DESCRIPCION, T0.CANTIDAD
 FROM   Softland.umk.FACTURA_LINEA T0 INNER JOIN Softland.umk.ARTICULO T1 ON T1.ARTICULO = T0.ARTICULO 
-WHERE T0.FACTURA = '00072105'
+WHERE T0.FACTURA = '00067628'
 
-SELECT * FROM  [dbo].[ARTIPUNTOS] WHERE articulo =   '10301032' 
+SELECT * FROM  [dbo].[ARTIPUNTOS] WHERE articulo =   '10610012' 
 
-DELETE FROM [dbo].[ARTIPUNTOS] WHERE ARTICULO = '10301032'  AND PUNTOS = '20' AND FECHAA = '2016-10-12 10:47:27.440'
+DELETE FROM [dbo].[ARTIPUNTOS] WHERE ARTICULO = '10610012'  AND PUNTOS = '20' AND FECHAA = '2016-10-12 10:47:27.440'
 UPDATE [dbo].[ARTIPUNTOS] SET PUNTOS = '40', CLASIFICACION = '000006' WHERE ARTICULO = '10225011' AND PUNTOS = '20'  AND FECHAA = '2015-07-07 00:00:00.000'
 
  
@@ -26,13 +26,22 @@ UPDATE [dbo].[ARTIPUNTOS] SET FECHAA = '2016-15-04 00:00:00.000' WHERE ARTICULO 
 
 --AÑO-DIA-MES
 INSERT INTO [dbo].[ARTIPUNTOS] VALUES
+('10610012', 'Clopidogrel 75 mg Tableta Recubierta 20/Caja (Austin Pharma)', '000005', '20', '2015-20-06 00:00:00.000'),
+('10610012', 'Clopidogrel 75 mg Tableta Recubierta 20/Caja (Austin Pharma)', '000005', '0', '2015-01-07 00:00:00.000'),
+('10610012', 'Clopidogrel 75 mg Tableta Recubierta 20/Caja (Austin Pharma)', '000005', '20', '2015-23-10 00:00:00.000'),
+
+
+('10207022', 'Ketoconazol 200 mg Tableta 20/Caja (Hetero)', '000003', '10', '2015-09-06 00:00:00.000'),
+('10207022', 'Ketoconazol 200 mg Tableta 20/Caja (Hetero)', '000003', '0', '2015-22-09 00:00:00.000'),
+('10207022', 'Ketoconazol 200 mg Tableta 20/Caja (Hetero)', '000003', '10', '2015-05-10 00:00:00.000'),
+
+('13410043', 'Losartán Potásico 50 mg Tabletas Recubiertas 30/Caja (Vardhman)', '000005', '20', '2015-29-08 00:00:00.000'),
+('13410043', 'Losartán Potásico 50 mg Tabletas Recubiertas 30/Caja (Vardhman)', '000003', '10', '2016-16-06 00:00:00.000'),
+
 ('10301032', 'Acetaminofén 120 mg/5ml Jarabe 120 ml/Frasco 1/Caja (Ramos)', '000008', '4', '2015-04-06 00:00:00.000'),
 ('10301032', 'Acetaminofén 120 mg/5ml Jarabe 120 ml/Frasco 1/Caja (Ramos)', '000008', '0', '2015-11-10 00:00:00.000'),
 ('10301032', 'Acetaminofén 120 mg/5ml Jarabe 120 ml/Frasco 1/Caja (Ramos)', '000008', '4', '2015-13-10 00:00:00.000'),
 
-('10207022', 'Ketoconazol 200 mg Tableta 20/Caja (Hetero)', '000003', '10', '2015-09-06 00:00:00.000'),
-('10207022', 'Ketoconazol 200 mg Tableta 20/Caja (Hetero)', '000003', '0', '2015-22-09 00:00:00.000'),
-('10207022', 'Ketoconazol 200 mg Tableta 20/Caja (Hetero)', '000003', '10', '2015-13-10 00:00:00.000'),
 
 ('15016023', 'Gemfibrozilo 600 mg Tabletas Recubiertas 100/Caja (J. Pengyao)', '000012', '50', '2015-08-07 00:00:00.000'),
 ('15016023', 'Gemfibrozilo 600 mg Tabletas Recubiertas 100/Caja (J. Pengyao)', '000012', '0', '2015-09-08 00:00:00.000'),
@@ -51,9 +60,6 @@ INSERT INTO [dbo].[ARTIPUNTOS] VALUES
 ('15005031', 'Clindamicina 300 mg Cápsulas 100/Caja (J. Pengyao)', '000020', '70', '2016-07-10 00:00:00.000'),
 ('15005031', 'Clindamicina 300 mg Cápsulas 100/Caja (J. Pengyao)', '000020', '0', '2016-09-11 00:00:00.000'),
 
-('10610012', 'Clopidogrel 75 mg Tableta Recubierta 20/Caja (Austin Pharma)', '000005', '20', '2015-26-06 00:00:00.000'),
-('10610012', 'Clopidogrel 75 mg Tableta Recubierta 20/Caja (Austin Pharma)', '000005', '0', '2015-01-07 00:00:00.000'),
-('10610012', 'Clopidogrel 75 mg Tableta Recubierta 20/Caja (Austin Pharma)', '000005', '20', '2015-23-10 00:00:00.000'),
 
 ('13401013', 'Acido Acetilsalicilico 100 mg Tab BP 100/Caja  (VARDHMAN)', '000003', '10', '2015-09-06 00:00:00.000'),
 

@@ -63,11 +63,11 @@
                 async:true,
                 success:
                     function(clsAplicados){
-                        if (clsAplicados == 'S'){
+                        /*if (clsAplicados == 'S'){
                             $('#moroso').html('');
                             $('#moroso').html('<table id="tblFacturaFRP" class=" TblDatos"><thead><tr><th>FECHA</th><th>FACTURA</th><th>PUNTOS</th><th>Pts. APLI.</th><th>Pts. DISP.</th><th> <i class="material-icons">done</i> </th><th>ESTADO</th></tr></thead><tbody class="center"></tbody></table>');
                             mensaje("CLIENTE EN ESTADO MOROSO", "error");
-                        }else{
+                        }else{*/
                            $.ajax({
                                 url: "getAplicadoP/"+ Cls,
                                 type: "post",
@@ -98,7 +98,7 @@
                                     { "data": "CAM4" },
                                 ]
                             });
-                        }
+                        //}
                     }
             });
         }else{
