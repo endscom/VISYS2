@@ -33,10 +33,8 @@ $route['devoluciones'] = 'boucher_controller';
 $route['cargarDevoluciones/(:any)'] = 'boucher_controller/cargarDevoluciones/$1';
 $route['aplicarDevolucion'] = 'boucher_controller/aplicarDevolucion';
 
-
 /*BOUCHER*/
 $route['EliminarVineta'] = 'boucher_controller';
-
 
 /*CANNJES FRP*/
 $route['Frp'] = 'canje_controller';
