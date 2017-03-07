@@ -45,5 +45,15 @@
             z-index: 900;
         }
     </style>
+    <script>
+    var config = {
+        '.chosen-select'           : {
+
+        }
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+    </script>
 </head>
 <body>
