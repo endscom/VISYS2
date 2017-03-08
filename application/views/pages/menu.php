@@ -56,7 +56,9 @@
                 break;
                 case 'SAC':
                   $menu = '<a href="Main"><li href="Main"><i class="material-icons">home</i> inicio</li></a>
+                           <a href="facturas"><li href="facturas"><i class="material-icons">assignment</i> facturas</li></a>
                            <a href="PuntosClientes"><li href="PuntosClientes"><i class="material-icons">content_copy</i> puntos clientes</li></a>                           
+                           <a href="Reportes"><li href="Reportes"><i class="material-icons">description</i> reportes</li></a>
                            <a href="#modalOpciones" class="modal-trigger"><li href="#"><i class="material-icons">settings</i> opciones</li></a>
                            <a href="salir"> <li href="salir"><i class="material-icons">exit_to_app</i> cerrar sesión</li></a>';
                 break;
