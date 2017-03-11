@@ -174,7 +174,7 @@ class Reportes_model extends CI_Model
     {
         $i=0;
         $json = array();
-        $query = $this->sqlsrv->fetchArray("SELECT DESCRIPCION,CANTIDAD,CLIENTE,NOMBRE_CLIENTE,RUTA,FACTURA,FECHA FROM vtVS2_MASTER_COMPRAS 
+        $query = $this->sqlsrv->fetchArray("SELECT DESCRIPCION,CANTIDAD,CLIENTE,NOMBRE_CLIENTE,RUTA,PUNTOS,FACTURA,FECHA FROM vtVS2_MASTER_COMPRAS 
                                             WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'",SQLSRV_FETCH_ASSOC);
                                             
         foreach($query as $key){
@@ -185,6 +185,7 @@ class Reportes_model extends CI_Model
             $json['data'][$i]['NOMBRE'] = "<p class='negra noMargen'>".$key['NOMBRE_CLIENTE']."</p>";
             $json['data'][$i]['RUTA'] = $key['RUTA'];
             $json['data'][$i]['FACTURA'] = $key['FACTURA'];
+            $json['data'][$i]['PUNTOS'] = number_format($key['PUNTOS'],2);
             $json['data'][$i]['FECHA'] = $key['FECHA']->format('d-m-Y');
             $i++;
         }
@@ -194,16 +195,18 @@ class Reportes_model extends CI_Model
             $json['columns'][1]['name'] = "DESCRIPCION";
             $json['columns'][2]['data'] = "CANTIDAD";
             $json['columns'][2]['name'] = "CANTIDAD";
-            $json['columns'][3]['data'] = "CLIENTE";
-            $json['columns'][3]['name'] = "CODIGO";
-            $json['columns'][4]['data'] = "NOMBRE";
-            $json['columns'][4]['name'] = "NOMBRE";
-            $json['columns'][5]['data'] = "RUTA";
-            $json['columns'][5]['name'] = "RUTA";
-            $json['columns'][6]['data'] = "FACTURA";
-            $json['columns'][6]['name'] = "FACTURA";
-            $json['columns'][7]['data'] = "FECHA";
-            $json['columns'][7]['name'] = "FECHA";
+            $json['columns'][3]['data'] = "PUNTOS";
+            $json['columns'][3]['name'] = "PUNTOS";
+            $json['columns'][4]['data'] = "CLIENTE";
+            $json['columns'][4]['name'] = "CODIGO";
+            $json['columns'][5]['data'] = "NOMBRE";
+            $json['columns'][5]['name'] = "NOMBRE";
+            $json['columns'][6]['data'] = "RUTA";
+            $json['columns'][6]['name'] = "RUTA";
+            $json['columns'][7]['data'] = "FACTURA";
+            $json['columns'][7]['name'] = "FACTURA";
+            $json['columns'][8]['data'] = "FECHA";
+            $json['columns'][8]['name'] = "FECHA";
 
         echo json_encode($json);
         $this->sqlsrv->close();
@@ -245,7 +248,7 @@ class Reportes_model extends CI_Model
     {
         $i=0;
         $json = array();
-        $query = $this->sqlsrv->fetchArray("SELECT TOP 10 ARTICULO,DESCRIPCION,SUM(CANTIDAD) AS CANTIDAD,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL
+        $query = $this->sqlsrv->fetchArray("SELECT ARTICULO,DESCRIPCION,SUM(CANTIDAD) AS CANTIDAD,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL
                                             WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
                                             GROUP BY ARTICULO,DESCRIPCION ORDER BY PUNTOS DESC",SQLSRV_FETCH_ASSOC);
 
