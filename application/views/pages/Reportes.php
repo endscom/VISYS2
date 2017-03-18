@@ -198,7 +198,7 @@
         <div class="row">
             <form class="col s12" action=""method="post" name="formnuevo">
                 <div class="row">
-                    <div class="col l10 m10 s12">
+                    <div class="col l12 m12 s12">
                     <select name="cliente" id="ListFact" class="chosen-select browser-default">
                         <option value="" disabled selected>SELECCIONE FACTURA</option>
                         <?php
@@ -211,10 +211,10 @@
                         ?>
                     </select>
                     </div>
-                    <div class="col l2 m2 s3">
+                    <!--<div class="col l2 m2 s3">
                         <input type="checkbox" id="chkAnulada" />
                         <label for="chkAnulada">ANULADAS</label>
-                    </div>
+                    </div>-->
                 </div>
             </form>
         </div>

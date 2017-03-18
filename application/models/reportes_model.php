@@ -754,8 +754,7 @@ class Reportes_model extends CI_Model
     {
         $i=0;
         $json = array();
-        $query = $this->db->query("SELECT * FROM view_informeFacturas
-                                    WHERE FACTURA = '".$factura."'");
+        
                 $json['data'][$i]['FACTURA'] = "-";
                 $json['data'][$i]['FECHA'] = "-";
                 $json['data'][$i]['CLIENTE'] = "-";
@@ -763,6 +762,38 @@ class Reportes_model extends CI_Model
                 $json['data'][$i]['PUNTOS'] = "-";
                 $json['data'][$i]['APLICADO'] = "-";
                 $json['data'][$i]['VER'] = "-";
+        $query1 = $this->db->query("SELECT * FROM devolucion
+                                    WHERE FACTURA = '".$factura."'");
+
+        if ($query1->num_rows()>0) {
+            foreach($query1->result_array() as $key){            
+                $json['data'][$i]['FACTURA'] = '<p class="negra noMargen">'.$key['Factura'].'</p>';
+                $json['data'][$i]['FECHA'] = "-";
+                $json['data'][$i]['CLIENTE'] = "-";
+                $json['data'][$i]['CODIGO'] = '-';
+                $json['data'][$i]['PUNTOS'] = $key['ttPuntos'];
+                $json['data'][$i]['APLICADO'] = $key['Puntos'];
+                $json['data'][$i]['VER'] = "DEVOLUCION";
+                $i++;
+            }
+        }
+        $query2 = $this->sqlsrv->fetchArray("SELECT FECHA,FACTURA,CLIENTE,NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS,OBSERVACION
+                                            FROM vtVS2_Facturas_AN
+                                            WHERE FACTURA = '".$factura."'
+                                            GROUP BY FACTURA,FECHA,CLIENTE,NOMBRE_CLIENTE,OBSERVACION",SQLSRV_FETCH_ASSOC);        
+        foreach($query2 as $key){
+            $json['data'][$i]['FECHA'] = '<p class="negra noMargen">'.$key['FECHA']->format('d-m-Y')."</p>";
+            $json['data'][$i]['FACTURA'] = '<p class="bold noMargen">'.$key['FACTURA']."</p>";
+            $json['data'][$i]['CLIENTE'] = '<p class="bold noMargen">'.$key['CLIENTE']."</p>";
+            $json['data'][$i]['NOMBRE'] = '<p class="bold noMargen">'.$key['NOMBRE_CLIENTE']."</p>";
+            $json['data'][$i]['PUNTOS'] = number_format($key['PUNTOS'],0);
+            $json['data'][$i]['OBSER'] = strtoupper($key['OBSERVACION']);
+            $json['data'][$i]['VER'] = "ANULADA";
+            $i++;
+        }
+
+        $query = $this->db->query("SELECT * FROM view_informeFacturas
+                                    WHERE FACTURA = '".$factura."'");
         if ($query->num_rows()>0) {
             foreach($query->result_array() as $key){            
                 $json['data'][$i]['FACTURA'] = '<p class="negra noMargen">'.$key['Factura'].'</p>';
@@ -788,7 +819,7 @@ class Reportes_model extends CI_Model
             $json['columns'][5]['data'] = "APLICADO";
             $json['columns'][5]['name'] = "APLICADO";
             $json['columns'][6]['data'] = "VER";
-            $json['columns'][6]['name'] = "VER";
+            $json['columns'][6]['name'] = "ESTADO";
         echo json_encode($json);
         $this->sqlsrv->close();
     }
