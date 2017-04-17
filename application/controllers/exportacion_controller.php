@@ -73,9 +73,10 @@ class Exportacion_controller extends CI_Controller
         $fecha2 = ($_POST['fecha2']=="") ? date('d-m-Y') : $_POST['fecha2'];
         
         $codigo = $this->session->userdata('IdCL');
-        $query['query1'] = $this->reportes_model->cuentaXcliente($codigo,$fecha1,$fecha2,1);
-        $query['query2'] = $this->reportes_model->datosCliente($codigo);
+        $query['data2'] = $this->reportes_model->cuentaXcliente($codigo,$fecha1,$fecha2,1);
+        $query['data'] = $this->reportes_model->datosCliente($codigo);
 
+        //print_r($query['query1']);
         $PdfCliente = new mPDF('utf-8','A4');
         $PdfCliente -> writeHTML($this->load->view('Exportar/PDF_cuentaXcliente',$query,true));
         $PdfCliente->Output();

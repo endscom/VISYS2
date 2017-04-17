@@ -32,7 +32,7 @@ class Canje_model extends CI_Model
         if($query->num_rows() > 0){
             $Arestar += $query->result_array()[0]['Puntos'];
         }
-        echo  intval($PUNTOS) - intval($Arestar);
+        echo $PUNTOS - $Arestar;
         $this->sqlsrv->close();
     }
     public function getFacturaFRP($idCliente)
@@ -145,7 +145,7 @@ class Canje_model extends CI_Model
         return $json;
     }
     public function getSaldoParcial($id,$pts){
-        $this->db->where('Puntos <>',0);
+        //$this->db->where('Puntos <>',0);
         $this->db->where('Factura',$id);
         $this->db->select('Puntos');
         $query = $this->db->get('rfactura');

@@ -133,6 +133,14 @@ class Reportes_controller extends CI_Controller
     {
         $this->reportes_model->informeFacturaAnu($factura);
     }
+    public function puntosXclienteRuta($f1,$f2)
+    {
+        $this->reportes_model->puntosXclienteRuta($f1,$f2);
+    }
+    public function informeFrpXcliente($id)
+    {
+        $this->reportes_model->informeFrpXcliente($id);
+    }
     public function CXCprint($codigo,$fecha1,$fecha2)
     {
 

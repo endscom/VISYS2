@@ -113,6 +113,20 @@
                         <p class="TextIconos">TOP 10 MENOS VENDIDOS</p>
                     </a>
                 </div>
+                <div class="col s3 m3 l3 offset-l1">
+                    <a href="#" class=" IconBlue">
+                        <a href="#" onclick="FiltrarReporte('PUNTOS CLIENTES X RUTA','puntosXclienteRuta')" class=" IconBlue ">
+                        <i class="medium material-icons iconoCenter">donut_small</i>
+                        <p class="TextIconos">PUNTOS CLIENTES X RUTA</p>
+                    </a>
+                </div>
+                <div class="col s3 m3 l3">
+                    <a href="#" class=" IconBlue">
+                        <a href="#informeFrp" class=" IconBlue modal-action modal-close modal-trigger">
+                        <i class="medium material-icons iconoCenter">recent_actors</i>
+                        <p class="TextIconos">FRP CLIENTES</p>
+                    </a>
+                </div>
             </div>
     </div>
 </main>
@@ -184,7 +198,7 @@
         <div class="row">
             <form class="col s12" action=""method="post" name="formnuevo">
                 <div class="row">
-                    <div class="col l10 m10 s12">
+                    <div class="col l12 m12 s12">
                     <select name="cliente" id="ListFact" class="chosen-select browser-default">
                         <option value="" disabled selected>SELECCIONE FACTURA</option>
                         <?php
@@ -197,10 +211,10 @@
                         ?>
                     </select>
                     </div>
-                    <div class="col l2 m2 s3">
+                    <!--<div class="col l2 m2 s3">
                         <input type="checkbox" id="chkAnulada" />
                         <label for="chkAnulada">ANULADAS</label>
-                    </div>
+                    </div>-->
                 </div>
             </form>
         </div>
@@ -210,6 +224,43 @@
     </div><!-- fin del contenido modal -->
 </div>
 <!-- FIN DE MODAL CUENTA POR CLIENTE -->
+<!-- Modal Cuenta por Cliente -->
+<div id="informeFrp" class="modal">
+    <div class="modal-content">
+        <div class="right row">
+                <a href="#!" class=" BtnClose modal-action modal-close ">
+                    <i class="material-icons">highlight_off</i>
+                </a>
+        </div>
+
+        <h6 class="center Mcolor AdUser">INFORME DE FRP POR CLIENTE</h6>
+
+        <div class="row">
+            <form class="col s12" action=""method="post" name="formnuevo">
+                <div class="row">
+                    <div class="col l12 m12 s12">
+                    <select name="cliente" id="ListFRPcl" class="chosen-select browser-default">
+                        <option value="" disabled selected>SELECCIONE CLIENTE</option>
+                        <?php
+                        if(!$data){}
+                            else{
+                                    foreach($data as $cliente){
+                                        echo '<option value="'.$cliente['CLIENTE'].'">'.$cliente['CLIENTE'].' | '.$cliente['NOMBRE'].'</option>';
+                                }
+                            }
+                        ?>
+                    </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row center">
+                <a id="geninformeFrpCliente"  href="#" class="Btnadd btn">GENERAR</a>
+        </div>
+    </div><!-- fin del contenido modal -->
+</div>
+<!-- FIN DE MODAL CUENTA POR CLIENTE -->
+
 
 <!-- MODAL DETALLES CUENTA POR CLIENTE -->
 <div id="CtaXcte" class="modal">
@@ -383,7 +434,7 @@
         <!-- LOGO SISTEMA DE VISYS -->
         <center><img src="<?PHP echo base_url(); ?>assets/img/logo_sp.png" width="30%"></center>
 
-        <h6 class="center Mcolor AdUser">INFORME DE FACTURA</h6>
+        <h6 id="textoxd" class="center Mcolor AdUser">INFORME DE FACTURA</h6>
         <!-- TABLA DE DETALLES -->
         <div id="divInforme">
             

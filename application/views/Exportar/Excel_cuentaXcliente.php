@@ -92,7 +92,7 @@
         <h3 style="font-family: 'robotoblack';font-size: 15px; color: #1F0A71; font-weight:bold;" >DATOS DEL CLIENTE</h3>
             <p id="CXCdetalleCodigo" class="Mcolor cod"><?php echo $data['data2'][0]['CODIGO']; ?> | <?php echo $data['data2'][0]['NOMBRE']; ?></p>
             <p style="margin-top:3px" id="CXCdetalleRUC" class="Mcolor detalles linea"><?php echo $data['data2'][0]['RUC']; ?></p>
-            <p style="margin-top:3px" id="CXCdetalleDIR" class="Mcolor detalles linea"><?php echo $data['data2'][0]['DIRECCION']; ?></p>
+            <p style="margin-top:3px" id="CXCdetalleDIR" class="Mcolor detalles linea"><?php echo $query['data2'][0]['DIRECCION']; ?></p>
     </div><br>
         <table id="ClienteAdd">
 
@@ -107,7 +107,7 @@
         </thead>
 
         <tbody>
-        <?PHP
+        <?php
         $TOTAL=0;
         if(!($data)){
             echo "Error al cargar los datos";

@@ -58,7 +58,7 @@ class Canje_efectivo_model extends CI_Model
             $json['data'][$i]['FECHA']      = $key['FECHA']->format('Y-m-d');
             $json['data'][$i]['FACTURA']    = $key['FACTURA'];
             $json['data'][$i]['DISPONIBLE'] = intval($this->getSaldoParcial($key['FACTURA'],$key['DISPONIBLE']));
-            $json['data'][$i]['EFECTIVO']   = intval($this->getSaldoParcial($key['FACTURA'],$key['DISPONIBLE'])/2);
+            $json['data'][$i]['EFECTIVO']   = $this->getSaldoParcial($key['FACTURA'],$key['DISPONIBLE'])/2;//intval($this->getSaldoParcial($key['FACTURA'],$key['DISPONIBLE'])/2);
             $json['data'][$i]['OPCION']     = "<p><input type='checkbox' onclick='isVerificar(".$i.','.'"'.$key['FACTURA'].'"'.")' id='".$ID_ROW."' /><label 								id='".$ID_LBL."' for='".$ID_ROW."'></label></p>";
             $i++;
         }

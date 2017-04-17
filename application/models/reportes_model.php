@@ -30,11 +30,16 @@ class Reportes_model extends CI_Model
         }
         $q_rows->next_result();
         $q_rows->free_result();
-
         $q_rows = $this->db->query("call pc_Clientes_Facturas_Fre ('".$codigo."')");
         if ($q_rows->num_rows() > 0) {
                 $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].")";
-        }        
+        }
+        $q_rows->next_result();
+        $q_rows->free_result();
+        $q_rows = $this->db->query("call pc_Clientes_Facturas_dev ('".$codigo."')");
+        if ($q_rows->num_rows() > 0) {
+                $query .= " AND FACTURA NOT IN (".$q_rows->result_array()[0]['Facturas'].")";
+        }
         $query .= " GROUP BY FACTURA, FECHA";
         $q_rows->next_result();
         $q_rows->free_result();
@@ -53,7 +58,7 @@ class Reportes_model extends CI_Model
             $json['data'][$i]['FACTURA'] = "<p class='negra noMargen'>".$key['FACTURA']."</p>";
             $json['data'][$i]['FECHA'] = $key['FECHA']->format('d-m-Y');
             $json['data'][$i]['PUNTOS'] = number_format($key['PUNTOS'],0);
-            $json['data'][$i]['APLICADOS'] = $this->getAplicado($key['FACTURA']);
+            $json['data'][$i]['APLICADOS'] = $this->getAplicadoFactura($key['FACTURA']);
             $json['data'][$i]['DISPONIBLE'] = $this->formatDecimal($this->canje_model->getSaldoParcial($key['FACTURA'],$key['PUNTOS']));
             $i++;
         }
@@ -65,7 +70,7 @@ class Reportes_model extends CI_Model
         }
     }
 
-    public function getAplicado($FACTURA)
+    public function getAplicadoFactura($FACTURA)
     {
         $this->db->where('Factura',$FACTURA);
         $query = $this->db->get('rfactura');
@@ -76,6 +81,14 @@ class Reportes_model extends CI_Model
             return $query->result_array()[0]['ttPuntos'];
         }
         return 0;
+    }
+    public function getAplicado($cliente)
+    {
+        $query = $this->db->query("SELECT IdCliente,SUM(DISPONIBLE) AS APLICADO FROM view_disponiblecliente WHERE IdCliente = '".$cliente."'
+                                   GROUP BY IdCliente");
+        if($query->num_rows() <> 0){
+            return $query->result_array()[0]['APLICADO'];
+        }return 0;        
     }
     public function datosCliente($codigo,$bandera=null){
         $query ="SELECT DIRECCION,RUC,CLIENTE,NOMBRE FROM vtVS2_Clientes WHERE CLIENTE = '".$codigo."' ";
@@ -161,7 +174,7 @@ class Reportes_model extends CI_Model
     {
         $i=0;
         $json = array();
-        $query = $this->sqlsrv->fetchArray("SELECT DESCRIPCION,CANTIDAD,CLIENTE,NOMBRE_CLIENTE,RUTA,FACTURA,FECHA FROM vtVS2_MASTER_COMPRAS 
+        $query = $this->sqlsrv->fetchArray("SELECT DESCRIPCION,CANTIDAD,CLIENTE,NOMBRE_CLIENTE,RUTA,PUNTOS,FACTURA,FECHA FROM vtVS2_MASTER_COMPRAS 
                                             WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'",SQLSRV_FETCH_ASSOC);
                                             
         foreach($query as $key){
@@ -172,6 +185,7 @@ class Reportes_model extends CI_Model
             $json['data'][$i]['NOMBRE'] = "<p class='negra noMargen'>".$key['NOMBRE_CLIENTE']."</p>";
             $json['data'][$i]['RUTA'] = $key['RUTA'];
             $json['data'][$i]['FACTURA'] = $key['FACTURA'];
+            $json['data'][$i]['PUNTOS'] = number_format($key['PUNTOS'],2);
             $json['data'][$i]['FECHA'] = $key['FECHA']->format('d-m-Y');
             $i++;
         }
@@ -181,16 +195,18 @@ class Reportes_model extends CI_Model
             $json['columns'][1]['name'] = "DESCRIPCION";
             $json['columns'][2]['data'] = "CANTIDAD";
             $json['columns'][2]['name'] = "CANTIDAD";
-            $json['columns'][3]['data'] = "CLIENTE";
-            $json['columns'][3]['name'] = "CODIGO";
-            $json['columns'][4]['data'] = "NOMBRE";
-            $json['columns'][4]['name'] = "NOMBRE";
-            $json['columns'][5]['data'] = "RUTA";
-            $json['columns'][5]['name'] = "RUTA";
-            $json['columns'][6]['data'] = "FACTURA";
-            $json['columns'][6]['name'] = "FACTURA";
-            $json['columns'][7]['data'] = "FECHA";
-            $json['columns'][7]['name'] = "FECHA";
+            $json['columns'][3]['data'] = "PUNTOS";
+            $json['columns'][3]['name'] = "PUNTOS";
+            $json['columns'][4]['data'] = "CLIENTE";
+            $json['columns'][4]['name'] = "CODIGO";
+            $json['columns'][5]['data'] = "NOMBRE";
+            $json['columns'][5]['name'] = "NOMBRE";
+            $json['columns'][6]['data'] = "RUTA";
+            $json['columns'][6]['name'] = "RUTA";
+            $json['columns'][7]['data'] = "FACTURA";
+            $json['columns'][7]['name'] = "FACTURA";
+            $json['columns'][8]['data'] = "FECHA";
+            $json['columns'][8]['name'] = "FECHA";
 
         echo json_encode($json);
         $this->sqlsrv->close();
@@ -232,7 +248,7 @@ class Reportes_model extends CI_Model
     {
         $i=0;
         $json = array();
-        $query = $this->sqlsrv->fetchArray("SELECT TOP 10 ARTICULO,DESCRIPCION,SUM(CANTIDAD) AS CANTIDAD,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL
+        $query = $this->sqlsrv->fetchArray("SELECT ARTICULO,DESCRIPCION,SUM(CANTIDAD) AS CANTIDAD,SUM(TT_PUNTOS) AS PUNTOS FROM vtVS2_Facturas_CL
                                             WHERE FECHA BETWEEN '".$fecha1."' AND '".$fecha2."'
                                             GROUP BY ARTICULO,DESCRIPCION ORDER BY PUNTOS DESC",SQLSRV_FETCH_ASSOC);
 
@@ -676,7 +692,8 @@ class Reportes_model extends CI_Model
             $json['data'][$i]['NOMBRE'] = '<p class="bold noMargen">'.$key['Nombre']."</p>";
             $json['data'][$i]['ARTICULO'] = '<p class="bold noMargen">'.$this->formatDecimal($key['Descripcion'])."</p>";
             $json['data'][$i]['PUNTOS'] = number_format($this->formatDecimal(str_replace(".0000","",$key['PUNTO'])),0);
-            $json['data'][$i]['CANTIDAD'] = $this->formatDecimal(str_replace(".0000","",$key['CANTIDAD']));       
+            $json['data'][$i]['CANTIDAD'] = $this->formatDecimal(str_replace(".0000","",$key['CANTIDAD']));
+            $json['data'][$i]['VER'] = "<a   href='".base_url()."index.php/ExpFRP/".$key['IdFRP']."' target='_blank' class='noHover'><i class='material-icons'>&#xE417;</i></a>";
             $i++;
         }
             $json['columns'][0]['data'] = "FRP";
@@ -693,6 +710,8 @@ class Reportes_model extends CI_Model
             $json['columns'][5]['name'] = "PUNTOS";
             $json['columns'][6]['data'] = "CANTIDAD";
             $json['columns'][6]['name'] = "CANTIDAD";
+            $json['columns'][7]['data'] = "VER";
+            $json['columns'][7]['name'] = "VER";
         echo json_encode($json);
         $this->sqlsrv->close();
     }
@@ -735,8 +754,7 @@ class Reportes_model extends CI_Model
     {
         $i=0;
         $json = array();
-        $query = $this->db->query("SELECT * FROM view_informeFacturas
-                                    WHERE FACTURA = '".$factura."'");
+        
                 $json['data'][$i]['FACTURA'] = "-";
                 $json['data'][$i]['FECHA'] = "-";
                 $json['data'][$i]['CLIENTE'] = "-";
@@ -744,6 +762,38 @@ class Reportes_model extends CI_Model
                 $json['data'][$i]['PUNTOS'] = "-";
                 $json['data'][$i]['APLICADO'] = "-";
                 $json['data'][$i]['VER'] = "-";
+        $query1 = $this->db->query("SELECT * FROM devolucion
+                                    WHERE FACTURA = '".$factura."'");
+
+        if ($query1->num_rows()>0) {
+            foreach($query1->result_array() as $key){            
+                $json['data'][$i]['FACTURA'] = '<p class="negra noMargen">'.$key['Factura'].'</p>';
+                $json['data'][$i]['FECHA'] = "-";
+                $json['data'][$i]['CLIENTE'] = "-";
+                $json['data'][$i]['CODIGO'] = '-';
+                $json['data'][$i]['PUNTOS'] = $key['ttPuntos'];
+                $json['data'][$i]['APLICADO'] = $key['Puntos'];
+                $json['data'][$i]['VER'] = "DEVOLUCION";
+                $i++;
+            }
+        }
+        $query2 = $this->sqlsrv->fetchArray("SELECT FECHA,FACTURA,CLIENTE,NOMBRE_CLIENTE,SUM(TT_PUNTOS) AS PUNTOS,OBSERVACION
+                                            FROM vtVS2_Facturas_AN
+                                            WHERE FACTURA = '".$factura."'
+                                            GROUP BY FACTURA,FECHA,CLIENTE,NOMBRE_CLIENTE,OBSERVACION",SQLSRV_FETCH_ASSOC);        
+        foreach($query2 as $key){
+            $json['data'][$i]['FECHA'] = '<p class="negra noMargen">'.$key['FECHA']->format('d-m-Y')."</p>";
+            $json['data'][$i]['FACTURA'] = '<p class="bold noMargen">'.$key['FACTURA']."</p>";
+            $json['data'][$i]['CLIENTE'] = '<p class="bold noMargen">'.$key['CLIENTE']."</p>";
+            $json['data'][$i]['NOMBRE'] = '<p class="bold noMargen">'.$key['NOMBRE_CLIENTE']."</p>";
+            $json['data'][$i]['PUNTOS'] = number_format($key['PUNTOS'],0);
+            $json['data'][$i]['OBSER'] = strtoupper($key['OBSERVACION']);
+            $json['data'][$i]['VER'] = "ANULADA";
+            $i++;
+        }
+
+        $query = $this->db->query("SELECT * FROM view_informeFacturas
+                                    WHERE FACTURA = '".$factura."'");
         if ($query->num_rows()>0) {
             foreach($query->result_array() as $key){            
                 $json['data'][$i]['FACTURA'] = '<p class="negra noMargen">'.$key['Factura'].'</p>';
@@ -769,7 +819,7 @@ class Reportes_model extends CI_Model
             $json['columns'][5]['data'] = "APLICADO";
             $json['columns'][5]['name'] = "APLICADO";
             $json['columns'][6]['data'] = "VER";
-            $json['columns'][6]['name'] = "VER";
+            $json['columns'][6]['name'] = "ESTADO";
         echo json_encode($json);
         $this->sqlsrv->close();
     }
@@ -808,6 +858,81 @@ class Reportes_model extends CI_Model
             $json['columns'][4]['name'] = "PUNTOS";
             $json['columns'][5]['data'] = "OBSER";
             $json['columns'][5]['name'] = "OBSERVACIONES";
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function puntosXclienteRuta($f1,$f2)
+    {
+        $i=0;
+        $json = array();
+        $consulta = "SELECT T1.RUTA, T1.CLIENTE, T0.NOMBRE AS NOMBRE_CLIENTE, T0.DIRECCION, T0.RUC, SUM(T1.TT_PUNTOS) AS PUNTOS, T0.MOROSO
+                        FROM dbo.vtVS2_Clientes T0 INNER JOIN vtVS2_Facturas_CL T1 ON T0.CLIENTE = T1.CLIENTE
+                        WHERE T1.FECHA BETWEEN '".$f1."' AND '".$f2."'
+                        GROUP BY T1.CLIENTE,T0.NOMBRE,T0.DIRECCION,T0.RUC,T1.RUTA,T0.MOROSO";
+
+        $query = $this->sqlsrv->fetchArray($consulta,SQLSRV_FETCH_ASSOC);
+        $json['data'][$i]['CLIENTE'] = ""; $json['data'][$i]['NOMBRE'] = "";
+        $json['data'][$i]['PUNTOS'] = ""; $json['data'][$i]['RUTA'] = ""; $json['data'][$i]['DIRECCION'] = "";
+
+        foreach($query as $key){
+            $json['data'][$i]['CLIENTE'] = $key['CLIENTE'];
+            $json['data'][$i]['NOMBRE'] = $key['NOMBRE_CLIENTE'];
+            $json['data'][$i]['PUNTOS'] = (($key['PUNTOS'] - $this->getAplicado($key['CLIENTE']))<0) ? 0 : $key['PUNTOS'] - $this->getAplicado($key['CLIENTE']);
+            $json['data'][$i]['DIRECCION'] = $key['DIRECCION'];
+            $json['data'][$i]['RUTA'] = $key['RUTA'];
+            $i++;
+        }
+            $json['columns'][0]['data'] = "RUTA";
+            $json['columns'][0]['name'] = "RUTA";
+            $json['columns'][1]['data'] = "CLIENTE";
+            $json['columns'][1]['name'] = "CLIENTE";
+            $json['columns'][2]['data'] = "NOMBRE";
+            $json['columns'][2]['name'] = "NOMBRE";
+            $json['columns'][3]['data'] = "DIRECCION";
+            $json['columns'][3]['name'] = "DIRECCION";
+            $json['columns'][4]['data'] = "PUNTOS";
+            $json['columns'][4]['name'] = "PUNTOS";
+
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+    public function informeFrpXcliente($id)
+    {
+        $i=0;
+        $json = array();
+        $query = $this->db->query("SELECT IdCliente, Nombre,IdFRP,Fecha, SUM(PUNTOS) AS PUNTOS FROM view_informefacturas 
+                                    WHERE IdCliente ='".$id."'
+                                    GROUP BY IdFRP");
+
+                $json['data'][$i]['FECHA'] = "-";
+                $json['data'][$i]['CLIENTE'] = "-";
+                $json['data'][$i]['CODIGO'] = "NO HAY DATOS";
+                $json['data'][$i]['PUNTOS'] = "-";
+                $json['data'][$i]['APLICADO'] = "-";
+                $json['data'][$i]['VER'] = "-";
+        if ($query->num_rows()>0) {
+            foreach($query->result_array() as $key){            
+                $json['data'][$i]['FECHA'] = date('d-m-Y',strtotime($key['Fecha']));
+                $json['data'][$i]['CLIENTE'] = $key['IdCliente'];
+                $json['data'][$i]['NOMBRE'] = $key['Nombre'];
+                $json['data'][$i]['CODIGO'] = '<p class="negra noMargen">'.$key['IdFRP'].'</p>';
+                $json['data'][$i]['APLICADO'] = $key['PUNTOS'];
+                $json['data'][$i]['VER'] = "<a href='".base_url()."index.php/ExpFRP/".$key['IdFRP']."' target='_blank' class='noHover'><i class='material-icons'>&#xE417;</i></a>";
+                $i++;
+            }
+        }
+            $json['columns'][0]['data'] = "FECHA";
+            $json['columns'][0]['name'] = "FECHA";
+            $json['columns'][1]['data'] = "CLIENTE";
+            $json['columns'][1]['name'] = "COD. CLIENTE";
+            $json['columns'][2]['data'] = "NOMBRE";
+            $json['columns'][2]['name'] = "NOMBRE";
+            $json['columns'][3]['data'] = "CODIGO";
+            $json['columns'][3]['name'] = "ID FRP";
+            $json['columns'][4]['data'] = "APLICADO";
+            $json['columns'][4]['name'] = "APLICADO";
+            $json['columns'][5]['data'] = "VER";
+            $json['columns'][5]['name'] = "VER";
         echo json_encode($json);
         $this->sqlsrv->close();
     }

@@ -64,7 +64,7 @@
                                     <td class='".$clase."'>".$key['IdCliente']."</td>
                                     <td class='negra ".$clase."'>".$key['Nombre']."</td>
                                     <td class='".$clase."'>".$key['Puntos']."</td>
-                                    <td class='".$clase."'>".$key['Efectivo']."</td>
+                                    <td class='".$clase."'>".$key['Puntos']/2 /*$key['Efectivo']*/."</td>
                                     <td class='center'>
                                     <a  onclick='getview(".'"'.$key['IdFRE'].'"'.")' href='#' class='noHover'><i class='material-icons'>&#xE417;</i></a>
                                     ".$delete."
